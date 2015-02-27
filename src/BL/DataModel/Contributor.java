@@ -11,7 +11,7 @@ public class Contributor extends BL.DataModel.UserRole {
  * <p>Represents ...</p>
  * 
  */
-    private string descriptionContributor;
+    private String descriptionContributor;
 /**
  * 
  * 

@@ -11,7 +11,7 @@ public class Order {
  * <p>Represents ...</p>
  * 
  */
-    private string paiementMethod;
+    private String paiementMethod;
 /**
  * 
  * 

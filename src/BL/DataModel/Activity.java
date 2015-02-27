@@ -11,19 +11,19 @@ public class Activity {
  * <p>Represents ...</p>
  * 
  */
-    private string nameActivity;
+    private String nameActivity;
 
 /**
  * <p>Represents ...</p>
  * 
  */
-    private string shortDescription;
+    private String shortDescription;
 
 /**
  * <p>Represents ...</p>
  * 
  */
-    private string detailledDescription;
+    private String detailledDescription;
 /**
  * 
  * 

@@ -11,7 +11,7 @@ public class Day {
  * <p>Represents ...</p>
  * 
  */
-    private string day;
+    private String day;
 /**
  * 
  * 

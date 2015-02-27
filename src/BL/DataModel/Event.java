@@ -11,7 +11,7 @@ public class Event {
  * <p>Represents ...</p>
  * 
  */
-    private string nameEvent;
+    private String nameEvent;
 /**
  * 
  * 

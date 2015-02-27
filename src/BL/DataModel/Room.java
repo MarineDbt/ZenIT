@@ -17,7 +17,7 @@ public class Room {
  * <p>Represents ...</p>
  * 
  */
-    private string numRoom;
+    private String numRoom;
 /**
  * 
  * 

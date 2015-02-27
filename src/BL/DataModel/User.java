@@ -11,49 +11,49 @@ public class User {
  * <p>Represents ...</p>
  * 
  */
-    private string firstname;
+    private String firstname;
 
 /**
  * <p>Represents ...</p>
  * 
  */
-    private string surname;
+    private String surname;
 
 /**
  * <p>Represents ...</p>
  * 
  */
-    private string street;
+    private String street;
 
 /**
  * <p>Represents ...</p>
  * 
  */
-    private string PC;
+    private String PC;
 
 /**
  * <p>Represents ...</p>
  * 
  */
-    private string city;
+    private String city;
 
 /**
  * <p>Represents ...</p>
  * 
  */
-    private string phone;
+    private String phone;
 
 /**
  * <p>Represents ...</p>
  * 
  */
-    private string id;
+    private String id;
 
 /**
  * <p>Represents ...</p>
  * 
  */
-    private string pwd;
+    private String pwd;
 /**
  * 
  * 

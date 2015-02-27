@@ -11,7 +11,7 @@ public class Category {
  * <p>Represents ...</p>
  * 
  */
-    private string nameCategory;
+    private String nameCategory;
 /**
  * 
  * 

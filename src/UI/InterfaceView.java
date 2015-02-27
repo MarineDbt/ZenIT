@@ -5,21 +5,16 @@ package UI;
  * 
  * 
  */
-public class InterfaceView {
+public interface InterfaceView {
 
 /**
  * <p>Does ...</p>
  * 
  */
-    public void display() {        
-        // your code here
-    } 
-
+    public void display();
 /**
  * <p>Does ...</p>
  * 
  */
-    public void hide() {        
-        // your code here
-    } 
+    public void hide();
  }

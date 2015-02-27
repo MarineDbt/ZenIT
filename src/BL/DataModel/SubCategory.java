@@ -11,7 +11,7 @@ public class SubCategory {
  * <p>Represents ...</p>
  * 
  */
-    private string string;
+    private String string;
 /**
  * 
  * 

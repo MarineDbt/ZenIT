@@ -5,7 +5,7 @@ package BL.Front;
  * 
  * 
  */
-public class UserManagement {
+public class UserFront {
 
 /**
  * <p>Represents ...</p>
