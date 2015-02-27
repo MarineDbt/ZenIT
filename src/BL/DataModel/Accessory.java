@@ -11,7 +11,7 @@ public class Accessory {
  * <p>Represents ...</p>
  * 
  */
-    private string nameAccessory;
+    private String nameAccessory;
 /**
  * 
  * 
