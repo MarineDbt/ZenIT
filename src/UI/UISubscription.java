@@ -1,25 +1,38 @@
 package UI;
 
 import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.EventQueue;
 
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.GridLayout;
+
 import javax.swing.JSplitPane;
+
 import java.awt.FlowLayout;
+
 import javax.swing.JTextField;
 
 public class UISubscription extends JFrame {
 
-	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField tNom;
+	private JTextField tPrenom;
+	private JTextField tLogin;
+	private JTextField tMotDePasse;
+	private JTextField tMail;
+	private JTextField tNumero;
+	private JTextField tRue;
+	private JTextField tCodePostal;
+	private JTextField tVille;
+	private JTextField tTelephone;
 
 	/**
 	 * Launch the application.
@@ -40,74 +53,145 @@ public class UISubscription extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	// Constructor
 	public UISubscription() {
+		super("Subscription");
+		Container contentPane = getContentPane();
+		setSize(500,500);
+		
+		
+		//Création de la première zone
+		JPanel panel1 = new JPanel();
+		
+		JLabel titre = new JLabel("Zen Lounge");
+		titre.setBounds(172, 16, 100, 20);
+		panel1.add(titre);
+		contentPane.add(panel1, BorderLayout.NORTH);
+		
+		//Création zone centrale
+		JPanel panelCentral = new JPanel();
+		panelCentral.setLayout(new BoxLayout(panelCentral, BoxLayout.Y_AXIS));
+		contentPane.add(panelCentral, BorderLayout.CENTER);
+		
+		//Création de la deuxième zone
+		JPanel panel2 = new JPanel();
+		panel2.setLayout(new GridLayout(5,0));
+		panelCentral.add(panel2);
+		
+		//Ajout du label nom
+		JLabel nom = new JLabel("Nom :");
+		nom.setBounds(75, 41, 69, 20);
+		panel2.add(nom);
+		
+		//Ajout du text field nom
+		tNom = new JTextField();
+		panel2.add(tNom);
+		
+		//Ajout du label prénom
+		JLabel prenom = new JLabel("Prénom :");
+		prenom.setBounds(75, 64, 69, 20);
+		panel2.add(prenom);
+		
+		//Ajout du text field prénom
+		tPrenom = new JTextField();
+		panel2.add(tPrenom);
+				
+		//Ajout du label login
+		JLabel login = new JLabel("Login :");
+		login.setBounds(75, 87, 69, 20);
+		panel2.add(login);
+		
+		
+		//Ajout du text field login
+		tLogin = new JTextField();
+		panel2.add(tLogin);
+		
+		//Ajout du label mot de passe
+		JLabel motDePasse = new JLabel("Mot de passe :");
+		motDePasse.setBounds(75, 114, 100, 20);
+		panel2.add(motDePasse);
+		
+		//Ajout du text field mot de passe
+		tMotDePasse = new JTextField();
+		panel2.add(tMotDePasse);
+		
+		//Ajout du label mail
+		JLabel adresseMail = new JLabel("Adresse mail :");
+		adresseMail.setBounds(75, 139, 120, 20);
+		panel2.add(adresseMail);
+		
+		//Ajout du text field mail
+		tMail = new JTextField();
+		panel2.add(tMail);
+		
+		//Création de la troisième zone
+		JPanel panel3 = new JPanel();
+		JLabel adresse = new JLabel("Adresse");
+		adresse.setBounds(172, 16, 100, 20);
+		panel3.add(adresse);
+		panelCentral.add(panel3);
+		
+		//Création de la quatrième zone
+		JPanel panel4 = new JPanel();
+		panel4.setLayout(new GridLayout(5,0));
+		panelCentral.add(panel4);
+		
+		//Ajout du label numéro
+		JLabel numero = new JLabel("Numéro :");
+		numero.setBounds(24, 195, 120, 20);
+		panel4.add(numero);
+		
+		//Ajout du text field numéro
+		tNumero = new JTextField();
+		panel4.add(tNumero);
+		
+		//Ajout du label rue
+		JLabel rue = new JLabel("Rue :");
+		rue.setBounds(231, 197, 120, 20);
+		panel4.add(rue);
+		
+		//Ajout du text field rue
+		tRue = new JTextField();
+		panel4.add(tRue);
+		
+		//Ajout du label code postal
+		JLabel codePostale = new JLabel("Code Postal :");
+		codePostale.setBounds(24, 231, 120, 20);
+		panel4.add(codePostale);
+		
+		//Ajout du text field code postal
+		tCodePostal = new JTextField();
+		panel4.add(tCodePostal);
+				
+		//Ajout du label ville
+		JLabel ville = new JLabel("Ville :");
+		ville.setBounds(231, 231, 120, 20);
+		panel4.add(ville);
+		
+		//Ajout du text field ville
+		tVille = new JTextField();
+		panel4.add(tVille);
+		
+		//Ajout du label téléphone
+		JLabel telephone = new JLabel("Numéro de téléphone :");
+		telephone.setBounds(24, 267, 170, 20);
+		panel4.add(telephone);
+		
+		//Ajout du text field téléphone
+		tTelephone = new JTextField();
+		panel4.add(tTelephone);
+
+		//Création de la première zone
+		JPanel panel5 = new JPanel();
+		contentPane.add(panel5, BorderLayout.SOUTH);		
+				
+		JButton bouton = new JButton("Valider");
+		bouton.setBounds(157, 299, 115, 29);
+		panel5.add(bouton);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 400);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+	
+		setVisible(true);
 		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(157, 299, 115, 29);
-		contentPane.add(btnNewButton);
-		
-		JLabel lblNewLabel = new JLabel("Zen Lounge");
-		lblNewLabel.setBounds(172, 16, 100, 20);
-		contentPane.add(lblNewLabel);
-		
-		JLabel lblNomDeFamille = new JLabel("Nom :");
-		lblNomDeFamille.setBounds(75, 41, 69, 20);
-		contentPane.add(lblNomDeFamille);
-		
-		JLabel lblPrnom = new JLabel("Pr\u00E9nom :");
-		lblPrnom.setBounds(75, 64, 69, 20);
-		contentPane.add(lblPrnom);
-		
-		JLabel lblLogin = new JLabel("Login :");
-		lblLogin.setBounds(75, 87, 69, 20);
-		contentPane.add(lblLogin);
-		
-		JLabel lblMotDePasse = new JLabel("Mot de passe :");
-		lblMotDePasse.setBounds(75, 114, 100, 20);
-		contentPane.add(lblMotDePasse);
-		
-		JLabel lblAdresseMail = new JLabel("Adresse mail :");
-		lblAdresseMail.setBounds(75, 139, 120, 20);
-		contentPane.add(lblAdresseMail);
-		
-		JLabel lblAdresse = new JLabel("Adresse");
-		lblAdresse.setBounds(172, 161, 100, 20);
-		contentPane.add(lblAdresse);
-		
-		JLabel lblNumro = new JLabel("Num\u00E9ro :");
-		lblNumro.setBounds(24, 195, 120, 20);
-		contentPane.add(lblNumro);
-		
-		JLabel lblRue = new JLabel("Rue :");
-		lblRue.setBounds(231, 197, 120, 20);
-		contentPane.add(lblRue);
-		
-		JLabel lblCodePostale = new JLabel("Code Postal :");
-		lblCodePostale.setBounds(24, 231, 120, 20);
-		contentPane.add(lblCodePostale);
-		
-		JLabel lblVille = new JLabel("Ville :");
-		lblVille.setBounds(231, 231, 120, 20);
-		contentPane.add(lblVille);
-		
-		JLabel lblNumroDeTlphone = new JLabel("Num\u00E9ro de t\u00E9l\u00E9phone :");
-		lblNumroDeTlphone.setBounds(24, 267, 170, 20);
-		contentPane.add(lblNumroDeTlphone);
-		
-		textField = new JTextField();
-		textField.setBounds(168, 38, 146, 26);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(172, 81, 146, 26);
-		contentPane.add(textField_1);
 	}
 }
