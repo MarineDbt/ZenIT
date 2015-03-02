@@ -1,4 +1,4 @@
-package DataBase;
+package BL.ApplicationClasses;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,17 +8,19 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 
-public class ConnectionToBD {
+public class ConnectionToDB {
 	
 	Connection connect;
 	PreparedStatement preparedStatement;
 	ResultSet resultSet;
-	String url = "zenitdatabase.cowyokdz4iwa.us-west-2.rds.amazonaws.com:3306";
-	String user ="zenit";
-	String password ="zenitdatabase";
+	String url;
+	String user;
+	String password;
 	
-	public ConnectionToBD(){
-		
+	public ConnectionToDB(){
+		url = "zenitdatabase.cowyokdz4iwa.us-west-2.rds.amazonaws.com:3306";
+		user ="zenit";
+		password ="zenitdatabase";
 	}
 	  
 	public boolean checkPassword(String id, String psw) throws Exception{
@@ -45,6 +47,9 @@ public class ConnectionToBD {
 		 throw new Exception();
 		}
 	}
+	public void readUser(String id){
+		// TODO
+	}
 	public void insertUser (String firstname, String lastname, String street, int PC, String city, String phone, String email, String id, String psw) throws Exception{
 		try{
 			connect = DriverManager.getConnection(url, user, psw);
@@ -64,6 +69,9 @@ public class ConnectionToBD {
 				throw e;
 			}
 			this.close();
+	}
+	public void deleteUser (String id){
+		// TODO
 	}
 	  private void close() {
 		    try {

@@ -1,5 +1,5 @@
 
-package BL.DataModel;
+package BL.DataClasses;
 
 /**
  * 
@@ -16,12 +16,12 @@ public class Event {
  * 
  * 
  */
-    public BL.DataModel.Activity activity;
+    public BL.DataClasses.Activity activity;
 /**
  * 
  * 
  */
-    public BL.DataModel.Room room;
+    public BL.DataClasses.Room room;
 /**
  * 
  * 

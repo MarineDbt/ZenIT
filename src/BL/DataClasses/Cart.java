@@ -1,5 +1,5 @@
 
-package BL.DataModel;
+package BL.DataClasses;
 
 /**
  * 
@@ -10,12 +10,12 @@ public class Cart {
  * 
  * 
  */
-    public BL.DataModel.User user;
+    public BL.DataClasses.User user;
 /**
  * 
  * 
  */
-    public BL.DataModel.Order order;
+    public BL.DataClasses.Order order;
 /**
  * 
  * 
@@ -59,5 +59,5 @@ public class Cart {
  * 
  * 
  */
-    public BL.DataModel.Member member;
+    public BL.DataClasses.Member member;
  }

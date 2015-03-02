@@ -1,5 +1,5 @@
 
-package BL.DataModel;
+package BL.DataClasses;
 
 /**
  * 
@@ -16,5 +16,5 @@ public class Order {
  * 
  * 
  */
-    public BL.DataModel.Cart cart;
+    public BL.DataClasses.Cart cart;
  }

@@ -1,5 +1,5 @@
 
-package BL.DataModel;
+package BL.DataClasses;
 
 /**
  * 
@@ -58,12 +58,12 @@ public class User {
  * 
  * 
  */
-    public BL.DataModel.NotificationCenter notificationCenter;
+    public BL.DataClasses.NotificationCenter notificationCenter;
 /**
  * 
  * 
  */
-    public BL.DataModel.Cart cart;
+    public BL.DataClasses.Cart cart;
 /**
  * 
  * 
@@ -71,4 +71,10 @@ public class User {
  * @poseidon-type BL.DataModel.UserRole
  */
     public java.util.Collection userRole = new java.util.TreeSet();
+    /**
+     * Delete the user account
+     */
+    public void deleteAccount(){
+    	//TODO
+    }
  }

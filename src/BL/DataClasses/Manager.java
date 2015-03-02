@@ -1,11 +1,11 @@
 
-package BL.DataModel;
+package BL.DataClasses;
 
 /**
  * 
  * 
  */
-public class Manager extends BL.DataModel.MemberRole {
+public class Manager extends BL.DataClasses.MemberRole {
 /**
  * 
  * 

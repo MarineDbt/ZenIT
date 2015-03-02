@@ -1,8 +1,11 @@
 
 package BL.Front;
 
-import BL.DataModel.User;
-import DataBase.ConnectionToBD;
+import java.util.HashMap;
+
+import BL.ApplicationClasses.ConnectionToDB;
+import BL.ApplicationClasses.UserService;
+import BL.DataClasses.*;
 
 /**
  * 
@@ -10,31 +13,48 @@ import DataBase.ConnectionToBD;
  */
 public class UserFacade {
 	
-	User currentUser;
+	/*
+	 * To be able to login and register
+	 */
+	UserService userService;
 	
-	public void login(String id, String psw){
-		 ConnectionToBD connect=new ConnectionToBD();
-		 try {
-			if (connect.checkPassword(id,psw)){
-				 this.loadData();
-			 }
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	 }
-	 public void register(String firstname, String lastname, String street, int PC, String city, String phone, String email, String id, String psw){
-		 ConnectionToBD connect=new ConnectionToBD();
-		 try{
-		 connect.insertUser(firstname, lastname, street, PC, city, phone, email, id, psw);
-		 }
-		 catch (Exception e){
-			 e.printStackTrace();
-		 }
-		 
-	 }
+	/*
+	 * Dictionnary of Products
+	 */
+	HashMap<Product,String> products;
+	
+	/*
+	 * Dictionnary of Categories
+	 */
+	HashMap<Category,String> categories;
+	
+	/*
+	 * subDictionnary of Categories
+	 */
+	HashMap<SubCategory, String> subCategories;
+	
+	//MemberFacade memberFacade= null;
+	//ContributorFacade contributorFacade = null;
+	
+	
+	/*un utilisateur peut voir la liste des produits*/
+	HashMap<UserRole,String> userRoles;
+	
+	/*
+	 * currentUser, on pourra donc aussi accéder aux objets associés
+	 */
+	
+	User currentUser;
 	 
-	 //charge la persistance
+	
+	public UserFacade(){
+		userService = new UserService();
+		currentUser=null;
+		products=null;
+		categories=null;
+		subCategories=null;
+	}
+	 /*charge la persistance nécessaire à userFacade*/
 	 public void loadData(){
 		 //TODO
 	 }

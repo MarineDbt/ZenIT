@@ -1,5 +1,5 @@
 
-package BL.DataModel;
+package BL.DataClasses;
 
 /**
  * 
@@ -16,5 +16,5 @@ public class Category {
  * 
  * 
  */
-    public BL.DataModel.SubCategory subCategory;
+    public BL.DataClasses.SubCategory subCategory;
  }
