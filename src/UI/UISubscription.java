@@ -11,6 +11,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.GridLayout;
@@ -21,7 +23,9 @@ import java.awt.FlowLayout;
 
 import javax.swing.JTextField;
 
-public class UISubscription extends JFrame {
+import BL.Front.UserFacade;
+
+public class UISubscription extends JFrame implements ActionListener {
 
 	private JTextField tNom;
 	private JTextField tPrenom;
@@ -33,6 +37,8 @@ public class UISubscription extends JFrame {
 	private JTextField tCodePostal;
 	private JTextField tVille;
 	private JTextField tTelephone;
+	
+	public UserFacade userFacade;
 
 	/**
 	 * Launch the application.
@@ -42,6 +48,7 @@ public class UISubscription extends JFrame {
 			public void run() {
 				try {
 					UISubscription frame = new UISubscription();
+					frame.userFacade = new UserFacade();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -186,6 +193,9 @@ public class UISubscription extends JFrame {
 		contentPane.add(panel5, BorderLayout.SOUTH);		
 				
 		JButton bouton = new JButton("Valider");
+		bouton.addActionListener(this);
+		bouton.setActionCommand("valid");
+		
 		bouton.setBounds(157, 299, 115, 29);
 		panel5.add(bouton);
 		
@@ -194,4 +204,14 @@ public class UISubscription extends JFrame {
 		setVisible(true);
 		
 	}
+	public void actionPerformed (ActionEvent e) 
+	{ 
+	     if (e.getActionCommand().equals("valid")){
+	    	 userFacade.register(tNom.getText(),tPrenom.getText(),tRue.getText(),
+	    			 tCodePostal.getText(),tVille.getText(),tTelephone.getText(),
+	    			 tMail.getText(),tLogin.getText(),tMotDePasse.getText());
+	     }
+	}
+
+	
 }
