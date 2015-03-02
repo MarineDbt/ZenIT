@@ -20,14 +20,14 @@ public class ConnectionToDB {
 	String password;
 	
 	public ConnectionToDB(){
-		url = "jdbc:mysql:zenitdatabase.cowyokdz4iwa.us-west-2.rds.amazonaws.com:3306";
+		url = "zenitdatabase.cowyokdz4iwa.us-west-2.rds.amazonaws.com:3306";
 		user ="zenit";
 		password ="zenitdatabase";
 	}
 	public Boolean connect() {
 	        try {
 	            Class.forName("com.mysql.jdbc.Driver").newInstance();
-	            this.connection = DriverManager.getConnection("jdbc:mysql:" + this.url, this.user, this.password);
+	            this.connection = DriverManager.getConnection("jdbc:mysql//" + this.url, this.user, this.password);
 	            return true;
 	        } catch (SQLException ex) {
 	            Logger.getLogger(ConnectionToDB.class.getName()).log(Level.SEVERE, null, ex);
