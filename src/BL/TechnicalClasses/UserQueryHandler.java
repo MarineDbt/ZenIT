@@ -1,4 +1,4 @@
-package BL.ApplicationClasses;
+package BL.TechnicalClasses;
 import java.sql.ResultSet;
 import ConnectionToDB.ConnectionToMySQL;
 

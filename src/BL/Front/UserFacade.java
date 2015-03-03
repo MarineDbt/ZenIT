@@ -2,8 +2,9 @@
 package BL.Front;
 
 import java.util.HashMap;
-import BL.ApplicationClasses.UserManager;
+
 import BL.DataClasses.*;
+import BL.TechnicalClasses.UserManager;
 
 /**
  * 
