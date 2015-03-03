@@ -20,30 +20,40 @@ public class ConnectionToDB {
 	String password;
 	
 	public ConnectionToDB(){
-		url = "zenitdatabase.cowyokdz4iwa.us-west-2.rds.amazonaws.com:3306";
+		url = "jdbc:mysql//zenitdatabase.cowyokdz4iwa.us-west-2.rds.amazonaws.com:3306/zenitdatabase";
 		user ="zenit";
 		password ="zenitdatabase";
+		this.connect();
 	}
-	public Boolean connect() {
+	
+	public void connect() {
 	        try {
-	            Class.forName("com.mysql.jdbc.Driver").newInstance();
-	            this.connection = DriverManager.getConnection("jdbc:mysql//" + this.url, this.user, this.password);
-	            return true;
-	        } catch (SQLException ex) {
-	            Logger.getLogger(ConnectionToDB.class.getName()).log(Level.SEVERE, null, ex);
-	        } catch (ClassNotFoundException ex) {
-	            Logger.getLogger(ConnectionToDB.class.getName()).log(Level.SEVERE, null, ex);
-	        } catch (InstantiationException ex) {
-	            Logger.getLogger(ConnectionToDB.class.getName()).log(Level.SEVERE, null, ex);
-	        } catch (IllegalAccessException ex) {
-	            Logger.getLogger(ConnectionToDB.class.getName()).log(Level.SEVERE, null, ex);
+	        	System.out.println("Loading Driver");
+	            Class.forName("com.mysql.jdbc.Driver");
+	            System.out.println("Driver Load");
+	            
+	        }catch (ClassNotFoundException ex) {
+	        	//gérer les erreurs
+	        	//Logger.getLogger(ConnectionToDB.class.getName()).log(Level.SEVERE, null, ex);
 	        }
-	        return false;
+	        
+	        try {
+	        	System.out.println("Coucoucoucoucoucouc");
+	            this.connection = DriverManager.getConnection(this.url, this.user, this.password);
+	            System.out.println("J'ai réussi !");
+	            //return true;
+	        } catch (SQLException ex) {
+	            //Logger.getLogger(ConnectionToDB.class.getName()).log(Level.SEVERE, null, ex);
+	 
+	       // return false;
+	        }
 	    }
+	
+	
 	public boolean checkPassword(String id, String psw) throws Exception{
 		
 		try{
-		this.connect();
+	
 		preparedStatement = connection.prepareStatement("select * from user where id = ? and psw = ?");
 		preparedStatement.setString(1,id);
 		preparedStatement.setString(2,psw);

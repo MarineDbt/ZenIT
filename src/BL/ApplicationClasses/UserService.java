@@ -16,6 +16,7 @@ public class UserService {
 			e.printStackTrace();
 		}
 	 }
+	
 	 public User register(String firstname, String lastname, String street, 
 			 String PC, String city, String phone, String email, String id, String psw){
 		 
@@ -23,10 +24,15 @@ public class UserService {
 		 User newUser = null;
 		 try{
 			 System.out.println(PC);
+		
 		 connect.insertUser(firstname, lastname, street,Integer.parseInt(PC), city, phone, email, id, psw);
 		 }
 		 catch (Exception e){
 			 e.printStackTrace();
+		 }
+		 finally {
+			 UserFactory userFactory = new UserFactory();
+			 userFactory.createUser(firstname, lastname, street,Integer.parseInt(PC), city, phone, email, id, psw);
 		 }
 		return newUser;
 		 
