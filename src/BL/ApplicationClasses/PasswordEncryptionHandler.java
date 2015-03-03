@@ -1,7 +1,7 @@
 package BL.ApplicationClasses;
 import java.security.*;
 
-public class EncryptionHandler {
+public class PasswordEncryptionHandler {
 	public String encryptPassword(String psw){
 		byte[] encryptedPassword =null;
 		

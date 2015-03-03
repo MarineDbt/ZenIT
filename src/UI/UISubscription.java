@@ -41,23 +41,6 @@ public class UISubscription extends JFrame implements ActionListener {
 	public UserFacade userFacade;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					UISubscription frame = new UISubscription();
-					frame.userFacade = new UserFacade();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	// Constructor

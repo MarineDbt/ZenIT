@@ -1,12 +1,17 @@
 package BL.ApplicationClasses;
 
+import BL.DataClasses.User;
+
 public class UserFactory {
 
 	
-	public void createUser(String firstname, String lastname, String street,
+	public User createUser(String firstname, String lastname, String street,
 			String PC, String city, String phone, String email, String id,
-			String psw) {
-		// TODO Auto-generated method stub
+			String pwd) {
+		
+		User newUser = new User(firstname,lastname, street, PC, city, phone, email, id, pwd);
+		return newUser;
+		
 		
 	}
 
