@@ -43,6 +43,8 @@ public class ConnectionToDB {
 	            System.out.println("J'ai réussi !");
 	            //return true;
 	        } catch (SQLException ex) {
+	        	System.out.println("catch");
+	        	ex.printStackTrace();
 	            //Logger.getLogger(ConnectionToDB.class.getName()).log(Level.SEVERE, null, ex);
 	 
 	       // return false;
@@ -77,20 +79,19 @@ public class ConnectionToDB {
 	public void readUser(String id){
 		// TODO
 	}
-	public void insertUser (String firstname, String lastname, String street, int PC, String city, String phone, String email, String id, String psw) throws Exception{
+	public void insertUser (String firstname, String lastname, String street, String PC, String city, String phone, String email, String id, String psw) throws Exception{
 		EncryptionHandler encryptionHandler = new EncryptionHandler();
 		try{
-			connection = DriverManager.getConnection(url, user, psw);
-			preparedStatement = connection.prepareStatement("insert into USER values(?,?,?,?,?,?,?,?,?)");
+			preparedStatement = connection.prepareStatement("insert into User (firstname,lastname,street,PC,city,phone,email,id,pwd) values(?,?,?,?,?,?,?,?,?)");
 			preparedStatement.setString(1,firstname);
 			preparedStatement.setString(2,lastname);
 			preparedStatement.setString(3,street);
-			preparedStatement.setInt(4,PC);
+			preparedStatement.setString(4,PC);
 			preparedStatement.setString(5,city);
 			preparedStatement.setString(6,phone);
 			preparedStatement.setString(7,email);
-			preparedStatement.setString(8,encryptionHandler.encryptPassword(id));
-			preparedStatement.setString(9,psw);		
+			preparedStatement.setString(8,id);
+			preparedStatement.setString(9,encryptionHandler.encryptPassword(psw));		
 			preparedStatement.executeUpdate();
 			}
 			catch (Exception e){

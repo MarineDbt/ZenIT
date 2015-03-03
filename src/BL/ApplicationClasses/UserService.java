@@ -25,14 +25,14 @@ public class UserService {
 		 try{
 			 System.out.println(PC);
 		
-		 connect.insertUser(firstname, lastname, street,Integer.parseInt(PC), city, phone, email, id, psw);
+		 connect.insertUser(firstname, lastname, street,PC, city, phone, email, id, psw);
 		 }
 		 catch (Exception e){
 			 e.printStackTrace();
 		 }
 		 finally {
 			 UserFactory userFactory = new UserFactory();
-			 userFactory.createUser(firstname, lastname, street,Integer.parseInt(PC), city, phone, email, id, psw);
+			 userFactory.createUser(firstname, lastname, street, PC, city, phone, email, id, psw);
 		 }
 		return newUser;
 		 
