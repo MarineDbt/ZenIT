@@ -3,6 +3,7 @@ import java.security.*;
 import java.util.Formatter;
 
 public class PasswordEncryptionHandler {
+	
 	public String encryptPassword(String psw){
 		byte[] encryptedPassword =null;
 		
@@ -16,8 +17,8 @@ public class PasswordEncryptionHandler {
 			// TODO : Exception handling
 			e.printStackTrace();
 		}
-		return byteToHex(encryptedPassword);
 		
+		return byteToHex(encryptedPassword);
 	}
 
 	private String byteToHex(final byte[] hash)
