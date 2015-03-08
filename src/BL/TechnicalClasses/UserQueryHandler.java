@@ -17,7 +17,7 @@ public class UserQueryHandler {
 		
 		ResultSet resultSet;
 		
-		resultSet=ConnectionToMySQL.requestSelectQuery("select * from user where id = "+id+" and pwd = "+pwd);
+		resultSet=ConnectionToMySQL.requestSelectQuery("select * from user where id = '"+id+"' and pwd = "+pwd);
 		
 		if (resultSet.getRow()== 0){
 			return false;
@@ -37,8 +37,8 @@ public class UserQueryHandler {
 		int result = 0;
 		encryptedPwd=encryptionHandler.encryptPassword(pwd);
 		
-		result = ConnectionToMySQL.requestInsertQuery("insert into User (firstname,lastname,street,PC,city,phone,email,id,pwd) values("+firstname+","+lastname+","+street+","+PC+","+city+","+phone+","+email+","+id+","+encryptedPwd+")");
-	
+		result = ConnectionToMySQL.requestInsertQuery("insert into User (firstname,lastname,street,PC,city,phone,email,id,pwd) values('"+firstname+"','"+lastname+"','"+street+"','"+PC+"','"+city+"','"+phone+"','"+email+"','"+id+"','"+encryptedPwd+"')");
+		
 		return (result==1);
 	}
 	public void deleteUser (String id){

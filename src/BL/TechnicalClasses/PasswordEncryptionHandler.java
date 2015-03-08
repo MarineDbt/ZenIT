@@ -1,5 +1,6 @@
 package BL.TechnicalClasses;
 import java.security.*;
+import java.util.Formatter;
 
 public class PasswordEncryptionHandler {
 	public String encryptPassword(String psw){
@@ -11,11 +12,23 @@ public class PasswordEncryptionHandler {
 			md.update(psw.getBytes());
 			encryptedPassword=md.digest();
 		
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
+			// TODO : Exception handling
 			e.printStackTrace();
 		}
-		return encryptedPassword.toString();
+		return byteToHex(encryptedPassword);
 		
+	}
+
+	private String byteToHex(final byte[] hash)
+	{
+	    Formatter formatter = new Formatter();
+	    for (byte b : hash)
+	    {
+	        formatter.format("%02x", b);
+	    }
+	    String result = formatter.toString();
+	    formatter.close();
+	    return result;
 	}
 }

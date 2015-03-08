@@ -127,13 +127,13 @@ public class UISubscription extends JFrame implements ActionListener {
 		panelCentral.add(panel4);
 		
 		//Ajout du label numéro
-		JLabel numero = new JLabel("Numéro :");
-		numero.setBounds(24, 195, 120, 20);
-		panel4.add(numero);
+		//JLabel numero = new JLabel("Numéro :");
+		//numero.setBounds(24, 195, 120, 20);
+		//panel4.add(numero);
 		
 		//Ajout du text field numéro
-		tNumero = new JTextField();
-		panel4.add(tNumero);
+		//tNumero = new JTextField();
+		//panel4.add(tNumero);
 		
 		//Ajout du label rue
 		JLabel rue = new JLabel("Rue :");
