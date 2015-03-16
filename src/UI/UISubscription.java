@@ -42,6 +42,7 @@ public class UISubscription extends JFrame implements ActionListener {
 
 	/**
 	 * Create the frame.
+	 * @
 	 */
 	// Constructor
 	public UISubscription() {
