@@ -5,7 +5,7 @@ package BL.DataClasses;
  * 
  * 
  */
-public class Manager extends BL.DataClasses.MemberRole {
+public class Supervisor extends BL.DataClasses.MemberRole {
 /**
  * 
  * 

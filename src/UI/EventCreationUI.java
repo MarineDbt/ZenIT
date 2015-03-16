@@ -1,6 +1,6 @@
 
-package SupervisorUI;
-import Facade.EventFacade;
+package UI;
+import BL.Front.EventFacade;
 
 /**
  * 

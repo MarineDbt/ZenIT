@@ -1,5 +1,9 @@
 
-package Manager;
+package BL.TechnicalClasses;
+
+import java.util.ArrayList;
+
+import BL.DataClasses.*;
 
 /**
  * 
@@ -16,7 +20,7 @@ public class ActivityManager {
  * @param currentSupervisor 
  * @return 
  */
-    public Facade.ArrayList_Activity_ getActivities(String nameActivity, Factory.Supervisor currentSupervisor) {        
+    public ArrayList<Activity> getActivities(String nameActivity, Supervisor currentSupervisor) {        
         // your code here
         return null;
     } 
@@ -28,7 +32,7 @@ public class ActivityManager {
  * @param currentActivity 
  * @return 
  */
-    public Facade.ArrayList_Contributor_ getContributors(Facade.Activity currentActivity) {        
+    public ArrayList<Contributor> getContributors(Activity currentActivity) {        
         // your code here
         return null;
     } 
@@ -43,7 +47,7 @@ public class ActivityManager {
  * @param newDetailledDescription 
  * @return 
  */
-    public boolean modifyActivity(Facade.Activity oldActivity, String newName, String newShortDescription, String newDetailledDescription) {        
+    public boolean modifyActivity(Activity oldActivity, String newName, String newShortDescription, String newDetailledDescription) {        
         // your code here
         return false;
     } 
@@ -55,7 +59,7 @@ public class ActivityManager {
  * @param currentActivity 
  * @return 
  */
-    public Facade.ArrayList_Member_ getMembers(Facade.Activity currentActivity) {        
+    public ArrayList<Member> getMembers(Activity currentActivity) {        
         // your code here
         return null;
     } 
@@ -67,7 +71,7 @@ public class ActivityManager {
  * @param currentActivity 
  * @return 
  */
-    public Facade.ArrayList_Event_ getEvents(Facade.Activity currentActivity) {        
+    public ArrayList<Event> getEvents(Activity currentActivity) {        
         // your code here
         return null;
     } 

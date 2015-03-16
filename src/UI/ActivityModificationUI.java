@@ -1,6 +1,6 @@
 
-package SupervisorUI;
-import Facade.ActivityFacade;
+package UI;
+import BL.Front.ActivityFacade;
 
 /**
  * 

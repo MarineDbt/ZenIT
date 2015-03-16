@@ -1,5 +1,9 @@
 
-package Facade;
+package BL.Front;
+
+import java.util.ArrayList;
+
+import BL.DataClasses.*;
 
 /**
  * 
@@ -15,7 +19,7 @@ public class EventFacade {
  * @param selectedRoom 
  * @return 
  */
-    public Facade.ArrayList_TimeSlot_ getAvailableTimeSlots(Room selectedRoom) {        
+    public ArrayList<TimeSlot> getAvailableTimeSlots(Room selectedRoom) {        
         // your code here
         return null;
     } 
@@ -26,7 +30,7 @@ public class EventFacade {
  * @poseidon-object-id [I97bf540m14c21da4a12mm1f62]
  * @return 
  */
-    public Factory.ArrayList_Room_ getRooms() {        
+    public ArrayList_Room_ getRooms() {        
         // your code here
         return null;
     } 
@@ -38,7 +42,7 @@ public class EventFacade {
  * @param currentEvent 
  * @return 
  */
-    public Facade.ArrayList_Contributor_ getContributors(Facade.Event currentEvent) {        
+    public ArrayList_Contributor_ getContributors(Facade.Event currentEvent) {        
         // your code here
         return null;
     } 

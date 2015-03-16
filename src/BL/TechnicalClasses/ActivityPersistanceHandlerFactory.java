@@ -1,5 +1,5 @@
 
-package Factory;
+package BL.TechnicalClasses;
 
 /**
  * 
@@ -13,7 +13,7 @@ public class ActivityPersistanceHandlerFactory {
  * 
  * @poseidon-object-id [I296fcbf6m14c1f818933mm4715]
  */
-    public  createActivityPersistanceHandler() {        
+    public void createActivityPersistanceHandler() {        
         // your code here
     } 
  }

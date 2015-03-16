@@ -1,12 +1,16 @@
 
-package QueryHandler;
+package BL.TechnicalClasses;
+
+import java.util.ArrayList;
+
+import BL.DataClasses.*;
 
 /**
  * 
  * 
  * @poseidon-object-id [I97bf540m14c21da4a12m435f]
  */
-public class EventPersistanceHandler {
+public abstract class EventPersistanceHandler {
 
 /**
  * <p>Does ...</p>
@@ -15,7 +19,7 @@ public class EventPersistanceHandler {
  * @param selectedRoom 
  * @return 
  */
-    public Facade.ArrayList_TimeSlot_ lookForAvailableTimeSlots(Room selectedRoom) {        
+	public ArrayList<TimeSlot> lookForAvailableTimeSlots(Room selectedRoom) {        
         // your code here
         return null;
     } 
@@ -26,7 +30,7 @@ public class EventPersistanceHandler {
  * @poseidon-object-id [I97bf540m14c21da4a12m4359]
  * @return 
  */
-    public Factory.ArrayList_Room_ lookForRooms() {        
+    public ArrayList<Room> lookForRooms() {        
         // your code here
         return null;
     } 
@@ -38,7 +42,7 @@ public class EventPersistanceHandler {
  * @param currentEvent 
  * @return 
  */
-    public Facade.ArrayList_Contributor_ lookForContributors(Facade.Event currentEvent) {        
+    public ArrayList<Contributor> lookForContributors(Event currentEvent) {        
         // your code here
         return null;
     } 
@@ -55,9 +59,9 @@ public class EventPersistanceHandler {
  * @param selectedDay 
  * @return 
  */
-    public QueryHandler.boon insertLesson(Facade.Activity currentActivity, String name, String description, Room selectedRoom, Factory.TimeSlot selectedTimeSlot, Day selectedDay) {        
+    public boolean insertLesson(Activity currentActivity, String name, String description, Room selectedRoom, TimeSlot selectedTimeSlot, Day selectedDay) {        
         // your code here
-        return null;
+        return false;
     } 
 
 /**
@@ -68,7 +72,7 @@ public class EventPersistanceHandler {
  * @param currentEvent 
  * @return 
  */
-    public boolean insertContributor(Facade.Contributor selectedContributor, Facade.Event currentEvent) {        
+    public boolean insertContributor(Contributor selectedContributor, Event currentEvent) {        
         // your code here
         return false;
     } 
@@ -86,7 +90,7 @@ public class EventPersistanceHandler {
  * @param selectedEventType 
  * @return 
  */
-    public boolean insertOccasional(Facade.Activity currentActivity, String name, String description, Room selectedRoom, Factory.TimeSlot selectedTimeSlot, java.util.Date selectedDate, Factory.EventType selectedEventType) {        
+    public boolean insertOccasional(Activity currentActivity, String name, String description, Room selectedRoom, TimeSlot selectedTimeSlot, java.util.Date selectedDate, EventType selectedEventType) {        
         // your code here
         return false;
     } 
@@ -102,7 +106,7 @@ public class EventPersistanceHandler {
  * @param newDay 
  * @return 
  */
-    public boolean updateLesson(Factory.Lesson oldLesson, String newName, Room newRoom, Factory.TimeSlot newTimeSlot, Day newDay) {        
+    public boolean updateLesson(Lesson oldLesson, String newName, Room newRoom, TimeSlot newTimeSlot, Day newDay) {        
         // your code here
         return false;
     } 
@@ -118,7 +122,7 @@ public class EventPersistanceHandler {
  * @param newDate 
  * @return 
  */
-    public boolean updateOccasional(Facade.Ocassional oldOccasional, String newName, Room newRoom, Factory.TimeSlot newTimeSlot, java.util.Date newDate) {        
+    public boolean updateOccasional(Occasional oldOccasional, String newName, Room newRoom, TimeSlot newTimeSlot, java.util.Date newDate) {        
         // your code here
         return false;
     } 
@@ -131,7 +135,7 @@ public class EventPersistanceHandler {
  * @param currentEvent 
  * @return 
  */
-    public boolean deleteContributor(Facade.Contributor selectedContributor, Facade.Event currentEvent) {        
+    public boolean deleteContributor(Contributor selectedContributor, Event currentEvent) {        
         // your code here
         return false;
     } 
@@ -143,7 +147,7 @@ public class EventPersistanceHandler {
  * @param selectedEvent 
  * @return 
  */
-    public boolean deleteEvent(Facade.Event selectedEvent) {        
+    public boolean deleteEvent(Event selectedEvent) {        
         // your code here
         return false;
     } 
@@ -155,7 +159,7 @@ public class EventPersistanceHandler {
  * @param currentEvent 
  * @return 
  */
-    public Facade.ArrayList_Member_ lookForMembers(Facade.Member currentEvent) {        
+    public ArrayList<Member> lookForMembers(Member currentEvent) {        
         // your code here
         return null;
     } 

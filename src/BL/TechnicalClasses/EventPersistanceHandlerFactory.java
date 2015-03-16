@@ -1,5 +1,5 @@
 
-package Factory;
+package BL.TechnicalClasses;
 
 /**
  * 
@@ -13,7 +13,7 @@ public class EventPersistanceHandlerFactory {
  * 
  * @poseidon-object-id [I296fcbf6m14c1f818933mm46d8]
  */
-    public  createEventPersistanceHandler() {        
+    public void createEventPersistanceHandler() {        
         // your code here
     } 
  }

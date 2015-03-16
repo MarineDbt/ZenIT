@@ -42,5 +42,5 @@ public class Activity {
  * 
  * 
  */
-    public BL.DataClasses.Manager manager;
+    public BL.DataClasses.Supervisor supervisor;
  }

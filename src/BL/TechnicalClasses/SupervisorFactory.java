@@ -1,5 +1,10 @@
 
-package Factory;
+package BL.TechnicalClasses;
+
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import BL.DataClasses.*;
 
 /**
  * 
@@ -15,7 +20,7 @@ public class SupervisorFactory {
  * @param ResultSet 
  * @return 
  */
-    public Factory.Supervisor createSupervisor(Factory.ResultSet ResultSet) {        
+    public Supervisor createSupervisor(ResultSet ResultSet) {        
         // your code here
         return null;
     } 
