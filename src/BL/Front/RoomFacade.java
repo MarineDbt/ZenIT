@@ -3,6 +3,9 @@ package BL.Front;
 
 import java.util.Collection;
 
+import BL.TechnicalClasses.*;
+import BL.ModelClasses.*;
+
 /**
  * 
  * 
@@ -15,7 +18,7 @@ public class RoomFacade {
  * 
  * @poseidon-object-id [I29f51818m14c28f165ddmm555d]
  */
-    private BL.TechnicalClasses.RoomManager RoomManager;
+    private RoomManager RoomManager;
 
 /**
  * <p>Does ...</p>
@@ -24,8 +27,18 @@ public class RoomFacade {
  * @param numero 
  * @return 
  */
-    public BL.ModelClasses.Room createRoom(int numero) {        
-        // your code here
+   
+    //Constructor
+    public RoomFacade ()
+    {
+    	RoomManager = new RoomManager();
+    	
+    }
+    
+    public Room createRoom(int numero) {        
+        
+    	Room myRoom = RoomManager.createRoom(numero);
+    	
         return null;
     } 
 
