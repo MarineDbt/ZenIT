@@ -1,5 +1,5 @@
 
-package BL.DataClasses;
+package BL.ModelClasses;
 
 /**
  * 
@@ -23,5 +23,5 @@ public class SubCategory {
  * 
  * 
  */
-    public BL.DataClasses.Category category;
+    public BL.ModelClasses.Category category;
  }

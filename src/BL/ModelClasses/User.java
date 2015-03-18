@@ -1,5 +1,5 @@
 
-package BL.DataClasses;
+package BL.ModelClasses;
 
 /**
  * 
@@ -59,12 +59,12 @@ public class User {
 	 * 
 	 * 
 	 */
-    public BL.DataClasses.NotificationCenter notificationCenter;
+    public BL.ModelClasses.NotificationCenter notificationCenter;
 	/**
 	 * 
 	 * 
 	 */
-    public BL.DataClasses.Cart cart;
+    public BL.ModelClasses.Cart cart;
     
 	/**
 	 * 

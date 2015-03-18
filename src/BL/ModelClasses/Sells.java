@@ -1,6 +1,6 @@
 
 
-package BL.DataClasses;
+package BL.ModelClasses;
 /**
  * 
  * 
@@ -16,12 +16,12 @@ public class Sells {
  * 
  * 
  */
-    public BL.DataClasses.Member member;
+    public BL.ModelClasses.Member member;
 /**
  * 
  * 
  * 
  * @poseidon-type BL.DataModel.Product
  */
-    public BL.DataClasses.Product product;
+    public BL.ModelClasses.Product product;
  }

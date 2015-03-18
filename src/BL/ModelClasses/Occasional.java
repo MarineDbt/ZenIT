@@ -1,5 +1,5 @@
 
-package BL.DataClasses;
+package BL.ModelClasses;
 
 import java.util.Date;
 
@@ -7,7 +7,7 @@ import java.util.Date;
  * 
  * 
  */
-public class Occasional extends BL.DataClasses.Event {
+public class Occasional extends BL.ModelClasses.Event {
 
 /**
  * <p>Represents ...</p>
@@ -18,5 +18,5 @@ public class Occasional extends BL.DataClasses.Event {
  * 
  * 
  */
-    public BL.DataClasses.EventType eventType;
+    public BL.ModelClasses.EventType eventType;
  }

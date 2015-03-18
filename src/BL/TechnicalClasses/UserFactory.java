@@ -1,6 +1,6 @@
 package BL.TechnicalClasses;
 
-import BL.DataClasses.User;
+import BL.ModelClasses.User;
 
 public class UserFactory {
 

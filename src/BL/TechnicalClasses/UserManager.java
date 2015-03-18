@@ -1,8 +1,9 @@
 package BL.TechnicalClasses;
+import java.util.Collection;
 import java.util.HashMap;
 
-import BL.DataClasses.Product;
-import BL.DataClasses.User;
+import BL.ModelClasses.Product;
+import BL.ModelClasses.User;
 
 
 /**
@@ -54,7 +55,17 @@ public class UserManager {
 		
 		return result;
 	 }
-	 private void loadUser(String id){
+	 public void loadUser(String id){
 		//TODO : loadUser
 	 }
+	 /**
+	  * <p>Does ...</p>
+	  * 
+	  * @poseidon-object-id [I29f51818m14c28f165ddmm45da]
+	  * @return 
+	  */
+     public Collection<User> readAllUsers() {        
+         // your code here
+         return null;
+     } 
 }

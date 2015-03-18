@@ -1,5 +1,5 @@
 
-package BL.DataClasses;
+package BL.ModelClasses;
 
 /**
  * 
@@ -28,7 +28,7 @@ public class Product {
  * 
  * 
  */
-    public BL.DataClasses.SubCategory subCategory;
+    public BL.ModelClasses.SubCategory subCategory;
 /**
  * 
  * 
@@ -40,5 +40,5 @@ public class Product {
  * 
  * 
  */
-    public BL.DataClasses.Sells sells;
+    public BL.ModelClasses.Sells sells;
  }

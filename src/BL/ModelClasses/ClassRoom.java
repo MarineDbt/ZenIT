@@ -1,11 +1,11 @@
 
-package BL.DataClasses;
+package BL.ModelClasses;
 
 /**
  * 
  * 
  */
-public class ClassRoom extends BL.DataClasses.Room {
+public class ClassRoom extends BL.ModelClasses.Room {
 
 /**
  * <p>Represents ...</p>

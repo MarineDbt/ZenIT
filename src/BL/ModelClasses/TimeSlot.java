@@ -1,5 +1,5 @@
 
-package BL.DataClasses;
+package BL.ModelClasses;
 
 /**
  * 
@@ -34,7 +34,7 @@ public class TimeSlot {
  * 
  * 
  */
-    public BL.DataClasses.Day day;
+    public BL.ModelClasses.Day day;
 /**
  * 
  * 

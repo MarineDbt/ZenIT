@@ -1,11 +1,11 @@
 
-package BL.DataClasses;
+package BL.ModelClasses;
 
 /**
  * 
  * 
  */
-public class Member extends BL.DataClasses.UserRole {
+public class Member extends BL.ModelClasses.UserRole {
 /**
  * 
  * 

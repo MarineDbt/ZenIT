@@ -1,6 +1,6 @@
 
 
-package BL.DataClasses;
+package BL.ModelClasses;
 /**
  * 
  * 
@@ -18,12 +18,12 @@ public class Dispose {
  * 
  * @poseidon-type BL.DataModel.Room
  */
-    public BL.DataClasses.Room room;
+    public BL.ModelClasses.Room room;
 /**
  * 
  * 
  * 
  * @poseidon-type BL.DataModel.Accessory
  */
-    public BL.DataClasses.Accessory accessory;
+    public BL.ModelClasses.Accessory accessory;
  }

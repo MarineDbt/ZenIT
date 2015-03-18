@@ -1,5 +1,5 @@
 
-package BL.DataClasses;
+package BL.ModelClasses;
 
 /**
  * 
@@ -16,12 +16,12 @@ public class Event {
  * 
  * 
  */
-    public BL.DataClasses.Activity activity;
+    public BL.ModelClasses.Activity activity;
 /**
  * 
  * 
  */
-    public BL.DataClasses.Room room;
+    public BL.ModelClasses.Room room;
 /**
  * 
  * 

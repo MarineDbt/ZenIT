@@ -1,5 +1,5 @@
 
-package BL.DataClasses;
+package BL.ModelClasses;
 
 /**
  * 
@@ -42,5 +42,5 @@ public class Activity {
  * 
  * 
  */
-    public BL.DataClasses.Manager manager;
+    public BL.ModelClasses.Manager manager;
  }

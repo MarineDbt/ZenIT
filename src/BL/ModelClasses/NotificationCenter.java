@@ -1,5 +1,5 @@
 
-package BL.DataClasses;
+package BL.ModelClasses;
 
 /**
  * 
@@ -10,7 +10,7 @@ public class NotificationCenter {
  * 
  * 
  */
-    public BL.DataClasses.User user;
+    public BL.ModelClasses.User user;
 /**
  * 
  * 

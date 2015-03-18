@@ -1,6 +1,6 @@
 
 
-package BL.DataClasses;
+package BL.ModelClasses;
 /**
  * 
  * 
@@ -18,12 +18,12 @@ public class Contains {
  * 
  * @poseidon-type BL.DataModel.Cart
  */
-    public BL.DataClasses.Cart cart;
+    public BL.ModelClasses.Cart cart;
 /**
  * 
  * 
  * 
  * @poseidon-type BL.DataModel.Product
  */
-    public BL.DataClasses.Product product;
+    public BL.ModelClasses.Product product;
  }
