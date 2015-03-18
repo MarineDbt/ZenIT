@@ -8,9 +8,9 @@ public class RoomManager {
 	private RoomPersistenceHandler myRoomPersistenceHandler;
 	
 	//Constructor
-	public RoomManager ()
+	public RoomManager (RoomPersistenceHandlerFactory myRPHF)
 	{
-		myRoomPersistenceHandler = 
+		myRoomPersistenceHandler = myRPHF.createRoomPersistenceHandler();
 	}
 	
 	//Creation method

@@ -3,14 +3,16 @@ package BL.TechnicalClasses;
 import java.util.Collection;
 
 import BL.ModelClasses.Accessory;
+import BL.ModelClasses.Room;
 import BL.TechnicalClasses.RoomFactory;
+import ConnectionToDB.ConnectionToMySQL;
 
 /**
  * 
  * 
  * @poseidon-object-id [I29f51818m14c28f165ddmm465b]
  */
-public class RoomQueryHandler implements BL.TechnicalClasses.RoomPersistenceHandler {
+public class RoomQueryHandler extends RoomPersistenceHandler {
 
 /**
  * <p>Does ...</p>
@@ -18,9 +20,46 @@ public class RoomQueryHandler implements BL.TechnicalClasses.RoomPersistenceHand
  * @poseidon-object-id [I29f51818m14c28f165ddmm465c]
  * @param numero 
  * @return 
+ * 
  */
-    public BL.ModelClasses.Room insertRoom(int numero) {        
-        // your code here
+	private RoomFactory myRoomFactory;
+	
+	
+	//Constructors
+	public RoomQueryHandler()
+	{
+		super();
+		myRoomFactory = new RoomFactory();
+	}
+	
+	
+    public Room insertRoom(int numero) {        
+        
+    	// Declarations and initializations
+    	int result = 0;
+    	Room myRoom;
+    	
+    	// Query execution delegated to ConnectionToMySQL
+    	result = ConnectionToMySQL.requestInsertQuery(????);
+    	
+    	// Testing return value
+    	
+    	// The query went well
+    	if (result !=0)
+    	{
+    		myRoomFactory.createRoom(numero);
+    	}
+    	
+    	// The query went wrong
+    	else 
+    	{
+    		myRoom = null;
+    	}
+    	
+    	// Return value
+    	return myRoom;
+    	
+    	
         return null;
     } 
 
@@ -33,7 +72,7 @@ public class RoomQueryHandler implements BL.TechnicalClasses.RoomPersistenceHand
  * @param quantite 
  * @return 
  */
-    public BL.ModelClasses.Accessory insertAccessory(int idRoom, String libelle, int quantite) {        
+    public Accessory insertAccessory(int idRoom, String libelle, int quantite) {        
         // your code here
         return null;
     } 
@@ -71,7 +110,7 @@ public class RoomQueryHandler implements BL.TechnicalClasses.RoomPersistenceHand
  * @poseidon-object-id [I29f51818m14c28f165ddmm4675]
  * @return 
  */
-    public Collection<BL.ModelClasses.Room> selectAllRooms() {        
+    public Collection<Room> selectAllRooms() {        
         // your code here
         return null;
     } 
@@ -82,7 +121,7 @@ public class RoomQueryHandler implements BL.TechnicalClasses.RoomPersistenceHand
  * @poseidon-object-id [I29f51818m14c28f165ddmm4679]
  * @return 
  */
-    public Collection<BL.ModelClasses.Accessory> selectAllAccessories() {        
+    public Collection<Accessory> selectAllAccessories() {        
         // your code here
         return null;
     } 
@@ -94,7 +133,7 @@ public class RoomQueryHandler implements BL.TechnicalClasses.RoomPersistenceHand
  * @param room 
  * @return 
  */
-    public boolean deleteRoom(BL.ModelClasses.Room room) {        
+    public boolean deleteRoom(Room room) {        
         // your code here
         return false;
     } 
@@ -106,7 +145,7 @@ public class RoomQueryHandler implements BL.TechnicalClasses.RoomPersistenceHand
  * @param accessory 
  * @return 
  */
-    public boolean deleteAccessory(BL.ModelClasses.Accessory accessory) {        
+    public boolean deleteAccessory(Accessory accessory) {        
         // your code here
         return false;
     }

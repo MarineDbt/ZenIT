@@ -29,9 +29,9 @@ public class RoomFacade {
  */
    
     //Constructor
-    public RoomFacade ()
+    public RoomFacade (RoomPersistenceHandlerFactory myRPHF)
     {
-    	RoomManager = new RoomManager();
+    	RoomManager = new RoomManager(myRPHF);
     	
     }
     

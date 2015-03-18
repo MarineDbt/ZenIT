@@ -3,12 +3,14 @@ package BL.TechnicalClasses;
 
 import java.util.Collection;
 
+import BL.ModelClasses.*;
+
 /**
  * 
  * 
  * @poseidon-object-id [I29f51818m14c28f165ddmm462e]
  */
-public interface RoomPersistenceHandler {
+public abstract class RoomPersistenceHandler {
 /**
  * <p>Does ...</p>
  * 
@@ -16,7 +18,7 @@ public interface RoomPersistenceHandler {
  * @param numero 
  * @return 
  */
-    public BL.ModelClasses.Room insertRoom(int numero);
+    public abstract Room insertRoom(int numero);
 /**
  * <p>Does ...</p>
  * 
@@ -26,7 +28,7 @@ public interface RoomPersistenceHandler {
  * @param quantite 
  * @return 
  */
-    public BL.ModelClasses.Accessory insertAccessory(int idRoom, String libelle, int quantite);
+    public abstract Accessory insertAccessory(int idRoom, String libelle, int quantite);
 /**
  * <p>Does ...</p>
  * 
@@ -35,7 +37,7 @@ public interface RoomPersistenceHandler {
  * @param number 
  * @return 
  */
-    public boolean updateRoom(BL.ModelClasses.Room room, int number);
+    public abstract boolean updateRoom(Room room, int number);
 /**
  * <p>Does ...</p>
  * 
@@ -45,21 +47,21 @@ public interface RoomPersistenceHandler {
  * @param quantity 
  * @return 
  */
-    public boolean updateAccessory(BL.ModelClasses.Accessory accessory, String label, int quantity);
+    public abstract boolean updateAccessory(Accessory accessory, String label, int quantity);
 /**
  * <p>Does ...</p>
  * 
  * @poseidon-object-id [I29f51818m14c28f165ddmm4648]
  * @return 
  */
-    public Collection<BL.ModelClasses.Room> selectAllRooms();
+    public abstract Collection<Room> selectAllRooms();
 /**
  * <p>Does ...</p>
  * 
  * @poseidon-object-id [I29f51818m14c28f165ddmm464c]
  * @return 
  */
-    public Collection<BL.ModelClasses.Accessory> selectAllAccessories();
+    public abstract Collection<Accessory> selectAllAccessories();
 /**
  * <p>Does ...</p>
  * 
@@ -67,7 +69,7 @@ public interface RoomPersistenceHandler {
  * @param room 
  * @return 
  */
-    public boolean deleteRoom(BL.ModelClasses.Room room);
+    public abstract boolean deleteRoom(Room room);
 /**
  * <p>Does ...</p>
  * 
@@ -75,7 +77,7 @@ public interface RoomPersistenceHandler {
  * @param accessory 
  * @return 
  */
-    public boolean deleteAccessory(BL.ModelClasses.Accessory accessory);
+    public abstract boolean deleteAccessory(Accessory accessory);
 }
 
 
