@@ -28,7 +28,55 @@ public class UserFacade {
 		userManager.register(firstname, lastname, street, PC, city, phone, email, id, pwd);
 	}
 	 /*load persistance relative to user*/
-	 public void loadData(){
+	public void loadData(){
 		 //TODO
-	 }
+	}
+/**
+ * <p>Does ...</p>
+ * 
+ * @poseidon-object-id [I395d852m14bf5118266mm7055]
+ * @param String 
+ * @param String 
+ * @return 
+ */
+    public boolean login(String id, String pwd) {        
+        // your code here
+        return false;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * @poseidon-object-id [I395d852m14bf5118266mm700b]
+ * @param User 
+ */
+    public  void consultProfile(User currentUser) {        
+        // your code here
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * @poseidon-object-id [I395d852m14bf5118266mm6b2b]
+ * @param User 
+ * @param String 
+ * @param .. 
+ * @return 
+ */
+    public boolean modifyProfile(String firstname, String lastname, String street, String PC, String city, String phone, String email, String id, String pwd) {        
+        // your code here
+        return false;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * @poseidon-object-id [I395d852m14bf5118266mm6b06]
+ * @param User 
+ * @return 
+ */
+    public boolean deleteProfile( User currentUser) {        
+        // your code here
+        return false;
+    } 
  }

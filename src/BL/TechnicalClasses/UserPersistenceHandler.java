@@ -7,7 +7,7 @@ import BL.DataClasses.*;
  * 
  * @poseidon-object-id [Im4bef336fm14c19425b18mm6a21]
  */
-public abstract class UserPersistanceHandler {
+public abstract class UserPersistenceHandler {
 
 /**
  * <p>Does ...</p>
@@ -42,8 +42,9 @@ public abstract class UserPersistanceHandler {
  * 
  * @poseidon-object-id [Im4bef336fm14c19425b18mm6995]
  * @param User 
+ * @return
  */
-    public abstract  User lookForUserInfo(User currentUser);
+    public abstract User lookForUserInfo(User currentUser);   
 
 /**
  * <p>Does ...</p>
@@ -54,6 +55,6 @@ public abstract class UserPersistanceHandler {
  * @param .. 
  * @param boolean 
  */
-    public abstract boolean register(String id, String pwd, ..);
+    public abstract boolean register(String firstname, String lastname, String street, String PC, String city, String phone, String email, String id, String pwd);
  
 }

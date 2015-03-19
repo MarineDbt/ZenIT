@@ -37,7 +37,6 @@ public class UISubscription extends JFrame implements ActionListener {
 	private JTextField tCodePostal;
 	private JTextField tVille;
 	private JTextField tTelephone;
-	
 	public UserFacade userFacade;
 
 	/**

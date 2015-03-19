@@ -1,6 +1,7 @@
 package BL.TechnicalClasses;
 import java.sql.ResultSet;
 
+import BL.DataClasses.User;
 import ConnectionToDB.ConnectionToMySQL;
 
 
@@ -45,4 +46,27 @@ public class UserQueryHandler {
 	public void deleteUser (String id){
 		// TODO
 	}
+
+	/**
+	 * <p>Does ...</p>
+	 * 
+	 * @poseidon-object-id [I395d852m14bf5118266mm6734]
+	 * @param User 
+	 */
+	    public User selectUser(User currentUser) {
+			return currentUser;        
+	        // your code here
+	    } 
+
+	/**
+	 * <p>Does ...</p>
+	 * 
+	 * @poseidon-object-id [I395d852m14bf5118266mm670f]
+	 * @param User 
+	 * @return 
+	 */
+	    public boolean updateUser(User currentUser) {        
+	        // your code here
+	        return false;
+	    } 
 }

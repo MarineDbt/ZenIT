@@ -9,7 +9,7 @@ import BL.DataClasses.*;
  * 
  * @poseidon-object-id [I395d852m14bf5118266mm660f]
  */
-public class NotificationQueryHandler extends NotificationPersistanceHandler {
+public class NotificationQueryHandler extends NotificationPersistenceHandler {
 
 /**
  * <p>Does ...</p>

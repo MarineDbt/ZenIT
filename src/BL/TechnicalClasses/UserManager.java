@@ -41,8 +41,7 @@ public class UserManager {
 		 
 		 return result;
 	}
-	 public boolean register(String firstname, String lastname, String street, 
-			 String PC, String city, String phone, String email, String id, String pwd){
+	 public boolean register(String firstname, String lastname, String street, String PC, String city, String phone, String email, String id, String pwd){
 		 
 		boolean result = false;
 		
@@ -57,4 +56,41 @@ public class UserManager {
 	 private void loadUser(String id){
 		//TODO : loadUser
 	 }
+
+
+	 /**
+	  * <p>Does ...</p>
+	  * 
+	  * @poseidon-object-id [I395d852m14bf5118266mm6bd7]
+	  * @param User 
+	  */
+	     public User consultProfile(User currentUser) {
+			return currentUser;        
+	         // your code here
+	     } 
+	 /**
+	  * <p>Does ...</p>
+	  * 
+	  * @poseidon-object-id [I395d852m14bf5118266mm6bb2]
+	  * @param User 
+	  * @param String 
+	  * @param .. 
+	  * @return 
+	  */
+	     public boolean modifyProfile(String firstname, String lastname, String street, String PC, String city, String phone, String email, String id, String pwd) {        
+	         // your code here
+	         return false;
+	     } 
+
+	 /**
+	  * <p>Does ...</p>
+	  * 
+	  * @poseidon-object-id [I395d852m14bf5118266mm6aaf]
+	  * @param User 
+	  * @return 
+	  */
+	     public boolean deleteProfile(User currentUser) {        
+	         // your code here
+	         return false;
+	     } 	
 }

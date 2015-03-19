@@ -6,7 +6,7 @@ package BL.TechnicalClasses;
  * 
  * @poseidon-object-id [Im4bef336fm14c19425b18mm6714]
  */
-public abstract class UserPersistanceHandlerFactory {
+public abstract class UserPersistenceHandlerFactory {
 
 /**
  * <p>Does ...</p>
@@ -14,5 +14,5 @@ public abstract class UserPersistanceHandlerFactory {
  * @poseidon-object-id [Im4bef336fm14c19425b18mm6715]
  * @return 
  */
-    public abstract UserPersistanceHandler createUserPersistanceHandler();
+    public abstract UserPersistenceHandler createUserPersistanceHandler();
  }

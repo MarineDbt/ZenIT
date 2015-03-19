@@ -21,7 +21,11 @@ public class ShoppingManager {
  * @param .. 
  * @return 
  */
-    public ArrayList<Product> searchProduct(String categoryName, String subcategoryName, ..) {        
+    public ArrayList<Product> searchProduct(SubCategory subCaterory) {        
+        // your code here
+        return null;
+    }
+    public ArrayList<Product> searchProduct(Category caterory) {        
         // your code here
         return null;
     } 
