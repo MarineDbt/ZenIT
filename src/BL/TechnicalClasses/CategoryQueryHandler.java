@@ -7,7 +7,7 @@ import BL.TechnicalClasses.CategoryFactory;
  * 
  * @poseidon-object-id [I29f51818m14c28f165ddmm4622]
  */
-public class CategoryQueryHandler {
+public class CategoryQueryHandler extends CategoryPersistenceHandler {
 
 /**
  * <p>Does ...</p>

@@ -5,7 +5,7 @@ package BL.TechnicalClasses;
  * 
  * @poseidon-object-id [I29f51818m14c28f165ddmm46b9]
  */
-public interface CategoryPersistenceHandler {
+public abstract class CategoryPersistenceHandler {
 /**
  * <p>Does ...</p>
  * 
@@ -14,7 +14,7 @@ public interface CategoryPersistenceHandler {
  * @param label 
  * @return 
  */
-    public BL.ModelClasses.Category insertCategory(BL.ModelClasses.Category superCategory, String label);
+    public abstract BL.ModelClasses.Category insertCategory(BL.ModelClasses.Category superCategory, String label);
 /**
  * <p>Does ...</p>
  * 
@@ -22,7 +22,7 @@ public interface CategoryPersistenceHandler {
  * @param category 
  * @return 
  */
-    public boolean deleteCategory(BL.ModelClasses.Category category);
+    public abstract boolean deleteCategory(BL.ModelClasses.Category category);
 }
 
 
