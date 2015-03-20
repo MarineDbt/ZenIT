@@ -1,5 +1,5 @@
 
-package BL.TechnicalClasses;
+package BL.TechnicalClasses.UserUseCases;
 
 import java.util.ArrayList;
 

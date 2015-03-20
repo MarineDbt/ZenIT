@@ -2,7 +2,7 @@ package ConnectionToPersistance.DB.UserUseCases;
 import java.sql.ResultSet;
 
 import BL.DataClasses.User;
-import BL.TechnicalClasses.PasswordEncryptionHandler;
+import BL.TechnicalClasses.UserUseCases.PasswordEncryptionHandler;
 import ConnectionToPersistance.DB.MySQL.ConnectionToMySQL;
 
 

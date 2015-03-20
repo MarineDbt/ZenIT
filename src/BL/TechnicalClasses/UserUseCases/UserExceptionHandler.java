@@ -1,4 +1,4 @@
-package BL.TechnicalClasses;
+package BL.TechnicalClasses.UserUseCases;
 
 public class UserExceptionHandler {
 
