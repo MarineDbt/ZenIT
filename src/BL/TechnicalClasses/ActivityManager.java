@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import BL.DataClasses.*;
 
+
 /**
  * 
  * 
@@ -12,6 +13,15 @@ import BL.DataClasses.*;
  */
 public class ActivityManager {
 
+	public ActivityPersistenceHandler activityPH;
+	
+	//Constructeur
+	
+	public ActivityManager(AbstractPersistenceHandlerFactory factory) {
+	
+		activityPH = factory.createActivityPersistenceHandler();
+		
+	}
 /**
  * <p>Does ...</p>
  * 
@@ -21,8 +31,9 @@ public class ActivityManager {
  * @return 
  */
     public ArrayList<Activity> getActivities(String nameActivity, Supervisor currentSupervisor) {        
-        // your code here
-        return null;
+ 
+		return activityPH.lookForActivities(nameActivity, currentSupervisor);
+      
     } 
 
 /**
@@ -33,8 +44,8 @@ public class ActivityManager {
  * @return 
  */
     public ArrayList<Contributor> getContributors(Activity currentActivity) {        
-        // your code here
-        return null;
+       
+        return activityPH.lookForContributors(currentActivity);
     } 
 
 /**
@@ -48,8 +59,8 @@ public class ActivityManager {
  * @return 
  */
     public boolean modifyActivity(Activity oldActivity, String newName, String newShortDescription, String newDetailledDescription) {        
-        // your code here
-        return false;
+        
+        return activityPH.updateActivity(oldActivity, newName, newShortDescription, newDetailledDescription);
     } 
 
 /**
@@ -60,8 +71,8 @@ public class ActivityManager {
  * @return 
  */
     public ArrayList<Member> getMembers(Activity currentActivity) {        
-        // your code here
-        return null;
+        
+        return activityPH.lookForMembers(currentActivity);
     } 
 
 /**
@@ -72,7 +83,7 @@ public class ActivityManager {
  * @return 
  */
     public ArrayList<Event> getEvents(Activity currentActivity) {        
-        // your code here
-        return null;
+        
+        return activityPH.lookForEvents(currentActivity);
     } 
  }

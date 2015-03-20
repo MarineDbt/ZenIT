@@ -12,6 +12,15 @@ import BL.DataClasses.*;
  */
 public class EventManager {
 
+public EventPersistenceHandler eventPH;
+	
+	//Constructeur
+	
+	public EventManager(AbstractPersistenceHandlerFactory factory) {
+		
+		this.eventPH = factory.createEventPersistenceHandler();
+	}
+	
 /**
  * <p>Does ...</p>
  * 
@@ -20,8 +29,8 @@ public class EventManager {
  * @return 
  */
     public ArrayList<TimeSlot> getAvailableTimeSlots(Room selectedRoom) {        
-        // your code here
-        return null;
+       
+        return eventPH.lookForAvailableTimeSlots(selectedRoom);
     } 
 
 /**
@@ -31,8 +40,8 @@ public class EventManager {
  * @return 
  */
     public ArrayList<Room> getRooms() {        
-        // your code here
-        return null;
+
+        return eventPH.lookForRooms();
     } 
 
 /**
@@ -43,8 +52,8 @@ public class EventManager {
  * @return 
  */
     public ArrayList<Contributor> getContributors(Event currentEvent) {        
-        // your code here
-        return null;
+        
+        return eventPH.lookForContributors(currentEvent);
     } 
 
 /**
@@ -60,8 +69,8 @@ public class EventManager {
  * @return 
  */
     public boolean addLesson(Activity currentActivity, String name, String description, Room selectedRoom, TimeSlot selectedTimeSlot, Day selectedDay) {        
-        // your code here
-        return false;
+        
+        return eventPH.insertLesson(currentActivity, name, description, selectedRoom, selectedTimeSlot, selectedDay);
     } 
 
 /**
@@ -73,8 +82,8 @@ public class EventManager {
  * @return 
  */
     public boolean addContributor(Contributor selectedContributor, Event currentEvent) {        
-        // your code here
-        return false;
+       
+        return eventPH.insertContributor(selectedContributor, currentEvent);
     } 
 
 /**
@@ -91,8 +100,8 @@ public class EventManager {
  * @return 
  */
     public boolean addOccasional(Activity currentActivity, String name, String description, Room selectedRoom, TimeSlot selectedTimeSlot, java.util.Date selectedDate, EventType selectedEventType) {        
-        // your code here
-        return false;
+       
+        return eventPH.insertOccasional(currentActivity, name, description, selectedRoom, selectedTimeSlot, selectedDate, selectedEventType);
     } 
 
 /**
@@ -108,8 +117,8 @@ public class EventManager {
  * @return 
  */
     public boolean modifyLesson(Lesson oldLesson, String newName, String description, Room newRoom, TimeSlot newTimeSlot, Day newDay) {        
-        // your code here
-        return false;
+       
+        return eventPH.updateLesson(oldLesson, newName, newRoom, newTimeSlot, newDay);
     } 
 
 /**
@@ -125,8 +134,8 @@ public class EventManager {
  * @return 
  */
     public boolean modifyOccasional(Occasional oldOccasional, String newName, String description, Room newRoom, TimeSlot newTimeSlot, java.util.Date newDate) {        
-        // your code here
-        return false;
+        
+        return eventPH.updateOccasional(oldOccasional, newName, newRoom, newTimeSlot, newDate);
     } 
 
 /**
@@ -138,8 +147,8 @@ public class EventManager {
  * @return 
  */
     public boolean removeContributor(Contributor selectedContributor, Event currentEvent) {        
-        // your code here
-        return false;
+       
+        return eventPH.deleteContributor(selectedContributor, currentEvent);
     } 
 
 /**
@@ -150,8 +159,8 @@ public class EventManager {
  * @return 
  */
     public boolean removeEvent(Event selectedEvent) {        
-        // your code here
-        return false;
+     
+        return eventPH.deleteEvent(selectedEvent);
     } 
 
 /**
@@ -162,7 +171,7 @@ public class EventManager {
  * @return 
  */
     public ArrayList<Member> getMembers(Member currentEvent) {        
-        // your code here
-        return null;
+     
+        return eventPH.lookForMembers(currentEvent);
     } 
  }

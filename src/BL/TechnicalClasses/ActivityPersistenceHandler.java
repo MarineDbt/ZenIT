@@ -10,7 +10,7 @@ import BL.DataClasses.*;
  * 
  * @poseidon-object-id [I97bf540m14c21da4a12m4313]
  */
-public abstract class ActivityPersistanceHandler {
+public abstract class ActivityPersistenceHandler {
 
 /**
  * <p>Does ...</p>

@@ -3,6 +3,8 @@ package BL.Front;
 
 import java.util.ArrayList;
 
+import BL.TechnicalClasses.AbstractPersistenceHandlerFactory;
+import BL.TechnicalClasses.ActivityManager;
 import BL.DataClasses.*;
 
 /**
@@ -11,7 +13,15 @@ import BL.DataClasses.*;
  * @poseidon-object-id [I3921c69fm14bffe267fdmm49ea]
  */
 public class ActivityFacade {
+	
+	public ActivityManager activitymanager;
 
+	
+	//Constructeur
+	
+	public ActivityFacade(AbstractPersistenceHandlerFactory factory){
+		this.activitymanager = new ActivityManager(factory);
+	}
 /**
  * <p>Does ...</p>
  * 
@@ -21,8 +31,8 @@ public class ActivityFacade {
  * @return 
  */
     public ArrayList<Activity> getActivities(String nameActivity, Supervisor currentSupervisor) {        
-        // your code here
-        return null;
+        return activitymanager.getActivities(nameActivity, currentSupervisor);
+  
     } 
 
 /**
@@ -33,8 +43,8 @@ public class ActivityFacade {
  * @return 
  */
     public ArrayList<Contributor> getContributors(Activity currentActivity) {        
-        // your code here
-        return null;
+       return activitymanager.getContributors(currentActivity);
+        
     } 
 
 /**
@@ -48,8 +58,7 @@ public class ActivityFacade {
  * @return 
  */
     public boolean modifyActivity(Activity oldActivity, String newName, String newShortDescription, String newDetailledDescription) {        
-        // your code here
-        return false;
+        return activitymanager.modifyActivity(oldActivity, newName, newShortDescription, newDetailledDescription);
     } 
 
 /**
@@ -60,8 +69,7 @@ public class ActivityFacade {
  * @return 
  */
     public ArrayList<Member> getMembers(Activity currentActivity) {        
-        // your code here
-        return null;
+        return activitymanager.getMembers(currentActivity);
     } 
 
 /**
@@ -72,7 +80,6 @@ public class ActivityFacade {
  * @return 
  */
     public ArrayList<Event> getEvents(Activity currentActivity) {        
-        // your code here
-        return null;
+        return activitymanager.getEvents(currentActivity);
     } 
  }

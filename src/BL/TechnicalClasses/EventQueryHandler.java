@@ -10,7 +10,7 @@ import BL.DataClasses.*;
  * 
  * @poseidon-object-id [I97bf540m14c21da4a12m323c]
  */
-public class EventQueryHandler extends EventPersistanceHandler {
+public class EventQueryHandler extends EventPersistenceHandler {
 
 /**
  * <p>Does ...</p>

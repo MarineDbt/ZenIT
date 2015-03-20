@@ -2,7 +2,10 @@
 package BL.Front;
 
 import java.util.ArrayList;
+import java.util.Date;
 
+import BL.TechnicalClasses.AbstractPersistenceHandlerFactory;
+import BL.TechnicalClasses.EventManager;
 import BL.DataClasses.*;
 
 /**
@@ -12,6 +15,11 @@ import BL.DataClasses.*;
  */
 public class EventFacade {
 
+	public EventManager eventmanager;
+	
+	public EventFacade(AbstractPersistenceHandlerFactory factory) {
+		this.eventmanager = new EventManager(factory);
+	}
 /**
  * <p>Does ...</p>
  * 
@@ -20,8 +28,7 @@ public class EventFacade {
  * @return 
  */
     public ArrayList<TimeSlot> getAvailableTimeSlots(Room selectedRoom) {        
-        // your code here
-        return null;
+        return eventmanager.getAvailableTimeSlots(selectedRoom);
     } 
 
 /**
@@ -30,9 +37,8 @@ public class EventFacade {
  * @poseidon-object-id [I97bf540m14c21da4a12mm1f62]
  * @return 
  */
-    public ArrayList_Room_ getRooms() {        
-        // your code here
-        return null;
+    public ArrayList<Room> getRooms() {        
+        return eventmanager.getRooms();
     } 
 
 /**
@@ -42,9 +48,9 @@ public class EventFacade {
  * @param currentEvent 
  * @return 
  */
-    public ArrayList_Contributor_ getContributors(Facade.Event currentEvent) {        
-        // your code here
-        return null;
+    public ArrayList<Contributor> getContributors(Event currentEvent) {        
+        
+        return eventmanager.getContributors(currentEvent);
     } 
 
 /**
@@ -59,9 +65,8 @@ public class EventFacade {
  * @param selectedDay 
  * @return 
  */
-    public boolean addLesson(Facade.Activity currentActivity, String name, String description, Room selectedRoom, Factory.TimeSlot selectedTimeSlot, Day selectedDay) {        
-        // your code here
-        return false;
+    public boolean addLesson(Activity currentActivity, String name, String description, Room selectedRoom, TimeSlot selectedTimeSlot, Day selectedDay) {        
+        return eventmanager.addLesson(currentActivity, name, description, selectedRoom, selectedTimeSlot, selectedDay);
     } 
 
 /**
@@ -72,9 +77,9 @@ public class EventFacade {
  * @param currentEvent 
  * @return 
  */
-    public boolean addContributor(Facade.Contributor selectedContributor, Facade.Event currentEvent) {        
-        // your code here
-        return false;
+    public boolean addContributor(Contributor selectedContributor, Event currentEvent) {        
+        
+        return eventmanager.addContributor(selectedContributor, currentEvent);
     } 
 
 /**
@@ -90,9 +95,9 @@ public class EventFacade {
  * @param selectedEventType 
  * @return 
  */
-    public boolean addOccasional(Facade.Activity currentActivity, String name, String description, Room selectedRoom, Factory.TimeSlot selectedTimeSlot, java.util.Date selectedDate, Factory.EventType selectedEventType) {        
-        // your code here
-        return false;
+    public boolean addOccasional(Activity currentActivity, String name, String description, Room selectedRoom, TimeSlot selectedTimeSlot, Date selectedDate, EventType selectedEventType) {        
+     
+        return eventmanager.addOccasional(currentActivity, name, description, selectedRoom, selectedTimeSlot, selectedDate, selectedEventType);
     } 
 
 /**
@@ -106,9 +111,8 @@ public class EventFacade {
  * @param newDay 
  * @return 
  */
-    public boolean modifyLesson(Factory.Lesson oldLesson, String newName, Room newRoom, Factory.TimeSlot newTimeSlot, Day newDay) {        
-        // your code here
-        return false;
+    public boolean modifyLesson(Lesson oldLesson, String newName, String newDescription,Room newRoom, TimeSlot newTimeSlot, Day newDay) {        
+        return eventmanager.modifyLesson(oldLesson, newName, newDescription, newRoom, newTimeSlot, newDay);
     } 
 
 /**
@@ -122,9 +126,8 @@ public class EventFacade {
  * @param newDate 
  * @return 
  */
-    public boolean modifyOccasional(Facade.Ocassional oldOccasional, String newName, Room newRoom, Factory.TimeSlot newTimeSlot, java.util.Date newDate) {        
-        // your code here
-        return false;
+    public boolean modifyOccasional(Occasional oldOccasional, String newName, String newDescription, Room newRoom, TimeSlot newTimeSlot, Date newDate) {        
+        return eventmanager.modifyOccasional(oldOccasional, newName, newDescription, newRoom, newTimeSlot, newDate) ;
     } 
 
 /**
@@ -135,9 +138,9 @@ public class EventFacade {
  * @param currentEvent 
  * @return 
  */
-    public boolean removeContributor(Facade.Contributor selectedContributor, Facade.Event currentEvent) {        
-        // your code here
-        return false;
+    public boolean removeContributor(Contributor selectedContributor, Event currentEvent) {        
+        return eventmanager.removeContributor(selectedContributor, currentEvent);
+ 
     } 
 
 /**
@@ -147,9 +150,9 @@ public class EventFacade {
  * @param selectedEvent 
  * @return 
  */
-    public boolean removeEvent(Facade.Event selectedEvent) {        
-        // your code here
-        return false;
+    public boolean removeEvent(Event selectedEvent) {        
+        
+        return eventmanager.removeEvent(selectedEvent);
     } 
 
 /**
@@ -159,8 +162,8 @@ public class EventFacade {
  * @param currentEvent 
  * @return 
  */
-    public Facade.ArrayList_Member_ getMembers(Facade.Member currentEvent) {        
-        // your code here
-        return null;
+    public ArrayList<Member> getMembers(Member currentEvent) {        
+        
+        return eventmanager.getMembers(currentEvent);
     } 
  }

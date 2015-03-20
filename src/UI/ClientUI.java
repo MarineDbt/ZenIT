@@ -1,5 +1,7 @@
 package UI;
 
+import javax.swing.JFrame;
+
 
 /**
  * Classe qui gère l'affichage des différentes vues
@@ -7,6 +9,6 @@ package UI;
  * @author Elie Gallet
  *
  */
-public class ClientUI {
+public class ClientUI extends JFrame {
  // TODO : ClientUI
 }
