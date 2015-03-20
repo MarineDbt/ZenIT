@@ -1,5 +1,14 @@
 package UI;
 
-public class LoginUI {
+import javax.swing.JPanel;
+
+public class LoginUI extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	public LoginUI() {
+
+	}
 
 }

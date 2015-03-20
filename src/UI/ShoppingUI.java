@@ -1,5 +1,14 @@
 package UI;
 
-public class ShoppingUI {
+import javax.swing.JPanel;
+
+public class ShoppingUI extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	public ShoppingUI() {
+
+	}
 
 }
