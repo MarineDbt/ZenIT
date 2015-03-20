@@ -1,6 +1,7 @@
 import java.awt.EventQueue;
 import java.sql.ResultSet;
 
+import UI.AdminUI;
 import UI.RoomUI;
 import UI.UISubscription;
 import BL.Front.*;
@@ -27,9 +28,9 @@ public class Launcher {
 			public void run() {
 				try {
 					AbstractPersistenceHandlerFactory factory = DatabaseQueryHandlerFactory.createFactory();
-					RoomUI RoomUI = new RoomUI(factory);
+					AdminUI UI = new AdminUI(factory);
 					
-					RoomUI.setVisible(true);
+					UI.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

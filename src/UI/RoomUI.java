@@ -4,12 +4,13 @@ import java.awt.Container;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import BL.Front.*;
 import BL.TechnicalClasses.*;
 
-public class RoomUI extends JFrame implements ActionListener {
+public class RoomUI extends JPanel implements ActionListener {
 	
 	public RoomFacade RoomFacade;
 	
