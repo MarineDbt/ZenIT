@@ -2,20 +2,27 @@ package UI;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.Font;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.GridBagLayout;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+import com.jgoodies.forms.factories.FormFactory;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import java.awt.Font;
 
 public class BaseUI extends JFrame {
 
-	private JPanel contentPane;
+	protected JPanel content;
 
 	/**
-	 * Tester la frame
+	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -33,66 +40,84 @@ public class BaseUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	protected BaseUI() {
+	public BaseUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(200, 100, 695, 500);
-		
-		contentPane = new JPanel();
-		//contentPane.setBackground(Color.PINK);
+		setBounds(100, 100, 1055, 432);
+		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		contentPane.setLayout(new FormLayout(new ColumnSpec[] {
+				ColumnSpec.decode("1dlu"),
+				ColumnSpec.decode("min:grow"),},
+			new RowSpec[] {
+				RowSpec.decode("1dlu"),
+				RowSpec.decode("max(33dlu;pref)"),
+				RowSpec.decode("1dlu"),
+				RowSpec.decode("max(139dlu;default):grow"),}));
 		
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(10, 11, 659, 91);
-		contentPane.add(panel);
-	
-		panel.setLayout(null);
+		JPanel header = new JPanel();
+		contentPane.add(header, "2, 2, fill, top");
+		header.setLayout(new FormLayout(new ColumnSpec[] {
+				ColumnSpec.decode("1dlu"),
+				ColumnSpec.decode("center:max(150dlu;min):grow"),},
+			new RowSpec[] {
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				RowSpec.decode("max(14dlu;default):grow"),}));
 		
 		JLabel lblZenLounge = new JLabel("Zen Lounge");
 		lblZenLounge.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblZenLounge.setBounds(274, 11, 110, 31);
-		panel.add(lblZenLounge);
+		header.add(lblZenLounge, "2, 2, center, center");
 		
-		JButton btnProfil = new JButton("Profil");
-		btnProfil.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		btnProfil.setBounds(10, 63, 62, 23);
-		panel.add(btnProfil);
+		JPanel ribbon = new JPanel();
+		header.add(ribbon, "2, 4, fill, center");
+		ribbon.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JButton btnActivits = new JButton("Responsable");
-		btnActivits.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		btnActivits.setBounds(82, 63, 92, 23);
-		panel.add(btnActivits);
+		JButton btnHome = new JButton("Home");
+		btnHome.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		ribbon.add(btnHome);
 		
-		JButton btnNewButton = new JButton("Notifications");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		btnNewButton.setBounds(180, 63, 92, 23);
-		panel.add(btnNewButton);
+		JButton btnProfile = new JButton("Profile");
+		btnProfile.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		ribbon.add(btnProfile);
 		
-		JButton button = new JButton("Mes activites");
-		//button.addActionListener(this);
-		//button.setActionCommand("activity");	
-		button.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		button.setBounds(282, 63, 92, 23);
-		panel.add(button);
+		JButton btnAdmin = new JButton("Admin");
+		btnAdmin.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		ribbon.add(btnAdmin);
 		
-		JButton button_1 = new JButton("Magasin");
-		button_1.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		button_1.setBounds(384, 63, 76, 23);
-		panel.add(button_1);
+		JButton btnSupervisor = new JButton("Supervisor");
+		btnSupervisor.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		ribbon.add(btnSupervisor);
 		
-		JButton button_2 = new JButton("Panier");
-		button_2.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		button_2.setBounds(470, 63, 76, 23);
-		panel.add(button_2);
+		JButton btnContributor = new JButton("Contributor");
+		btnContributor.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		ribbon.add(btnContributor);
 		
-		JButton button_3 = new JButton("Deconnexion");
+		JButton btnNotifications = new JButton("Notifications");
+		btnNotifications.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		ribbon.add(btnNotifications);
 		
-		button_3.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		button_3.setBounds(556, 63, 93, 23);
-		panel.add(button_3);
-
+		JButton btnMyActivities = new JButton("My Activities");
+		btnMyActivities.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		ribbon.add(btnMyActivities);
+		
+		/*JButton btnShop = new JButton("Shop");
+		btnShop.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		ribbon.add(btnShop);
+		
+		JButton btnCart = new JButton("Cart");
+		btnCart.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		ribbon.add(btnCart);
+		
+		JButton btnLogOut = new JButton("Log out");
+		btnLogOut.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		ribbon.add(btnLogOut);*/
+		
+		content = new JPanel();
+		contentPane.add(content, "2, 4, fill, fill");
+		content.setLayout(null);
+		
+		this.pack();
 	}
-
 }

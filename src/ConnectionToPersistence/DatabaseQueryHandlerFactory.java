@@ -31,7 +31,7 @@ public class DatabaseQueryHandlerFactory extends AbstractPersistenceHandlerFacto
 	{
 		return new UserQueryHandler();
 	}
-	public ShoppingAbstractPersistanceHandler createShoppingPersistenceHandler()
+	public ShoppingAbstractPersistenceHandler createShoppingPersistenceHandler()
 	{
 		return new ShoppingQueryHandler();
 	}

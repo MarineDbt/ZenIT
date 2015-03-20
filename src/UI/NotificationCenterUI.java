@@ -2,14 +2,13 @@ package UI;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Panel;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 public class NotificationCenterUI extends BaseUI {
-
-	private JPanel contentPane;
 
 	/**
 	 * Launch the application.
@@ -32,6 +31,8 @@ public class NotificationCenterUI extends BaseUI {
 	 */
 	public NotificationCenterUI() {
 		super();
+		content = new JPanel();
+		
 	}
 
 }

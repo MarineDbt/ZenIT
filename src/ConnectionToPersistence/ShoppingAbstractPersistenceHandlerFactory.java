@@ -6,7 +6,7 @@ package ConnectionToPersistence;
  * 
  * @poseidon-object-id [Im4bef336fm14c19425b18mm6602]
  */
-public abstract class ShoppingAbstractPersistanceHandlerFactory {
+public abstract class ShoppingAbstractPersistenceHandlerFactory {
 
 /**
  * <p>Does ...</p>
@@ -14,5 +14,5 @@ public abstract class ShoppingAbstractPersistanceHandlerFactory {
  * @poseidon-object-id [Im4bef336fm14c19425b18mm6603]
  * @return 
  */
-    public abstract ShoppingAbstractPersistanceHandler createShoppingPersistanceHandler();
+    public abstract ShoppingAbstractPersistenceHandler createShoppingPersistanceHandler();
  }

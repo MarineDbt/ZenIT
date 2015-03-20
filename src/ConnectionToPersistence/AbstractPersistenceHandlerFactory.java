@@ -25,7 +25,7 @@ public abstract class  AbstractPersistenceHandlerFactory{
 	
 	//public abstract MemberPersistenceHandler createMemberPersistenceHandler();
 	
-	public abstract ShoppingAbstractPersistanceHandler createShoppingPersistenceHandler();
+	public abstract ShoppingAbstractPersistenceHandler createShoppingPersistenceHandler();
 	
 	public abstract NotificationAbstractPersistenceHandler createNotificationPersistenceHandler();
 	

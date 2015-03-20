@@ -9,7 +9,7 @@ import BL.DataClasses.*;
  * 
  * @poseidon-object-id [I395d852m14bf5118266mm66ad]
  */
-public class ShoppingQueryHandler extends ShoppingAbstractPersistanceHandler {
+public class ShoppingQueryHandler extends ShoppingAbstractPersistenceHandler {
 
 /**
  * <p>Does ...</p>
