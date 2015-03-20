@@ -1,4 +1,4 @@
-package ConnectionToPersistance.DB;
+package ConnectionToPersistence;
 
 import java.sql.ResultSet;
 

@@ -4,7 +4,7 @@ package BL.Front;
 import java.util.HashMap;
 
 import BL.DataClasses.*;
-import BL.TechnicalClasses.UserUseCases.UserManager;
+import BL.TechnicalClasses.UserManager;
 
 /**
  * 

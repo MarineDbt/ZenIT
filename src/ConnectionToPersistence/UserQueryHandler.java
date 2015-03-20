@@ -1,9 +1,10 @@
-package ConnectionToPersistance.DB.UserUseCases;
+package ConnectionToPersistence;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import BL.DataClasses.User;
-import BL.TechnicalClasses.UserUseCases.PasswordEncryptionHandler;
-import ConnectionToPersistance.DB.MySQL.ConnectionToMySQL;
+import BL.TechnicalClasses.PasswordEncryptionHandler;
+import ConnectionToPersistence.*;
 
 
 
@@ -13,24 +14,32 @@ import ConnectionToPersistance.DB.MySQL.ConnectionToMySQL;
  * @author Elie
  *
  */
-public class UserQueryHandler {
+public class UserQueryHandler extends UserAbstractPersistenceHandler{
 	
 
-	public boolean checkPassword(String id, String pwd) throws Exception{
+	public boolean checkPassword(String id, String pwd) throws SQLException{
 		
-		ResultSet resultSet;
+		ResultSet resultSet = null;
 		
-		resultSet=ConnectionToMySQL.requestSelectQuery("select * from user where id = '"+id+"' and pwd = "+pwd);
+		try {
+			resultSet=ConnectionToMySQL.requestSelectQuery("select * from user where id = '"+id+"' and pwd = "+pwd);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		if (resultSet.getRow()== 0){
-			return false;
+		try {
+			if (resultSet.getRow()== 0){
+				return false;
+			}
+			else if (resultSet.getRow()==1){
+				return true;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		else if (resultSet.getRow()==1){
-			return true;
-		}
-		else{
-		 throw new Exception();
-		}
+		return false;
 	}
 	
 	public boolean insertUser (String firstname, String lastname, String street, String PC, String city, String phone, String email, String id, String pwd) throws Exception{
@@ -69,5 +78,25 @@ public class UserQueryHandler {
 	    public boolean updateUser(User currentUser) {        
 	        // your code here
 	        return false;
-	    } 
+	    }
+
+	@Override
+	public boolean deleteUser(User currentUser) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public User lookForUserInfo(User currentUser) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean register(String firstname, String lastname, String street,
+			String PC, String city, String phone, String email, String id,
+			String pwd) {
+		// TODO Auto-generated method stub
+		return false;
+	} 
 }

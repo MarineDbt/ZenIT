@@ -1,8 +1,6 @@
 
-package ConnectionToPersistance.DB.UserUseCases;
+package ConnectionToPersistence;
 
-import ConnectionToPersistance.UserUseCases.ShoppingAbstractPersistanceHandler;
-import ConnectionToPersistance.UserUseCases.ShoppingAbstractPersistanceHandlerFactory;
 
 /**
  * 

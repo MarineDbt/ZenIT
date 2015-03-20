@@ -3,7 +3,7 @@ import java.sql.ResultSet;
 
 import UI.RegisterPanel;
 import BL.Front.UserFacade;
-import ConnectionToPersistance.DB.MySQL.ConnectionToMySQL;
+import ConnectionToPersistence.DB.MySQL.ConnectionToMySQL;
 
 /**
  * Launch the application

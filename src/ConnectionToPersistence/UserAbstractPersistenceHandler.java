@@ -1,5 +1,7 @@
 
-package ConnectionToPersistance.UserUseCases;
+package ConnectionToPersistence;
+
+import java.sql.SQLException;
 
 import BL.DataClasses.*;
 /**
@@ -16,8 +18,9 @@ public abstract class UserAbstractPersistenceHandler {
  * @param String 
  * @param String 
  * @return 
+ * @throws SQLException 
  */
-    public abstract boolean checkPassword(String id,  String pwd);
+    public abstract boolean checkPassword(String id,  String pwd) throws SQLException;
 
 /**
  * <p>Does ...</p>

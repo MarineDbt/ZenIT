@@ -1,9 +1,9 @@
-package BL.TechnicalClasses.UserUseCases;
+package BL.TechnicalClasses;
 import java.util.HashMap;
 
 import BL.DataClasses.Product;
 import BL.DataClasses.User;
-import ConnectionToPersistance.DB.UserUseCases.UserQueryHandler;
+import ConnectionToPersistence.UserQueryHandler;
 
 
 /**

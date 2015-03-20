@@ -1,9 +1,8 @@
 
-package ConnectionToPersistance.DB.UserUseCases;
+package ConnectionToPersistence;
 import java.util.ArrayList;
 
 import BL.DataClasses.*;
-import ConnectionToPersistance.UserUseCases.NotificationAbstractPersistenceHandler;
 
 /**
  * 

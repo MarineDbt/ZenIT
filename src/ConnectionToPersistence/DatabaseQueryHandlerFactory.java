@@ -1,6 +1,4 @@
-package BL.TechnicalClasses;
-
-import fr.polytech.MM.Directeur;
+package ConnectionToPersistence;
 
 public class DatabaseQueryHandlerFactory extends AbstractPersistenceHandlerFactory {
 	
@@ -27,17 +25,27 @@ public class DatabaseQueryHandlerFactory extends AbstractPersistenceHandlerFacto
 	
 	/* Creation methods of QueryHandlers */
 	
+	
+
+	public UserAbstractPersistenceHandler createUserPersistenceHandler()
+	{
+		return new UserQueryHandler();
+	}
+	public ShoppingAbstractPersistanceHandler createShoppingPersistenceHandler()
+	{
+		return new ShoppingQueryHandler();
+	}
+	public NotificationAbstractPersistenceHandler createNotificationPersistenceHandler()
+	{
+		return new NotificationQueryHandler();
+	}
+	
+	/*
 	public SupervisorPersistenceHandler createSupervisorPersistenceHandler()
 	{
 		
 		return new SupervisorQueryHandler();
 	}
-
-	public UserPersistenceHandler createUserPersistenceHandler()
-	{
-		return new UserQueryHandler();
-	}
-	
 	
 	public ContributorPersistenceHandler createContributorPersistenceHandler()
 	{
@@ -52,16 +60,6 @@ public class DatabaseQueryHandlerFactory extends AbstractPersistenceHandlerFacto
 	public MemberPersistenceHandler createMemberPersistenceHandler()
 	{
 		return new MemberQueryHandler();
-	}
-	
-	public ShoppingPersistenceHandler createShoppingPersistenceHandler()
-	{
-		return new ShoppingQueryHandler();
-	}
-	
-	public NotificationPersistenceHandler createNotificationPersistenceHandler()
-	{
-		return new NotificationQueryHandler();
 	}
 	
 	public RoomPersistenceHandler createRoomPersistenceHandler()
@@ -104,4 +102,5 @@ public class DatabaseQueryHandlerFactory extends AbstractPersistenceHandlerFacto
 	{
 		return new AdhesionQueryHandler();
 	}
+	*/
 }
