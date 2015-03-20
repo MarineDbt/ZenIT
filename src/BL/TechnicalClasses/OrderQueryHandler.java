@@ -10,7 +10,7 @@ import BL.DataClasses.Order;
  * 
  * @poseidon-object-id [Im619706dm14c21d41ce6mm7bfa]
  */
-public class OrderQueryHandler extends OrderPersistanceHandler {
+public class OrderQueryHandler extends OrderPersistenceHandler {
 
 /**
  * <p>Does ...</p>

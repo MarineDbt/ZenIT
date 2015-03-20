@@ -3,6 +3,7 @@ package BL.Front;
 import java.util.ArrayList;
 
 import BL.DataClasses.Order;
+import BL.TechnicalClasses.AbstractPersistenceHandlerFactory;
 import BL.TechnicalClasses.OrderManager;
 
 /**
@@ -12,6 +13,12 @@ import BL.TechnicalClasses.OrderManager;
  */
 public class OrderFacade {
 
+	private OrderManager orderManager;
+
+	public OrderFacade (AbstractPersistenceHandlerFactory factory) {
+		this.orderManager = new OrderManager(factory);
+	}
+	
 /**
  * <p>Does ...</p>
  * 
@@ -66,8 +73,11 @@ public class OrderFacade {
  * @poseidon-object-id [I7e6badf8m14c21c9ffdfmm7ca9]
  * @return 
  */
-    public ArrayList<Order> getOrders() {        
-        // your code here
+    public ArrayList<Order> getOrders() {      
+    	
+		ArrayList<Order> orderslist = new ArrayList<Order>();
+		orderslist = orderManager.getOrders();
+		
         return null;
     } 
  }

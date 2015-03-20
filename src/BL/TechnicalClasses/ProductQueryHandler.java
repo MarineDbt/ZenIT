@@ -11,7 +11,7 @@ import BL.DataClasses.Product;
  * 
  * @poseidon-object-id [Im619706dm14c21d41ce6mm77fa]
  */
-public class ProductQueryHandler extends ProductPersistanceHandler {
+public class ProductQueryHandler extends ProductPersistenceHandler {
 
 /**
  * <p>Does ...</p>

@@ -11,7 +11,13 @@ import BL.DataClasses.Order;
  * @poseidon-object-id [Im619706dm14c21d41ce6mm7d02]
  */
 public class OrderManager {
-
+	
+	private OrderPersistenceHandler MyOrderPersistenceHandler;
+	
+	public OrderManager(AbstractPersistenceHandlerFactory factory) {
+		MyOrderPersistenceHandler = factory.createOrderPersistenceHandler();
+	}
+	
 /**
  * <p>Does ...</p>
  * 
@@ -67,7 +73,8 @@ public class OrderManager {
  * @return 
  */
     public ArrayList<Order> getOrders() {        
-        // your code here
+        
+    	
         return null;
     } 
  }

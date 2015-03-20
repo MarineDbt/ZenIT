@@ -1,9 +1,11 @@
 import java.awt.EventQueue;
 import java.sql.ResultSet;
 
-import UI.UISubscription;
-import BL.Front.UserFacade;
+import UI.UIOrderManagement;
+import BL.Front.OrderFacade;
 import ConnectionToDB.ConnectionToMySQL;
+
+import BL.TechnicalClasses.*;
 
 /**
  * Launch the application
@@ -24,8 +26,10 @@ public class Launcher {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UISubscription frame = new UISubscription();
-					frame.userFacade = new UserFacade();
+					
+					AbstractPersistenceHandlerFactory factory = DatabaseQueryHandlerFactory.createFactory();
+					
+					UIOrderManagement frame = new UIOrderManagement(factory);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
