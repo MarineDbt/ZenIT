@@ -8,7 +8,7 @@ import BL.DataClasses.User;
  * 
  * @poseidon-object-id [Im619706dm14c21d41ce6mm758e]
  */
-public class AdhesionQueryHandler extends AdhesionPersistanceHandler {
+public class AdhesionQueryHandler extends AdhesionPersistenceHandler {
 
 /**
  * <p>Does ...</p>

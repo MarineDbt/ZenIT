@@ -12,7 +12,7 @@ import BL.DataClasses.Product;
  * 
  * @poseidon-object-id [Im619706dm14c21d41ce6mm7735]
  */
-public abstract class ProductPersistanceHandler {
+public abstract class ProductPersistenceHandler {
 
 /**
  * <p>Does ...</p>

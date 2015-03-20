@@ -10,7 +10,7 @@ import BL.DataClasses.Order;
  * 
  * @poseidon-object-id [Im619706dm14c21d41ce6mm7b03]
  */
-public abstract class OrderPersistanceHandler {
+public abstract class OrderPersistenceHandler {
 
 /**
  * <p>Does ...</p>
