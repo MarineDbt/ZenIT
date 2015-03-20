@@ -1,8 +1,8 @@
 
-package ConnectionToPersistance.DB;
+package ConnectionToPersistance.DB.UserUseCases;
 
-import ConnectionToPersistance.NotificationAbstractPersistenceHandler;
-import ConnectionToPersistance.NotificationAbstractPersistenceHandlerFactory;
+import ConnectionToPersistance.UserUseCases.NotificationAbstractPersistenceHandler;
+import ConnectionToPersistance.UserUseCases.NotificationAbstractPersistenceHandlerFactory;
 
 /**
  * 

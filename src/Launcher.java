@@ -1,7 +1,7 @@
 import java.awt.EventQueue;
 import java.sql.ResultSet;
 
-import UI.RegisterUI;
+import UI.RegisterPanel;
 import BL.Front.UserFacade;
 import ConnectionToPersistance.DB.MySQL.ConnectionToMySQL;
 
@@ -24,7 +24,7 @@ public class Launcher {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					RegisterUI frame = new RegisterUI();
+					RegisterPanel frame = new RegisterPanel();
 					frame.userFacade = new UserFacade();
 					frame.setVisible(true);
 				} catch (Exception e) {

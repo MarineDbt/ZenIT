@@ -1,4 +1,4 @@
-package ConnectionToPersistance.DB;
+package ConnectionToPersistance.DB.UserUseCases;
 import java.sql.ResultSet;
 
 import BL.DataClasses.User;

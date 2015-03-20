@@ -1,5 +1,5 @@
 
-package ConnectionToPersistance;
+package ConnectionToPersistance.UserUseCases;
 
 import java.util.ArrayList;
 import BL.DataClasses.*;

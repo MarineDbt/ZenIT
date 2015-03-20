@@ -2,12 +2,12 @@ package UI;
 
 import javax.swing.JPanel;
 
-public class LoginUI extends JPanel {
+public class ShoppingPanel extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public LoginUI() {
+	public ShoppingPanel() {
 
 	}
 
