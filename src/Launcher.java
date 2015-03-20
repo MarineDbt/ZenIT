@@ -1,9 +1,11 @@
 import java.awt.EventQueue;
 import java.sql.ResultSet;
 
-import UI.ActivityUI;
+
+
+import UI.UIActivity;
 import UI.UISubscription;
-import UI.UISupervisor;
+
 import BL.Front.UserFacade;
 import BL.TechnicalClasses.AbstractPersistenceHandlerFactory;
 import BL.TechnicalClasses.DatabaseQueryHandlerFactory;
@@ -31,7 +33,7 @@ public class Launcher {
 					
 					AbstractPersistenceHandlerFactory factory = DatabaseQueryHandlerFactory.createFactory();
 					
-					UISupervisor frame = new UISupervisor(factory);
+					UIActivity frame = new UIActivity(factory);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
