@@ -1,8 +1,9 @@
-package BL.TechnicalClasses;
+package ConnectionToPersistance.DB;
 import java.sql.ResultSet;
 
 import BL.DataClasses.User;
-import ConnectionToDB.ConnectionToMySQL;
+import BL.TechnicalClasses.PasswordEncryptionHandler;
+import ConnectionToPersistance.DB.MySQL.ConnectionToMySQL;
 
 
 

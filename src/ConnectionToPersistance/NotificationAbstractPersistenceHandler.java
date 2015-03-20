@@ -1,5 +1,5 @@
 
-package BL.TechnicalClasses;
+package ConnectionToPersistance;
 
 import java.util.ArrayList;
 
@@ -10,7 +10,7 @@ import BL.DataClasses.*;
  * 
  * @poseidon-object-id [Im5b0428a3m14c21f9b331mm5e2f]
  */
-public abstract class NotificationPersistenceHandler {
+public abstract class NotificationAbstractPersistenceHandler {
 
 /**
  * <p>Does ...</p>

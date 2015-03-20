@@ -25,7 +25,7 @@ import javax.swing.JTextField;
 
 import BL.Front.UserFacade;
 
-public class UISubscription extends JFrame implements ActionListener {
+public class RegisterUI extends JFrame implements ActionListener {
 
 	private JTextField tNom;
 	private JTextField tPrenom;
@@ -44,7 +44,7 @@ public class UISubscription extends JFrame implements ActionListener {
 	 * @
 	 */
 	// Constructor
-	public UISubscription() {
+	public RegisterUI() {
 		super("Subscription");
 		Container contentPane = getContentPane();
 		setSize(500,500);

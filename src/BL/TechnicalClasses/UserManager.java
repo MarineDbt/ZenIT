@@ -3,6 +3,7 @@ import java.util.HashMap;
 
 import BL.DataClasses.Product;
 import BL.DataClasses.User;
+import ConnectionToPersistance.DB.UserQueryHandler;
 
 
 /**

@@ -1,15 +1,16 @@
 
-package BL.TechnicalClasses;
+package ConnectionToPersistance.DB;
 import java.util.ArrayList;
 
 import BL.DataClasses.*;
+import ConnectionToPersistance.NotificationAbstractPersistenceHandler;
 
 /**
  * 
  * 
  * @poseidon-object-id [I395d852m14bf5118266mm660f]
  */
-public class NotificationQueryHandler extends NotificationPersistenceHandler {
+public class NotificationQueryHandler extends NotificationAbstractPersistenceHandler {
 
 /**
  * <p>Does ...</p>

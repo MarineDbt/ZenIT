@@ -1,4 +1,4 @@
-package ConnectionToDB;
+package ConnectionToPersistance.DB.MySQL;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,5 +1,5 @@
 
-package BL.TechnicalClasses;
+package ConnectionToPersistance;
 
 import BL.DataClasses.*;
 /**
@@ -7,7 +7,7 @@ import BL.DataClasses.*;
  * 
  * @poseidon-object-id [Im4bef336fm14c19425b18mm6a21]
  */
-public abstract class UserPersistenceHandler {
+public abstract class UserAbstractPersistenceHandler {
 
 /**
  * <p>Does ...</p>

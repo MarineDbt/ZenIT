@@ -1,14 +1,16 @@
 
-package BL.TechnicalClasses;
+package ConnectionToPersistance.DB;
 
 import java.util.ArrayList;
+
 import BL.DataClasses.*;
+import ConnectionToPersistance.ShoppingAbstractPersistanceHandler;
 /**
  * 
  * 
  * @poseidon-object-id [I395d852m14bf5118266mm66ad]
  */
-public class ShoppingQueryHandler extends ShoppingPersistanceHandler {
+public class ShoppingQueryHandler extends ShoppingAbstractPersistanceHandler {
 
 /**
  * <p>Does ...</p>
