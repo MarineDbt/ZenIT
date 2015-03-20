@@ -102,7 +102,7 @@ public class BaseUI extends JFrame {
 		btnMyActivities.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		ribbon.add(btnMyActivities);
 		
-		/*JButton btnShop = new JButton("Shop");
+		JButton btnShop = new JButton("Shop");
 		btnShop.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		ribbon.add(btnShop);
 		
@@ -112,12 +112,16 @@ public class BaseUI extends JFrame {
 		
 		JButton btnLogOut = new JButton("Log out");
 		btnLogOut.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		ribbon.add(btnLogOut);*/
+		ribbon.add(btnLogOut);
 		
 		content = new JPanel();
 		contentPane.add(content, "2, 4, fill, fill");
 		content.setLayout(null);
+
+		btnSupervisor.setVisible(false);
+		btnContributor.setVisible(false);
 		
 		this.pack();
+		
 	}
 }

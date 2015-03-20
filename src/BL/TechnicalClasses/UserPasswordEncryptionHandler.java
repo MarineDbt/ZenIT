@@ -2,7 +2,7 @@ package BL.TechnicalClasses;
 import java.security.*;
 import java.util.Formatter;
 
-public class PasswordEncryptionHandler {
+public class UserPasswordEncryptionHandler {
 	
 	public String encryptPassword(String psw){
 		byte[] encryptedPassword =null;

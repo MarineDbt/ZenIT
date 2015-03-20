@@ -3,7 +3,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import BL.DataClasses.User;
-import BL.TechnicalClasses.PasswordEncryptionHandler;
+import BL.TechnicalClasses.UserPasswordEncryptionHandler;
 
 
 
@@ -43,7 +43,7 @@ public class UserQueryHandler extends UserAbstractPersistenceHandler{
 	
 	public boolean insertUser (String firstname, String lastname, String street, String PC, String city, String phone, String email, String id, String pwd) throws Exception{
 		
-		PasswordEncryptionHandler encryptionHandler = new PasswordEncryptionHandler();
+		UserPasswordEncryptionHandler encryptionHandler = new UserPasswordEncryptionHandler();
 		String encryptedPwd;
 		int result = 0;
 		encryptedPwd=encryptionHandler.encryptPassword(pwd);
