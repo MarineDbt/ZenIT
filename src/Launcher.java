@@ -1,6 +1,7 @@
 import java.awt.EventQueue;
 import java.sql.ResultSet;
 
+import UI.UIProduct;
 import UI.UISubscription;
 import BL.Front.UserFacade;
 import ConnectionToDB.ConnectionToMySQL;
@@ -24,8 +25,7 @@ public class Launcher {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UISubscription frame = new UISubscription();
-					frame.userFacade = new UserFacade();
+					UIProduct frame = new UIProduct();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
