@@ -2,7 +2,7 @@ import java.awt.EventQueue;
 import java.sql.ResultSet;
 
 import UI.AdminUI;
-import UI.RoomUI;
+import UI.PanelRoom;
 import UI.UISubscription;
 import BL.Front.*;
 import BL.TechnicalClasses.*;

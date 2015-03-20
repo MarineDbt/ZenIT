@@ -18,6 +18,7 @@ import java.awt.Color;
 public class AdminUI extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
+	private AbstractPersistenceHandlerFactory factory;
 
 	/**
 	 * Create the frame.
@@ -27,7 +28,7 @@ public class AdminUI extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 695, 500);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.PINK);
+		
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -49,10 +50,12 @@ public class AdminUI extends JFrame implements ActionListener {
 		btnProfil.setBounds(10, 63, 62, 23);
 		panel.add(btnProfil);
 		
-		JButton btnActivits = new JButton("Admin");
-		btnActivits.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		btnActivits.setBounds(82, 63, 92, 23);
-		panel.add(btnActivits);
+		JButton btnAdmin = new JButton("Admin");
+		btnAdmin.addActionListener(this);
+		btnAdmin.setActionCommand("Admin");
+		btnAdmin.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		btnAdmin.setBounds(82, 63, 92, 23);
+		panel.add(btnAdmin);
 		
 		JButton btnNewButton = new JButton("Notifications");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 9));
@@ -86,12 +89,13 @@ public class AdminUI extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		/*if (e.getActionCommand().equals("activity")) {
-			PanelActivity activityPanel = new PanelActivity();
-			activityPanel.setBounds(10, 110, 659, 300);
-			this.contentPane.add(activityPanel);
-			this.contentPane.repaint();*/
+		if (e.getActionCommand().equals("Admin")) {
+			AdminServiceUI nextUI = new AdminServiceUI(factory);
+			this.dispose();
+			nextUI.setVisible(true);
 		}
 		
+		
+	}	
 }
 
