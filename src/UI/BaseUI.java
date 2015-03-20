@@ -33,7 +33,7 @@ public class BaseUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public BaseUI() {
+	protected BaseUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 100, 695, 500);
 		
