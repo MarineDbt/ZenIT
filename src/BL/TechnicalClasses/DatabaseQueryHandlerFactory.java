@@ -1,6 +1,5 @@
 package BL.TechnicalClasses;
 
-import fr.polytech.MM.Directeur;
 
 public class DatabaseQueryHandlerFactory extends AbstractPersistenceHandlerFactory {
 	
@@ -44,12 +43,7 @@ public class DatabaseQueryHandlerFactory extends AbstractPersistenceHandlerFacto
 		return new ContributorQueryHandler();
 	}
 	
-	public AdminPersistenceHandler createAdminPersistenceHandler()
-	{
-		return new AdminQueryHandler();
-	}
-	
-	public MemberPersistenceHandler createMemberPersistenceHandler()
+	/* public MemberPersistenceHandler createMemberPersistenceHandler()
 	{
 		return new MemberQueryHandler();
 	}
@@ -62,7 +56,7 @@ public class DatabaseQueryHandlerFactory extends AbstractPersistenceHandlerFacto
 	public NotificationPersistenceHandler createNotificationPersistenceHandler()
 	{
 		return new NotificationQueryHandler();
-	}
+	} */
 	
 	public RoomPersistenceHandler createRoomPersistenceHandler()
 	{
@@ -74,7 +68,7 @@ public class DatabaseQueryHandlerFactory extends AbstractPersistenceHandlerFacto
 		return new CategoryQueryHandler();
 	}
 	
-	public MyActivitesPersistenceHandler createMyActivitiesPersistenceHandler()
+	/* public MyActivitesPersistenceHandler createMyActivitiesPersistenceHandler()
 	{
 		return new MyActivitiesQueryHandler();
 	}
@@ -103,5 +97,5 @@ public class DatabaseQueryHandlerFactory extends AbstractPersistenceHandlerFacto
 	public AdhesionPersistenceHandler createAdhesionPersistenceHandler()
 	{
 		return new AdhesionQueryHandler();
-	}
+	} */
 }

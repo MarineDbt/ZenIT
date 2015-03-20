@@ -1,5 +1,7 @@
 package BL.TechnicalClasses;
 import java.sql.ResultSet;
+import java.util.Collection;
+
 import ConnectionToDB.ConnectionToMySQL;
 
 
@@ -10,7 +12,7 @@ import ConnectionToDB.ConnectionToMySQL;
  * @author Elie
  *
  */
-public class UserQueryHandler {
+public class UserQueryHandler extends UserPersistenceHandler {
 	
 
 	public boolean checkPassword(String id, String pwd) throws Exception{
@@ -43,5 +45,10 @@ public class UserQueryHandler {
 	}
 	public void deleteUser (String id){
 		// TODO
+	}
+	
+	public Collection<BL.ModelClasses.User> selectAllUsers() 
+	{
+		return null;
 	}
 }

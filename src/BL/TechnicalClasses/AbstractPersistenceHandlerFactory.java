@@ -29,7 +29,7 @@ public abstract class  AbstractPersistenceHandlerFactory{
 	
 	//public abstract NotificationPersistenceHandler createNotificationPersistenceHandler();
 	
-	//public abstract RoomPersistenceHandler createRoomPersistenceHandler();
+	public abstract RoomPersistenceHandler createRoomPersistenceHandler();
 	
 	public abstract CategoryPersistenceHandler createCategoryPersistenceHandler();
 	
