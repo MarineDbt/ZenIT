@@ -6,20 +6,31 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
+
+import BL.DataClasses.User;
+
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
+
 import java.awt.Font;
 
 public class BaseUI extends JFrame {
 
 	protected JPanel content;
+	JButton btnAdmin;
+	JButton btnSupervisor;
+	JButton btnContributor;
+	JButton btnMyActivities;
 
 	/**
 	 * Launch the application.
@@ -28,7 +39,7 @@ public class BaseUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BaseUI frame = new BaseUI();
+					BaseUI frame = new BaseUI(new User());
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,9 +51,10 @@ public class BaseUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public BaseUI() {
+	public BaseUI(User currentUser) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1055, 432);
+		this.setMinimumSize(new Dimension(600,450));
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -82,15 +94,15 @@ public class BaseUI extends JFrame {
 		btnProfile.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		ribbon.add(btnProfile);
 		
-		JButton btnAdmin = new JButton("Admin");
+		btnAdmin = new JButton("Admin");
 		btnAdmin.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		ribbon.add(btnAdmin);
 		
-		JButton btnSupervisor = new JButton("Supervisor");
+		btnSupervisor = new JButton("Supervisor");
 		btnSupervisor.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		ribbon.add(btnSupervisor);
 		
-		JButton btnContributor = new JButton("Contributor");
+		btnContributor = new JButton("Contributor");
 		btnContributor.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		ribbon.add(btnContributor);
 		
@@ -98,7 +110,7 @@ public class BaseUI extends JFrame {
 		btnNotifications.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		ribbon.add(btnNotifications);
 		
-		JButton btnMyActivities = new JButton("My Activities");
+		btnMyActivities = new JButton("My Activities");
 		btnMyActivities.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		ribbon.add(btnMyActivities);
 		
@@ -118,10 +130,24 @@ public class BaseUI extends JFrame {
 		contentPane.add(content, "2, 4, fill, fill");
 		content.setLayout(null);
 
-		btnSupervisor.setVisible(false);
-		btnContributor.setVisible(false);
+		hideUselessButtons(new User());
 		
 		this.pack();
 		
+	}
+
+	private void hideUselessButtons(User currentUser) {
+		if (!currentUser.isMember()){
+			btnMyActivities.setVisible(false);
+		}
+		if (!currentUser.isContributor()){
+			btnContributor.setVisible(false);
+		}
+		if (!currentUser.isSupervisor()){
+			btnSupervisor.setVisible(false);
+		}
+		if (!currentUser.isAdmin()){
+			btnAdmin.setVisible(false);
+		}
 	}
 }

@@ -1,20 +1,47 @@
 package UI;
 import java.awt.BorderLayout;
+
 import javax.swing.JPanel;
+
+import java.awt.EventQueue;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.GridLayout;
+
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.DefaultComboBoxModel;
+
+import BL.DataClasses.User;
 
 public class ShoppingUI extends BaseUI {
+	
+	
+	
 	private JTable table;
-	public ShoppingUI() {
+	
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ShoppingUI frame = new ShoppingUI(new User());
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	public ShoppingUI(User currentUser) {
+		super(currentUser);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
@@ -34,12 +61,14 @@ public class ShoppingUI extends BaseUI {
 		search.add(lblCategory);
 		
 		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Outils", "Consommables"}));
 		search.add(comboBox);
 		
 		JLabel lblSubcategory = new JLabel("SubCategory");
 		search.add(lblSubcategory);
 		
 		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Bonjour"}));
 		search.add(comboBox_1);
 		
 		JButton btnSearch = new JButton("Search");
@@ -48,7 +77,7 @@ public class ShoppingUI extends BaseUI {
 		JPanel products = new JPanel();
 		GridBagConstraints gbc_products = new GridBagConstraints();
 		gbc_products.insets = new Insets(0, 0, 5, 0);
-		gbc_products.fill = GridBagConstraints.VERTICAL;
+		gbc_products.fill = GridBagConstraints.BOTH;
 		gbc_products.gridx = 0;
 		gbc_products.gridy = 1;
 		content.add(products, gbc_products);
@@ -74,9 +103,14 @@ public class ShoppingUI extends BaseUI {
 				{null, null, null, null},
 			},
 			new String[] {
-				"Category", "New column", "New column", "New column"
+				"Category", "SubCategory", "Product", "Price"
 			}
 		));
+		table.getColumnModel().getColumn(0).setPreferredWidth(66);
+		table.getColumnModel().getColumn(0).setMinWidth(60);
+		table.getColumnModel().getColumn(1).setMinWidth(60);
+		table.getColumnModel().getColumn(2).setMinWidth(60);
+		table.getColumnModel().getColumn(3).setMinWidth(60);
 		scrollPane.setViewportView(table);
 		
 		JPanel panel = new JPanel();

@@ -8,11 +8,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JScrollPane;
+
 import java.awt.FlowLayout;
+
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.JButton;
+
+import BL.DataClasses.User;
+
 import java.awt.Color;
 
 public class NotificationCenterUI extends BaseUI {
@@ -25,7 +30,7 @@ public class NotificationCenterUI extends BaseUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					NotificationCenterUI frame = new NotificationCenterUI();
+					NotificationCenterUI frame = new NotificationCenterUI(new User());
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,8 +42,8 @@ public class NotificationCenterUI extends BaseUI {
 	/**
 	 * Create the frame.
 	 */
-	public NotificationCenterUI() {
-		super();
+	public NotificationCenterUI(User currentUser) {
+		super(currentUser);
 		content.setLayout(new BorderLayout(0, 0));
 		
 		JScrollPane scrollPane = new JScrollPane();

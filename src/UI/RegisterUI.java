@@ -39,6 +39,21 @@ public class RegisterUI extends JFrame implements ActionListener {
 	private JTextField tTelephone;
 	public UserFacade userFacade;
 
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					RegisterUI frame = new RegisterUI();
+					frame.userFacade = new UserFacade();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
 	/**
 	 * Create the frame.
 	 * @
