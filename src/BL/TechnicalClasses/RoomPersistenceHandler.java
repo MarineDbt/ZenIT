@@ -1,6 +1,7 @@
 
 package BL.TechnicalClasses;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import BL.ModelClasses.*;
@@ -18,17 +19,17 @@ public abstract class RoomPersistenceHandler {
  * @param numero 
  * @return 
  */
-    public abstract Room insertRoom(int numero);
+    public abstract boolean insertRoom(String numero, String superficy);
 /**
  * <p>Does ...</p>
  * 
  * @poseidon-object-id [I29f51818m14c28f165ddmm4634]
  * @param idRoom 
- * @param libelle 
+ * @param libelle
  * @param quantite 
  * @return 
  */
-    public abstract Accessory insertAccessory(int idRoom, String libelle, int quantite);
+    public abstract boolean insertAccessoryRoom(String idRoom, String libelle, String quantite);
 /**
  * <p>Does ...</p>
  * 
@@ -37,7 +38,17 @@ public abstract class RoomPersistenceHandler {
  * @param number 
  * @return 
  */
-    public abstract boolean updateRoom(Room room, int number);
+    public abstract boolean insertAccessory(String libelle);
+/**
+ * <p>Does ...</p>
+ * 
+ * @poseidon-object-id [I29f51818m14c28f165ddmm463b]
+ * @param room 
+ * @param number 
+ * @return 
+ */
+    
+    public abstract boolean updateRoom(Room room, String number);
 /**
  * <p>Does ...</p>
  * 
@@ -47,21 +58,32 @@ public abstract class RoomPersistenceHandler {
  * @param quantity 
  * @return 
  */
-    public abstract boolean updateAccessory(Accessory accessory, String label, int quantity);
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I29f51818m14c28f165ddmm4648]
- * @return 
- */
-    public abstract Collection<Room> selectAllRooms();
+    
+    public abstract ArrayList<Room> selectAllRooms();
 /**
  * <p>Does ...</p>
  * 
  * @poseidon-object-id [I29f51818m14c28f165ddmm464c]
  * @return 
  */
-    public abstract Collection<Accessory> selectAllAccessories();
+    
+    public abstract boolean updateAccessoryRoom(Accessory accessory, Room room, String quantity);
+    /**
+     * <p>Does ...</p>
+     * 
+     * @poseidon-object-id [I29f51818m14c28f165ddmm4648]
+     * @return 
+     */
+    
+    public abstract boolean updateAccessory(Accessory accessory,String quantity);
+    /**
+     * <p>Does ...</p>
+     * 
+     * @poseidon-object-id [I29f51818m14c28f165ddmm4648]
+     * @return 
+     */
+    
+    public abstract ArrayList<Accessory> selectAllAccessories();
 /**
  * <p>Does ...</p>
  * 
@@ -78,6 +100,8 @@ public abstract class RoomPersistenceHandler {
  * @return 
  */
     public abstract boolean deleteAccessory(Accessory accessory);
+    
+    public abstract boolean deleteAccessoryRoom(Room room,Accessory accessory);
 }
 
 

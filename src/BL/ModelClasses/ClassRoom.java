@@ -12,4 +12,11 @@ public class ClassRoom extends BL.ModelClasses.Room {
  * 
  */
     private int nbMaxParticipants;
+    
+    
+	/* Constructors */
+	public ClassRoom (String id, float superficie)
+	{
+		super(id,superficie);
+	}
  }

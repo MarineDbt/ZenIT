@@ -1,4 +1,3 @@
-
 package BL.ModelClasses;
 
 /**
@@ -31,5 +30,26 @@ public class Room {
  * 
  * @poseidon-type BL.DataModel.Dispose
  */
-    public java.util.Collection dispose = new java.util.TreeSet();
- }
+    public java.util.Collection dispose = new java.util.ArrayList<Accessory>();
+   
+ 
+	/* Constructors */
+
+	public Room(String numero, float maSuperficie)
+	{
+		numRoom = numero;
+		superficie = maSuperficie;
+	}
+
+	/* Getters */
+	
+	public String getId()
+	{
+		return numRoom;
+	}
+	
+	public float getSuperficy()
+	{
+		return superficie;
+	}
+}

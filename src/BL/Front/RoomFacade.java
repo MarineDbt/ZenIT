@@ -1,6 +1,7 @@
 
 package BL.Front;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import BL.TechnicalClasses.*;
@@ -35,11 +36,11 @@ public class RoomFacade {
     	
     }
     
-    public Room createRoom(int numero) {        
+    public boolean createRoom(String numero, String superficy) {        
         
-    	Room myRoom = RoomManager.createRoom(numero);
+    	boolean result = RoomManager.createRoom(numero,superficy);
     	
-        return null;
+        return result;
     } 
 
 /**
@@ -51,11 +52,21 @@ public class RoomFacade {
  * @param quantite 
  * @return 
  */
-    public BL.ModelClasses.Accessory createAccessory(int idRoom, String libelle, int quantite) {        
-        // your code here
-        return null;
+    public boolean addAccessory(String idRoom, String libelle, String quantite) {        
+        
+    	/* Passing method call to RoomManager */
+    	
+        return RoomManager.addAccessory(idRoom, libelle, quantite);
     } 
 
+    
+
+    public boolean createAccessory(String libelle) {        
+    	
+    	/* Passing method call to RoomManager */
+    	
+        return RoomManager.createAccessory(libelle);
+    } 
 /**
  * <p>Does ...</p>
  * 
@@ -64,9 +75,11 @@ public class RoomFacade {
  * @param number 
  * @return 
  */
-    public boolean modifyRoom(BL.ModelClasses.Room room, int number) {        
-        // your code here
-        return false;
+    public boolean modifyRoom(Room room, String number) {        
+       
+    	/* Passing method call to RoomManager */
+    	
+        return RoomManager.modifyRoom(room, number);
     } 
 
 /**
@@ -78,21 +91,31 @@ public class RoomFacade {
  * @param quantity 
  * @return 
  */
-    public boolean modifyAccessory(BL.ModelClasses.Accessory accessory, String label, int quantity) {        
-        // your code here
-        return false;
+    public boolean modifyAccessory(Accessory accessory, String label) {        
+    	/* Passing method call to RoomManager */
+    	
+        return RoomManager.modifyAccessory(accessory, label);
+
     } 
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I29f51818m14c28f165ddmm5577]
- * @return 
- */
-    public Collection<BL.ModelClasses.Room> getAllRooms() {        
-        // your code here
-        return null;
-    } 
+    
+    /**
+     * <p>Does ...</p>
+     * 
+     * @poseidon-object-id [I29f51818m14c28f165ddmm5570]
+     * @param accessory 
+     * @param label 
+     * @param quantity 
+     * @return 
+     */
+     public boolean modifyAccessoryRoom(Accessory accessory, Room room, String quantity) {        
+        	/* Passing method call to RoomManager */
+        	
+            return RoomManager.modifyAccessoryRoom(accessory, room, quantity);
+
+        } 
+
+ 
 
 /**
  * <p>Does ...</p>
@@ -101,9 +124,10 @@ public class RoomFacade {
  * @param room 
  * @return 
  */
-    public boolean removeRoom(BL.ModelClasses.Room room) {        
-        // your code here
-        return false;
+    public boolean removeRoom(Room room) {        
+    	/* Passing method call to RoomManager */
+    	
+        return RoomManager.removeRoom(room);
     } 
 
 /**
@@ -113,8 +137,41 @@ public class RoomFacade {
  * @param accessory 
  * @return 
  */
-    public boolean removeAccessory(BL.ModelClasses.Accessory accessory) {        
-        // your code here
-        return false;
+    public boolean removeAccessory(Accessory accessory) {        
+    	/* Passing method call to RoomManager */
+    	
+        return RoomManager.removeAccessory(accessory);
     } 
+    
+    public boolean removeAccessoryRoom(Room room,Accessory accessory) {        
+    	/* Passing method call to RoomManager */
+    	
+        return RoomManager.removeAccessoryRoom(room,accessory);
+    } 
+  
+    /* Selection methods */
+    
+    /**
+     * <p>Does ...</p>
+     * 
+     * @poseidon-object-id [I29f51818m14c28f165ddmm5577]
+     * @return 
+     */
+        public ArrayList<Accessory> getAllAccessories() {        
+        	/* Passing method call to RoomManager */
+        	
+            return RoomManager.getAllAccessories();       
+        }
+        
+        /**
+         * <p>Does ...</p>
+         * 
+         * @poseidon-object-id [I29f51818m14c28f165ddmm5577]
+         * @return 
+         */
+            public ArrayList<Room> getAllRooms() {        
+            	/* Passing method call to RoomManager */
+            	
+                return RoomManager.getAllRooms();  
+            }
  }

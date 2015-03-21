@@ -1,5 +1,8 @@
 
 package BL.TechnicalClasses;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import BL.ModelClasses.Accessory;
@@ -33,34 +36,17 @@ public class RoomQueryHandler extends RoomPersistenceHandler {
 	}
 	
 	
-    public Room insertRoom(int numero) {        
+    public boolean insertRoom(String numero, String superficy) {        
         
-    	// Declarations and initializations
+    	/* Declarations and initializations */
     	int result = 0;
-    	Room myRoom;
+
+    	/* Query execution delegated to ConnectionToMySQL */
+    	result = ConnectionToMySQL.requestInsertQuery( "insert into Room (id_room,superficy) values('"+numero+"','"+superficy+"');");
     	
-    	// Query execution delegated to ConnectionToMySQL
-    	result = ConnectionToMySQL.requestInsertQuery(????);
+    	/* Return value */
     	
-    	// Testing return value
-    	
-    	// The query went well
-    	if (result !=0)
-    	{
-    		myRoomFactory.createRoom(numero);
-    	}
-    	
-    	// The query went wrong
-    	else 
-    	{
-    		myRoom = null;
-    	}
-    	
-    	// Return value
-    	return myRoom;
-    	
-    	
-        return null;
+    	return (result == 1);
     } 
 
 /**
@@ -72,11 +58,33 @@ public class RoomQueryHandler extends RoomPersistenceHandler {
  * @param quantite 
  * @return 
  */
-    public Accessory insertAccessory(int idRoom, String libelle, int quantite) {        
-        // your code here
-        return null;
+    public boolean insertAccessoryRoom(String idRoom, String libelle, String quantite) {        
+        
+    	/* Declarations and initializations */
+    	int result = 0;
+
+    	/* Query execution delegated to ConnectionToMySQL */
+    	result = ConnectionToMySQL.requestInsertQuery( "insert into RoomAccessory (id_room,accessory_name,numberOfAccessory) values('"+idRoom+"','"+libelle+"','"+quantite+"');");
+        	
+    	/* return value */
+    	
+    	return (result == 1);
     } 
 
+ public boolean insertAccessory(String libelle) {        
+        
+    	/* Declarations and initializations */
+    	int result = 0;
+
+    	/* Query execution delegated to ConnectionToMySQL */
+    	result = ConnectionToMySQL.requestInsertQuery( "insert into Accessory (accessory_name) values('"+libelle+"');");
+    	
+    	/* Return value */
+    	
+    	return (result == 1);
+ 
+    } 
+    
 /**
  * <p>Does ...</p>
  * 
@@ -85,9 +93,17 @@ public class RoomQueryHandler extends RoomPersistenceHandler {
  * @param number 
  * @return 
  */
-    public boolean updateRoom(BL.ModelClasses.Room room, int number) {        
-        // your code here
-        return false;
+    public boolean updateRoom(Room room, String number) {        
+    	 
+    	/* Declarations and initializations */
+    	int result = 0;
+
+    	/* Query execution delegated to ConnectionToMySQL */
+    	result = ConnectionToMySQL.requestInsertQuery( "update Room set id_room = '"+number+"' where id_room = '"+room.getId()+"';");
+    	
+    	/* Return value */
+    	
+    	return (result == 1);
     } 
 
 /**
@@ -99,20 +115,61 @@ public class RoomQueryHandler extends RoomPersistenceHandler {
  * @param quantity 
  * @return 
  */
-    public boolean updateAccessory(BL.ModelClasses.Accessory accesory, String label, int quantity) {        
-        // your code here
-        return false;
+    public boolean updateAccessory(Accessory accessory, String label) {        
+    	/* Declarations and initializations */
+    	int result = 0;
+
+    	/* Query execution delegated to ConnectionToMySQL */
+    	result = ConnectionToMySQL.requestInsertQuery( "update Accessory set accessory_name = '"+label+"' where accessory_name = '"+accessory.getName()+"';");
+    	
+    	/* Return value */
+    	
+    	return (result == 1);
+    	
     } 
 
+    
+    public boolean updateAccessoryRoom(Accessory accessory, Room room, String quantity)
+    {
+    	/* Declarations and initializations */
+    	int result = 0;
+
+    	/* Query execution delegated to ConnectionToMySQL */
+    	result = ConnectionToMySQL.requestInsertQuery( "update RoomAccessory set numberOfAccessory = '"+quantity+"' where accessory_name = '"+accessory.getName()+"' and id_room = '"+room.getId()+"';");
+    	
+    	/* Return value */
+    	
+    	return (result == 1);
+    }
 /**
  * <p>Does ...</p>
  * 
  * @poseidon-object-id [I29f51818m14c28f165ddmm4675]
  * @return 
  */
-    public Collection<Room> selectAllRooms() {        
-        // your code here
-        return null;
+    public ArrayList<Room> selectAllRooms() {        
+       	
+    	/* Declarations and initializations */
+    	ResultSet result;
+    	ArrayList<Room> myRooms = new ArrayList<Room>();
+
+    	/* Query execution delegated to ConnectionToMySQL */
+    	result = ConnectionToMySQL.requestSelectQuery("Select * from Room;");
+    	
+    	
+    	try {
+			while (result.next()) {
+			     String id_room = result.getString(1);
+			     float superficy = result.getFloat(2);
+			     Room myRoom = new Room(id_room,superficy);
+			     myRooms.add(myRoom);
+			 }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+        return myRooms;
     } 
 
 /**
@@ -120,10 +177,30 @@ public class RoomQueryHandler extends RoomPersistenceHandler {
  * 
  * @poseidon-object-id [I29f51818m14c28f165ddmm4679]
  * @return 
+ * @throws SQLException 
  */
-    public Collection<Accessory> selectAllAccessories() {        
-        // your code here
-        return null;
+    public ArrayList<Accessory> selectAllAccessories() {        
+        
+    	/* Declarations and initializations */
+    	ResultSet result;
+    	ArrayList<Accessory> myAccessories = new ArrayList<Accessory>();
+    	
+    	/* Query execution delegated to ConnectionToMySQL */
+    	result = ConnectionToMySQL.requestSelectQuery("Select * from Accessory;");
+    	
+    	
+    	try {
+			while (result.next()) {
+			     String name = result.getString(1);
+			     Accessory myAccessory = new Accessory(name);
+			     myAccessories.add(myAccessory);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+        return myAccessories;
     } 
 
 /**
@@ -134,8 +211,16 @@ public class RoomQueryHandler extends RoomPersistenceHandler {
  * @return 
  */
     public boolean deleteRoom(Room room) {        
-        // your code here
-        return false;
+     
+    	/* Declarations and initializations */
+    	int result = 0;
+
+    	/* Query execution delegated to ConnectionToMySQL */
+    	result = ConnectionToMySQL.requestInsertQuery( "delete from Room where id_Room = '"+room.getId()+"';");
+    	
+    	/* Return value */
+    	return (result == 1);
+
     } 
 
 /**
@@ -146,8 +231,30 @@ public class RoomQueryHandler extends RoomPersistenceHandler {
  * @return 
  */
     public boolean deleteAccessory(Accessory accessory) {        
-        // your code here
-        return false;
+        
+    	/* Declarations and initializations */
+    	int result = 0;
+
+    	/* Query execution delegated to ConnectionToMySQL */
+    	result = ConnectionToMySQL.requestInsertQuery( "delete from Accessory where accessory_name = '"+accessory.getName()+"';");
+    	
+    	/* Return value */
+    	
+    	return (result == 1);
+      
+    }
+    
+    public boolean deleteAccessoryRoom(Room room,Accessory accessory)
+    {
+    	/* Declarations and initializations */
+    	int result = 0;
+
+    	/* Query execution delegated to ConnectionToMySQL */
+    	result = ConnectionToMySQL.requestInsertQuery( "delete from RoomAccessory where accessory_name = '"+accessory.getName()+"' and id_room = '"+room.getId()+"';");
+    	
+    	/* Return value */
+    	
+    	return (result == 1);
     }
 
  }

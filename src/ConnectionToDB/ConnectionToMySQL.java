@@ -116,7 +116,7 @@ public class ConnectionToMySQL
 			System.out.println("hi2");
 			System.out.println(query);
 			status = statement.executeUpdate(query);
-			System.out.println("hi3");
+			System.out.println(status);
 		} catch (SQLException e1) {
 			// TODO : error handling
 		}
@@ -124,4 +124,5 @@ public class ConnectionToMySQL
     /* Return Value */	
     	return status;
     }
+    
 }
