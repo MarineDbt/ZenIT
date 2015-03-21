@@ -3,6 +3,8 @@ package BL.TechnicalClasses;
 
 import java.util.Collection;
 
+import BL.ModelClasses.*;
+
 /**
  * 
  * 
@@ -16,7 +18,11 @@ public interface ContributorPersistenceHandler {
  * @param user 
  * @return 
  */
-    public BL.ModelClasses.Contributor insertContributor(BL.ModelClasses.User user);
+	
+	
+	
+	
+    public Contributor insertContributor(User user, String myDescription);
 /**
  * <p>Does ...</p>
  * 

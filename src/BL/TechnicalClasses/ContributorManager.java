@@ -29,13 +29,18 @@ public class ContributorManager {
  * @param user 
  * @return 
  */
-    public boolean createContributor(User user) {        
+    /* Constructors */
+    public ContributorManager(AbstractPersistenceHandlerFactory factory)
+    {
+    	contributorPersistenceHandler = new ContributorPersistenceHandler(factory);
+    }
+    
+    public boolean createContributor(User user, String myDescription) {        
     	
     	/* Declarations and initializations */
     	
-    	Contributor myContributor = new Contributor();
-    	myContributor = contributorPersistenceHandler.insertContributor(user);
-    	
+    	Contributor myContributor = contributorPersistenceHandler.insertContributor(user, myDescription);
+    	    	
     	/* Adding to contributors */
     	if (myContributor !=null)
     	{

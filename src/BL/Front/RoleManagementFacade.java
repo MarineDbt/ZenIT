@@ -41,13 +41,18 @@ public class RoleManagementFacade {
  * @param user 
  * @return 
  */
-    public boolean createContributor(User user) {        
+    /* Constructors */
+    public RoleManagementFacade(AbstractPersistenceHandlerFactory factory)
+    {
+    	contributorManager = new ContributorManager(factory);
+    	supervisorManager = new SupervisorManager(factory);    	
+    }
+    
+    public boolean createContributor(User user, String myDescription) {        
         
     	/* Delegate method call to contributorManager */
-    	
-    	myContributor
 
-    	return contributorManager.createContributor(user);
+    	return contributorManager.createContributor(user, myDescription);
     } 
 
 /**

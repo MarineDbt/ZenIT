@@ -20,18 +20,25 @@ public class ContributorQueryHandler implements ContributorPersistenceHandler {
  * @param user 
  * @return 
  */
-    public Contributor insertContributor(User user) {        
+    public Contributor insertContributor(User user, String myDescription) {        
         
     	/* Declarations and initializations */
     	int result = 0;
 		
     	/* Delegate query execution to ConnectionToMySQL */
     	
-		result = ConnectionToMySQL.requestInsertQuery("insert into User (firstname,lastname,street,PC,city,phone,email,id,pwd) values('"+firstname+"','"+lastname+"','"+street+"','"+PC+"','"+city+"','"+phone+"','"+email+"','"+id+"','"+encryptedPwd+"');");
+		result = ConnectionToMySQL.requestInsertQuery("insert into Contributor (description,id_user) values('"+myDescription+"','"+user.getId()+"';");
+		
+		/* Testing if query succeeded */
 		
 		if (result==1)
 		{
-			Contributor
+			Contributor myContributor = new Contributor(user.getId(), myDescription);
+			return myContributor;
+		}
+		else
+		{
+			return null;
 		}
     } 
 
