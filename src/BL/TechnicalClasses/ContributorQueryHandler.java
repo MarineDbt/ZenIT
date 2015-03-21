@@ -2,14 +2,16 @@
 package BL.TechnicalClasses;
 import java.util.Collection;
 
+import BL.ModelClasses.*;
 import BL.TechnicalClasses.ContributorFactory;
+import ConnectionToDB.ConnectionToMySQL;
 
 /**
  * 
  * 
  * @poseidon-object-id [I29f51818m14c28f165ddmm4604]
  */
-public class ContributorQueryHandler implements BL.TechnicalClasses.ContributorPersistenceHandler {
+public class ContributorQueryHandler implements ContributorPersistenceHandler {
 
 /**
  * <p>Does ...</p>
@@ -18,9 +20,19 @@ public class ContributorQueryHandler implements BL.TechnicalClasses.ContributorP
  * @param user 
  * @return 
  */
-    public BL.ModelClasses.Contributor insertContributor(BL.ModelClasses.User user) {        
-        // your code here
-        return null;
+    public Contributor insertContributor(User user) {        
+        
+    	/* Declarations and initializations */
+    	int result = 0;
+		
+    	/* Delegate query execution to ConnectionToMySQL */
+    	
+		result = ConnectionToMySQL.requestInsertQuery("insert into User (firstname,lastname,street,PC,city,phone,email,id,pwd) values('"+firstname+"','"+lastname+"','"+street+"','"+PC+"','"+city+"','"+phone+"','"+email+"','"+id+"','"+encryptedPwd+"');");
+		
+		if (result==1)
+		{
+			Contributor
+		}
     } 
 
 /**

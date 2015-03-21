@@ -3,33 +3,36 @@ package BL.Front;
 
 import java.util.Collection;
 
+import BL.ModelClasses.*;
+import BL.TechnicalClasses.*;
+
 /**
  * 
  * 
  * @poseidon-object-id [I29f51818m14c28f165ddmm5585]
  */
 public class RoleManagementFacade {
-
+	
 /**
  * <p>Represents ...</p>
  * 
  * @poseidon-object-id [I29f51818m14c28f165ddmm5586]
  */
-    private BL.TechnicalClasses.ContributorManager contributorManager;
+    private ContributorManager contributorManager;
 
 /**
  * <p>Represents ...</p>
  * 
  * @poseidon-object-id [I29f51818m14c28f165ddmm5587]
  */
-    private BL.TechnicalClasses.SupervisorManager supervisorManager;
+    private SupervisorManager supervisorManager;
 
 /**
  * <p>Represents ...</p>
  * 
  * @poseidon-object-id [I29f51818m14c28f165ddmm55a4]
  */
-    private BL.TechnicalClasses.UserManager userManager;
+    private UserManager userManager;
 
 /**
  * <p>Does ...</p>
@@ -38,9 +41,13 @@ public class RoleManagementFacade {
  * @param user 
  * @return 
  */
-    public BL.ModelClasses.Contributor createContributor(BL.ModelClasses.User user) {        
-        // your code here
-        return null;
+    public boolean createContributor(User user) {        
+        
+    	/* Delegate method call to contributorManager */
+    	
+    	myContributor
+
+    	return contributorManager.createContributor(user);
     } 
 
 /**

@@ -5,7 +5,7 @@ package BL.ModelClasses;
  * 
  * 
  */
-public class Contributor extends BL.ModelClasses.UserRole {
+public class Contributor extends UserRole {
 
 /**
  * <p>Represents ...</p>

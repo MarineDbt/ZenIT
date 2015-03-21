@@ -10,7 +10,7 @@ public class RoomManager {
 	//Constructor
 	public RoomManager ()
 	{
-		myRoomPersistenceHandler = 
+	
 	}
 	
 	//Creation method
