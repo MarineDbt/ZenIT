@@ -23,6 +23,7 @@ import javax.swing.ScrollPaneConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+import javax.swing.JTextArea;
 
 /**
  * @author Jules Cordonnier
@@ -51,12 +52,11 @@ public class UIProduct extends BaseUI {
 	private JTextField priceProductText;
 	private JTextField subcategoryProductText;
 	private JTextField discountProductText;
-	private JTextField descriptionProductText;
 	
 	public UIProduct() {
 			
 			// Frame Characteristics
-			setTitle("Mes Commandes");
+			setTitle("Mes Produits");
 			setBackground(Color.gray);
 
 			// Product Pannel
@@ -64,7 +64,7 @@ public class UIProduct extends BaseUI {
 			productPanel = new JScrollPane();
 			productPanel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 			productPanel.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-			productPanel.setBounds(10, 20, 549, 100);
+			productPanel.setBounds(10, 25, 549, 100);
 			content.add(productPanel);
 			
 			Object myProducts[] = {"Product 1","Product 2","Product 3","Product 4","Product 5","Product 6", "Product 7"};
@@ -75,15 +75,15 @@ public class UIProduct extends BaseUI {
 			
 			buttonPanel = new JPanel();
 			buttonPanel.setLayout(null);
-			buttonPanel.setBounds(571, 20, 101, 206);
+			buttonPanel.setBounds(571, 25, 101, 201);
 			content.add(buttonPanel);
 			
 			deleteProduct = new JButton("Supprimer");
-			deleteProduct.setBounds(0,173,100,20);
+			deleteProduct.setBounds(0,168,100,20);
 			buttonPanel.add(deleteProduct);
 			
 			modifyProduct = new JButton("Modifier");
-			modifyProduct.setBounds(0, 150, 100, 20);
+			modifyProduct.setBounds(0, 145, 100, 20);
 			buttonPanel.add(modifyProduct);
 			
 			addProduct = new JButton("Ajouter");
@@ -107,22 +107,22 @@ public class UIProduct extends BaseUI {
 			nameProductLabel.setBounds(16, 25, 34, 16);
 			infoPanel.add(nameProductLabel);
 			
-			priceProductLabel = new JLabel("Prix");
+			priceProductLabel = new JLabel("Prix (\u20AC)");
 			priceProductLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 			priceProductLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
-			priceProductLabel.setBounds(11, 45, 24, 16);
+			priceProductLabel.setBounds(12, 45, 39, 16);
 			infoPanel.add(priceProductLabel);
 			
 			subcategoryProductLabel = new JLabel("Sous-Categorie");
 			subcategoryProductLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 			subcategoryProductLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
-			subcategoryProductLabel.setBounds(12, 65, 79, 16);
+			subcategoryProductLabel.setBounds(11, 65, 79, 16);
 			infoPanel.add(subcategoryProductLabel);
 			
-			remiseProductLabel = new JLabel("Remise");
+			remiseProductLabel = new JLabel("Remise (%)");
 			remiseProductLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 			remiseProductLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
-			remiseProductLabel.setBounds(131, 45, 34, 16);
+			remiseProductLabel.setBounds(121, 45, 64, 16);
 			infoPanel.add(remiseProductLabel);
 			
 			descriptionProductLabel = new JLabel("Description");
@@ -130,34 +130,38 @@ public class UIProduct extends BaseUI {
 			infoPanel.add(descriptionProductLabel);
 			
 			nameProductText = new JTextField();
-			nameProductText.setEditable(false);
+			nameProductText.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			nameProductText.setBounds(62, 25, 183, 16);
 			infoPanel.add(nameProductText);
 			nameProductText.setColumns(10);
 			
 			priceProductText = new JTextField();
-			priceProductText.setEditable(false);
+			priceProductText.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			priceProductText.setColumns(10);
-			priceProductText.setBounds(47, 45, 72, 16);
+			priceProductText.setBounds(62, 45, 53, 16);
 			infoPanel.add(priceProductText);
 			
 			subcategoryProductText = new JTextField();
-			subcategoryProductText.setEditable(false);
 			subcategoryProductText.setColumns(10);
-			subcategoryProductText.setBounds(103, 65, 142, 16);
+			subcategoryProductText.setBounds(102, 65, 143, 16);
 			infoPanel.add(subcategoryProductText);
 			
 			discountProductText = new JTextField();
-			discountProductText.setEditable(false);
+			discountProductText.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			discountProductText.setColumns(10);
-			discountProductText.setBounds(176, 45, 69, 16);
+			discountProductText.setBounds(192, 45, 53, 16);
 			infoPanel.add(discountProductText);
 			
-			descriptionProductText = new JTextField();
-			descriptionProductText.setEditable(false);
-			descriptionProductText.setColumns(10);
-			descriptionProductText.setBounds(270, 21, 289, 60);
-			infoPanel.add(descriptionProductText);
+			JTextArea descriptionTextArea = new JTextArea();
+			descriptionTextArea.setEditable(false);
+			descriptionTextArea.setRows(3);
+			descriptionTextArea.setFont(new Font("Tahoma", Font.PLAIN, 11));
+			descriptionTextArea.setBounds(270, 25, 289, 56);
+			infoPanel.add(descriptionTextArea);
+			
+			JLabel myProductsLabel = new JLabel("Mes Produits");
+			myProductsLabel.setBounds(10, 5, 93, 16);
+			content.add(myProductsLabel);
 		}
 	}
 
