@@ -3,7 +3,6 @@ import java.sql.ResultSet;
 
 import UI.UIProduct;
 import UI.UIAddProduct;
-import UI.UISubscription;
 import BL.Front.UserFacade;
 import ConnectionToDB.ConnectionToMySQL;
 

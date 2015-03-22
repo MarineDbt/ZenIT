@@ -69,6 +69,7 @@ public class UIProduct extends BaseUI {
 			
 			Object myProducts[] = {"Product 1","Product 2","Product 3","Product 4","Product 5","Product 6", "Product 7"};
 			productList = new JList(myProducts);
+			productList.setBackground(new Color(240, 248, 255));
 			productPanel.setViewportView(productList);
 			
 			// Button Panel
