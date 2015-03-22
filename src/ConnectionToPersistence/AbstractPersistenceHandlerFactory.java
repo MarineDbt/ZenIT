@@ -10,7 +10,13 @@ public abstract class  AbstractPersistenceHandlerFactory{
 	
 	public static AbstractPersistenceHandlerFactory createFactory()
 	{
-		return myAbstractFactory;
+		if (myAbstractFactory == null){
+			return new DatabaseQueryHandlerFactory();
+		}
+		else{
+			return myAbstractFactory;
+		}
+		
 	}
 	
 	/* Creation methods for PersistenceHandler */

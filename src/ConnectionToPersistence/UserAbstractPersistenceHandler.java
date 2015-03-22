@@ -47,7 +47,7 @@ public abstract class UserAbstractPersistenceHandler {
  * @param User 
  * @return
  */
-    public abstract User lookForUserInfo(User currentUser);   
+    public abstract User lookForUserInfo(String id);   
 
 /**
  * <p>Does ...</p>
@@ -58,6 +58,6 @@ public abstract class UserAbstractPersistenceHandler {
  * @param .. 
  * @param boolean 
  */
-    public abstract boolean register(String firstname, String lastname, String street, String PC, String city, String phone, String email, String id, String pwd);
+    public abstract boolean insertUser(String firstname, String lastname, String street, String PC, String city, String phone, String email, String id, String pwd);
  
 }

@@ -3,6 +3,8 @@ import java.util.HashMap;
 
 import BL.DataClasses.Product;
 import BL.DataClasses.User;
+import ConnectionToPersistence.AbstractPersistenceHandlerFactory;
+import ConnectionToPersistence.UserAbstractPersistenceHandler;
 import ConnectionToPersistence.UserQueryHandler;
 
 
@@ -15,14 +17,14 @@ public class UserManager {
 	
 	/* Attributs */
 	private UserFactory userFactory;
-	private UserQueryHandler userQueryHandler;
+	private UserAbstractPersistenceHandler userPersistenceHandler;
 	private UserExceptionHandler userExceptionHandler;
 	protected HashMap<String,User> users;
 	public User currentUser;
 	
 	/* Methods */
 	public UserManager() {
-		this.userQueryHandler = new UserQueryHandler();
+		this.userPersistenceHandler = AbstractPersistenceHandlerFactory.createFactory().createUserPersistenceHandler();
 		this.users= new HashMap();
 		this.userFactory = new UserFactory();
 		this.currentUser = null;
@@ -32,7 +34,7 @@ public class UserManager {
 		boolean result = false;
 		try {
 			System.out.println("a");
-			result = userQueryHandler.checkPassword(id, pwd);
+			result = userPersistenceHandler.checkPassword(id, pwd);
 			System.out.println("b");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -50,7 +52,7 @@ public class UserManager {
 		boolean result = false;
 		
 		try {
-			result = this.userQueryHandler.insertUser(firstname, lastname, street, PC, city, phone, email, id, pwd);
+			result = this.userPersistenceHandler.insertUser(firstname, lastname, street, PC, city, phone, email, id, pwd);
 		} catch (Exception e) {
 			// TODO : Error Handling
 		}
@@ -58,7 +60,7 @@ public class UserManager {
 		return result;
 	 }
 	 private void loadUser(String id){
-		//TODO : loadUser
+		 users.put(id,userPersistenceHandler.lookForUserInfo(id));
 	 }
 
 

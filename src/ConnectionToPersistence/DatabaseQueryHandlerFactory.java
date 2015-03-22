@@ -8,7 +8,7 @@ public class DatabaseQueryHandlerFactory extends AbstractPersistenceHandlerFacto
 	
 	
 	/* Constructor */
-	private DatabaseQueryHandlerFactory()
+	DatabaseQueryHandlerFactory()
 	{
 		super();
 	}
