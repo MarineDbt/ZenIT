@@ -1,21 +1,30 @@
 package UI;
 
 import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+
 import BL.DataClasses.User;
+import BL.Front.UserFacade;
+
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
-import java.awt.Font;
 
-public class BaseUI extends JFrame {
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class BaseUI extends JFrame implements ActionListener {
 
 	/* Panel corresponding to the content of the frame
 	 * this panel is empty yet
@@ -28,6 +37,9 @@ public class BaseUI extends JFrame {
 	JButton btnSupervisor;
 	JButton btnContributor;
 	JButton btnMyActivities;
+	
+	User currentUser;
+	protected UserFacade userFacade;
 
 	//TO TEST ONLY
 	public static void main(String[] args) {
@@ -54,6 +66,7 @@ public class BaseUI extends JFrame {
 	 * 
 	 */
 	public BaseUI(User currentUser) {
+		this.currentUser=currentUser;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1055, 432);
 		this.setMinimumSize(new Dimension(600,450));
@@ -111,6 +124,8 @@ public class BaseUI extends JFrame {
 		JButton btnNotifications = new JButton("Notifications");
 		btnNotifications.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		ribbon.add(btnNotifications);
+		btnNotifications.addActionListener(this);
+		btnNotifications.setActionCommand("notifications");
 
 		btnMyActivities = new JButton("My Activities");
 		btnMyActivities.setFont(new Font("Tahoma", Font.PLAIN, 9));
@@ -155,6 +170,16 @@ public class BaseUI extends JFrame {
 		}
 		if (!currentUser.isAdmin()){
 			btnAdmin.setVisible(false);
+		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		if (arg0.getActionCommand().equals("notifications")){
+			 NotificationCenterUI notificationCenter = new NotificationCenterUI(currentUser);
+			 notificationCenter.userFacade=this.userFacade;
+			 notificationCenter.setVisible(true);
+	    	 this.dispose();
 		}
 	}
 }
