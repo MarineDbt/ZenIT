@@ -7,10 +7,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import BL.DataClasses.User;
 import BL.TechnicalClasses.AbstractPersistenceHandlerFactory;
+
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
@@ -90,7 +95,8 @@ public class AdminUI extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getActionCommand().equals("Admin")) {
-			AdminServiceUI nextUI = new AdminServiceUI(factory);
+			User user = new User();
+			AdminServiceUI nextUI = new AdminServiceUI(user,factory);
 			this.dispose();
 			nextUI.setVisible(true);
 		}

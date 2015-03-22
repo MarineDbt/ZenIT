@@ -16,7 +16,7 @@ public interface SupervisorPersistenceHandler {
  * @param user 
  * @return 
  */
-    public BL.ModelClasses.Supervisor insertSupervisor(BL.ModelClasses.User user);
+    public BL.DataClasses.Supervisor insertSupervisor(BL.DataClasses.User user);
 /**
  * <p>Does ...</p>
  * 
@@ -24,14 +24,14 @@ public interface SupervisorPersistenceHandler {
  * @param supervisor 
  * @return 
  */
-    public boolean updateSupervisor(BL.ModelClasses.Supervisor supervisor);
+    public boolean updateSupervisor(BL.DataClasses.Supervisor supervisor);
 /**
  * <p>Does ...</p>
  * 
  * @poseidon-object-id [I29f51818m14c28f165ddmm46a5]
  * @return 
  */
-    public Collection<BL.ModelClasses.Supervisor> selectAllSupervisors();
+    public Collection<BL.DataClasses.Supervisor> selectAllSupervisors();
 }
 
 

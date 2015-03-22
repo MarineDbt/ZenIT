@@ -15,7 +15,7 @@ public class RoomFactory {
  * @param numero 
  * @return 
  */
-    public BL.ModelClasses.Room createRoom(int numero) {        
+    public BL.DataClasses.Room createRoom(int numero) {        
         // your code here
         return null;
     } 
@@ -29,7 +29,7 @@ public class RoomFactory {
  * @param quantite 
  * @return 
  */
-    public BL.ModelClasses.Accessory createAccesory(int idSalle, String libelle, int quantite) {        
+    public BL.DataClasses.Accessory createAccesory(int idSalle, String libelle, int quantite) {        
         // your code here
         return null;
     } 

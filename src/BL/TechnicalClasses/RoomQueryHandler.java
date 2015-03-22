@@ -5,8 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import BL.ModelClasses.Accessory;
-import BL.ModelClasses.Room;
+import BL.DataClasses.Accessory;
+import BL.DataClasses.Room;
 import BL.TechnicalClasses.RoomFactory;
 import ConnectionToDB.ConnectionToMySQL;
 
@@ -28,7 +28,8 @@ public class RoomQueryHandler extends RoomPersistenceHandler {
 	private RoomFactory myRoomFactory;
 	
 	
-	//Constructors
+	/* Constructors */
+	
 	public RoomQueryHandler()
 	{
 		super();
@@ -58,13 +59,13 @@ public class RoomQueryHandler extends RoomPersistenceHandler {
  * @param quantite 
  * @return 
  */
-    public boolean insertAccessoryRoom(String idRoom, String libelle, String quantite) {        
+    public boolean insertAccessoryRoom(Room room, Accessory accessory, String quantite) {        
         
     	/* Declarations and initializations */
     	int result = 0;
 
     	/* Query execution delegated to ConnectionToMySQL */
-    	result = ConnectionToMySQL.requestInsertQuery( "insert into RoomAccessory (id_room,accessory_name,numberOfAccessory) values('"+idRoom+"','"+libelle+"','"+quantite+"');");
+    	result = ConnectionToMySQL.requestInsertQuery( "insert into RoomAccessory (id_room,accessory_name,numberOfAccessory) values('"+room.getId()+"','"+accessory.getName()+"','"+quantite+"');");
         	
     	/* return value */
     	

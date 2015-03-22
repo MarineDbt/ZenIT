@@ -4,7 +4,7 @@ package BL.TechnicalClasses;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import BL.ModelClasses.*;
+import BL.DataClasses.*;
 
 /**
  * 
@@ -29,7 +29,7 @@ public abstract class RoomPersistenceHandler {
  * @param quantite 
  * @return 
  */
-    public abstract boolean insertAccessoryRoom(String idRoom, String libelle, String quantite);
+    public abstract boolean insertAccessoryRoom(Room room, Accessory accessory, String quantite);
 /**
  * <p>Does ...</p>
  * 

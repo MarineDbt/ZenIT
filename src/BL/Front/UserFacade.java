@@ -3,7 +3,7 @@ package BL.Front;
 
 import java.util.HashMap;
 
-import BL.ModelClasses.*;
+import BL.DataClasses.*;
 import BL.TechnicalClasses.UserManager;
 
 /**

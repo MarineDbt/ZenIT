@@ -2,11 +2,14 @@ import java.awt.EventQueue;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import UI.*;
+import UI.AdminServiceUI;
 import UI.AdminUI;
+import UI.BaseUI;
 import UI.PanelRoom;
 import UI.UISubscription;
+import BL.DataClasses.*;
 import BL.Front.*;
-import BL.ModelClasses.*;
 import BL.TechnicalClasses.*;
 import ConnectionToDB.ConnectionToMySQL;
 
@@ -59,9 +62,18 @@ public class Launcher {
 			public void run() {
 				try {
 					AbstractPersistenceHandlerFactory factory = DatabaseQueryHandlerFactory.createFactory();
-					AdminUI UI = new AdminUI(factory);
+					//AdminUI UI = new AdminUI(factory);
+					//UI.setVisible(true);
+					User user = new User();
+					//AdminServiceUI UI2 = new AdminServiceUI(user,factory);
+					//UI2.setVisible(true);
 					
-					UI.setVisible(true);
+					AdminGestionSalle UI3 = new AdminGestionSalle(user,factory);
+					UI3.setVisible(true);
+					
+					//AjouterSalleUI UI4 = new AjouterSalleUI(factory);
+					//UI4.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

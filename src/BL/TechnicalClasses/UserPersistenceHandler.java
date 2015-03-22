@@ -15,7 +15,7 @@ public abstract class UserPersistenceHandler {
  * @poseidon-object-id [I29f51818m14c28f165ddmm46b3]
  * @return 
  */
-    public abstract Collection<BL.ModelClasses.User> selectAllUsers();
+    public abstract Collection<BL.DataClasses.User> selectAllUsers();
 }
 
 

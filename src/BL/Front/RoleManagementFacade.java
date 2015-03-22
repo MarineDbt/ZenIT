@@ -38,7 +38,7 @@ public class RoleManagementFacade {
  * @param user 
  * @return 
  */
-    public BL.ModelClasses.Contributor createContributor(BL.ModelClasses.User user) {        
+    public BL.DataClasses.Contributor createContributor(BL.DataClasses.User user) {        
         // your code here
         return null;
     } 
@@ -50,7 +50,7 @@ public class RoleManagementFacade {
  * @param user 
  * @return 
  */
-    public BL.ModelClasses.Accessory createSupervisor(BL.ModelClasses.User user) {        
+    public BL.DataClasses.Accessory createSupervisor(BL.DataClasses.User user) {        
         // your code here
         return null;
     } 
@@ -62,7 +62,7 @@ public class RoleManagementFacade {
  * @param contributor 
  * @return 
  */
-    public boolean removeContributor(BL.ModelClasses.Contributor contributor) {        
+    public boolean removeContributor(BL.DataClasses.Contributor contributor) {        
         // your code here
         return false;
     } 
@@ -74,7 +74,7 @@ public class RoleManagementFacade {
  * @param supervisor 
  * @return 
  */
-    public boolean removeSupervisor(BL.ModelClasses.Supervisor supervisor) {        
+    public boolean removeSupervisor(BL.DataClasses.Supervisor supervisor) {        
         // your code here
         return false;
     } 
@@ -85,7 +85,7 @@ public class RoleManagementFacade {
  * @poseidon-object-id [I29f51818m14c28f165ddmm559c]
  * @return 
  */
-    public Collection<BL.ModelClasses.Contributor> getAllContributors() {        
+    public Collection<BL.DataClasses.Contributor> getAllContributors() {        
         // your code here
         return null;
     } 
@@ -96,7 +96,7 @@ public class RoleManagementFacade {
  * @poseidon-object-id [I29f51818m14c28f165ddmm55a0]
  * @return 
  */
-    public Collection<BL.ModelClasses.Supervisor> getAllSupervisors() {        
+    public Collection<BL.DataClasses.Supervisor> getAllSupervisors() {        
         // your code here
         return null;
     } 
@@ -107,7 +107,7 @@ public class RoleManagementFacade {
  * @poseidon-object-id [I29f51818m14c28f165ddmm55a5]
  * @return 
  */
-    public Collection<BL.ModelClasses.User> getAllUsers() {        
+    public Collection<BL.DataClasses.User> getAllUsers() {        
         // your code here
         return null;
     } 

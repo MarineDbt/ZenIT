@@ -1,5 +1,8 @@
 package BL.Front;
 
+import BL.DataClasses.*;
+import BL.TechnicalClasses.*;
+
 /**
  * 
  * 
@@ -12,20 +15,37 @@ public class CategoryFacade {
  * 
  * @poseidon-object-id [I29f51818m14c28f165ddmm55ab]
  */
-    private BL.TechnicalClasses.CategoryManager categoryManager;
+    private CategoryManager categoryManager;
 
+    /* Constructors */
+    
+    public CategoryFacade(AbstractPersistenceHandlerFactory factory)
+    {
+    	categoryManager = new CategoryManager(factory);
+    }
+    
+    
 /**
  * <p>Does ...</p>
  * 
  * @poseidon-object-id [I29f51818m14c28f165ddmm55ac]
- * @param superCategory 
  * @param label 
  * @return 
  */
-    public BL.ModelClasses.Category createCategory(BL.ModelClasses.Category superCategory, String label) {        
-        // your code here
-        return null;
+    public boolean createCategory(String label) {        
+    	
+    	/* Delegate method call to CategoryManager */
+    	
+    	return categoryManager.createCategory(label);
     } 
+    
+    public boolean createSubCategory(Category superCategory, String label) {        
+    	
+    	/* Delegate method call to CategoryManager */
+    	
+    	return categoryManager.createSubCategory(superCategory,label);
+    } 
+    
 
 /**
  * <p>Does ...</p>
@@ -34,8 +54,47 @@ public class CategoryFacade {
  * @param category 
  * @return 
  */
-    public boolean deleteCategory(BL.ModelClasses.Category category) {        
-        // your code here
-        return false;
+    public boolean removeCategory(Category category) {        
+        
+    	/* Delegate method call to CategoryManager */
+    	
+    	return categoryManager.removeCategory(category);
+        
     } 
+    
+/**
+* <p>Does ...</p>
+* 
+* * @poseidon-object-id [I29f51818m14c28f165ddmm55b2]
+* @param category 
+* @return 
+*/
+    public boolean deleteSubCategory(SubCategory subCategory) {        
+            // your code here
+       return false;
+    } 
+    
+    /**
+     * <p>Does ...</p>
+     * 
+     * @poseidon-object-id [I29f51818m14c28f165ddmm55b2]
+     * @param category 
+     * @return 
+     */
+        public boolean modifyCategory(Category category) {        
+            // your code here
+            return false;
+        } 
+        
+    /**
+    * <p>Does ...</p>
+    * 
+    * * @poseidon-object-id [I29f51818m14c28f165ddmm55b2]
+    * @param category 
+    * @return 
+    */
+        public boolean modifySubCategory(SubCategory subCategory) {        
+                // your code here
+           return false;
+        } 
  }

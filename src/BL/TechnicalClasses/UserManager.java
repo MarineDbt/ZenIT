@@ -2,8 +2,8 @@ package BL.TechnicalClasses;
 import java.util.Collection;
 import java.util.HashMap;
 
-import BL.ModelClasses.Product;
-import BL.ModelClasses.User;
+import BL.DataClasses.Product;
+import BL.DataClasses.User;
 
 
 /**

@@ -15,7 +15,7 @@ public class SupervisorFactory {
  * @param user 
  * @return 
  */
-    public BL.ModelClasses.Supervisor createSupervisor(BL.ModelClasses.User user) {        
+    public BL.DataClasses.Supervisor createSupervisor(BL.DataClasses.User user) {        
         // your code here
         return null;
     } 

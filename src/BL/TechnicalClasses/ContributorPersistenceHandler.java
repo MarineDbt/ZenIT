@@ -16,7 +16,7 @@ public interface ContributorPersistenceHandler {
  * @param user 
  * @return 
  */
-    public BL.ModelClasses.Contributor insertContributor(BL.ModelClasses.User user);
+    public BL.DataClasses.Contributor insertContributor(BL.DataClasses.User user);
 /**
  * <p>Does ...</p>
  * 
@@ -24,14 +24,14 @@ public interface ContributorPersistenceHandler {
  * @param contributor 
  * @return 
  */
-    public boolean updateContributor(BL.ModelClasses.Contributor contributor);
+    public boolean updateContributor(BL.DataClasses.Contributor contributor);
 /**
  * <p>Does ...</p>
  * 
  * @poseidon-object-id [I29f51818m14c28f165ddmm4694]
  * @return 
  */
-    public Collection<BL.ModelClasses.Contributor> selectAllContributors();
+    public Collection<BL.DataClasses.Contributor> selectAllContributors();
 }
 
 

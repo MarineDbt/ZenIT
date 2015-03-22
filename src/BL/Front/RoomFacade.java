@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import BL.TechnicalClasses.*;
-import BL.ModelClasses.*;
+import BL.DataClasses.*;
 
 /**
  * 
@@ -52,11 +52,11 @@ public class RoomFacade {
  * @param quantite 
  * @return 
  */
-    public boolean addAccessory(String idRoom, String libelle, String quantite) {        
+    public boolean addAccessory(Room room, Accessory accessory, String quantite) {        
         
     	/* Passing method call to RoomManager */
     	
-        return RoomManager.addAccessory(idRoom, libelle, quantite);
+        return RoomManager.addAccessory(room, accessory, quantite);
     } 
 
     

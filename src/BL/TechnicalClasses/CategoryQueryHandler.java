@@ -1,6 +1,8 @@
 
 package BL.TechnicalClasses;
+import BL.DataClasses.Category;
 import BL.TechnicalClasses.CategoryFactory;
+import ConnectionToDB.ConnectionToMySQL;
 
 /**
  * 
@@ -17,10 +19,39 @@ public class CategoryQueryHandler extends CategoryPersistenceHandler {
  * @param label 
  * @return 
  */
-    public BL.ModelClasses.Category insertCategory(BL.ModelClasses.Category superCategory, String label) {        
-        // your code here
-        return null;
+    public boolean insertCategory(String label) {        
+    	
+    	/* Declarations and initializations */
+    	int result = 0;
+
+    	/* Query execution delegated to ConnectionToMySQL */
+    	result = ConnectionToMySQL.requestInsertQuery( "insert into Category (category_name) values('"+label+"');");
+    	
+    	/* Return value */
+    	
+    	return (result == 1);
     } 
+    
+    /**
+     * <p>Does ...</p>
+     * 
+     * @poseidon-object-id [I29f51818m14c28f165ddmm4623]
+     * @param superCategory 
+     * @param label 
+     * @return 
+     */
+        public boolean insertSubCategory(Category superCategory, String label) {        
+        	
+        	/* Declarations and initializations */
+        	int result = 0;
+
+        	/* Query execution delegated to ConnectionToMySQL */
+        	result = ConnectionToMySQL.requestInsertQuery( "insert into Subcategory (subcategory_name,category_name) values('"+label+"','"+superCategory.getName()+"');");
+        	
+        	/* Return value */
+        	
+        	return (result == 1);
+        } 
 
 /**
  * <p>Does ...</p>
@@ -29,8 +60,16 @@ public class CategoryQueryHandler extends CategoryPersistenceHandler {
  * @param category 
  * @return 
  */
-    public boolean deleteCategory(BL.ModelClasses.Category category) {        
-        // your code here
-        return false;
+    public boolean deleteCategory(Category category) {        
+    	
+    	/* Declarations and initializations */
+    	int result = 0;
+
+    	/* Query execution delegated to ConnectionToMySQL */
+    	result = ConnectionToMySQL.requestInsertQuery( "delete from Category where category_name = '"+category.getName()+"');");
+    	
+    	/* Return value */
+    	
+    	return (result == 1 );
     } 
  }
