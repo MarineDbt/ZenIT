@@ -1,215 +1,193 @@
 package UI;
 
-import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.EventQueue;
-
-import javax.swing.BoxLayout;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.GridLayout;
-
-import javax.swing.JSplitPane;
-
-import java.awt.FlowLayout;
 
 import javax.swing.JTextField;
 
+import BL.DataClasses.User;
 import BL.Front.UserFacade;
 
-public class RegisterUI extends JFrame implements ActionListener {
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+import com.jgoodies.forms.factories.FormFactory;
 
-	private JTextField tNom;
-	private JTextField tPrenom;
-	private JTextField tLogin;
-	private JTextField tMotDePasse;
-	private JTextField tMail;
-	private JTextField tNumero;
-	private JTextField tRue;
-	private JTextField tCodePostal;
-	private JTextField tVille;
-	private JTextField tTelephone;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.border.EmptyBorder;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import java.awt.Font;
+
+public class RegisterUI extends JFrame{
+	
+
 	public UserFacade userFacade;
-
-	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					RegisterUI frame = new RegisterUI();
-					frame.userFacade = new UserFacade();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
+	private JTextField txtFirstName;
+	private JTextField txtLastName;
+	private JTextField txtStreet;
+	private JTextField txtPostalCode;
+	private JTextField txtCity;
+	private JTextField txtPhone;
+	private JTextField txtEmail;
+	private JTextField txtUsername;
+	private JPasswordField pwdPassword;
+	private JPasswordField pwdCheckpassword;
+	private JButton btnRegister;
+	private JLabel lblZenLounge;
+	private JLabel lblFirstName;
+	private JLabel lblLastName;
+	private JLabel lblStreet;
+	private JLabel lblPostalCode;
+	private JLabel lblCity;
+	private JLabel lblPhone;
+	private JLabel lblUsername;
+	private JLabel lblPassword;
+	private JLabel lblPassword_1;
+	//TO TEST ONLY
+		public static void main(String[] args) {
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						RegisterUI frame = new RegisterUI();
+						frame.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
-			}
-		});
-	}
-	
-	/**
-	 * Create the frame.
-	 * @
-	 */
-	// Constructor
+			});
+		}
+		
 	public RegisterUI() {
-		super("Subscription");
-		Container contentPane = getContentPane();
-		setSize(500,500);
-		
-		
-		//Création de la première zone
-		JPanel panel1 = new JPanel();
-		
-		JLabel titre = new JLabel("Zen Lounge");
-		titre.setBounds(172, 16, 100, 20);
-		panel1.add(titre);
-		contentPane.add(panel1, BorderLayout.NORTH);
-		
-		//Création zone centrale
-		JPanel panelCentral = new JPanel();
-		panelCentral.setLayout(new BoxLayout(panelCentral, BoxLayout.Y_AXIS));
-		contentPane.add(panelCentral, BorderLayout.CENTER);
-		
-		//Création de la deuxième zone
-		JPanel panel2 = new JPanel();
-		panel2.setLayout(new GridLayout(5,0));
-		panelCentral.add(panel2);
-		
-		//Ajout du label nom
-		JLabel nom = new JLabel("Nom :");
-		nom.setBounds(75, 41, 69, 20);
-		panel2.add(nom);
-		
-		//Ajout du text field nom
-		tNom = new JTextField();
-		panel2.add(tNom);
-		
-		//Ajout du label prénom
-		JLabel prenom = new JLabel("Prénom :");
-		prenom.setBounds(75, 64, 69, 20);
-		panel2.add(prenom);
-		
-		//Ajout du text field prénom
-		tPrenom = new JTextField();
-		panel2.add(tPrenom);
-				
-		//Ajout du label login
-		JLabel login = new JLabel("Login :");
-		login.setBounds(75, 87, 69, 20);
-		panel2.add(login);
-		
-		
-		//Ajout du text field login
-		tLogin = new JTextField();
-		panel2.add(tLogin);
-		
-		//Ajout du label mot de passe
-		JLabel motDePasse = new JLabel("Mot de passe :");
-		motDePasse.setBounds(75, 114, 100, 20);
-		panel2.add(motDePasse);
-		
-		//Ajout du text field mot de passe
-		tMotDePasse = new JTextField();
-		panel2.add(tMotDePasse);
-		
-		//Ajout du label mail
-		JLabel adresseMail = new JLabel("Adresse mail :");
-		adresseMail.setBounds(75, 139, 120, 20);
-		panel2.add(adresseMail);
-		
-		//Ajout du text field mail
-		tMail = new JTextField();
-		panel2.add(tMail);
-		
-		//Création de la troisième zone
-		JPanel panel3 = new JPanel();
-		JLabel adresse = new JLabel("Adresse");
-		adresse.setBounds(172, 16, 100, 20);
-		panel3.add(adresse);
-		panelCentral.add(panel3);
-		
-		//Création de la quatrième zone
-		JPanel panel4 = new JPanel();
-		panel4.setLayout(new GridLayout(5,0));
-		panelCentral.add(panel4);
-		
-		//Ajout du label numéro
-		//JLabel numero = new JLabel("Numéro :");
-		//numero.setBounds(24, 195, 120, 20);
-		//panel4.add(numero);
-		
-		//Ajout du text field numéro
-		//tNumero = new JTextField();
-		//panel4.add(tNumero);
-		
-		//Ajout du label rue
-		JLabel rue = new JLabel("Rue :");
-		rue.setBounds(231, 197, 120, 20);
-		panel4.add(rue);
-		
-		//Ajout du text field rue
-		tRue = new JTextField();
-		panel4.add(tRue);
-		
-		//Ajout du label code postal
-		JLabel codePostale = new JLabel("Code Postal :");
-		codePostale.setBounds(24, 231, 120, 20);
-		panel4.add(codePostale);
-		
-		//Ajout du text field code postal
-		tCodePostal = new JTextField();
-		panel4.add(tCodePostal);
-				
-		//Ajout du label ville
-		JLabel ville = new JLabel("Ville :");
-		ville.setBounds(231, 231, 120, 20);
-		panel4.add(ville);
-		
-		//Ajout du text field ville
-		tVille = new JTextField();
-		panel4.add(tVille);
-		
-		//Ajout du label téléphone
-		JLabel telephone = new JLabel("Numéro de téléphone :");
-		telephone.setBounds(24, 267, 170, 20);
-		panel4.add(telephone);
-		
-		//Ajout du text field téléphone
-		tTelephone = new JTextField();
-		panel4.add(tTelephone);
-
-		//Création de la première zone
-		JPanel panel5 = new JPanel();
-		contentPane.add(panel5, BorderLayout.SOUTH);		
-				
-		JButton bouton = new JButton("Valider");
-		bouton.addActionListener(this);
-		bouton.setActionCommand("valid");
-		
-		bouton.setBounds(157, 299, 115, 29);
-		panel5.add(bouton);
-		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	
-		setVisible(true);
+		setBounds(100, 100, 1055, 432);
+		this.setMinimumSize(new Dimension(600,450));
 		
-	}
-	public void actionPerformed (ActionEvent e) 
-	{ 
-	     if (e.getActionCommand().equals("valid")){
-	    	 userFacade.register(tNom.getText(),tPrenom.getText(),tRue.getText(),
-	    			 tCodePostal.getText(),tVille.getText(),tTelephone.getText(),
-	    			 tMail.getText(),tLogin.getText(),tMotDePasse.getText());
-	     }
+		Container content=getContentPane();
+		
+		content.setLayout(new FormLayout(new ColumnSpec[] {
+				ColumnSpec.decode("20dlu:grow"),
+				ColumnSpec.decode("right:pref"),
+				ColumnSpec.decode("10dlu"),
+				ColumnSpec.decode("center:default"),
+				ColumnSpec.decode("10dlu"),
+				FormFactory.DEFAULT_COLSPEC,
+				ColumnSpec.decode("10dlu"),
+				ColumnSpec.decode("right:default"),
+				ColumnSpec.decode("10dlu"),
+				FormFactory.DEFAULT_COLSPEC,
+				ColumnSpec.decode("20dlu:grow"),},
+			new RowSpec[] {
+				RowSpec.decode("20dlu:grow"),
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				RowSpec.decode("fill:20dlu:grow"),}));
+		
+		lblZenLounge = new JLabel("Zen Lounge");
+		lblZenLounge.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		getContentPane().add(lblZenLounge, "2, 1, 9, 1, center, default");
+		
+		lblFirstName = new JLabel("First name :");
+		getContentPane().add(lblFirstName, "2, 2");
+		
+		txtFirstName = new JTextField();
+		txtFirstName.setText("First Name");
+		content.add(txtFirstName, "4, 2, fill, default");
+		txtFirstName.setColumns(10);
+		
+		lblUsername = new JLabel("Username :");
+		getContentPane().add(lblUsername, "8, 2, default, center");
+		
+		txtUsername = new JTextField();
+		txtUsername.setText("Username");
+		content.add(txtUsername, "10, 2, fill, default");
+		txtUsername.setColumns(10);
+		
+		lblLastName = new JLabel("Last name :");
+		getContentPane().add(lblLastName, "2, 4");
+		
+		txtLastName = new JTextField();
+		txtLastName.setText("Last Name");
+		content.add(txtLastName, "4, 4, fill, default");
+		txtLastName.setColumns(10);
+		
+		lblPassword = new JLabel("Password :");
+		getContentPane().add(lblPassword, "8, 4");
+		
+		pwdPassword = new JPasswordField();
+		pwdPassword.setText("Password");
+		content.add(pwdPassword, "10, 4, fill, default");
+		
+		lblStreet = new JLabel("Street :");
+		getContentPane().add(lblStreet, "2, 6");
+		
+		txtStreet = new JTextField();
+		txtStreet.setText("Street");
+		content.add(txtStreet, "4, 6, fill, default");
+		txtStreet.setColumns(10);
+		
+		lblPassword_1 = new JLabel("Password :");
+		getContentPane().add(lblPassword_1, "8, 6");
+		
+		pwdCheckpassword = new JPasswordField();
+		pwdCheckpassword.setText("checkPassword");
+		content.add(pwdCheckpassword, "10, 6, fill, default");
+		
+		lblPostalCode = new JLabel("Postal Code :");
+		getContentPane().add(lblPostalCode, "2, 8");
+		
+		txtPostalCode = new JTextField();
+		txtPostalCode.setText("Postal Code");
+		content.add(txtPostalCode, "4, 8, fill, default");
+		txtPostalCode.setColumns(10);
+		
+		lblCity = new JLabel("City :");
+		getContentPane().add(lblCity, "2, 10");
+		
+		txtCity = new JTextField();
+		txtCity.setText("City");
+		content.add(txtCity, "4, 10, fill, default");
+		txtCity.setColumns(10);
+		
+		lblPhone = new JLabel("Phone :");
+		getContentPane().add(lblPhone, "2, 12");
+		
+		txtPhone = new JTextField();
+		txtPhone.setText("Phone");
+		content.add(txtPhone, "4, 12, fill, default");
+		txtPhone.setColumns(10);
+		
+		txtEmail = new JTextField();
+		txtEmail.setText("E-mail");
+		content.add(txtEmail, "4, 14, fill, default");
+		txtEmail.setColumns(10);
+		
+		btnRegister = new JButton("Register !");
+		getContentPane().add(btnRegister, "6, 18");
+		// TODO Auto-generated constructor stub
+		
+		this.pack();
 	}
 
-	
 }

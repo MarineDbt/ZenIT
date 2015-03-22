@@ -1,6 +1,6 @@
 import java.awt.EventQueue;
 
-import UI.RegisterUI;
+import UI.SubscriptonUI;
 import BL.Front.UserFacade;
 import ConnectionToPersistence.ConnectionToMySQL;
 
@@ -23,7 +23,7 @@ public class Launcher {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					RegisterUI frame = new RegisterUI();
+					SubscriptonUI frame = new SubscriptonUI();
 					frame.userFacade = new UserFacade();
 					frame.setVisible(true);
 				} catch (Exception e) {
