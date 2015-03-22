@@ -82,8 +82,12 @@ public class ConnectionToMySQL
    
     /* Query Execution */
     	try {
+    		System.out.println("hi");
 			statement = connection.createStatement();
+			System.out.println("hi2");
+			System.out.println(query);
 			resultat = statement.executeQuery(query);
+			System.out.println("hi3");
 		} catch (SQLException e1) {
 			// TODO : error handling
 		}
@@ -118,7 +122,7 @@ public class ConnectionToMySQL
 			status = statement.executeUpdate(query);
 			System.out.println("hi3");
 		} catch (SQLException e1) {
-			// TODO : error handling
+			e1.printStackTrace();
 		}
 
     /* Return Value */	

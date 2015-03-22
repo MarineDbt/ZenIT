@@ -18,7 +18,7 @@ public class UserManager {
 	private UserQueryHandler userQueryHandler;
 	private UserExceptionHandler userExceptionHandler;
 	protected HashMap<String,User> users;
-	protected User currentUser;
+	public User currentUser;
 	
 	/* Methods */
 	public UserManager() {
@@ -29,13 +29,16 @@ public class UserManager {
 	}
 	public boolean login(String id, String pwd){
 		
-		 boolean result = false;
+		boolean result = false;
 		try {
+			System.out.println("a");
 			result = userQueryHandler.checkPassword(id, pwd);
+			System.out.println("b");
 		} catch (Exception e) {
-			// TODO : Error Handling
+			e.printStackTrace();
 		} 
 		 if (result){
+			 System.out.println("c");
 			 loadUser(id);
 			 currentUser=users.get(id);
 		 }
