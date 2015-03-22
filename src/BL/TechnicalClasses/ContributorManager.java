@@ -30,9 +30,11 @@ public class ContributorManager {
  * @return 
  */
     /* Constructors */
+    
     public ContributorManager(AbstractPersistenceHandlerFactory factory)
     {
-    	contributorPersistenceHandler = new ContributorPersistenceHandler(factory);
+    	contributorPersistenceHandler = factory.createContributorPersistenceHandler();
+    	contributors = new ArrayList<Contributor>();
     }
     
     public boolean createContributor(User user, String myDescription) {        

@@ -10,7 +10,7 @@ import ConnectionToDB.ConnectionToMySQL;
 /**
  * Launch the application
  * 
- * @author Elie Gallet
+ * @author Mégane Martinez
  *
  */
 public class Launcher {

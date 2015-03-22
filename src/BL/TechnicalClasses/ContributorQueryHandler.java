@@ -27,7 +27,7 @@ public class ContributorQueryHandler implements ContributorPersistenceHandler {
 		
     	/* Delegate query execution to ConnectionToMySQL */
     	
-		result = ConnectionToMySQL.requestInsertQuery("insert into Contributor (description,id_user) values('"+myDescription+"','"+user.getId()+"';");
+		result = ConnectionToMySQL.requestInsertQuery("insert into Contributor (description,id_user) values('"+myDescription+"','"+user.getId()+"');");
 		
 		/* Testing if query succeeded */
 		

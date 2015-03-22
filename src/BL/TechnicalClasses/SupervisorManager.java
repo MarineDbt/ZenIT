@@ -18,6 +18,7 @@ public class SupervisorManager {
  */
     private Collection<BL.ModelClasses.Supervisor> supervisors;
 
+    private SupervisorPersistenceHandler mySupervisorPersistenceHandler;
 /**
  * <p>Does ...</p>
  * 
@@ -25,6 +26,13 @@ public class SupervisorManager {
  * @param user 
  * @return 
  */
+    
+    /* Constructors */
+    public SupervisorManager(AbstractPersistenceHandlerFactory factory)
+    {
+    	mySupervisorPersistenceHandler = factory.createSupervisorPersistenceHandler();
+    }
+    
     public BL.ModelClasses.Supervisor createSupervisor(BL.ModelClasses.User user) {        
         // your code here
         return null;

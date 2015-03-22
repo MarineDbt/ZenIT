@@ -62,9 +62,11 @@ public class RoleManagementFacade {
  * @param user 
  * @return 
  */
-    public BL.ModelClasses.Accessory createSupervisor(BL.ModelClasses.User user) {        
-        // your code here
-        return null;
+    public boolean createSupervisor(User user) {        
+        
+    	// your code here
+    	
+        return false;
     } 
 
 /**
