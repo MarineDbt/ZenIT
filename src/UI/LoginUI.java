@@ -1,22 +1,34 @@
 package UI;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+
 import java.awt.GridLayout;
+
 import javax.swing.JTextField;
+
+import BL.Front.UserFacade;
+
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
+
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import java.awt.Font;
 
-public class LoginUI extends JFrame {
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class LoginUI extends JFrame implements ActionListener{
+	
 	private JTextField txtUsername;
 	private JPasswordField pwdPassword;
+	private UserFacade userFacade;
 
 	/**
 	 * Launch the application.
@@ -26,6 +38,7 @@ public class LoginUI extends JFrame {
 			public void run() {
 				try {
 					LoginUI frame = new LoginUI();
+					frame.userFacade=new UserFacade();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,6 +53,9 @@ public class LoginUI extends JFrame {
 	public LoginUI() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 1055, 432);
+		this.setMinimumSize(new Dimension(600,450));
+		
 		getContentPane().setLayout(new FormLayout(new ColumnSpec[] {
 				ColumnSpec.decode("10dlu:grow"),
 				ColumnSpec.decode("default:grow"),
@@ -47,7 +63,9 @@ public class LoginUI extends JFrame {
 			new RowSpec[] {
 				RowSpec.decode("10dlu:grow"),
 				FormFactory.DEFAULT_ROWSPEC,
-				RowSpec.decode("10dlu"),
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				RowSpec.decode("10dlu"),
 				FormFactory.DEFAULT_ROWSPEC,
@@ -68,6 +86,35 @@ public class LoginUI extends JFrame {
 		
 		JButton btnLogIn = new JButton("Log in !");
 		getContentPane().add(btnLogIn, "2, 6");
+		btnLogIn.addActionListener(this);
+		btnLogIn.setActionCommand("login");
+		
+		JButton btnRegister = new JButton("Register");
+		getContentPane().add(btnRegister, "2, 8");
+		btnRegister.addActionListener(this);
+		btnRegister.setActionCommand("register");
+		
+		this.pack();
+		this.setVisible(true);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		 if (e.getActionCommand().equals("login")){
+			 boolean isLogged = userFacade.login(txtUsername.getText(),pwdPassword.getText());
+	    	 if(isLogged){
+	    		HomeUI HomeUI = new HomeUI(userFacade.userManager.currentUser);
+	    		HomeUI.userFacade=this.userFacade;
+	    		HomeUI.setVisible(true);
+		    	this.dispose();
+	    	 };
+	     }
+		 if (e.getActionCommand().equals("register")){
+			 RegisterUI registerUI = new RegisterUI();
+			 registerUI.userFacade=this.userFacade;
+			 registerUI.setVisible(true);
+	    	 this.dispose();
+	     }
 		
 	}
 

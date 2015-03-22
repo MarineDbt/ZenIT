@@ -132,8 +132,7 @@ public class BaseUI extends JFrame {
 		contentPane.add(content, "2, 4, fill, fill");
 		content.setLayout(null);
 
-		//hideUselessButtons(currentUser);
-		hideUselessButtons(new User());
+		hideUselessButtons(currentUser);
 		
 		this.pack();
 

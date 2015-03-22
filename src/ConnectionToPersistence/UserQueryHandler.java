@@ -3,6 +3,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import BL.DataClasses.User;
+import BL.TechnicalClasses.UserFactory;
 import BL.TechnicalClasses.UserPasswordEncryptionHandler;
 
 
@@ -20,18 +21,24 @@ public class UserQueryHandler extends UserAbstractPersistenceHandler{
 		
 		ResultSet resultSet = null;
 		
+		UserPasswordEncryptionHandler encryptionHandler = new UserPasswordEncryptionHandler();
+		String encryptedPwd;
+		encryptedPwd=encryptionHandler.encryptPassword(pwd);
+		
 		try {
-			resultSet=ConnectionToMySQL.requestSelectQuery("select * from user where id = '"+id+"' and pwd = "+pwd);
+			resultSet=ConnectionToMySQL.requestSelectQuery("select * from User where id = '"+id+"' and pwd = '"+encryptedPwd+"';");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		try {
+			System.out.println((resultSet.getRow()));
+			resultSet.last();
 			if (resultSet.getRow()== 0){
 				return false;
 			}
-			else if (resultSet.getRow()==1){
+			else{
 				return true;
 			}
 		} catch (Exception e) {
@@ -41,7 +48,7 @@ public class UserQueryHandler extends UserAbstractPersistenceHandler{
 		return false;
 	}
 	
-	public boolean insertUser (String firstname, String lastname, String street, String PC, String city, String phone, String email, String id, String pwd) throws Exception{
+	public boolean insertUser(String firstname, String lastname, String street, String PC, String city, String phone, String email, String id, String pwd){
 		
 		UserPasswordEncryptionHandler encryptionHandler = new UserPasswordEncryptionHandler();
 		String encryptedPwd;
@@ -85,17 +92,43 @@ public class UserQueryHandler extends UserAbstractPersistenceHandler{
 		return false;
 	}
 
-	@Override
-	public User lookForUserInfo(User currentUser) {
-		// TODO Auto-generated method stub
+	public User lookForUserInfo(String id) {
+		
+		ResultSet resultSet = null;
+
+		try {
+			resultSet=ConnectionToMySQL.requestSelectQuery("select * from User where id = '"+id+"';");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			resultSet.first();
+			String firstname = resultSet.getString(resultSet.findColumn("firstname"));
+			System.out.println(firstname);
+			String lastname = resultSet.getString(resultSet.findColumn("lastname"));
+			System.out.println(lastname);
+			String street = resultSet.getString(resultSet.findColumn("street"));
+			System.out.println(street);
+			String pc = resultSet.getString(resultSet.findColumn("PC"));
+			System.out.println(pc);
+			String city = resultSet.getString(resultSet.findColumn("city"));
+			System.out.println(city);
+			String phone = resultSet.getString(resultSet.findColumn("phone"));
+			System.out.println(phone);
+			String email = resultSet.getString(resultSet.findColumn("email"));
+			System.out.println(email);
+			String pwd = resultSet.getString(resultSet.findColumn("pwd"));
+			System.out.println(pwd);
+			UserFactory userFactory=new UserFactory();
+			return userFactory.createUser(firstname, lastname, street, pc, city, phone, email, id, pwd);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		return null;
 	}
-
-	@Override
-	public boolean register(String firstname, String lastname, String street,
-			String PC, String city, String phone, String email, String id,
-			String pwd) {
-		// TODO Auto-generated method stub
-		return false;
-	} 
 }

@@ -15,7 +15,7 @@ public class UserFacade {
 	 * To be able to login and register
 	 */
 	
-	protected UserManager userManager;
+	public UserManager userManager;
 	
 	
 	public UserFacade(){
@@ -38,8 +38,7 @@ public class UserFacade {
  * @return 
  */
     public boolean login(String id, String pwd) {        
-        // your code here
-        return false;
+        return userManager.login(id, pwd);
     } 
 
 /**
