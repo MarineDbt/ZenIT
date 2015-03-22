@@ -8,6 +8,10 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.TreeSet;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -17,14 +21,23 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.DefaultComboBoxModel;
 
+import BL.DataClasses.Category;
+import BL.DataClasses.Contains;
+import BL.DataClasses.Product;
+import BL.DataClasses.SubCategory;
 import BL.DataClasses.User;
+
 import javax.swing.JList;
+
 import net.miginfocom.swing.MigLayout;
+
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
 public class CartUI extends BaseUI {
+	
+	private JPanel productList;
 	
 	/**
 	 * Launch the application.
@@ -71,9 +84,9 @@ public class CartUI extends BaseUI {
 		gbc_scrollPane.gridy = 0;
 		products.add(scrollPane, gbc_scrollPane);
 		
-		JPanel productList = new JPanel();
+		productList = new JPanel();
 		scrollPane.setViewportView(productList);
-		productList.setLayout(new MigLayout("", "[45px][][][][][][]", "[14px][14px]"));
+		productList.setLayout(new MigLayout("", "[45px][][][][]", "[14px][14px]"));
 		
 		JLabel lblProductName = new JLabel("Product Name");
 		productList.add(lblProductName, "cell 0 0");
@@ -87,8 +100,13 @@ public class CartUI extends BaseUI {
 		JLabel lblTotalPrice = new JLabel("Total Price");
 		productList.add(lblTotalPrice, "cell 3 0");
 		
-		JLabel label_2 = new JLabel("-");
-		productList.add(label_2, "cell 4 0");
+		JLabel label_1 = new JLabel("-");
+		productList.add(label_1, "cell 4 0");
+		
+		JLabel label_2 = new JLabel("+");
+		productList.add(label_2, "cell 5 0");
+		
+		this.addProducts(currentUser);
 		
 		JPanel validate = new JPanel();
 		GridBagConstraints gbc_validate = new GridBagConstraints();
@@ -106,6 +124,39 @@ public class CartUI extends BaseUI {
 		JButton btnBuy = new JButton("Buy");
 		validate.add(btnBuy);
 		
+		
+	}
+	private void addProducts(User currentUser) {
+		
+		//Collection<Product> products=currentUser.cart.contains;
+		Collection<Contains> products = new ArrayList();
+		products.add(new Contains(2,new Product("truc",10.5,new SubCategory("bidule",new Category("machin")))));
+		Iterator<Contains> it = products.iterator();
+		Product currentProduct;
+		int i = 1;
+		Contains currentContains=it.next();	
+		productList.add(new JLabel(currentContains.product.getNameProduct()), "cell 0 " + i);
+		String name;
+		String price;
+		String quantity;
+		String total;
+		
+		while(it.hasNext()){
+			
+		currentContains=it.next();
+		name=currentContains.product.getNameProduct();
+		
+		price = Double.toString(currentContains.product.getPrice());
+		quantity = Integer.toString(currentContains.getQuantity());
+		total = Double.toString(currentContains.product.getPrice()*currentContains.getQuantity());
+		
+		productList.add(new JLabel(name), "cell 0 " + i);
+		productList.add(new JLabel(price), "cell 1 " + i);
+		productList.add(new JLabel(quantity), "cell 2 " + i);
+		productList.add(new JLabel(total), "cell 3 " + i);
+		productList.add(new JButton("-"));
+		productList.add(new JButton("+"));
+		}
 		
 	}
 

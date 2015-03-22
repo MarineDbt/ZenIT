@@ -11,24 +11,24 @@ public class Product {
  * <p>Represents ...</p>
  * 
  */
-    private int nameProduct;
+    private String nameProduct;
 
 /**
  * <p>Represents ...</p>
  * 
  */
-    private float price;
+    private double price;
 
 /**
  * <p>Represents ...</p>
  * 
  */
-    private float discount;
+    private double discount;
 /**
  * 
  * 
  */
-    public BL.DataClasses.SubCategory subCategory;
+    private BL.DataClasses.SubCategory subCategory;
 /**
  * 
  * 
@@ -41,4 +41,27 @@ public class Product {
  * 
  */
     public BL.DataClasses.Sells sells;
+public Product(String string, double d, SubCategory sub) {
+	this.nameProduct=string;
+	this.price = d;
+	this.subCategory=sub;
+}
+public String getNameProduct() {
+	return nameProduct;
+}
+public void setNameProduct(String nameProduct) {
+	this.nameProduct = nameProduct;
+}
+public double getPrice() {
+	return price;
+}
+public void setPrice(double price) {
+	this.price = price;
+}
+public BL.DataClasses.SubCategory getSubCategory() {
+	return subCategory;
+}
+public void setSubCategory(BL.DataClasses.SubCategory subCategory) {
+	this.subCategory = subCategory;
+}
  }

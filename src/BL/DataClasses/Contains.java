@@ -7,6 +7,16 @@ package BL.DataClasses;
  */
 public class Contains {
 
+public Contains(int i, Product product2) {
+		this.setQuantity(i);
+		this.product=product2;
+	}
+public int getQuantity() {
+	return quantity;
+}
+public void setQuantity(int quantity) {
+	this.quantity = quantity;
+}
 /**
  * <p>Represents ...</p>
  * 
