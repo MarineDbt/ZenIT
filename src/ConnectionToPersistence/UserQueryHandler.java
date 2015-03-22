@@ -25,17 +25,19 @@ public class UserQueryHandler extends UserAbstractPersistenceHandler{
 		encryptedPwd=encryptionHandler.encryptPassword(pwd);
 		
 		try {
-			resultSet=ConnectionToMySQL.requestSelectQuery("select * from User where id = '"+id+"' and pwd = '"+encryptedPwd+"'");
+			resultSet=ConnectionToMySQL.requestSelectQuery("select * from User where id = '"+id+"' and pwd = '"+encryptedPwd+"';");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		try {
+			System.out.println((resultSet.getRow()));
+			resultSet.last();
 			if (resultSet.getRow()== 0){
 				return false;
 			}
-			else if (resultSet.getRow()==1){
+			else{
 				return true;
 			}
 		} catch (Exception e) {
