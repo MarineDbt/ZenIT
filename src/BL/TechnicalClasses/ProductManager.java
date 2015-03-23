@@ -13,6 +13,12 @@ import BL.DataClasses.Product;
  */
 public class ProductManager {
 
+	private ProductPersistenceHandler myProductPersistenceHandler;
+	
+	public ProductManager(AbstractPersistenceHandlerFactory factory) {
+		myProductPersistenceHandler = factory.createProductPersistenceHandler();
+	}
+	
 /**
  * <p>Does ...</p>
  * 
@@ -25,9 +31,9 @@ public class ProductManager {
  * @param String 
  * @return 
  */
-    public boolean addProduct(String name, float price,float discount,Member currentMember,int quantity, String subcategory) {        
-        // your code here
-        return false;
+    public boolean addProduct(String name, float price,float discount,Member currentMember,int quantity, String subcategory, String description) {        
+        boolean result = myProductPersistenceHandler.addProduct(name, price, discount, currentMember, quantity, subcategory, description);
+        return result;
     } 
 
 /**
@@ -37,9 +43,9 @@ public class ProductManager {
  * @param Product 
  * @return 
  */
-    public boolean modifyProduct(Product product) {        
-        // your code here
-        return false;
+    public boolean modifyProduct(Product product, String name, float price, float discount, String description) {        
+        boolean result = myProductPersistenceHandler.modifyProduct(product, name, price, discount, description);
+        return result;
     } 
 
 /**
@@ -50,8 +56,8 @@ public class ProductManager {
  * @return 
  */
     public boolean deleteProduct(Product product) {        
-        // your code here
-        return false;
+    	boolean result = myProductPersistenceHandler.deleteProduct(product);
+        return result;
     } 
 
 /**
@@ -61,8 +67,7 @@ public class ProductManager {
  * @param Member 
  * @return 
  */
-    public ArrayList<Product> getProducts(Member currentmember) {        
-        // your code here
-        return null;
+    public ArrayList<Product> getProducts(Member currentmember) {
+    	return myProductPersistenceHandler.getProducts(currentmember);
     } 
  }

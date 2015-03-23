@@ -3,7 +3,10 @@ import java.sql.ResultSet;
 
 import UI.UIProduct;
 import UI.UIAddProduct;
-import BL.Front.UserFacade;
+import BL.Front.*;
+import BL.DataClasses.*;
+import BL.TechnicalClasses.AbstractPersistenceHandlerFactory;
+import BL.TechnicalClasses.DatabaseQueryHandlerFactory;
 import ConnectionToDB.ConnectionToMySQL;
 
 /**
@@ -14,18 +17,13 @@ import ConnectionToDB.ConnectionToMySQL;
  */
 public class Launcher {
 
-	/*test DB ok*/
-	/*public static void main(String[] args) {
-		ResultSet r= ConnectionToMySQL.requestSelectQuery("select * from User");
-		System.out.println(r);
-
-	}*/
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UIAddProduct frame = new UIAddProduct();
+					AbstractPersistenceHandlerFactory factory = DatabaseQueryHandlerFactory.createFactory();
+					UIAddProduct frame = new UIAddProduct(factory);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

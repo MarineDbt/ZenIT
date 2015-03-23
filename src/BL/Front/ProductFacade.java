@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import BL.DataClasses.Member;
 import BL.DataClasses.Product;
-import BL.TechnicalClasses.ProductManager;
+import BL.TechnicalClasses.*;
 
 /**
  * 
@@ -13,6 +13,11 @@ import BL.TechnicalClasses.ProductManager;
  */
 public class ProductFacade {
 
+	protected ProductManager productManager;
+	
+	public ProductFacade(AbstractPersistenceHandlerFactory factory) {
+		this.productManager = new ProductManager(factory);
+	}
 /**
  * <p>Does ...</p>
  * 
@@ -25,8 +30,9 @@ public class ProductFacade {
  * @param String 
  * @return 
  */
-    public boolean addProduct(String name, float price,float discount,Member currentMember,int quantity, String subcategory) {        
-        // your code here
+	
+    public boolean addProduct(String name, float price, float discount, Member currentMember, int quantity, String subcategory, String description) {        
+        this.productManager.addProduct(name, price, discount, currentMember, quantity, subcategory, description);
         return false;
     } 
 
@@ -37,8 +43,8 @@ public class ProductFacade {
  * @param Product 
  * @return 
  */
-    public boolean modifyProduct(Product product) {        
-        // your code here
+    public boolean modifyProduct(Product product, String name, float price, float discount, String description) {        
+        this.productManager.modifyProduct(product, name, price, discount, description);
         return false;
     } 
 
@@ -50,7 +56,7 @@ public class ProductFacade {
  * @return 
  */
     public boolean deleteProduct(Product product) {        
-        // your code here
+        this.productManager.deleteProduct(product);
         return false;
     } 
 
@@ -62,7 +68,7 @@ public class ProductFacade {
  * @return 
  */
     public ArrayList<Product> getProducts(Member currentmember) {        
-        // your code here
+        this.productManager.getProducts(currentmember);
         return null;
     } 
  }

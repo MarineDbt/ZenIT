@@ -7,38 +7,31 @@ package BL.DataClasses;
  */
 public class Product {
 
-/**
- * <p>Represents ...</p>
- * 
- */
-    private int nameProduct;
+    public int id_product;
 
-/**
- * <p>Represents ...</p>
- * 
- */
+	private String nameProduct;
+
     private float price;
 
-/**
- * <p>Represents ...</p>
- * 
- */
     private float discount;
-/**
- * 
- * 
- */
-    public BL.DataClasses.SubCategory subCategory;
-/**
- * 
- * 
- * 
- * @poseidon-type BL.DataModel.Contains
- */
-    public java.util.Collection contains = new java.util.TreeSet();
-/**
- * 
- * 
- */
-    public BL.DataClasses.Sells sells;
+
+    public String subcategory_name;
+
+    public int quantity;
+    
+    public String product_description;
+	
+    public Product(int id_product2, String nameProduct2, float price2, float discount2, int quantity2, String subcategory_name2, String product_description2) {
+    	this.id_product = id_product2;
+    	this.nameProduct = nameProduct2;
+		this.price = price2;
+		this.discount = discount2;
+		this.quantity = quantity2;
+		this.subcategory_name = subcategory_name2;
+		this.product_description = product_description2;
+	}
+
+	public int getID() {
+		return this.id_product;
+	}
  }
