@@ -141,14 +141,14 @@ public class CategoryQueryHandler extends CategoryPersistenceHandler {
 	 
  }
  
- public ArrayList<SubCategory> selectSubCategories(){
+ public ArrayList<SubCategory> selectSubCategories(Category category){
 	 
 		/* Declarations and initializations */
 	 	ResultSet result;
 	 	ArrayList<SubCategory> mySubCategories = new ArrayList<SubCategory>();
 
 	 	/* Query execution delegated to ConnectionToMySQL */
-	 	result = ConnectionToMySQL.requestSelectQuery("Select * from Subcategory;");
+	 	result = ConnectionToMySQL.requestSelectQuery("Select * from Subcategory where category_name = '"+category.getName()+"';");
 	 	
 	 	
 	 	try {
