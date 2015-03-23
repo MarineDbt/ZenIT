@@ -1,6 +1,8 @@
 
 package BL.DataClasses;
 
+import java.util.ArrayList;
+
 /**
  * 
  * 
@@ -16,7 +18,7 @@ public class Category {
  * 
  * 
  */
-    public BL.DataClasses.SubCategory subCategory;
+    private ArrayList<SubCategory> subCategories;
     
     /* Constructors */
     

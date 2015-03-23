@@ -30,4 +30,11 @@ public class SubCategory {
     {
     	subCategoryName = name;
     }
+    
+    /* Getters */
+
+	public String getName() {
+		
+		return subCategoryName;
+	}
  }

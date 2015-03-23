@@ -22,20 +22,25 @@ import ConnectionToDB.ConnectionToMySQL;
 public class Launcher {
 
 	/*test DB ok*/
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		AbstractPersistenceHandlerFactory factory = DatabaseQueryHandlerFactory.createFactory();
-		RoomFacade facade = new RoomFacade(factory);
+		Category category = new Category("Zumba");
+		CategoryFacade facade = new CategoryFacade(factory);
+		SubCategory subCategory = new SubCategory("Tapis de Zumba");
+	
+		//RoomFacade facade = new RoomFacade(factory);
 		//Room myRoom = new Room("7",50);
 		//Accessory myAccessory = new Accessory("Tapis");
 		boolean requete;
-		ArrayList<Room> myRooms = facade.getAllRooms();
-		ArrayList<Accessory> myAccessories = facade.getAllAccessories();
+		requete = facade.modifySubCategory(subCategory,"Vetement de Zumba");
+		//ArrayList<Room> myRooms = facade.getAllRooms();
+		//ArrayList<Accessory> myAccessories = facade.getAllAccessories();
 		
-		if(myAccessories != null) {
+		//if(myAccessories != null) {
 			
-		System.out.println("tableau non null");
+		//System.out.println("tableau non null");
 		
-		for(Accessory myAccessory: myAccessories)
+		/*for(Accessory myAccessory: myAccessories)
 		{
 			System.out.println("Nom de l'accessoire : "+myAccessory.getName());
 		}
@@ -45,8 +50,8 @@ public class Launcher {
 		else 
 		{
 			System.out.println("tableau null");
-		}
-		/*if (requete) 
+		}*/
+		if (requete) 
 		{
 			System.out.println("insert ok");
 		}
@@ -55,9 +60,9 @@ public class Launcher {
 			System.out.println("erreur");
 		}
 
-	}*/
+	}
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -79,6 +84,6 @@ public class Launcher {
 				}
 			}
 		});
-	}
+	}*/
 
 }

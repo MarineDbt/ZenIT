@@ -1,5 +1,6 @@
 
 package BL.TechnicalClasses;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import BL.DataClasses.*;
@@ -71,4 +72,37 @@ public class CategoryManager {
     	
         return myCategoryPersistenceHandler.deleteCategory(category);
     } 
+    
+ public boolean removeSubCategory(SubCategory subCategory) {        
+    	
+    	/* Delegate method call to CategoryPersistenceHandler */
+    	
+        return myCategoryPersistenceHandler.deleteSubCategory(subCategory);
+    } 
+ 
+ public boolean modifyCategory(Category category, String newName) {        
+ 	
+ 	/* Delegate method call to CategoryPersistenceHandler */
+ 	
+     return myCategoryPersistenceHandler.updateCategory(category, newName);
+ } 
+ 
+ public boolean modifySubCategory(SubCategory subCategory, String newName) {        
+ 	
+ 	/* Delegate method call to CategoryPersistenceHandler */
+ 	
+     return myCategoryPersistenceHandler.updateSubCategory(subCategory, newName);
+ }
+public ArrayList<Category> selectAllCategories() {
+	
+	/* Delegate method call to CategoryPersistenceHandler */
+ 	
+    return myCategoryPersistenceHandler.selectAllCategories();
+}
+public ArrayList<SubCategory> selectSubCategories(Category category) {
+	
+	/* Delegate method call to CategoryPersistenceHandler */
+ 	
+    return myCategoryPersistenceHandler.selectSubCategories(category);
+} 
  }

@@ -1,6 +1,8 @@
 
 package BL.TechnicalClasses;
 
+import java.util.ArrayList;
+
 import BL.DataClasses.*;
 
 /**
@@ -35,7 +37,19 @@ public abstract class CategoryPersistenceHandler {
  * @param category 
  * @return 
  */
-    public abstract boolean deleteCategory(BL.DataClasses.Category category);
+    public abstract boolean deleteCategory(Category category);
+    
+    public abstract boolean deleteSubCategory(SubCategory subCategory);
+    
+    public abstract boolean updateCategory(Category category, String newName);
+    
+    public abstract boolean updateSubCategory(SubCategory subCategory, String newName);
+
+	public abstract ArrayList<Category> selectAllCategories();
+
+	public abstract ArrayList<SubCategory> selectSubCategories(Category category);
+
 }
+
 
 

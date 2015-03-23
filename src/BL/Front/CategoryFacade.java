@@ -1,5 +1,7 @@
 package BL.Front;
 
+import java.util.ArrayList;
+
 import BL.DataClasses.*;
 import BL.TechnicalClasses.*;
 
@@ -24,7 +26,8 @@ public class CategoryFacade {
     	categoryManager = new CategoryManager(factory);
     }
     
-    
+
+
 /**
  * <p>Does ...</p>
  * 
@@ -69,9 +72,11 @@ public class CategoryFacade {
 * @param category 
 * @return 
 */
-    public boolean deleteSubCategory(SubCategory subCategory) {        
-            // your code here
-       return false;
+    public boolean removeSubCategory(SubCategory subCategory) {        
+    	
+    	/* Delegate method call to CategoryManager */
+    	
+    	return categoryManager.removeSubCategory(subCategory);
     } 
     
     /**
@@ -81,9 +86,11 @@ public class CategoryFacade {
      * @param category 
      * @return 
      */
-        public boolean modifyCategory(Category category) {        
-            // your code here
-            return false;
+        public boolean modifyCategory(Category category, String newName) {        
+        	
+        	/* Delegate method call to CategoryManager */
+        	
+        	return categoryManager.modifyCategory(category, newName);
         } 
         
     /**
@@ -93,8 +100,24 @@ public class CategoryFacade {
     * @param category 
     * @return 
     */
-        public boolean modifySubCategory(SubCategory subCategory) {        
-                // your code here
-           return false;
+        public boolean modifySubCategory(SubCategory subCategory, String newName) {        
+        	
+        	/* Delegate method call to CategoryManager */
+        	
+        	return categoryManager.modifySubCategory(subCategory, newName);
         } 
+        
+        public ArrayList <Category> selectAllCategories()
+        {
+        	/* Delegate method call to CategoryManager */
+        	
+        	return categoryManager.selectAllCategories();
+        }
+        
+        public ArrayList <SubCategory> selectSubCategories(Category category)
+        {
+        	/* Delegate method call to CategoryManager */
+        	
+        	return categoryManager.selectSubCategories(category);
+        }
  }
