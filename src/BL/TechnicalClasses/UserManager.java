@@ -24,7 +24,7 @@ public class UserManager {
 	
 	/* Methods */
 	public UserManager() {
-		this.userPersistenceHandler = AbstractPersistenceHandlerFactory.createFactory().createUserPersistenceHandler();
+		this.userPersistenceHandler = AbstractPersistenceHandlerFactory.getFactory().createUserPersistenceHandler();
 		this.users= new HashMap();
 		this.userFactory = new UserFactory();
 		this.currentUser = null;

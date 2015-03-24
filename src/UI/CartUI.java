@@ -37,6 +37,7 @@ import net.miginfocom.swing.MigLayout;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
+import javax.swing.ScrollPaneConstants;
 
 public class CartUI extends BaseUI {
 
@@ -55,6 +56,9 @@ public class CartUI extends BaseUI {
 					u.cart.contains.add(new Contains(2,new Product("truc",10.5,new SubCategory("bidule",new Category("machin")))));
 					u.cart.contains.add(new Contains(3,new Product("truc2",45.89,new SubCategory("bidule",new Category("machin")))));
 					u.cart.contains.add(new Contains(8,new Product("truc3",123,new SubCategory("bidule",new Category("machin")))));
+					u.cart.contains.add(new Contains(8,new Product("truc4",123,new SubCategory("bidule",new Category("machin")))));
+					u.cart.contains.add(new Contains(8,new Product("truc4",123,new SubCategory("bidule",new Category("machin")))));
+					u.cart.contains.add(new Contains(8,new Product("truc4",123,new SubCategory("bidule",new Category("machin")))));
 					CartUI frame = new CartUI(u);
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -64,7 +68,8 @@ public class CartUI extends BaseUI {
 		});
 	}
 	public CartUI(User currentUser) {
-		super(currentUser);
+		//super(currentUser);
+		super(new User());
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
@@ -87,6 +92,8 @@ public class CartUI extends BaseUI {
 		products.setLayout(gbl_products);
 
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
 		gbc_scrollPane.gridx = 0;
@@ -156,8 +163,8 @@ public class CartUI extends BaseUI {
 			productList.add(new JLabel(price), "cell 1 " + i);
 			productList.add(new JLabel(quantity), "cell 2 " + i);
 			productList.add(new JLabel(total), "cell 3 " + i);
-			productList.add(new JButton("-"));
-			productList.add(new JButton("+"));
+			productList.add(new JButton("-"), "cell 4 " + i);
+			productList.add(new JButton("+"), "cell 5 " + i);
 			i++;
 		}
 

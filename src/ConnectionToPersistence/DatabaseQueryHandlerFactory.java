@@ -2,25 +2,20 @@ package ConnectionToPersistence;
 
 public class DatabaseQueryHandlerFactory extends AbstractPersistenceHandlerFactory {
 	
-	/* Attributes */
-	
-	private static DatabaseQueryHandlerFactory myConcreteFactory;
-	
 	
 	/* Constructor */
-	DatabaseQueryHandlerFactory()
+	private DatabaseQueryHandlerFactory()
 	{
 		super();
 	}
 	
 	/* Creation method */
 	
-	public static DatabaseQueryHandlerFactory createFactory ()
+	public static void createFactory ()
 	{
-		if (myConcreteFactory == null) {
-			myConcreteFactory = new DatabaseQueryHandlerFactory();
+		if (AbstractPersistenceHandlerFactory.getFactory() == null) {
+			AbstractPersistenceHandlerFactory.setFactory(new DatabaseQueryHandlerFactory());
 		}
-		return myConcreteFactory;
 	}
 	
 	/* Creation methods of QueryHandlers */

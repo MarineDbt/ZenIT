@@ -43,7 +43,8 @@ public class NotificationCenterUI extends BaseUI {
 	 * Create the frame.
 	 */
 	public NotificationCenterUI(User currentUser) {
-		super(currentUser);
+		//super(currentUser);
+		super(new User());
 		content.setLayout(new BorderLayout(0, 0));
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -58,6 +59,30 @@ public class NotificationCenterUI extends BaseUI {
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{"Jules", "salut salut salut salut salut salut salut salut salut salut salut ezrgbzertgbehrtbrthergbertergbrgbhd"},
+				{"Elie", "hey"},
+				{"Elie", "hey"},
+				{"Elie", "hey"},
+				{"Elie", "hey"},
+				{"Elie", "hey"},
+				{"Elie", "hey"},
+				{"Elie", "hey"},
+				{"Elie", "hey"},
+				{"Elie", "hey"},
+				{"Elie", "hey"},
+				{"Elie", "hey"},
+				{"Elie", "hey"},
+				{"Jules", "salut salut salut salut salut salut salut salut salut salut salut ezrgbzertgbehrtbrthergbertergbrgbhd"},
+				{"Elie", "hey"},
+				{"Elie", "hey"},
+				{"Elie", "hey"},
+				{"Elie", "hey"},
+				{"Elie", "hey"},
+				{"Elie", "hey"},
+				{"Elie", "hey"},
+				{"Elie", "hey"},
+				{"Elie", "hey"},
+				{"Elie", "hey"},
+				{"Elie", "hey"},
 				{"Elie", "hey"},
 			},
 			new String[] {
