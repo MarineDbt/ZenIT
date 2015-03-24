@@ -23,14 +23,14 @@ public class ActivityQueryHandler extends ActivityPersistenceHandler {
  * @param currentSupervisor 
  * @return 
  */
-    public ArrayList<Activity> lookForActivities(String nameActivity, Supervisor currentSupervisor) {  
+    public ArrayList<Activity> lookForActivities(User currentUser) {  
     	
     	/* Declarations and initializations */
     	ResultSet result;
     	ArrayList<Activity> myActivities = new ArrayList<Activity>();
     	
     	/* Query execution delegated to ConnectionToMySQL */
-    	result = ConnectionToMySQL.requestSelectQuery("Select * from Activity;");
+    	result = ConnectionToMySQL.requestSelectQuery("Select * from Activity where `id_supervisor`=1;");
     	
     	try {
 			while (result.next()) {
@@ -53,6 +53,17 @@ public class ActivityQueryHandler extends ActivityPersistenceHandler {
     	result = ConnectionToMySQL.requestInsertQuery("insert into Activity (activity_name,short_description,detailled_description,id_supervisor) values('"+nameActivity+"','"+shortDescription+"','"+detailledDescription+"','1');");
     	return (result == 1);
 	}
+    
+    public boolean deleteActivity(Activity currentActivity) {
+    	/* Declarations and initializations */
+    	int result = 0;
+
+    	/* Query execution delegated to ConnectionToMySQL */
+    	result = ConnectionToMySQL.requestInsertQuery( "delete from Activity where activity_name = '"+currentActivity.getName()+"';");
+    	
+    	/* Return value */
+    	return (result == 1);
+    }
 
 /**
  * <p>Does ...</p>

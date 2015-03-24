@@ -20,7 +20,7 @@ public abstract class ActivityPersistenceHandler {
  * @param currentSupervisor 
  * @return 
  */
-    public ArrayList<Activity> lookForActivities(String nameActivity, Supervisor currentSupervisor) {        
+    public ArrayList<Activity> lookForActivities(User currentUser) {        
         // your code here
         return null;
     } 
@@ -29,6 +29,9 @@ public abstract class ActivityPersistenceHandler {
 		return false;
 	}
 
+    public boolean deleteActivity(Activity currentActivity) {
+    	return false;
+    }
 
 /**
  * <p>Does ...</p>

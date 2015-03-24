@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 import BL.DataClasses.Activity;
 import BL.DataClasses.User;
+import BL.Front.ActivityFacade;
 import BL.TechnicalClasses.AbstractPersistenceHandlerFactory;
 import BL.TechnicalClasses.DatabaseQueryHandlerFactory;
 
@@ -34,15 +35,16 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.BoxLayout;
 
 import java.awt.FlowLayout;
+import java.util.ArrayList;
 
 import javax.swing.SpringLayout;
 
 public class UIActivity extends BaseUI implements ActionListener {
 
-	
 	public AbstractPersistenceHandlerFactory factory;
 	public User user;
-
+	ArrayList<Activity> act;
+		
 	public UIActivity(AbstractPersistenceHandlerFactory factory, User currentUser) {
 		
 		//super(factory, currentUser);
@@ -64,23 +66,17 @@ public class UIActivity extends BaseUI implements ActionListener {
 		JPanel panel = new JPanel();
 
 		
-		Activity[] act = new Activity[8];
-		act[0] = new Activity("aaaaa","aaaaa","aaaaaa");
-		act[1] = new Activity("bbbb","bbbb","bbbb");
-		act[2] = new Activity("ccc","ccc","ccc");
-		act[3] = new Activity("ddd","ddd","ddd"); 
-		act[4] = new Activity("eee","eee","eeeeee");
-		act[5] = new Activity("ffff","ffff","ffff");
-		act[6] = new Activity("gggg","gggg","gggg");
-		act[7] = new Activity("hhhh","hhhh","hhhh"); 
+		
+		ActivityFacade facade = new ActivityFacade(factory);
+		this.act = facade.getActivities(this.user);
 		
 		
-		for (int i=0; i<act.length; i++){
+		for (int i=0; i<act.size(); i++){
 			JPanel panel_1 = new JPanel();
 			panel.add(panel_1);
 			panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 			
-			JLabel lblNom = new JLabel(act[i].getName());
+			JLabel lblNom = new JLabel(act.get(i).getName());
 			lblNom.setMinimumSize(new Dimension(114,28));
 			lblNom.setMaximumSize(new Dimension(114,28));
 			lblNom.setPreferredSize(new Dimension(114,28));
@@ -89,18 +85,26 @@ public class UIActivity extends BaseUI implements ActionListener {
 			
 			JButton btnDetails = new JButton("Details");
 			//btnDetails.setBounds(66, 26+39*i, 90, 28);
+			btnDetails.addActionListener(this);
+			btnDetails.setActionCommand("details"+i);
 			panel_1.add(btnDetails);
 			
 			JButton btnContributors = new JButton("Contributors");
 			//btnContributors.setBounds(170, 26+39*i, 119, 28);
+			btnContributors.addActionListener(this);
+			btnContributors.setActionCommand("contributors"+i);
 			panel_1.add(btnContributors);
 			
 			JButton btnUpdate = new JButton("Update");
 			//btnUpdate.setBounds(299, 26+39*i, 90, 28);
+			btnUpdate.addActionListener(this);
+			btnUpdate.setActionCommand("update"+i);
 			panel_1.add(btnUpdate);
 			
 			JButton btnDelete = new JButton("Delete");
 			//btnDelete.setBounds(401, 26+39*i, 90, 28);
+			btnDelete.addActionListener(this);
+			btnDelete.setActionCommand("delete"+i);
 			panel_1.add(btnDelete);
 			} 		
 		
@@ -121,6 +125,36 @@ public class UIActivity extends BaseUI implements ActionListener {
 		frame.setVisible(true);
 		this.dispose();
 		
+	}
+	//actions du bouton détail
+	for (int i=0;i<this.act.size();i++) {
+	if (e.getActionCommand().equals("details"+i)) {
+		DescActivityUI frame = new DescActivityUI(factory, this.user, act.get(i));
+		frame.setVisible(true);
+		this.dispose();
+	}
+	
+	if (e.getActionCommand().equals("delete"+i)) {
+		UIActivity frame = new UIActivity(factory, this.user);
+		ActivityFacade facade = new ActivityFacade(factory);
+		facade.deleteActivity(this.act.get(i));
+		frame.setVisible(true);
+		this.dispose();
+		
+	}
+	
+	if (e.getActionCommand().equals("update"+i)) {
+		UpdateActivityUI frame = new UpdateActivityUI(this.factory,this.user,this.act.get(i));
+		frame.setVisible(true);
+		this.dispose();
+	}
+	
+	if (e.getActionCommand().equals("contributors"+i)) {
+		
+	}
+	
+	
+	
 	}
 		
 	}

@@ -37,10 +37,14 @@ public class ActivityFacade {
 	}
 	
 			
-    public ArrayList<Activity> getActivities(String nameActivity, Supervisor currentSupervisor, String newShortDescription, String newDetailledDescription) {        
-        return activitymanager.getActivities(nameActivity, currentSupervisor);
+    public ArrayList<Activity> getActivities(User currentUser) {        
+        return activitymanager.getActivities(currentUser);
   
-    } 
+    }
+    
+    public boolean deleteActivity(Activity currentActivity) {
+    	return this.activitymanager.deleteActivity(currentActivity);
+    }
 
 /**
  * <p>Does ...</p>

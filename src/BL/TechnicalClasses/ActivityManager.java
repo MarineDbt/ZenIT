@@ -30,11 +30,15 @@ public class ActivityManager {
  * @param currentSupervisor 
  * @return 
  */
-    public ArrayList<Activity> getActivities(String nameActivity, Supervisor currentSupervisor) {        
+    public ArrayList<Activity> getActivities(User currentUser) {        
  
-		return activityPH.lookForActivities(nameActivity, currentSupervisor);
+		return activityPH.lookForActivities(currentUser);
       
     } 
+    
+    public boolean deleteActivity(Activity currentActivity) {
+    	return this.activityPH.deleteActivity(currentActivity);
+    }
 
 /**
  * <p>Does ...</p>
