@@ -30,7 +30,14 @@ public class ActivityFacade {
  * @param currentSupervisor 
  * @return 
  */
-    public ArrayList<Activity> getActivities(String nameActivity, Supervisor currentSupervisor) {        
+	
+	public boolean addActivity(String nameActivity, User currentUser, String shortDescription, String detailledDescription) {
+		return this.activitymanager.addActivity(nameActivity, currentUser, shortDescription, detailledDescription);
+		
+	}
+	
+			
+    public ArrayList<Activity> getActivities(String nameActivity, Supervisor currentSupervisor, String newShortDescription, String newDetailledDescription) {        
         return activitymanager.getActivities(nameActivity, currentSupervisor);
   
     } 

@@ -24,6 +24,11 @@ public abstract class ActivityPersistenceHandler {
         // your code here
         return null;
     } 
+    
+    public boolean addActivity(String nameActivity, User currentUser, String shortDescription, String detailledDescription) {
+		return false;
+	}
+
 
 /**
  * <p>Does ...</p>

@@ -74,6 +74,10 @@ public class ActivityManager {
         
         return activityPH.lookForMembers(currentActivity);
     } 
+    
+    public boolean addActivity(String nameActivity, User currentUser, String shortDescription, String detailledDescription) {
+		return this.activityPH.addActivity(nameActivity, currentUser, shortDescription, detailledDescription);
+	}
 
 /**
  * <p>Does ...</p>

@@ -11,112 +11,88 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
+import BL.DataClasses.Activity;
+import BL.DataClasses.User;
 import BL.TechnicalClasses.AbstractPersistenceHandlerFactory;
+import BL.TechnicalClasses.DatabaseQueryHandlerFactory;
 
 import java.awt.SystemColor;
 
-public class UIActivity extends JFrame implements ActionListener {
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+import com.jgoodies.forms.factories.FormFactory;
 
-	private JPanel contentPane;
-	public AbstractPersistenceHandlerFactory factory;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.BoxLayout;
 
-	public UIActivity(AbstractPersistenceHandlerFactory factory) {
-		this.factory = factory;
-		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(200, 100, 695, 500);
-		
-		contentPane = new JPanel();
-		//contentPane.setBackground(Color.PINK);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(10, 11, 659, 91);
-		contentPane.add(panel);
+public class UIActivity extends BaseUI implements ActionListener {
+
 	
-		panel.setLayout(null);
+	public AbstractPersistenceHandlerFactory factory;
+	public User user;
+	private JTable table;
+
+	public UIActivity(AbstractPersistenceHandlerFactory factory, User currentUser) {
 		
-		JLabel lblZenLounge = new JLabel("Zen Lounge");
-		lblZenLounge.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblZenLounge.setBounds(274, 11, 110, 31);
-		panel.add(lblZenLounge);
+		//super(factory, currentUser);
+		super(new DatabaseQueryHandlerFactory(), new User()); //a enlever
+		this.factory = factory;
+		this.user = currentUser;
+		content.setLayout(null);
 		
-		JButton btnProfil = new JButton("Profil");
-		btnProfil.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		btnProfil.setBounds(10, 63, 62, 23);
-		panel.add(btnProfil);
+		JButton btnAddAnActivity = new JButton("Add an activity");
+		btnAddAnActivity.setBounds(230, 6, 123, 28);
+		content.add(btnAddAnActivity);
+		btnAddAnActivity.addActionListener(this);
+		btnAddAnActivity.setActionCommand("addActivity");
 		
-		JButton btnActivits = new JButton("Responsable");
-		btnActivits.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		btnActivits.setBounds(82, 63, 92, 23);
-		panel.add(btnActivits);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setBounds(6, 46, 560, 259);
+		content.add(scrollPane);
 		
-		JButton btnNewButton = new JButton("Notifications");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		btnNewButton.setBounds(180, 63, 92, 23);
-		panel.add(btnNewButton);
+		table = new JTable();
+		scrollPane.setViewportView(table);
 		
-		JButton button = new JButton("Mes activités");
-		//button.addActionListener(this);
-		//button.setActionCommand("activity");	
-		button.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		button.setBounds(282, 63, 92, 23);
-		panel.add(button);
+	
 		
-		JButton button_1 = new JButton("Magasin");
-		button_1.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		button_1.setBounds(384, 63, 76, 23);
-		panel.add(button_1);
+		/* Activity a1 = new Activity("Foot","C'est cool","c'est trop cool");
+		Activity a2 = new Activity("Coucou","coucoucl","c'est trop cool");
+		Activity a3 = new Activity("Ft","C'est cool","c'est trop cool");
+		Activity a4 = new Activity("freg","C'est cool","c'est trop cool"); */
 		
-		JButton button_2 = new JButton("Panier");
-		button_2.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		button_2.setBounds(470, 63, 76, 23);
-		panel.add(button_2);
 		
-		JButton button_3 = new JButton("Deconnexion");
-		
-			button_3.setFont(new Font("Tahoma", Font.PLAIN, 9));
-			button_3.setBounds(556, 63, 93, 23);
-			panel.add(button_3);
-			
-			JPanel panel_1 = new JPanel();
-			panel_1.setBounds(10, 104, 659, 33);
-			contentPane.add(panel_1);
-			
-			JButton addActivity = new JButton("Ajouter une activité");
-			addActivity.addActionListener(this);
-			addActivity.setActionCommand("addActivity");
-			panel_1.add(addActivity);
-			
-			JPanel panel_2 = new JPanel();
-			panel_2.setBackground(SystemColor.inactiveCaptionBorder);
-			panel_2.setBounds(10, 140, 659, 310);
-			contentPane.add(panel_2);
-			
-			int nbBtn =10;
+			/* int nbBtn =10;
 			JButton[] btn;
 			btn = new JButton[nbBtn];
 			for (int i=0; i<btn.length; i++){
 				JButton bouton = new JButton("Activité "+Integer.toString(i));
 				btn[i]=bouton;
-				panel_2.add(bouton);  
-				} 
+				btn[i].setBounds(210, 6+40*i, 150, 28);
+				
+				} */
 			
+	}
+	
+	private void addactivitytable (Activity a) {
+		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 	if (e.getActionCommand().equals("addActivity")) {
-		ActivityModificationUI frame = new ActivityModificationUI(factory);
+		ActivityCreationUI frame = new ActivityCreationUI(factory, this.user);
 		frame.setVisible(true);
 		this.dispose();
 		
 	}
 		
 	}
-
 }

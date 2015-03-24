@@ -3,9 +3,16 @@ import java.sql.ResultSet;
 
 
 
+
+
+
+
+import UI.ErrorAddActivityUI;
 import UI.UIActivity;
 import UI.UISubscription;
-
+import UI.UpdateActivityUI;
+import BL.DataClasses.Activity;
+import BL.DataClasses.User;
 import BL.Front.UserFacade;
 import BL.TechnicalClasses.AbstractPersistenceHandlerFactory;
 import BL.TechnicalClasses.DatabaseQueryHandlerFactory;
@@ -32,8 +39,10 @@ public class Launcher {
 				try {
 					
 					AbstractPersistenceHandlerFactory factory = DatabaseQueryHandlerFactory.createFactory();
+					User user = new User();
+					Activity act = new Activity();
 					
-					UIActivity frame = new UIActivity(factory);
+					UpdateActivityUI frame = new UpdateActivityUI(factory, user, act);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

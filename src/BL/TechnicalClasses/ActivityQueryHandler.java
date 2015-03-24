@@ -4,6 +4,7 @@ package BL.TechnicalClasses;
 import java.util.ArrayList;
 
 import BL.DataClasses.*;
+import ConnectionToDB.ConnectionToMySQL;
 
 /**
  * 
@@ -24,6 +25,12 @@ public class ActivityQueryHandler extends ActivityPersistenceHandler {
         // your code here
         return null;
     } 
+    
+    public boolean addActivity(String nameActivity, User currentUser, String shortDescription, String detailledDescription) {
+    	int result = 0;
+    	result = ConnectionToMySQL.requestInsertQuery("insert into Activity (activity_name,short_description,detailled_description,id_supervisor) values('"+nameActivity+"','"+shortDescription+"','"+detailledDescription+"','1');");
+    	return (result == 1);
+	}
 
 /**
  * <p>Does ...</p>
@@ -48,8 +55,12 @@ public class ActivityQueryHandler extends ActivityPersistenceHandler {
  * @return 
  */
     public boolean updateActivity(Activity oldActivity, String newName, String newShortDescription, String newDetailledDescription) {        
-        // your code here
-        return false;
+    	oldActivity = new Activity("Yogas"); // a enlever
+    	
+    	int result = 0;
+    	result = ConnectionToMySQL.requestInsertQuery("update Activity set activity_name= '"+newName+"', short_description = '"+newShortDescription+"',detailled_description = '"+newDetailledDescription+"' where `activity_name` = '"+oldActivity.getName()+"');");
+    	return (result == 1);
+
     } 
 
 /**

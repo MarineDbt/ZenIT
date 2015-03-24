@@ -7,6 +7,17 @@ package BL.DataClasses;
  */
 public class Activity {
 
+public Activity(String nameActivity, String shortDescription, String detailledDescription) {
+		this.nameActivity = nameActivity;
+		this.detailledDescription = detailledDescription;
+		this.shortDescription = shortDescription;
+	}
+public Activity(String name) {
+	this.nameActivity = name;
+}
+public Activity() {
+	// TODO Auto-generated constructor stub
+}
 /**
  * <p>Represents ...</p>
  * 
@@ -43,4 +54,8 @@ public class Activity {
  * 
  */
     public BL.DataClasses.Supervisor supervisor;
+    
+    public String getName(){
+    	return this.nameActivity;
+    }
  }

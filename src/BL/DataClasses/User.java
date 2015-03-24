@@ -77,10 +77,34 @@ public class User {
 		String city2, String phone2, String email, String id2, String pwd2) {
 	// TODO Auto-generated constructor stub
     }
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
 	/**
      * Delete the user account
      */
     public void deleteAccount(){
     	//TODO
     }
+    
+    public String getID() {
+    return this.id;	
+    }
+    
+	public boolean isMember() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	public boolean isContributor() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	public boolean isSupervisor() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	public boolean isAdmin() {
+		// TODO Auto-generated method stub
+		return false;
+	}
  }
