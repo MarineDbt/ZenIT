@@ -31,13 +31,16 @@ public class NotificationQueryHandler extends NotificationAbstractPersistenceHan
 			String sender_id;
 			NotificationFactory notificationFactory = new NotificationFactory();
 			if (resultSet.isBeforeFirst()){
+				resultSet.next();
 				while (!resultSet.isAfterLast()){
-					resultSet.next();
 					System.out.println(resultSet.isAfterLast());
 					System.out.println(resultSet.isBeforeFirst());
 					label = resultSet.getString(resultSet.findColumn("label"));
 					sender_id = resultSet.getString(resultSet.findColumn("id_user_send"));
+					System.out.println(label);
+					System.out.println(sender_id);
 					notifications.add(notificationFactory.createNotification(sender_id,currentUser.getId(),label));
+					resultSet.next();
 				}
 			}
 			return notifications;
@@ -52,9 +55,19 @@ public class NotificationQueryHandler extends NotificationAbstractPersistenceHan
     } 
 
 
-    public boolean deleteNotifications(User currentUser) {        
-        // your code here
-        return false;
+    public boolean deleteNotifications(User currentUser) {     
+    	int result=0;
+		String query ="delete from Notification where id_user_receive = '"+currentUser.getId()+"';";
+		System.out.println(query);
+    	try {
+			result=ConnectionToMySQL.requestDeleteQuery(query);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	if (result==0) return false;
+    	else return true;
     }
  
  }

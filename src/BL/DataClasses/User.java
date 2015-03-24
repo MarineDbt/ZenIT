@@ -18,7 +18,7 @@ public class User {
 	 * <p>Represents ...</p>
 	 * 
 	 */
-    private String surname;
+    private String lastname;
 
 	/**
 	 * <p>Represents ...</p>
@@ -30,7 +30,7 @@ public class User {
 	 * <p>Represents ...</p>
 	 * 
 	 */
-    private String PC;
+    private String pc;
 
 	/**
 	 * <p>Represents ...</p>
@@ -43,7 +43,13 @@ public class User {
 	 * 
 	 */
     private String phone;
-
+    
+    /**
+	 * <p>Represents ...</p>
+	 * 
+	 */
+    
+    private String email;
 	/**
 	 * <p>Represents ...</p>
 	 * 
@@ -66,8 +72,17 @@ public class User {
 	 */
     public BL.DataClasses.Cart cart;
     
-    public User(String firstname2, String lastname, String street2, String pC2,
-		String city2, String phone2, String email, String id2, String pwd2) {
+    public User(String firstname, String lastname, String street, String pc,
+		String city, String phone, String email, String id, String pwd) {
+    	this.firstname=firstname;
+    	this.lastname=lastname;
+    	this.street=street;
+    	this.pc=pc;
+    	this.city=city;
+    	this.phone=phone;
+    	this.email=email;
+    	this.id=id;
+    	this.pwd=pwd;
 
     }
 	public User() {

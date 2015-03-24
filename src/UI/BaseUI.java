@@ -38,22 +38,8 @@ public class BaseUI extends JFrame implements ActionListener {
 	JButton btnContributor;
 	JButton btnMyActivities;
 	
-	User currentUser;
 	protected UserFacade userFacade;
 
-	//TO TEST ONLY
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BaseUI frame = new BaseUI(new User());
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -65,8 +51,8 @@ public class BaseUI extends JFrame implements ActionListener {
 	 * You actually need to refer a User, because the display of the ribbon differs from users
 	 * 
 	 */
-	public BaseUI(User currentUser) {
-		this.currentUser=currentUser;
+	public BaseUI(UserFacade userFacade) {
+		this.userFacade=userFacade;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1055, 432);
 		this.setMinimumSize(new Dimension(600,450));
@@ -104,6 +90,10 @@ public class BaseUI extends JFrame implements ActionListener {
 		JButton btnHome = new JButton("Home");
 		btnHome.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		ribbon.add(btnHome);
+		
+		JLabel lblUser = new JLabel("Hi " + userFacade.userManager.currentUser.getId());
+		lblUser.setFont(new Font("Verdana", Font.PLAIN, 9));
+		ribbon.add(lblUser);
 
 		JButton btnProfile = new JButton("Profile");
 		btnProfile.setFont(new Font("Tahoma", Font.PLAIN, 9));
@@ -147,7 +137,7 @@ public class BaseUI extends JFrame implements ActionListener {
 		contentPane.add(content, "2, 4, fill, fill");
 		content.setLayout(null);
 
-		hideUselessButtons(currentUser);
+		hideUselessButtons(userFacade.userManager.currentUser);
 		
 		this.pack();
 
@@ -173,13 +163,17 @@ public class BaseUI extends JFrame implements ActionListener {
 		}
 	}
 
-	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		if (arg0.getActionCommand().equals("home")){
+			HomeUI homeUI = new HomeUI(userFacade);
+    		homeUI.userFacade=this.userFacade;
+    		homeUI.setVisible(true);
+	    	this.dispose();
+		}
 		if (arg0.getActionCommand().equals("notifications")){
-			 NotificationCenterUI notificationCenter = new NotificationCenterUI(currentUser);
-			 notificationCenter.userFacade=this.userFacade;
+			 NotificationCenterUI notificationCenter = new NotificationCenterUI(userFacade);
 			 notificationCenter.setVisible(true);
-	    	 this.dispose();
+			 this.dispose();
 		}
 	}
 }

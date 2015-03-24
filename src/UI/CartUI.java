@@ -29,6 +29,7 @@ import BL.DataClasses.Contains;
 import BL.DataClasses.Product;
 import BL.DataClasses.SubCategory;
 import BL.DataClasses.User;
+import BL.Front.UserFacade;
 
 import javax.swing.JList;
 
@@ -37,6 +38,7 @@ import net.miginfocom.swing.MigLayout;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
+
 import javax.swing.ScrollPaneConstants;
 
 public class CartUI extends BaseUI {
@@ -46,30 +48,9 @@ public class CartUI extends BaseUI {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					User u = new User();
-					u.cart=new Cart();
-					u.cart.contains= new ArrayList();
-					u.cart.contains.add(new Contains(2,new Product("truc",10.5,new SubCategory("bidule",new Category("machin")))));
-					u.cart.contains.add(new Contains(3,new Product("truc2",45.89,new SubCategory("bidule",new Category("machin")))));
-					u.cart.contains.add(new Contains(8,new Product("truc3",123,new SubCategory("bidule",new Category("machin")))));
-					u.cart.contains.add(new Contains(8,new Product("truc4",123,new SubCategory("bidule",new Category("machin")))));
-					u.cart.contains.add(new Contains(8,new Product("truc4",123,new SubCategory("bidule",new Category("machin")))));
-					u.cart.contains.add(new Contains(8,new Product("truc4",123,new SubCategory("bidule",new Category("machin")))));
-					CartUI frame = new CartUI(u);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	public CartUI(User currentUser) {
-		//super(currentUser);
-		super(new User());
+
+	public CartUI(UserFacade userFacade) {
+		super(userFacade);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
@@ -116,7 +97,7 @@ public class CartUI extends BaseUI {
 		JLabel lblTotalPrice = new JLabel("Total Price");
 		productList.add(lblTotalPrice, "cell 3 0");
 
-		this.addProducts(currentUser);
+		this.addProducts(userFacade.userManager.currentUser);
 
 		JPanel validate = new JPanel();
 		GridBagConstraints gbc_validate = new GridBagConstraints();

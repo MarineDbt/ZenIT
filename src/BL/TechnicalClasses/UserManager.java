@@ -43,6 +43,7 @@ public class UserManager {
 			 System.out.println("c");
 			 loadUser(id);
 			 currentUser=users.get(id);
+			 System.out.println("T " + currentUser.getId());
 		 }
 		 
 		 return result;
@@ -60,7 +61,9 @@ public class UserManager {
 		return result;
 	 }
 	 private void loadUser(String id){
-		 users.put(id,userPersistenceHandler.lookForUserInfo(id));
+		 User user = userPersistenceHandler.lookForUserInfo(id);
+		 System.out.println(user.getId());
+		 users.put(id,user);
 	 }
 
 

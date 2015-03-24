@@ -24,7 +24,6 @@ public class NotificationFacade {
 
 
     public boolean deleteNotifications (User currentUser) {        
-        // your code here
-        return false;
+        return notificationManager.deleteNotifications(currentUser);
     } 
  }

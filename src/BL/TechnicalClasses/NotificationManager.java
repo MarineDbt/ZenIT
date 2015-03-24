@@ -31,8 +31,9 @@ public class NotificationManager {
  * @param User 
  * @return 
  */
-    public boolean deleteNotifications(User currentUser) {        
-        // your code here
-        return false;
+    public boolean deleteNotifications(User currentUser) {
+    	
+    	NotificationAbstractPersistenceHandler notificationPersistenceHandler = AbstractPersistenceHandlerFactory.getFactory().createNotificationPersistenceHandler();
+    	return notificationPersistenceHandler.deleteNotifications(currentUser);       
     } 
  }
