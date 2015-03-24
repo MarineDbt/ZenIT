@@ -16,13 +16,21 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.JButton;
 
+import BL.DataClasses.Notification;
 import BL.DataClasses.User;
+import BL.Front.NotificationFacade;
+import ConnectionToPersistence.AbstractPersistenceHandlerFactory;
+import ConnectionToPersistence.DatabaseQueryHandlerFactory;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class NotificationCenterUI extends BaseUI {
 	private JTable table;
 
+	private NotificationFacade notificationFacade;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -30,6 +38,9 @@ public class NotificationCenterUI extends BaseUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					 
+					DatabaseQueryHandlerFactory.createFactory();
+					User currentUser = new User("Elie","a");
 					NotificationCenterUI frame = new NotificationCenterUI(new User());
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -43,8 +54,14 @@ public class NotificationCenterUI extends BaseUI {
 	 * Create the frame.
 	 */
 	public NotificationCenterUI(User currentUser) {
-		//super(currentUser);
+		
 		super(new User());
+		//super(currentUser);
+		
+		this.notificationFacade=new NotificationFacade();
+		Object[][] tableModel = getTableModel();
+		
+		
 		content.setLayout(new BorderLayout(0, 0));
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -57,34 +74,7 @@ public class NotificationCenterUI extends BaseUI {
 		table.setCellSelectionEnabled(true);
 		table.setRowSelectionAllowed(false);
 		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Jules", "salut salut salut salut salut salut salut salut salut salut salut ezrgbzertgbehrtbrthergbertergbrgbhd"},
-				{"Elie", "hey"},
-				{"Elie", "hey"},
-				{"Elie", "hey"},
-				{"Elie", "hey"},
-				{"Elie", "hey"},
-				{"Elie", "hey"},
-				{"Elie", "hey"},
-				{"Elie", "hey"},
-				{"Elie", "hey"},
-				{"Elie", "hey"},
-				{"Elie", "hey"},
-				{"Elie", "hey"},
-				{"Jules", "salut salut salut salut salut salut salut salut salut salut salut ezrgbzertgbehrtbrthergbertergbrgbhd"},
-				{"Elie", "hey"},
-				{"Elie", "hey"},
-				{"Elie", "hey"},
-				{"Elie", "hey"},
-				{"Elie", "hey"},
-				{"Elie", "hey"},
-				{"Elie", "hey"},
-				{"Elie", "hey"},
-				{"Elie", "hey"},
-				{"Elie", "hey"},
-				{"Elie", "hey"},
-				{"Elie", "hey"},
-			},
+			tableModel,
 			new String[] {
 				"Source", "Message"
 			}
@@ -107,7 +97,26 @@ public class NotificationCenterUI extends BaseUI {
 		
 		JButton btnClear = new JButton("Clear");
 		buttons.add(btnClear);
-		content = new JPanel();
 		
+		
+		
+	}
+
+	private	String[][] getTableModel() {
+		ArrayList<Notification> notifications = notificationFacade.notificationManager.readNotifications(currentUser);
+		Iterator<Notification> it = notifications.iterator();
+		String[][] tableModel = new String[2][notifications.size()];
+		Notification currentNotification;
+		int i = 0;
+		while(it.hasNext()){
+			currentNotification=it.next();
+			
+			tableModel[1][i]=currentNotification.getId_user_send();
+			tableModel[2][i]=currentNotification.getLabel();
+			i++;
+			
+		}
+		
+		return null;
 	}
 }

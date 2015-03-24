@@ -28,7 +28,7 @@ public class LoginUI extends JFrame implements ActionListener{
 	
 	private JTextField txtUsername;
 	private JPasswordField pwdPassword;
-	private UserFacade userFacade;
+	public UserFacade userFacade;
 
 	/**
 	 * Launch the application.
