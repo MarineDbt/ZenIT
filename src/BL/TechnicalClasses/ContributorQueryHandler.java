@@ -1,5 +1,8 @@
 
 package BL.TechnicalClasses;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import BL.ModelClasses.*;
@@ -11,7 +14,7 @@ import ConnectionToDB.ConnectionToMySQL;
  * 
  * @poseidon-object-id [I29f51818m14c28f165ddmm4604]
  */
-public class ContributorQueryHandler implements ContributorPersistenceHandler {
+public class ContributorQueryHandler extends ContributorPersistenceHandler {
 
 /**
  * <p>Does ...</p>
@@ -20,7 +23,7 @@ public class ContributorQueryHandler implements ContributorPersistenceHandler {
  * @param user 
  * @return 
  */
-    public Contributor insertContributor(User user, String myDescription) {        
+    public User insertContributor(User user, String myDescription) {        
         
     	/* Declarations and initializations */
     	int result = 0;
@@ -33,8 +36,9 @@ public class ContributorQueryHandler implements ContributorPersistenceHandler {
 		
 		if (result==1)
 		{
-			Contributor myContributor = new Contributor(user.getId(), myDescription);
-			return myContributor;
+			Contributor myContributor = new Contributor(myDescription);
+			user.setContributor(myContributor);
+			return user;
 		}
 		else
 		{
@@ -49,9 +53,18 @@ public class ContributorQueryHandler implements ContributorPersistenceHandler {
  * @param contributor 
  * @return 
  */
-    public boolean updateContributor(BL.ModelClasses.Contributor contributor) {        
-        // your code here
-        return false;
+    public boolean deleteContributor(User contributor) {        
+    	
+    	/* Declarations and initializations */
+    	int result = 0;
+		
+    	/* Delegate query execution to ConnectionToMySQL */
+    	
+		result = ConnectionToMySQL.requestInsertQuery("delete from Contributor where id_user = '"+contributor.getId()+"';");
+		
+		/* Return value */
+		
+		return (result == 1);
     } 
 
 /**
@@ -60,8 +73,37 @@ public class ContributorQueryHandler implements ContributorPersistenceHandler {
  * @poseidon-object-id [I29f51818m14c28f165ddmm460f]
  * @return 
  */
-    public Collection<BL.ModelClasses.Contributor> selectAllContributors() {        
-        // your code here
-        return null;
+    public ArrayList<User> selectAllContributors() {        
+    	
+    	/* Declarations and initializations */
+    	ResultSet result;
+    	ArrayList<User> contributors = new ArrayList<User>();
+		
+    	/* Delegate query execution to ConnectionToMySQL */
+    	
+		result = ConnectionToMySQL.requestSelectQuery("select id, firstname, lastname, description from Contributor, User where id = id_user;");
+		
+		/* Creation of User list */
+		
+		try{
+		while(result.next())
+		{
+				String id_user = result.getString(1);
+				String firstname = result.getString(2);
+				String lastname = result.getString(3);
+				String description = result.getString(4);
+				Contributor myContributor = new Contributor(description);
+				User myUser = new User(id_user, firstname, lastname, myContributor);
+				contributors.add(myUser);
+		}
+				
+		} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		/* Return value */	
+		
+		return contributors;
     } 
  }

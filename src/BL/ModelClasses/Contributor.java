@@ -5,7 +5,7 @@ package BL.ModelClasses;
  * 
  * 
  */
-public class Contributor extends User {
+public class Contributor {
 
 /**
  * <p>Represents ...</p>
@@ -22,9 +22,8 @@ public class Contributor extends User {
     
     /* Constructors */
     
-    public Contributor(String id_user, String maDescription)
+    public Contributor(String maDescription)
     {
-    	super(id_user);
     	descriptionContributor = maDescription;   	
     }
 

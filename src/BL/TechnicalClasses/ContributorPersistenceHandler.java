@@ -1,6 +1,7 @@
 
 package BL.TechnicalClasses;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import BL.ModelClasses.*;
@@ -10,7 +11,7 @@ import BL.ModelClasses.*;
  * 
  * @poseidon-object-id [I29f51818m14c28f165ddmm4689]
  */
-public interface ContributorPersistenceHandler {
+public abstract class ContributorPersistenceHandler {
 /**
  * <p>Does ...</p>
  * 
@@ -22,7 +23,7 @@ public interface ContributorPersistenceHandler {
 	
 	
 	
-    public Contributor insertContributor(User user, String myDescription);
+    public abstract User insertContributor(User user, String myDescription);
 /**
  * <p>Does ...</p>
  * 
@@ -30,14 +31,14 @@ public interface ContributorPersistenceHandler {
  * @param contributor 
  * @return 
  */
-    public boolean updateContributor(BL.ModelClasses.Contributor contributor);
+    public abstract boolean deleteContributor(User contributor);
 /**
  * <p>Does ...</p>
  * 
  * @poseidon-object-id [I29f51818m14c28f165ddmm4694]
  * @return 
  */
-    public Collection<BL.ModelClasses.Contributor> selectAllContributors();
+    public abstract ArrayList<User> selectAllContributors();
 }
 
 

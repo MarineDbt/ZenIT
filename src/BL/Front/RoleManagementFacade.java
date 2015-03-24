@@ -1,6 +1,7 @@
 
 package BL.Front;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import BL.ModelClasses.*;
@@ -42,6 +43,7 @@ public class RoleManagementFacade {
  * @return 
  */
     /* Constructors */
+    
     public RoleManagementFacade(AbstractPersistenceHandlerFactory factory)
     {
     	contributorManager = new ContributorManager(factory);
@@ -64,9 +66,9 @@ public class RoleManagementFacade {
  */
     public boolean createSupervisor(User user) {        
         
-    	// your code here
-    	
-        return false;
+    	/* Delegate method call to contributorManager */
+
+    	return supervisorManager.createSupervisor(user);
     } 
 
 /**
@@ -76,9 +78,11 @@ public class RoleManagementFacade {
  * @param contributor 
  * @return 
  */
-    public boolean removeContributor(BL.ModelClasses.Contributor contributor) {        
-        // your code here
-        return false;
+    public boolean removeContributor(User contributor) {        
+    	
+    	/* Delegate method call to contributorManager */
+
+    	return contributorManager.removeContributor(contributor);
     } 
 
 /**
@@ -88,9 +92,11 @@ public class RoleManagementFacade {
  * @param supervisor 
  * @return 
  */
-    public boolean removeSupervisor(BL.ModelClasses.Supervisor supervisor) {        
-        // your code here
-        return false;
+    public boolean removeSupervisor(User supervisor) {        
+    	
+    	/* Delegate method call to contributorManager */
+
+    	return supervisorManager.removeSupervisor(supervisor);
     } 
 
 /**
@@ -99,9 +105,11 @@ public class RoleManagementFacade {
  * @poseidon-object-id [I29f51818m14c28f165ddmm559c]
  * @return 
  */
-    public Collection<BL.ModelClasses.Contributor> getAllContributors() {        
-        // your code here
-        return null;
+    public ArrayList<User> getAllContributors() {        
+    	
+    	/* Delegate method call to contributorManager */
+
+    	return contributorManager.readAllContributors();
     } 
 
 /**
@@ -110,9 +118,11 @@ public class RoleManagementFacade {
  * @poseidon-object-id [I29f51818m14c28f165ddmm55a0]
  * @return 
  */
-    public Collection<BL.ModelClasses.Supervisor> getAllSupervisors() {        
-        // your code here
-        return null;
+    public ArrayList<User> getAllSupervisors() {        
+    	
+    	/* Delegate method call to contributorManager */
+
+    	return supervisorManager.readAllSupervisors();
     } 
 
 /**

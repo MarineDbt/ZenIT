@@ -18,7 +18,7 @@ public class ContributorManager {
  * 
  * @poseidon-object-id [I29f51818m14c28f165ddmm45b9]
  */
-    private ArrayList<Contributor> contributors;
+    private ArrayList<User> contributors;
     
     private ContributorPersistenceHandler contributorPersistenceHandler;
 
@@ -34,14 +34,14 @@ public class ContributorManager {
     public ContributorManager(AbstractPersistenceHandlerFactory factory)
     {
     	contributorPersistenceHandler = factory.createContributorPersistenceHandler();
-    	contributors = new ArrayList<Contributor>();
+    	contributors = new ArrayList<User>();
     }
     
     public boolean createContributor(User user, String myDescription) {        
     	
     	/* Declarations and initializations */
     	
-    	Contributor myContributor = contributorPersistenceHandler.insertContributor(user, myDescription);
+    	User myContributor = contributorPersistenceHandler.insertContributor(user, myDescription);
     	    	
     	/* Adding to contributors */
     	if (myContributor !=null)
@@ -60,10 +60,14 @@ public class ContributorManager {
  * @param contributor 
  * @return 
  */
-    public boolean removeContributor(BL.ModelClasses.Contributor contributor) {        
-        // your code here
-        return false;
+    public boolean removeContributor(User contributor) {        
+    	
+    	/* Declarations and initializations */
+    	
+    	return contributorPersistenceHandler.deleteContributor(contributor);
+    	    	
     } 
+    
 
 /**
  * <p>Does ...</p>
@@ -71,8 +75,12 @@ public class ContributorManager {
  * @poseidon-object-id [I29f51818m14c28f165ddmm45c4]
  * @return 
  */
-    public Collection<BL.ModelClasses.Contributor> readAllContributors() {        
-        // your code here
-        return null;
-    } 
+    public ArrayList<User> readAllContributors() {        
+       
+    	/* Declarations and initializations */
+    	
+    	return contributorPersistenceHandler.selectAllContributors();
+    }
+
+
  }
