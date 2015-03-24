@@ -1,6 +1,8 @@
 
 package BL.TechnicalClasses;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import BL.DataClasses.*;
@@ -21,9 +23,29 @@ public class ActivityQueryHandler extends ActivityPersistenceHandler {
  * @param currentSupervisor 
  * @return 
  */
-    public ArrayList<Activity> lookForActivities(String nameActivity, Supervisor currentSupervisor) {        
-        // your code here
-        return null;
+    public ArrayList<Activity> lookForActivities(String nameActivity, Supervisor currentSupervisor) {  
+    	
+    	/* Declarations and initializations */
+    	ResultSet result;
+    	ArrayList<Activity> myActivities = new ArrayList<Activity>();
+    	
+    	/* Query execution delegated to ConnectionToMySQL */
+    	result = ConnectionToMySQL.requestSelectQuery("Select * from Activity;");
+    	
+    	try {
+			while (result.next()) {
+			     String name = result.getString(1);
+			     String shortDescription = result.getString(2);
+			     String detailledDescription = result.getString(3);
+			     Activity activity = new Activity(name, shortDescription, detailledDescription);
+			     myActivities.add(activity);
+			 }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+        return myActivities;
     } 
     
     public boolean addActivity(String nameActivity, User currentUser, String shortDescription, String detailledDescription) {

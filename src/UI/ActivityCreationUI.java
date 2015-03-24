@@ -105,7 +105,7 @@ public class ActivityCreationUI extends BaseUI implements ActionListener{
 			}
 			
 			if (result ==false) {
-				UIActivity frame = new UIActivity(factory, user);
+				ErrorAddActivityUI frame = new ErrorAddActivityUI(factory, user);
 				frame.setVisible(true); 
 				this.dispose();
 			}

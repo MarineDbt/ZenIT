@@ -58,4 +58,12 @@ public Activity() {
     public String getName(){
     	return this.nameActivity;
     }
+    
+    public String getShortDescription(){
+    	return this.shortDescription;
+    }
+    
+    public String getDetailledDescription(){
+    	return this.detailledDescription;
+    }
  }

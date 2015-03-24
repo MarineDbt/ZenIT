@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 
 
 
+
+import UI.DescActivityUI;
 import UI.ErrorAddActivityUI;
 import UI.UIActivity;
 import UI.UISubscription;
@@ -40,9 +42,9 @@ public class Launcher {
 					
 					AbstractPersistenceHandlerFactory factory = DatabaseQueryHandlerFactory.createFactory();
 					User user = new User();
-					Activity act = new Activity();
+					Activity act = new Activity("Yoga", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.");
 					
-					UpdateActivityUI frame = new UpdateActivityUI(factory, user, act);
+					UIActivity frame = new UIActivity(factory, user);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
