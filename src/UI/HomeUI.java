@@ -24,29 +24,13 @@ import java.awt.Color;
 
 public class HomeUI extends BaseUI {
 	private JTable table;
-	public UserFacade userFacade;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					HomeUI frame = new HomeUI(new User());
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public HomeUI(User currentUser) {
-		super(currentUser);
+	public HomeUI(UserFacade userFacade) {
+		super(userFacade);
 		content.setLayout(new FlowLayout());
 		content.add(new JLabel("Home sweet home"));
 	}

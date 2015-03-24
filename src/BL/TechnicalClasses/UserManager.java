@@ -24,7 +24,7 @@ public class UserManager {
 	
 	/* Methods */
 	public UserManager() {
-		this.userPersistenceHandler = AbstractPersistenceHandlerFactory.createFactory().createUserPersistenceHandler();
+		this.userPersistenceHandler = AbstractPersistenceHandlerFactory.getFactory().createUserPersistenceHandler();
 		this.users= new HashMap();
 		this.userFactory = new UserFactory();
 		this.currentUser = null;
@@ -43,6 +43,7 @@ public class UserManager {
 			 System.out.println("c");
 			 loadUser(id);
 			 currentUser=users.get(id);
+			 System.out.println("T " + currentUser.getId());
 		 }
 		 
 		 return result;
@@ -60,7 +61,9 @@ public class UserManager {
 		return result;
 	 }
 	 private void loadUser(String id){
-		 users.put(id,userPersistenceHandler.lookForUserInfo(id));
+		 User user = userPersistenceHandler.lookForUserInfo(id);
+		 System.out.println(user.getId());
+		 users.put(id,user);
 	 }
 
 

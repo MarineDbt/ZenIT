@@ -97,12 +97,15 @@ public class UserQueryHandler extends UserAbstractPersistenceHandler{
 		ResultSet resultSet = null;
 
 		try {
-			resultSet=ConnectionToMySQL.requestSelectQuery("select * from User where id = '"+id+"';");
+			String query = "select * from User where id = '"+id+"';";
+			resultSet=ConnectionToMySQL.requestSelectQuery(query);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
+			
 			resultSet.first();
 			String firstname = resultSet.getString(resultSet.findColumn("firstname"));
 			System.out.println(firstname);
@@ -121,7 +124,11 @@ public class UserQueryHandler extends UserAbstractPersistenceHandler{
 			String pwd = resultSet.getString(resultSet.findColumn("pwd"));
 			System.out.println(pwd);
 			UserFactory userFactory=new UserFactory();
-			return userFactory.createUser(firstname, lastname, street, pc, city, phone, email, id, pwd);
+			System.out.println("lol");
+			User user = userFactory.createUser(firstname, lastname, street, pc, city, phone, email, id, pwd);
+			System.out.println("lol2");
+			return user;
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

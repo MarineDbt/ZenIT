@@ -33,22 +33,9 @@ public class ProfileUI extends BaseUI{
 	private JPasswordField pwdCheckpassword;
 	private JButton btnChangePassword;
 	private JButton btnValidate;
-	//TO TEST ONLY
-		public static void main(String[] args) {
-			EventQueue.invokeLater(new Runnable() {
-				public void run() {
-					try {
-						ProfileUI frame = new ProfileUI(new User());
-						frame.setVisible(true);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			});
-		}
 		
-	public ProfileUI(User currentUser) {
-		super(currentUser);
+	public ProfileUI(UserFacade userFacade) {
+		super(userFacade);
 		content.setLayout(new FormLayout(new ColumnSpec[] {
 				ColumnSpec.decode("20dlu"),
 				ColumnSpec.decode("default:grow"),

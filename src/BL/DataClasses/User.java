@@ -18,7 +18,7 @@ public class User {
 	 * <p>Represents ...</p>
 	 * 
 	 */
-    private String surname;
+    private String lastname;
 
 	/**
 	 * <p>Represents ...</p>
@@ -30,7 +30,7 @@ public class User {
 	 * <p>Represents ...</p>
 	 * 
 	 */
-    private String PC;
+    private String pc;
 
 	/**
 	 * <p>Represents ...</p>
@@ -43,7 +43,13 @@ public class User {
 	 * 
 	 */
     private String phone;
-
+    
+    /**
+	 * <p>Represents ...</p>
+	 * 
+	 */
+    
+    private String email;
 	/**
 	 * <p>Represents ...</p>
 	 * 
@@ -66,19 +72,25 @@ public class User {
 	 */
     public BL.DataClasses.Cart cart;
     
-	/**
-	 * 
-	 * 
-	 * 
-	 * @poseidon-type BL.DataModel.UserRole
-	 */
-    public java.util.Collection userRole = new java.util.TreeSet();
-    public User(String firstname2, String lastname, String street2, String pC2,
-		String city2, String phone2, String email, String id2, String pwd2) {
-	// TODO Auto-generated constructor stub
+    public User(String firstname, String lastname, String street, String pc,
+		String city, String phone, String email, String id, String pwd) {
+    	this.firstname=firstname;
+    	this.lastname=lastname;
+    	this.street=street;
+    	this.pc=pc;
+    	this.city=city;
+    	this.phone=phone;
+    	this.email=email;
+    	this.id=id;
+    	this.pwd=pwd;
+
     }
 	public User() {
 		// TODO Auto-generated constructor stub
+	}
+	public User(String string, String string2) {
+		this.id=string;
+		this.pwd=string2;
 	}
 	/**
      * Delete the user account
@@ -101,5 +113,11 @@ public class User {
 	public boolean isSupervisor() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
  }

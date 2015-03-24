@@ -25,10 +25,7 @@ public class UserFacade {
 	public void register(String firstname, String lastname, String street, String PC, String city, String phone, String email, String id, String pwd){
 		userManager.register(firstname, lastname, street, PC, city, phone, email, id, pwd);
 	}
-	 /*load persistence relative to user*/
-	public void loadData(){
-		 //TODO
-	}
+
 /**
  * <p>Does ...</p>
  * 

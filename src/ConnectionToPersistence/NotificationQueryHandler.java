@@ -1,37 +1,73 @@
 
 package ConnectionToPersistence;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import BL.DataClasses.*;
+import BL.TechnicalClasses.NotificationFactory;
+import BL.TechnicalClasses.UserFactory;
 
-/**
- * 
- * 
- * @poseidon-object-id [I395d852m14bf5118266mm660f]
- */
+
 public class NotificationQueryHandler extends NotificationAbstractPersistenceHandler {
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I395d852m14bf5118266mm65f6]
- * @param User 
- * @return 
- */
-    public ArrayList<Notification> lookForNotifications(User currentUser) {        
-        // your code here
-        return null;
+
+    public ArrayList<Notification> selectNotificationsFromUser(User currentUser) {        
+    	ResultSet resultSet = null;
+
+		try {
+			String query ="select * from Notification where id_user_receive = '"+currentUser.getId()+"';";
+			System.out.println(query);
+			resultSet=ConnectionToMySQL.requestSelectQuery(query);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			resultSet.beforeFirst();
+			ArrayList<Notification> notifications = new ArrayList<Notification>();
+			String label;
+			String sender_id;
+			NotificationFactory notificationFactory = new NotificationFactory();
+			if (resultSet.isBeforeFirst()){
+				resultSet.next();
+				while (!resultSet.isAfterLast()){
+					System.out.println(resultSet.isAfterLast());
+					System.out.println(resultSet.isBeforeFirst());
+					label = resultSet.getString(resultSet.findColumn("label"));
+					sender_id = resultSet.getString(resultSet.findColumn("id_user_send"));
+					System.out.println(label);
+					System.out.println(sender_id);
+					notifications.add(notificationFactory.createNotification(sender_id,currentUser.getId(),label));
+					resultSet.next();
+				}
+			}
+			return notifications;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return null;
     } 
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I395d852m14bf5118266mm65de]
- * @param User 
- * @return 
- */
-    public boolean deleteNotifications(User currentUser) {        
-        // your code here
-        return false;
-    } 
+
+    public boolean deleteNotifications(User currentUser) {     
+    	int result=0;
+		String query ="delete from Notification where id_user_receive = '"+currentUser.getId()+"';";
+		System.out.println(query);
+    	try {
+			result=ConnectionToMySQL.requestDeleteQuery(query);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	if (result==0) return false;
+    	else return true;
+    }
+ 
  }

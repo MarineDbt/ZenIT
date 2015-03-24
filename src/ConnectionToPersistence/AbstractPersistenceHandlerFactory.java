@@ -4,19 +4,19 @@ public abstract class  AbstractPersistenceHandlerFactory{
 	
 	/* Attributes */
 	
-	private static AbstractPersistenceHandlerFactory myAbstractFactory;
+	private static AbstractPersistenceHandlerFactory myPersistenceHandlerFactory;
 	
 	/* Creation Method */
 	
-	public static AbstractPersistenceHandlerFactory createFactory()
+	public static AbstractPersistenceHandlerFactory getFactory()
 	{
-		if (myAbstractFactory == null){
-			return new DatabaseQueryHandlerFactory();
-		}
-		else{
-			return myAbstractFactory;
-		}
-		
+		return myPersistenceHandlerFactory;
+	}
+	
+	public static void setFactory(AbstractPersistenceHandlerFactory persistenceHandlerFactory)
+	{
+		if (myPersistenceHandlerFactory==null)
+		myPersistenceHandlerFactory=persistenceHandlerFactory;
 	}
 	
 	/* Creation methods for PersistenceHandler */

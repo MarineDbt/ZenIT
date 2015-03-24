@@ -28,24 +28,8 @@ public class LoginUI extends JFrame implements ActionListener{
 	
 	private JTextField txtUsername;
 	private JPasswordField pwdPassword;
-	private UserFacade userFacade;
+	public UserFacade userFacade;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LoginUI frame = new LoginUI();
-					frame.userFacade=new UserFacade();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -76,12 +60,12 @@ public class LoginUI extends JFrame implements ActionListener{
 		getContentPane().add(lblZenLounge, "2, 1, center, center");
 		
 		txtUsername = new JTextField();
-		txtUsername.setText("Username");
+		txtUsername.setText("Elie");
 		getContentPane().add(txtUsername, "2, 2, fill, default");
 		txtUsername.setColumns(10);
 		
 		pwdPassword = new JPasswordField();
-		pwdPassword.setText("Password");
+		pwdPassword.setText("a");
 		getContentPane().add(pwdPassword, "2, 4, fill, default");
 		
 		JButton btnLogIn = new JButton("Log in !");
@@ -103,9 +87,10 @@ public class LoginUI extends JFrame implements ActionListener{
 		 if (e.getActionCommand().equals("login")){
 			 boolean isLogged = userFacade.login(txtUsername.getText(),pwdPassword.getText());
 	    	 if(isLogged){
-	    		HomeUI HomeUI = new HomeUI(userFacade.userManager.currentUser);
-	    		HomeUI.userFacade=this.userFacade;
-	    		HomeUI.setVisible(true);
+	    		System.out.println("H " + userFacade.userManager.currentUser.getId());
+	    		HomeUI homeUI = new HomeUI(userFacade);
+	    		homeUI.userFacade=this.userFacade;
+	    		homeUI.setVisible(true);
 		    	this.dispose();
 	    	 };
 	     }

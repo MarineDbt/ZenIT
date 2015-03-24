@@ -29,6 +29,7 @@ import BL.DataClasses.Contains;
 import BL.DataClasses.Product;
 import BL.DataClasses.SubCategory;
 import BL.DataClasses.User;
+import BL.Front.UserFacade;
 
 import javax.swing.JList;
 
@@ -38,6 +39,8 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
+import javax.swing.ScrollPaneConstants;
+
 public class CartUI extends BaseUI {
 
 	private JPanel productList;
@@ -45,26 +48,9 @@ public class CartUI extends BaseUI {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					User u = new User();
-					u.cart=new Cart();
-					u.cart.contains= new ArrayList();
-					u.cart.contains.add(new Contains(2,new Product("truc",10.5,new SubCategory("bidule",new Category("machin")))));
-					u.cart.contains.add(new Contains(3,new Product("truc2",45.89,new SubCategory("bidule",new Category("machin")))));
-					u.cart.contains.add(new Contains(8,new Product("truc3",123,new SubCategory("bidule",new Category("machin")))));
-					CartUI frame = new CartUI(u);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	public CartUI(User currentUser) {
-		super(currentUser);
+
+	public CartUI(UserFacade userFacade) {
+		super(userFacade);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
@@ -87,6 +73,8 @@ public class CartUI extends BaseUI {
 		products.setLayout(gbl_products);
 
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
 		gbc_scrollPane.gridx = 0;
@@ -109,7 +97,7 @@ public class CartUI extends BaseUI {
 		JLabel lblTotalPrice = new JLabel("Total Price");
 		productList.add(lblTotalPrice, "cell 3 0");
 
-		this.addProducts(currentUser);
+		this.addProducts(userFacade.userManager.currentUser);
 
 		JPanel validate = new JPanel();
 		GridBagConstraints gbc_validate = new GridBagConstraints();
@@ -156,8 +144,8 @@ public class CartUI extends BaseUI {
 			productList.add(new JLabel(price), "cell 1 " + i);
 			productList.add(new JLabel(quantity), "cell 2 " + i);
 			productList.add(new JLabel(total), "cell 3 " + i);
-			productList.add(new JButton("-"));
-			productList.add(new JButton("+"));
+			productList.add(new JButton("-"), "cell 4 " + i);
+			productList.add(new JButton("+"), "cell 5 " + i);
 			i++;
 		}
 

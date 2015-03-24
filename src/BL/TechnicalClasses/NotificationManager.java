@@ -3,6 +3,8 @@ package BL.TechnicalClasses;
 import java.util.ArrayList;
 
 import BL.DataClasses.*;
+import ConnectionToPersistence.AbstractPersistenceHandlerFactory;
+import ConnectionToPersistence.NotificationAbstractPersistenceHandler;
 /**
  * 
  * 
@@ -17,9 +19,9 @@ public class NotificationManager {
  * @param User 
  * @return 
  */
-    public ArrayList<Notification> showNotifications(User currentUser) {        
-        // your code here
-        return null;
+    public ArrayList<Notification> readNotifications(User currentUser) {        
+    	NotificationAbstractPersistenceHandler notificationPersistenceHandler = AbstractPersistenceHandlerFactory.getFactory().createNotificationPersistenceHandler();
+    	return notificationPersistenceHandler.selectNotificationsFromUser(currentUser);
     } 
 
 /**
@@ -29,8 +31,9 @@ public class NotificationManager {
  * @param User 
  * @return 
  */
-    public boolean deleteNotifications(User currentUser) {        
-        // your code here
-        return false;
+    public boolean deleteNotifications(User currentUser) {
+    	
+    	NotificationAbstractPersistenceHandler notificationPersistenceHandler = AbstractPersistenceHandlerFactory.getFactory().createNotificationPersistenceHandler();
+    	return notificationPersistenceHandler.deleteNotifications(currentUser);       
     } 
  }

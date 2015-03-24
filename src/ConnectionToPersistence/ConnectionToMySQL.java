@@ -128,4 +128,29 @@ public class ConnectionToMySQL
     /* Return Value */	
     	return status;
     }
+
+	public static int requestDeleteQuery(String query) {
+		/* Requirements */
+    	if (connection == null)
+    		open();
+    	
+    /* Declarations & Initializations*/
+    	int status = 0;
+    	Statement statement = null;
+    	
+    /* Query Execution */	
+    	try {
+    		System.out.println("hi");
+			statement = connection.createStatement();
+			System.out.println("hi2");
+			System.out.println(query);
+			status = statement.executeUpdate(query);
+			System.out.println("hi3");
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+
+    /* Return Value */	
+    	return status;
+    }
 }
