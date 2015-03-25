@@ -94,7 +94,7 @@ public class User {
 	public User(String id_user, String firstname2, String lastname2) {
 		this.id = id_user;
 		this.firstname = firstname2;
-		this.surname = firstname2;
+		this.surname = lastname2;
 	}
 	/**
      * Delete the user account

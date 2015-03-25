@@ -90,10 +90,9 @@ public class ActivityQueryHandler extends ActivityPersistenceHandler {
  * @return 
  */
     public boolean updateActivity(Activity oldActivity, String newName, String newShortDescription, String newDetailledDescription) {        
-    	oldActivity = new Activity("Yogas"); // a enlever
     	
     	int result = 0;
-    	result = ConnectionToMySQL.requestInsertQuery("update Activity set activity_name= '"+newName+"', short_description = '"+newShortDescription+"',detailled_description = '"+newDetailledDescription+"' where `activity_name` = '"+oldActivity.getName()+"');");
+    	result = ConnectionToMySQL.requestInsertQuery("update Activity set activity_name= '"+newName+"', short_description = '"+newShortDescription+"',detailled_description = '"+newDetailledDescription+"' where activity_name = '"+oldActivity.getName()+"';");
     	return (result == 1);
 
     } 

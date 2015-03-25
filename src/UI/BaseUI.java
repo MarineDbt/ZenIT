@@ -21,8 +21,10 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class BaseUI extends JFrame {
+public class BaseUI extends JFrame implements ActionListener {
 
 	/* Panel corresponding to the content of the frame
 	 * this panel is empty yet
@@ -35,6 +37,9 @@ public class BaseUI extends JFrame {
 	JButton btnSupervisor;
 	JButton btnContributor;
 	JButton btnMyActivities;
+	AbstractPersistenceHandlerFactory factory;
+	User currentUser;
+	
 
 	//TO TEST ONLY
 	
@@ -51,6 +56,9 @@ public class BaseUI extends JFrame {
 	 * 
 	 */
 	public BaseUI(AbstractPersistenceHandlerFactory factory, User currentUser) {
+		this.factory = factory;
+		this.currentUser = currentUser;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1055, 432);
 		this.setMinimumSize(new Dimension(600,450));
@@ -99,6 +107,8 @@ public class BaseUI extends JFrame {
 
 		btnSupervisor = new JButton("Supervisor");
 		btnSupervisor.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		btnSupervisor.addActionListener(this);
+		btnSupervisor.setActionCommand("supervisor");
 		ribbon.add(btnSupervisor);
 
 		btnContributor = new JButton("Contributor");
@@ -157,5 +167,17 @@ public class BaseUI extends JFrame {
 		if (!currentUser.isAdmin()){
 			btnAdmin.setVisible(false);
 		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		if (e.getActionCommand().equals("supervisor")) {
+			SupervisorUI frame = new SupervisorUI(this.factory, this.currentUser);
+			frame.setVisible(true);
+			this.dispose();
+			
+		}
+		
 	}
 }

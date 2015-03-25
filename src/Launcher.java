@@ -8,8 +8,13 @@ import java.sql.ResultSet;
 
 
 
+
+
+
+import UI.AddEventTypeUI;
 import UI.DescActivityUI;
 import UI.ErrorAddActivityUI;
+import UI.SupervisorUI;
 import UI.UIActivity;
 import UI.UISubscription;
 import UI.UpdateActivityUI;
@@ -41,9 +46,10 @@ public class Launcher {
 				try {
 					
 					AbstractPersistenceHandlerFactory factory = DatabaseQueryHandlerFactory.createFactory();
-					User user = new User();
+					User user = new User("MarineDbt", "Marine", "Dubédat");
+					Activity act = new Activity();
 
-					UIActivity frame = new UIActivity(factory, user);
+					AddEventTypeUI frame = new AddEventTypeUI(factory, user,act);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
