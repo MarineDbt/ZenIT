@@ -79,7 +79,7 @@ public class ActivityFacade {
  * @param currentActivity 
  * @return 
  */
-    public ArrayList<Member> getMembers(Activity currentActivity) {        
+    public ArrayList<User> getMembers(Activity currentActivity) {        
         return activitymanager.getMembers(currentActivity);
     } 
 

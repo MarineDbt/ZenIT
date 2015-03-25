@@ -67,7 +67,7 @@ public abstract class ActivityPersistenceHandler {
  * @param currentActivity 
  * @return 
  */
-    public ArrayList<Member> lookForMembers(Activity currentActivity) {        
+    public ArrayList<User> lookForMembers(Activity currentActivity) {        
         // your code here
         return null;
     } 

@@ -80,6 +80,22 @@ public class User {
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
+	public User(String id_user, String firstname2, String lastname,
+			String street2, String pc2, String city2, String phone2) {
+		this.city = city2;
+		this.firstname = firstname2;
+		this.id = id_user;
+		this.surname = lastname;
+		this.street = street2;
+		this.PC = pc2;
+		this.phone = phone2;
+		
+	}
+	public User(String id_user, String firstname2, String lastname2) {
+		this.id = id_user;
+		this.firstname = firstname2;
+		this.surname = firstname2;
+	}
 	/**
      * Delete the user account
      */
@@ -89,6 +105,14 @@ public class User {
     
     public String getID() {
     return this.id;	
+    }
+    
+    public String getLastname() {
+    	return this.surname;
+    }
+    
+    public String getFirstname() {
+    	return this.firstname;
     }
     
 	public boolean isMember() {

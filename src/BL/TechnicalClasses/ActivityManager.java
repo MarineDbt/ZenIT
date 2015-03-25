@@ -74,7 +74,7 @@ public class ActivityManager {
  * @param currentActivity 
  * @return 
  */
-    public ArrayList<Member> getMembers(Activity currentActivity) {        
+    public ArrayList<User> getMembers(Activity currentActivity) {        
         
         return activityPH.lookForMembers(currentActivity);
     } 

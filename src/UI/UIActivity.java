@@ -89,10 +89,10 @@ public class UIActivity extends BaseUI implements ActionListener {
 			btnDetails.setActionCommand("details"+i);
 			panel_1.add(btnDetails);
 			
-			JButton btnContributors = new JButton("Contributors");
+			JButton btnContributors = new JButton("Followers");
 			//btnContributors.setBounds(170, 26+39*i, 119, 28);
 			btnContributors.addActionListener(this);
-			btnContributors.setActionCommand("contributors"+i);
+			btnContributors.setActionCommand("followers"+i);
 			panel_1.add(btnContributors);
 			
 			JButton btnUpdate = new JButton("Update");
@@ -149,8 +149,10 @@ public class UIActivity extends BaseUI implements ActionListener {
 		this.dispose();
 	}
 	
-	if (e.getActionCommand().equals("contributors"+i)) {
-		
+	if (e.getActionCommand().equals("followers"+i)) {
+		ActivityFollowersUI frame = new ActivityFollowersUI(this.factory,this.user,this.act.get(i));
+		frame.setVisible(true);
+		this.dispose();
 	}
 	
 	

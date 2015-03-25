@@ -48,11 +48,13 @@ public class ActivityQueryHandler extends ActivityPersistenceHandler {
         return myActivities;
     } 
     
+    
     public boolean addActivity(String nameActivity, User currentUser, String shortDescription, String detailledDescription) {
     	int result = 0;
     	result = ConnectionToMySQL.requestInsertQuery("insert into Activity (activity_name,short_description,detailled_description,id_supervisor) values('"+nameActivity+"','"+shortDescription+"','"+detailledDescription+"','1');");
     	return (result == 1);
 	}
+    
     
     public boolean deleteActivity(Activity currentActivity) {
     	/* Declarations and initializations */
@@ -103,9 +105,38 @@ public class ActivityQueryHandler extends ActivityPersistenceHandler {
  * @param currentActivity 
  * @return 
  */
-    public ArrayList<Member> lookForMembers(Activity currentActivity) {        
-        // your code here
-        return null;
+    public ArrayList<User> lookForMembers(Activity currentActivity) {        
+
+    	/* Declarations and initializations */
+    	ResultSet result;
+    	ResultSet result2;
+    	ArrayList<User> userlist = new ArrayList<User>();
+    	
+    	/* Query execution delegated to ConnectionToMySQL */
+    	result = ConnectionToMySQL.requestSelectQuery("Select * from ActivityMember where `activity_name`= '"+currentActivity.getName()+"';");
+    	
+    	try {
+			while (result.next()) {
+			     String id_user = result.getString(1);
+			     result2 = ConnectionToMySQL.requestSelectQuery("Select * from User where `id`= '"+id_user+"';");
+			     while (result2.next()) {
+			    	 String firstname = result.getString(2);
+			    	 String lastname = result.getString(3);
+			    	 String street = result.getString(4);
+			    	 String pc = result.getString(5);
+			    	 String city = result.getString(6);
+			    	 String phone  = result.getString(7);
+			    	 User user = new User(id_user, firstname, lastname, street, pc, city, phone);
+			    	 userlist.add(user);
+			     }
+			     
+			 }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+        return userlist;
     } 
 
 /**
