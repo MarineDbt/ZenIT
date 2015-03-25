@@ -9,6 +9,11 @@ import javax.swing.*;
 
 import BL.Front.RoomFacade;
 import javax.swing.GroupLayout.Alignment;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import net.miginfocom.swing.MigLayout;
+import java.awt.Component;
 
 public class OkUI extends JFrame implements ActionListener{
 	
@@ -18,18 +23,20 @@ public class OkUI extends JFrame implements ActionListener{
 		setBounds(100,100,450, 300);
 		
 		Container contentPane = getContentPane();
-		JPanel panel1 = new JPanel();
+		SpringLayout springLayout = new SpringLayout();
+		getContentPane().setLayout(springLayout);
 		
-		JLabel label = new JLabel(message);
-		panel1.add(label);
-		contentPane.add(panel1,BorderLayout.CENTER);
+		JLabel lblNewLabel = new JLabel(message);
+		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel, 64, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, lblNewLabel, -179, SpringLayout.EAST, getContentPane());
+		getContentPane().add(lblNewLabel);
 		
-		JPanel panel2 = new JPanel();
-		JButton boutonOK = new JButton("OK");
-		boutonOK.addActionListener(this);
-		boutonOK.setActionCommand("Fermer");
-		panel2.add(boutonOK);
-		contentPane.add(panel2,BorderLayout.SOUTH);
+		JButton btnOk = new JButton("OK");
+		btnOk.addActionListener(this);
+		btnOk.setActionCommand("Fermer");
+		springLayout.putConstraint(SpringLayout.SOUTH, btnOk, -53, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, btnOk, -185, SpringLayout.EAST, getContentPane());
+		getContentPane().add(btnOk);
 		
 	}
 

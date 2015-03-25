@@ -22,7 +22,7 @@ import ConnectionToDB.ConnectionToMySQL;
 public class Launcher {
 
 	/*test DB ok*/
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		AbstractPersistenceHandlerFactory factory = DatabaseQueryHandlerFactory.createFactory();
 		Category category = new Category("Zumba");
 		CategoryFacade facade = new CategoryFacade(factory);
@@ -50,7 +50,7 @@ public class Launcher {
 		else 
 		{
 			System.out.println("tableau null");
-		}*/
+		}
 		if (requete) 
 		{
 			System.out.println("insert ok");
@@ -60,9 +60,9 @@ public class Launcher {
 			System.out.println("erreur");
 		}
 
-	}
+	}*/
 
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -73,17 +73,20 @@ public class Launcher {
 					//AdminServiceUI UI2 = new AdminServiceUI(user,factory);
 					//UI2.setVisible(true);
 					
-					AdminGestionSalle UI3 = new AdminGestionSalle(user,factory);
-					UI3.setVisible(true);
+					//AdminGestionSalle UI3 = new AdminGestionSalle(user,factory);
+					//UI3.setVisible(true);
 					
 					//AjouterSalleUI UI4 = new AjouterSalleUI(factory);
 					//UI4.setVisible(true);
+					
+					AffichageCatUI UI5 = new AffichageCatUI(factory);
+					UI5.setVisible(true);
 					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-	}*/
+	}
 
 }
