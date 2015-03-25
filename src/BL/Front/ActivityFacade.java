@@ -93,4 +93,5 @@ public class ActivityFacade {
     public ArrayList<Event> getEvents(Activity currentActivity) {        
         return activitymanager.getEvents(currentActivity);
     } 
+ 
  }

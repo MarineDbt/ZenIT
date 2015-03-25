@@ -95,10 +95,10 @@ public class UIActivity extends BaseUI implements ActionListener {
 			btnContributors.setActionCommand("followers"+i);
 			panel_1.add(btnContributors);
 			
-			JButton btnUpdate = new JButton("Update");
+			JButton btnUpdate = new JButton("Events");
 			//btnUpdate.setBounds(299, 26+39*i, 90, 28);
 			btnUpdate.addActionListener(this);
-			btnUpdate.setActionCommand("update"+i);
+			btnUpdate.setActionCommand("event"+i);
 			panel_1.add(btnUpdate);
 			
 			JButton btnDelete = new JButton("Delete");
@@ -137,14 +137,17 @@ public class UIActivity extends BaseUI implements ActionListener {
 	if (e.getActionCommand().equals("delete"+i)) {
 		UIActivity frame = new UIActivity(factory, this.user);
 		ActivityFacade facade = new ActivityFacade(factory);
-		facade.deleteActivity(this.act.get(i));
-		frame.setVisible(true);
+		if (facade.deleteActivity(this.act.get(i)))
+		{ frame.setVisible(true);
 		this.dispose();
+		ActSupprime frameMessage = new ActSupprime("L'activité a bien été supprimée");
+		frameMessage.setVisible(true);
+		}
 		
 	}
 	
-	if (e.getActionCommand().equals("update"+i)) {
-		UpdateActivityUI frame = new UpdateActivityUI(this.factory,this.user,this.act.get(i));
+	if (e.getActionCommand().equals("event"+i)) {
+		ActivityListEventUI frame = new ActivityListEventUI(this.factory,this.user,this.act.get(i));
 		frame.setVisible(true);
 		this.dispose();
 	}

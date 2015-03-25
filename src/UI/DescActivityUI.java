@@ -117,11 +117,16 @@ public class DescActivityUI extends BaseUI implements ActionListener {
 		}
 		
 		if (e.getActionCommand().equals("delete")) {
+			
 			UIActivity frame = new UIActivity(factory, this.user);
 			ActivityFacade facade = new ActivityFacade(factory);
-			facade.deleteActivity(currentActivity);
+			if (facade.deleteActivity(currentActivity)) {
 			frame.setVisible(true);
 			this.dispose();
+			ActSupprime frameMessage = new ActSupprime("L'activité a bien été supprimée");
+			frameMessage.setVisible(true);
+			}
+			
 			
 		}
 		

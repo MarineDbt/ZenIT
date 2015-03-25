@@ -7,6 +7,12 @@ package BL.DataClasses;
  */
 public class TimeSlot {
 
+public TimeSlot(int hdeb, int mindeb, int hfin, int minfin) {
+		this.startHour = hdeb;
+		this.startMinutes = mindeb;
+		this.endingHour = hfin;
+		this.enfingMinutes = minfin;
+	}
 /**
  * <p>Represents ...</p>
  * 

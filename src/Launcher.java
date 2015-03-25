@@ -49,7 +49,7 @@ public class Launcher {
 					User user = new User("MarineDbt", "Marine", "Dubédat");
 					Activity act = new Activity();
 
-					AddEventTypeUI frame = new AddEventTypeUI(factory, user,act);
+					SupervisorUI frame = new SupervisorUI(factory, user);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

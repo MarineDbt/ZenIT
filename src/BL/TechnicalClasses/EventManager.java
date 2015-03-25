@@ -170,8 +170,13 @@ public EventPersistenceHandler eventPH;
  * @param currentEvent 
  * @return 
  */
-    public ArrayList<Member> getMembers(Member currentEvent) {        
+    public ArrayList<User> getMembers(Event currentEvent) {        
      
         return eventPH.lookForMembers(currentEvent);
     } 
- }
+    
+    public ArrayList<User> allContributors() {
+    	return eventPH.allContributors();
+    }
+  }
+ 

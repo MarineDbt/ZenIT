@@ -7,6 +7,9 @@ package BL.DataClasses;
  */
 public class Room {
 
+public Room(String id_room) {
+		this.numRoom=id_room;
+	}
 /**
  * <p>Represents ...</p>
  * 

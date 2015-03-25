@@ -159,8 +159,13 @@ public abstract class EventPersistenceHandler {
  * @param currentEvent 
  * @return 
  */
-    public ArrayList<Member> lookForMembers(Member currentEvent) {        
+    public ArrayList<User> lookForMembers(Event currentEvent) {        
         // your code here
         return null;
     } 
- }
+    
+    public ArrayList<User> allContributors() {
+    	return null;
+    }
+  }
+ 

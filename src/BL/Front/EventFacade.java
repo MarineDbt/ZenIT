@@ -162,8 +162,12 @@ public class EventFacade {
  * @param currentEvent 
  * @return 
  */
-    public ArrayList<Member> getMembers(Member currentEvent) {        
+    public ArrayList<User> getMembers(Event currentEvent) {        
         
         return eventmanager.getMembers(currentEvent);
-    } 
+    }
+    
+    public ArrayList<User> allContributors() {
+    	return eventmanager.allContributors();
+    }
  }
