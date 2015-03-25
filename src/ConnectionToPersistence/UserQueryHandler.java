@@ -63,28 +63,17 @@ public class UserQueryHandler extends UserAbstractPersistenceHandler{
 		// TODO
 	}
 
-	/**
-	 * <p>Does ...</p>
-	 * 
-	 * @poseidon-object-id [I395d852m14bf5118266mm6734]
-	 * @param User 
-	 */
-	    public User selectUser(User currentUser) {
-			return currentUser;        
-	        // your code here
-	    } 
 
-	/**
-	 * <p>Does ...</p>
-	 * 
-	 * @poseidon-object-id [I395d852m14bf5118266mm670f]
-	 * @param User 
-	 * @return 
-	 */
-	    public boolean updateUser(User currentUser) {        
-	        // your code here
-	        return false;
-	    }
+    public boolean updateUser(String firstname, String lastname, String street, String PC, String city, String phone, String email, String id, String pwd) {        
+    	UserPasswordEncryptionHandler encryptionHandler = new UserPasswordEncryptionHandler();
+		String encryptedPwd;
+		int result = 0;
+		encryptedPwd=encryptionHandler.encryptPassword(pwd);
+		
+		result = ConnectionToMySQL.requestUpdateQuery("Update User SET firstname = '"+firstname+"', lastname = '"+lastname+"', street = '"+street+"', PC = '"+PC+"', city = '"+city+"', phone = '"+phone+"', email = '"+email+"', pwd = '"+encryptedPwd+"' WHERE id = '"+id+"';");
+		
+		return (result==1);
+    }
 
 	@Override
 	public boolean deleteUser(User currentUser) {
@@ -92,7 +81,7 @@ public class UserQueryHandler extends UserAbstractPersistenceHandler{
 		return false;
 	}
 
-	public User lookForUserInfo(String id) {
+	public User selectUser(String id) {
 		
 		ResultSet resultSet = null;
 

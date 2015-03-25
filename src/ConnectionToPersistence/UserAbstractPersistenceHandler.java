@@ -38,7 +38,7 @@ public abstract class UserAbstractPersistenceHandler {
  * @param User 
  * @return 
  */
-    public abstract boolean updateUser(User currentUser);
+    public abstract boolean updateUser(String firstname, String lastname, String street, String PC, String city, String phone, String email, String id, String pwd);
 
 /**
  * <p>Does ...</p>
@@ -47,7 +47,7 @@ public abstract class UserAbstractPersistenceHandler {
  * @param User 
  * @return
  */
-    public abstract User lookForUserInfo(String id);   
+    public abstract User selectUser(String id);   
 
 /**
  * <p>Does ...</p>

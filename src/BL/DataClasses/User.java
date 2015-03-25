@@ -117,7 +117,25 @@ public class User {
 	public String getId() {
 		return id;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public String getFirstname() {
+		return firstname;
+	}
+	public String getLastname() {
+		return lastname;
+	}
+	public String getStreet() {
+		return street;
+	}
+	public String getPc() {
+		return pc;
+	}
+	public String getCity() {
+		return city;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public String getEmail() {
+		return email;
 	}
  }
