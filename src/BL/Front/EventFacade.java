@@ -170,4 +170,8 @@ public class EventFacade {
     public ArrayList<User> allContributors() {
     	return eventmanager.allContributors();
     }
+    
+    public ArrayList<Room> selectAllRooms() {      
+    	return eventmanager.selectAllRooms();
+    }
  }

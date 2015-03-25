@@ -178,5 +178,9 @@ public EventPersistenceHandler eventPH;
     public ArrayList<User> allContributors() {
     	return eventPH.allContributors();
     }
+    
+    public ArrayList<Room> selectAllRooms() {      
+    	return eventPH.selectAllRooms();
+    }
   }
  

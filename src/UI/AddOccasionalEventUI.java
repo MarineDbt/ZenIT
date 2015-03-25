@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import BL.DataClasses.Activity;
+import BL.DataClasses.Room;
 import BL.DataClasses.User;
 import BL.Front.EventFacade;
 import BL.TechnicalClasses.AbstractPersistenceHandlerFactory;
@@ -45,6 +46,8 @@ public class AddOccasionalEventUI extends BaseUI implements ActionListener {
 	private JLabel label;
 	private JTextField heurefin;
 	private JComboBox contrib;
+	private JComboBox roombox;
+	private String chosenRoom;
 	
 	public AddOccasionalEventUI(AbstractPersistenceHandlerFactory factory, User currentUser, Activity currentAct) {
 
@@ -55,20 +58,7 @@ public class AddOccasionalEventUI extends BaseUI implements ActionListener {
 		this.currentActivity = currentAct;
 		content.setLayout(null);
 		
-		/*
-		//	Choix de la langue francaise
-		Locale locale = Locale.getDefault();
-		Date actuelle = new Date();
 		
-		//	Definition du format utilise pour les dates
-		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-		
-		// Donne la date au format "aaaa-mm-jj" 
-
-			String dat = dateFormat.format(actuelle);
-			System.out.println(dat);
-			
-*/
 			
 		JLabel lblName = new JLabel("Name : ");
 		lblName.setBounds(190, 11, 46, 14);
@@ -80,77 +70,77 @@ public class AddOccasionalEventUI extends BaseUI implements ActionListener {
 		namefield.setColumns(10);
 		
 		JLabel lblDescription = new JLabel("Description :");
-		lblDescription.setBounds(190, 52, 73, 14);
+		lblDescription.setBounds(190, 36, 73, 14);
 		content.add(lblDescription);
 		
 		descfield = new JTextField();
-		descfield.setBounds(264, 52, 152, 20);
+		descfield.setBounds(264, 36, 152, 20);
 		content.add(descfield);
 		descfield.setColumns(10);
 		
 		Locale locale = Locale.getDefault();
 		JLabel lblDate = new JLabel("Date (DD/MM/YYYY) :");
-		lblDate.setBounds(239, 83, 179, 14);
+		lblDate.setBounds(239, 67, 179, 14);
 		content.add(lblDate);
 		
 		DateFormat dform = new SimpleDateFormat("dd/MM/yyyy");
 		
 		tfDate = new JFormattedTextField(dform);
 		tfDate.setColumns(10);
-		tfDate.setBounds(239, 107, 152, 20);
+		tfDate.setBounds(239, 91, 152, 20);
 		content.add(this.tfDate);
 		
 		String[] eventTypeslist = { "Conference", "Private Sales","Master Class" };
 		this.eventType = new JComboBox(eventTypeslist);
-		eventType.setBounds(264, 183, 152, 20);
+		eventType.setBounds(264, 196, 152, 20);
 		eventType.setSelectedIndex(1);
 		eventType.addActionListener(this);
 		content.add(eventType);
 		
 		btnSend = new JButton("Next");
-		btnSend.setBounds(264, 250, 89, 23);
+		btnSend.setBounds(262, 269, 89, 23);
 		content.add(btnSend);
 		btnSend.addActionListener(this);
 		btnSend.setActionCommand("next");
 		
 		lblType = new JLabel("Type : ");
-		lblType.setBounds(190, 186, 46, 14);
+		lblType.setBounds(190, 199, 46, 14);
 		content.add(lblType);
 		
 		de = new JLabel("De");
-		de.setBounds(190, 151, 29, 14);
+		de.setBounds(190, 128, 29, 14);
 		content.add(de);
 		
 		heuredeb = new JTextField();
-		heuredeb.setBounds(217, 145, 29, 20);
+		heuredeb.setBounds(217, 122, 29, 20);
 		content.add(heuredeb);
 		heuredeb.setColumns(10);
 		
 		lblH = new JLabel("h");
-		lblH.setBounds(251, 151, 20, 14);
+		lblH.setBounds(251, 128, 20, 14);
 		content.add(lblH);
 		
 		mindeb = new JTextField();
-		mindeb.setBounds(267, 145, 30, 20);
+		mindeb.setBounds(267, 122, 30, 20);
 		content.add(mindeb);
 		mindeb.setColumns(10);
 		
 		a = new JLabel("\u00E0");
-		a.setBounds(307, 151, 20, 14);
+		a.setBounds(307, 128, 20, 14);
 		content.add(a);
 		
 		heurefin = new JTextField();
 		heurefin.setColumns(10);
-		heurefin.setBounds(322, 145, 29, 20);
+		heurefin.setBounds(322, 122, 29, 20);
 		content.add(heurefin);
 		
 		minfin = new JTextField();
 		minfin.setColumns(10);
-		minfin.setBounds(372, 145, 30, 20);
+		minfin.setBounds(372, 122, 30, 20);
 		content.add(minfin);
 		
 		label = new JLabel("h");
-		label.setBounds(356, 151, 20, 14);
+		label.setBounds(356, 128, 20, 14);
 		content.add(label);
 		
 		EventFacade facade = new EventFacade(factory);
@@ -162,14 +152,33 @@ public class AddOccasionalEventUI extends BaseUI implements ActionListener {
 		}
 		
 		this.contrib = new JComboBox(contributorstab);
-		contrib.setBounds(264, 214, 152, 20);
+		contrib.setBounds(264, 227, 152, 20);
 		contrib.setSelectedIndex(contributorstab.length-1);
 		contrib.addActionListener(this);
 		content.add(contrib);
 		
 		JLabel lblContributor = new JLabel("Contributor :");
-		lblContributor.setBounds(190, 217, 73, 14);
+		lblContributor.setBounds(190, 230, 73, 14);
 		content.add(lblContributor);
+		
+		JLabel lblRoom = new JLabel("Room : ");
+		lblRoom.setBounds(190, 165, 46, 14);
+		content.add(lblRoom);
+		
+		ArrayList<Room> rooms = facade.selectAllRooms();
+		
+		String[] roomtab = new String[rooms.size()];
+		for (int i=0;i<rooms.size();i++) {
+			roomtab[i] = rooms.get(i).getid();
+		}
+		
+		this.roombox = new JComboBox(roomtab);
+		roombox.setBounds(264, 162, 152, 20);
+		roombox.setSelectedIndex(contributorstab.length-1);
+		roombox.addActionListener(this);
+		content.add(roombox);
+		
+		
 		
 	}
 
@@ -181,6 +190,9 @@ public class AddOccasionalEventUI extends BaseUI implements ActionListener {
 	     
 	    String contributor = (String)this.contrib.getSelectedItem();
 	    this.chosenContrib = contributor;
+	    
+	    String room = (String)this.roombox.getSelectedItem();
+	    this.chosenRoom = room;
 	     
 	    if (e.getActionCommand().equals("next")) {
 		    		

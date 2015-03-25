@@ -167,5 +167,10 @@ public abstract class EventPersistenceHandler {
     public ArrayList<User> allContributors() {
     	return null;
     }
+    
+public ArrayList<Room> selectAllRooms() {        
+       	
+return null;
+    } 
   }
  

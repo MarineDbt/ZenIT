@@ -245,5 +245,30 @@ public class EventQueryHandler extends EventPersistenceHandler {
     }
     
     
+public ArrayList<Room> selectAllRooms() {        
+       	
+    	/* Declarations and initializations */
+    	ResultSet result;
+    	ArrayList<Room> myRooms = new ArrayList<Room>();
+
+    	/* Query execution delegated to ConnectionToMySQL */
+    	result = ConnectionToMySQL.requestSelectQuery("Select * from Room;");
+    	
+    	
+    	try {
+			while (result.next()) {
+			     String id_room = result.getString(1);
+			     float superficy = result.getFloat(2);
+			     Room myRoom = new Room(id_room,superficy);
+			     myRooms.add(myRoom);
+			 }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+        return myRooms;
+    } 
+    
    }
  
