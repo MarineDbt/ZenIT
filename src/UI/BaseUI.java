@@ -98,6 +98,8 @@ public class BaseUI extends JFrame implements ActionListener {
 		JButton btnProfile = new JButton("Profile");
 		btnProfile.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		ribbon.add(btnProfile);
+		btnProfile.addActionListener(this);
+		btnProfile.setActionCommand("profile");
 
 		btnAdmin = new JButton("Admin");
 		btnAdmin.setFont(new Font("Tahoma", Font.PLAIN, 9));
@@ -166,13 +168,18 @@ public class BaseUI extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getActionCommand().equals("home")){
 			HomeUI homeUI = new HomeUI(userFacade);
-    		homeUI.userFacade=this.userFacade;
     		homeUI.setVisible(true);
 	    	this.dispose();
 		}
 		if (arg0.getActionCommand().equals("notifications")){
-			 NotificationCenterUI notificationCenter = new NotificationCenterUI(userFacade);
-			 notificationCenter.setVisible(true);
+			 NotificationCenterUI notificationCenterUI = new NotificationCenterUI(userFacade);
+			 notificationCenterUI.setVisible(true);
+			 this.dispose();
+		}
+		
+		if (arg0.getActionCommand().equals("profile")){
+			 ProfileUI profileUI = new ProfileUI(userFacade);
+			 profileUI.setVisible(true);
 			 this.dispose();
 		}
 	}

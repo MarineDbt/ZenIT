@@ -1,4 +1,5 @@
 package BL.TechnicalClasses;
+import java.sql.SQLException;
 import java.util.HashMap;
 
 import BL.DataClasses.Product;
@@ -32,14 +33,8 @@ public class UserManager {
 	public boolean login(String id, String pwd){
 		
 		boolean result = false;
-		try {
-			System.out.println("a");
-			result = userPersistenceHandler.checkPassword(id, pwd);
-			System.out.println("b");
-		} catch (Exception e) {
-			e.printStackTrace();
-		} 
-		 if (result){
+		result = checkPassword(id, pwd);
+		if (result){
 			 System.out.println("c");
 			 loadUser(id);
 			 currentUser=users.get(id);
@@ -48,6 +43,16 @@ public class UserManager {
 		 
 		 return result;
 	}
+	public boolean checkPassword(String id, String pwd){
+		try {
+			return userPersistenceHandler.checkPassword(id, pwd);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 	 public boolean register(String firstname, String lastname, String street, String PC, String city, String phone, String email, String id, String pwd){
 		 
 		boolean result = false;
@@ -61,7 +66,7 @@ public class UserManager {
 		return result;
 	 }
 	 private void loadUser(String id){
-		 User user = userPersistenceHandler.lookForUserInfo(id);
+		 User user = userPersistenceHandler.selectUser(id);
 		 System.out.println(user.getId());
 		 users.put(id,user);
 	 }
@@ -87,8 +92,15 @@ public class UserManager {
 	  * @return 
 	  */
 	     public boolean modifyProfile(String firstname, String lastname, String street, String PC, String city, String phone, String email, String id, String pwd) {        
-	         // your code here
-	         return false;
+	    	 boolean result = false;
+	 		
+	 		try {
+	 			result = this.userPersistenceHandler.updateUser(firstname, lastname, street, PC, city, phone, email, id, pwd);
+	 		} catch (Exception e) {
+	 			// TODO : Error Handling
+	 		}
+	 		
+	 		return result;
 	     } 
 
 	 /**
