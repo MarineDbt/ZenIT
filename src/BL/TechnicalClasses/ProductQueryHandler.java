@@ -19,7 +19,7 @@ public class ProductQueryHandler extends ProductPersistenceHandler {
 	//Constructors
 	
 	public ProductQueryHandler(){
-		
+		super();
 	}
 	
 	
@@ -33,6 +33,7 @@ public class ProductQueryHandler extends ProductPersistenceHandler {
  * @param Member 
  * @param int 
  * @param String 
+ * @param String description
  * @return 
  */
     public boolean addProduct(String name, float price,float discount,Member currentMember,int quantity, String subcategory, String description) {        
@@ -41,8 +42,7 @@ public class ProductQueryHandler extends ProductPersistenceHandler {
 		int result = 0;
 		
 		/* Query execution delegated to ConnectionToMySQL */
-		result = ConnectionToMySQL.requestInsertQuery( "insert into Product (nameProduct, price, discount, quantity, id_member, subcategory_name, product_description) "
-				+ "values('"+name+"','"+price+"','"+discount+"','"+currentMember+"','"+quantity+"','"+subcategory+"','"+description+"');");
+		result = ConnectionToMySQL.requestInsertQuery("insert into Product (nameProduct, price, discount, quantity, id_member, subcategory_name, product_description) values ('"+name+"',"+price+","+discount+","+currentMember.getID()+","+quantity+",'"+subcategory+"','"+description+"');");
 		
 		/* Return value */
 		return (result == 1);
@@ -55,13 +55,13 @@ public class ProductQueryHandler extends ProductPersistenceHandler {
  * @param Product 
  * @return 
  */
-    public boolean modifyProduct(Product product, String name, float price, float discount, String description) {        
+    public boolean modifyProduct(Product product, String name, float price, float discount, int quantity, String description) {        
     	
     	/* Declarations and initializations */
     	int result = 0;
     	
     	/* Query execution delegated to ConnectionToMySQL */
-    	result = ConnectionToMySQL.requestInsertQuery( "update product set nameProduct = '" + name + "', price = '" + price + "', discount = '" + discount + "', description = '"+ description + " where id_product = '"+ product.getID() +"';");
+    	result = ConnectionToMySQL.requestInsertQuery( "update product set nameProduct = '" + name + "', price = " + price + ", discount = " + discount + ", quantity = " + quantity + ", description = '"+ description + " where id_product = '"+ product.getID() +"';");
     	
     	/* Return value */
     	return (result == 1);
@@ -119,4 +119,4 @@ public class ProductQueryHandler extends ProductPersistenceHandler {
     	}
     	return myProducts;
     }
- }
+}

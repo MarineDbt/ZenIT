@@ -31,11 +31,11 @@ public abstract class  AbstractPersistenceHandlerFactory{
 	
 	public abstract NotificationPersistenceHandler createNotificationPersistenceHandler();
 	
-	public abstract RoomPersistenceHandler createRoomPersistenceHandler();
+	public abstract RoomPersistenceHandler createRoomPersistenceHandler();*/
 	
 	public abstract CategoryPersistenceHandler createCategoryPersistenceHandler();
 	
-	public abstract MyActivitesPersistenceHandler createMyActivitiesPersistenceHandler();
+	/*public abstract MyActivitesPersistenceHandler createMyActivitiesPersistenceHandler();
 	
 	public abstract EventPersistenceHandler createEventPersistenceHandler();
 	

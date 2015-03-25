@@ -2,7 +2,12 @@
 package UI;
 import javax.swing.JFrame;
 
+import BL.DataClasses.Category;
+import BL.DataClasses.Member;
+import BL.DataClasses.Product;
+import BL.Front.CategoryFacade;
 import BL.Front.ProductFacade;
+import BL.TechnicalClasses.AbstractPersistenceHandlerFactory;
 
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -20,8 +25,10 @@ import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ScrollPaneConstants;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.SwingConstants;
 import javax.swing.JTextArea;
 
@@ -30,7 +37,7 @@ import javax.swing.JTextArea;
  * 
  * @poseidon-object-id [I7e6badf8m14c21c9ffdfmm7de1]
  */
-public class UIProduct extends BaseUI {
+public class UIProduct extends BaseUI implements ActionListener {
 	
 	private JScrollPane productPanel;
 	private JPanel buttonPanel;
@@ -41,20 +48,32 @@ public class UIProduct extends BaseUI {
 	private JButton addProduct;
 	private JButton modifyProduct;
 	
+	private JLabel myProductsLabel;
 	private JLabel infoComplementaires;
 	private JLabel nameProductLabel;
 	private JLabel priceProductLabel;
 	private JLabel subcategoryProductLabel;
-	private JLabel remiseProductLabel;
+	private JLabel discountProductLabel;
+	private JLabel quantityLabel;
 	private JLabel descriptionProductLabel;
 	
 	private JTextField nameProductText;
 	private JTextField priceProductText;
 	private JTextField subcategoryProductText;
 	private JTextField discountProductText;
+	private JTextField quantityText;
+	private JTextArea descriptionTextArea;
 	
-	public UIProduct() {
+	public AbstractPersistenceHandlerFactory factory;
+	//private ProductFacade productFacade;
+	private ArrayList<Product> myProducts;
+	
+	public UIProduct(AbstractPersistenceHandlerFactory factory) {
 			
+			// Variables
+			this.factory = factory;
+			//this.productFacade = new ProductFacade(factory);
+		
 			// Frame Characteristics
 			setTitle("Mes Produits");
 			setBackground(Color.gray);
@@ -120,11 +139,11 @@ public class UIProduct extends BaseUI {
 			subcategoryProductLabel.setBounds(11, 65, 79, 16);
 			infoPanel.add(subcategoryProductLabel);
 			
-			remiseProductLabel = new JLabel("Remise (%)");
-			remiseProductLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-			remiseProductLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
-			remiseProductLabel.setBounds(121, 45, 64, 16);
-			infoPanel.add(remiseProductLabel);
+			discountProductLabel = new JLabel("Remise (%)");
+			discountProductLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+			discountProductLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
+			discountProductLabel.setBounds(95, 45, 56, 16);
+			infoPanel.add(discountProductLabel);
 			
 			descriptionProductLabel = new JLabel("Description");
 			descriptionProductLabel.setBounds(270, 0, 183, 16);
@@ -132,37 +151,71 @@ public class UIProduct extends BaseUI {
 			
 			nameProductText = new JTextField();
 			nameProductText.setFont(new Font("Tahoma", Font.PLAIN, 11));
-			nameProductText.setBounds(62, 25, 183, 16);
+			nameProductText.setBounds(56, 25, 197, 16);
 			infoPanel.add(nameProductText);
 			nameProductText.setColumns(10);
 			
 			priceProductText = new JTextField();
 			priceProductText.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			priceProductText.setColumns(10);
-			priceProductText.setBounds(62, 45, 53, 16);
+			priceProductText.setBounds(56, 45, 34, 16);
 			infoPanel.add(priceProductText);
 			
 			subcategoryProductText = new JTextField();
+			subcategoryProductText.setEditable(false);
 			subcategoryProductText.setColumns(10);
-			subcategoryProductText.setBounds(102, 65, 143, 16);
+			subcategoryProductText.setBounds(94, 65, 159, 16);
 			infoPanel.add(subcategoryProductText);
 			
 			discountProductText = new JTextField();
 			discountProductText.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			discountProductText.setColumns(10);
-			discountProductText.setBounds(192, 45, 53, 16);
+			discountProductText.setBounds(155, 45, 22, 16);
 			infoPanel.add(discountProductText);
 			
-			JTextArea descriptionTextArea = new JTextArea();
+			descriptionTextArea = new JTextArea();
 			descriptionTextArea.setEditable(false);
 			descriptionTextArea.setRows(3);
 			descriptionTextArea.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			descriptionTextArea.setBounds(270, 25, 289, 56);
 			infoPanel.add(descriptionTextArea);
 			
-			JLabel myProductsLabel = new JLabel("Mes Produits");
+			quantityLabel = new JLabel("Quantit\u00E9");
+			quantityLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+			quantityLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
+			quantityLabel.setBounds(176, 45, 49, 16);
+			infoPanel.add(quantityLabel);
+			
+			quantityText = new JTextField();
+			quantityText.setFont(new Font("Tahoma", Font.PLAIN, 11));
+			quantityText.setColumns(10);
+			quantityText.setBounds(231, 45, 22, 16);
+			infoPanel.add(quantityText);
+			
+			myProductsLabel = new JLabel("Mes Produits");
 			myProductsLabel.setBounds(10, 5, 93, 16);
 			content.add(myProductsLabel);
+			
+			// Action Listeners
+			
+			addProduct.addActionListener(this);
+			addProduct.setActionCommand("add");
+			
+			deleteProduct.addActionListener(this);
+			deleteProduct.setActionCommand("delete");
+			
+			modifyProduct.addActionListener(this);
+			modifyProduct.setActionCommand("delete");
+			
+		}
+	
+	public void actionPerformed(ActionEvent e) {
+		if (e.getActionCommand().equals("add")) {
+			UIAddProduct frameAdd = new UIAddProduct(factory);
+			frameAdd.setVisible(true);
+			this.dispose();
 		}
 	}
+
+}
 

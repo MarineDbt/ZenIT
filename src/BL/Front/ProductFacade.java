@@ -43,8 +43,8 @@ public class ProductFacade {
  * @param Product 
  * @return 
  */
-    public boolean modifyProduct(Product product, String name, float price, float discount, String description) {        
-        this.productManager.modifyProduct(product, name, price, discount, description);
+    public boolean modifyProduct(Product product, String name, float price, float discount, int quantity, String description) {        
+        this.productManager.modifyProduct(product, name, price, discount, quantity, description);
         return false;
     } 
 

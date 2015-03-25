@@ -58,9 +58,7 @@ public class ConnectionToMySQL
 		
 		/*Connection Opening*/
     	try {
-    		System.out.println("yo");
 		    connection = DriverManager.getConnection( url, login, pwd );
-		    System.out.println("yo2");
 		} catch ( SQLException e ) {
 			// TODO : error handling
 		}

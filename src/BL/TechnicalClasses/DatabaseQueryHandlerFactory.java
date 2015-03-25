@@ -65,14 +65,14 @@ public class DatabaseQueryHandlerFactory extends AbstractPersistenceHandlerFacto
 	public RoomPersistenceHandler createRoomPersistenceHandler()
 	{
 		return new RoomQueryHandler();
-	}
+	}*/
 	
 	public CategoryPersistenceHandler createCategoryPersistenceHandler()
 	{
 		return new CategoryQueryHandler();
 	}
 	
-	public MyActivitesPersistenceHandler createMyActivitiesPersistenceHandler()
+	/*public MyActivitesPersistenceHandler createMyActivitiesPersistenceHandler()
 	{
 		return new MyActivitiesQueryHandler();
 	}

@@ -23,7 +23,7 @@ public class Launcher {
 			public void run() {
 				try {
 					AbstractPersistenceHandlerFactory factory = DatabaseQueryHandlerFactory.createFactory();
-					UIAddProduct frame = new UIAddProduct(factory);
+					UIProduct frame = new UIProduct(factory);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
