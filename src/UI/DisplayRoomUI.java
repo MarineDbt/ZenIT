@@ -38,27 +38,35 @@ import java.util.ArrayList;
 import javax.swing.SpringLayout;
 
 
-public class DisplayCatUI extends BaseUI implements ActionListener {
+public class DisplayRoomUI extends BaseUI implements ActionListener {
 
 	public AbstractPersistenceHandlerFactory factory;
 	public User user;
-	private ArrayList<Category> cat;
+	private ArrayList<Room> rooms;
 	
-	public DisplayCatUI(AbstractPersistenceHandlerFactory factory, User currentUser) {
+	public DisplayRoomUI(AbstractPersistenceHandlerFactory factory, User currentUser) {
 		
 		super(currentUser);
 
 		this.factory = factory;
 		this.user = currentUser;
 		content.setLayout(null);
-		JButton btnAddCategory = new JButton("Add a category");
-		btnAddCategory.setBounds(130, 6, 123, 28);
+		
+		JButton btnAddCategory = new JButton("Add a room");
+		btnAddCategory.setBounds(70, 6, 123, 28);
 		content.add(btnAddCategory);
 		btnAddCategory.addActionListener(this);
-		btnAddCategory.setActionCommand("addCategory");
+		btnAddCategory.setActionCommand("addRoom");
+		
+
+		JButton btnAllAccessories = new JButton("All accessories");
+		btnAllAccessories.setBounds(200, 6, 123, 28);
+		content.add(btnAllAccessories);
+		btnAllAccessories.addActionListener(this);
+		btnAllAccessories.setActionCommand("allAccessories");
 		
 		JButton btnReturn = new JButton("Return");
-		btnReturn.setBounds(300, 6, 123, 28);
+		btnReturn.setBounds(330, 6, 123, 28);
 		content.add(btnReturn);
 		btnReturn.addActionListener(this);
 		btnReturn.setActionCommand("return");
@@ -68,35 +76,37 @@ public class DisplayCatUI extends BaseUI implements ActionListener {
 		content.add(scrollPane);
 		
 		JPanel panel = new JPanel();
-		CategoryFacade facade = new CategoryFacade(factory);
-		this.cat = facade.selectAllCategories();
+		RoomFacade facade = new RoomFacade(factory);
+		this.rooms = facade.getAllRooms();
 
-		for (int i=0; i<cat.size(); i++){
+		for (int i=0; i<rooms.size(); i++){
 			JPanel panel_1 = new JPanel();
 			panel.add(panel_1);
 			panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 			
-			JLabel lblNom = new JLabel(cat.get(i).getName());
+			JLabel lblNom = new JLabel(rooms.get(i).getId());
 			lblNom.setMinimumSize(new Dimension(114,28));
 			lblNom.setMaximumSize(new Dimension(114,28));
 			lblNom.setPreferredSize(new Dimension(114,28));
-			//lblNom.setBounds(6,28+39*i,71,24);
 			panel_1.add(lblNom);
 			
-			JButton btnSubcat = new JButton("Subcategories");
-			//btnDetails.setBounds(66, 26+39*i, 90, 28);
+			JLabel lblSup = new JLabel(Float.toString(rooms.get(i).getSuperficy()));
+			lblSup.setMinimumSize(new Dimension(114,28));
+			lblSup.setMaximumSize(new Dimension(114,28));
+			lblSup.setPreferredSize(new Dimension(114,28));
+			panel_1.add(lblNom);
+			
+			JButton btnSubcat = new JButton("Accessories");
 			btnSubcat.addActionListener(this);
-			btnSubcat.setActionCommand("subcat"+i);
+			btnSubcat.setActionCommand("accessories"+i);
 			panel_1.add(btnSubcat);
 
 			JButton btnUpdate = new JButton("Update");
-			//btnUpdate.setBounds(299, 26+39*i, 90, 28);
 			btnUpdate.addActionListener(this);
 			btnUpdate.setActionCommand("update"+i);
 			panel_1.add(btnUpdate);
 			
 			JButton btnDelete = new JButton("Delete");
-			//btnDelete.setBounds(401, 26+39*i, 90, 28);
 			btnDelete.addActionListener(this);
 			btnDelete.setActionCommand("delete"+i);
 			panel_1.add(btnDelete);
@@ -109,11 +119,15 @@ public class DisplayCatUI extends BaseUI implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals("addCategory")) {
+		if (e.getActionCommand().equals("addRoom")) {
 			
-			AddCategoryUI frame = new AddCategoryUI(factory,user);
+			AddRoomUI frame = new AddRoomUI(factory,user);
 			frame.setVisible(true);
 			this.dispose();
+		}
+		if (e.getActionCommand().equals("allAccessories")) {
+			
+		//Todo
 		}
 		
 		if (e.getActionCommand().equals("return")) 
@@ -123,20 +137,21 @@ public class DisplayCatUI extends BaseUI implements ActionListener {
 			this.dispose();
 		}
 		
-		for (int i=0;i<this.cat.size();i++) {
-			if (e.getActionCommand().equals("subcat"+i)) {
-				DisplaySubCatUI frame = new DisplaySubCatUI(factory, cat.get(i));
+		for (int i=0;i<this.rooms.size();i++) {
+			if (e.getActionCommand().equals("accessories"+i)) {
+				
+				DisplayAccRoomUI frame = new DisplayAccRoomUI(factory, rooms.get(i));
 				frame.setVisible(true);
 			}
 			if (e.getActionCommand().equals("delete"+i)) {
 				
-				CategoryFacade facade = new CategoryFacade(factory);
-				boolean result = facade.removeCategory(cat.get(i));
+				RoomFacade facade = new RoomFacade(factory);
+				boolean result = facade.removeRoom(rooms.get(i));
 				if (result) 
 				{
-					OkUI frame = new OkUI("The category has been removed");
-					DisplayCatUI catFrame = new DisplayCatUI(factory,user);
-					catFrame.setVisible(true);
+					OkUI frame = new OkUI("The room has been removed");
+					DisplayRoomUI roomFrame = new DisplayRoomUI(factory,user);
+					roomFrame.setVisible(true);
 					this.dispose();
 					frame.setVisible(true);
 				}
@@ -148,7 +163,7 @@ public class DisplayCatUI extends BaseUI implements ActionListener {
 			}
 			if (e.getActionCommand().equals("update"+i)) 
 			{
-				UpdateCatUI frame = new UpdateCatUI(cat.get(i),factory,user);
+				UpdateRoomUI frame = new UpdateRoomUI(factory,rooms.get(i),user);
 				frame.setVisible(true);
 				this.dispose();
 			}

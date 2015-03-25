@@ -102,6 +102,8 @@ public abstract class RoomPersistenceHandler {
     public abstract boolean deleteAccessory(Accessory accessory);
     
     public abstract boolean deleteAccessoryRoom(Room room,Accessory accessory);
+	
+    public abstract ArrayList<ContainsAcc> selectAllContainsAcc(Room room);
 }
 
 

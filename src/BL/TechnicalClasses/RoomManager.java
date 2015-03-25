@@ -93,6 +93,11 @@ public class RoomManager {
         return myRoomPersistenceHandler.selectAllRooms();
 	}
 
+	public ArrayList<ContainsAcc> getAllContainsAcc(Room myRoom) {
+
+		return myRoomPersistenceHandler.selectAllContainsAcc(myRoom);
+	}
+
 }
 
 

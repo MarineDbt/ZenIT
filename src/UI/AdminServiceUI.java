@@ -55,19 +55,19 @@ public class AdminServiceUI extends BaseUI implements ActionListener {
 						FormFactory.RELATED_GAP_ROWSPEC,
 						FormFactory.DEFAULT_ROWSPEC,}));*/
 				
-				JButton btnGestionDesSalles = new JButton("Gestion des salles");
+				JButton btnGestionDesSalles = new JButton("Rooms management");
 				btnGestionDesSalles.setFont(new Font("Tahoma", Font.PLAIN, 9));
 				content.add(btnGestionDesSalles);
 				btnGestionDesSalles.addActionListener(this);
 				btnGestionDesSalles.setActionCommand("GestionSalle");
 				
-				JButton btnGestionsDesCatgories = new JButton("Gestions des categories");
+				JButton btnGestionsDesCatgories = new JButton("Categories management");
 				btnGestionsDesCatgories.setFont(new Font("Tahoma", Font.PLAIN, 9));
 				content.add(btnGestionsDesCatgories);
 				btnGestionsDesCatgories.addActionListener(this);
 				btnGestionsDesCatgories.setActionCommand("GestionCategories");
 				
-				JButton btnGestionDesDroits = new JButton("Gestion des droits");
+				JButton btnGestionDesDroits = new JButton("Right management");
 				btnGestionDesDroits.setFont(new Font("Tahoma", Font.PLAIN, 9));
 				content.add(btnGestionDesDroits);
 				btnGestionDesDroits.addActionListener(this);
@@ -82,14 +82,16 @@ public class AdminServiceUI extends BaseUI implements ActionListener {
 			
 			if (e.getActionCommand().equals("GestionSalle"))
 			{
-		    	DisplayCatUI UI1 = new DisplayCatUI(myFactory,currentUser);
-		    	
-		    	this.dispose();
+		    	DisplayRoomUI UI1 = new DisplayRoomUI(myFactory,currentUser);
 		    	UI1.setVisible(true);
+		    	this.dispose();
+		  
 		    }
 			if (e.getActionCommand().equals("GestionCategories"))
 			{
-				//Todo
+				DisplayCatUI UI2 = new DisplayCatUI(myFactory,currentUser);
+		    	UI2.setVisible(true);
+		    	this.dispose();
 			}
 			if (e.getActionCommand().equals("GestionDroits"))
 			{

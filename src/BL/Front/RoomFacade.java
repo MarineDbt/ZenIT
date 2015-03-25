@@ -29,7 +29,8 @@ public class RoomFacade {
  * @return 
  */
    
-    //Constructor
+    /* Constructor */
+    
     public RoomFacade (AbstractPersistenceHandlerFactory factory)
     {
     	RoomManager = new RoomManager(factory);
@@ -158,6 +159,7 @@ public class RoomFacade {
      * @return 
      */
         public ArrayList<Accessory> getAllAccessories() {        
+        	
         	/* Passing method call to RoomManager */
         	
             return RoomManager.getAllAccessories();       
@@ -170,8 +172,17 @@ public class RoomFacade {
          * @return 
          */
             public ArrayList<Room> getAllRooms() {        
+            	
             	/* Passing method call to RoomManager */
             	
                 return RoomManager.getAllRooms();  
             }
+            
+   public ArrayList<ContainsAcc> getAllContainsAcc(Room myRoom) {        
+   
+	   /* Passing method call to RoomManager */
+            	
+       return RoomManager.getAllContainsAcc(myRoom);  
+   }          
+            
  }

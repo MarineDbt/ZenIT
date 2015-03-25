@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import BL.DataClasses.Accessory;
+import BL.DataClasses.ContainsAcc;
 import BL.DataClasses.Room;
 import BL.TechnicalClasses.RoomFactory;
 import ConnectionToDB.ConnectionToMySQL;
@@ -246,16 +247,76 @@ public class RoomQueryHandler extends RoomPersistenceHandler {
     }
     
     public boolean deleteAccessoryRoom(Room room,Accessory accessory)
-    {
+    {	
     	/* Declarations and initializations */
+    	
+    	ResultSet resultSelect;
     	int result = 0;
-
+    	
+    	/* Checking number of the accessory in the room */
+    	
     	/* Query execution delegated to ConnectionToMySQL */
-    	result = ConnectionToMySQL.requestInsertQuery( "delete from RoomAccessory where accessory_name = '"+accessory.getName()+"' and id_room = '"+room.getId()+"';");
+    	resultSelect = ConnectionToMySQL.requestSelectQuery("Select numberOfAccessory from RoomAccessory where id_room = '"+room.getId()+"' and accessory_name = '"+accessory.getName()+"';");
+    	
+    	/* Checking value */
+    	try {
+			resultSelect.next();
+			int qty = resultSelect.getInt(1);
+			if (qty == 1)
+			{
+				/* Query execution delegated to ConnectionToMySQL */
+		    	
+				result = ConnectionToMySQL.requestInsertQuery( "delete from RoomAccessory where accessory_name = '"+accessory.getName()+"' and id_room = '"+room.getId()+"';");
+			}
+			else
+			{
+				/* Query execution delegated to ConnectionToMySQL */
+		    	qty = qty -1;
+				result = ConnectionToMySQL.requestInsertQuery( "update RoomAccessory set numberOfAccessory = '"+qty+"' where accessory_name = '"+accessory.getName()+"' and id_room = '"+room.getId()+"';");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	
+    	
+    	
     	
     	/* Return value */
     	
     	return (result == 1);
     }
+
+
+	@Override
+	public ArrayList<ContainsAcc> selectAllContainsAcc(Room myRoom) {
+
+		/* Declarations and initializations */
+    	
+		ResultSet result;
+    	ArrayList<ContainsAcc> myAccessories = new ArrayList<ContainsAcc>();
+    	
+    	/* Query execution delegated to ConnectionToMySQL */
+    	
+    	result = ConnectionToMySQL.requestSelectQuery("Select * from RoomAccessory where id_room = '"+myRoom.getId()+"';");
+    	
+    	
+    	try {
+			while (result.next()) {
+			     String nameAcc = result.getString(2);
+			     int qty = result.getInt(3);
+			     
+			     Accessory myAccessory = new Accessory(nameAcc);
+			     ContainsAcc myContains = new ContainsAcc(myAccessory, qty);
+			     myAccessories.add(myContains);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+        return myAccessories;
+	}
 
  }
