@@ -229,4 +229,29 @@ public class UserQueryHandler extends UserAbstractPersistenceHandler{
 		}
 		return null;
 	}
+	@Override
+	public boolean isUser(String id) {
+		ResultSet resultSet = null;
+		try {
+			resultSet=ConnectionToMySQL.requestSelectQuery("select * from User where id = '"+id+"';");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			System.out.println((resultSet.getRow()));
+			resultSet.last();
+			if (resultSet.getRow()== 0){
+				return false;
+			}
+			else{
+				return true;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
 }

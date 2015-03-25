@@ -186,8 +186,8 @@ public class BaseUI extends JFrame implements ActionListener {
 			 this.dispose();
 		}
 		if (arg0.getActionCommand().equals("logout")){
-			 ProfileUI profileUI = new ProfileUI(userFacade);
-			 profileUI.setVisible(true);
+			 LoginUI loginUI = new LoginUI();
+			 loginUI.setVisible(true);
 			 this.dispose();
 		}
 	}

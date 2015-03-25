@@ -64,5 +64,6 @@ public abstract class UserAbstractPersistenceHandler {
 	public abstract boolean isContributor(String id);
 	public abstract boolean isSupervisor(String id);
 	public abstract boolean isAdministrator(String id);
+	public abstract boolean isUser(String id);
  
 }

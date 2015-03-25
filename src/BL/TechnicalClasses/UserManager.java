@@ -119,4 +119,7 @@ public class UserManager {
 	 	public boolean isSupervisor(User user) {
 	 		return this.userPersistenceHandler.isSupervisor(user.getId());
 	 	}
+		public boolean isUser(String id) {
+			return this.userPersistenceHandler.isUser(id);
+		}
 }
