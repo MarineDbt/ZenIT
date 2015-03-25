@@ -17,7 +17,6 @@ public class DatabaseQueryHandlerFactory extends AbstractPersistenceHandlerFacto
 			AbstractPersistenceHandlerFactory.setFactory(new DatabaseQueryHandlerFactory());
 		}
 	}
-	
 	/* Creation methods of QueryHandlers */
 	
 	

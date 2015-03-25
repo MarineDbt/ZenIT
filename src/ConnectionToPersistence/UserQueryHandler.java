@@ -47,6 +47,110 @@ public class UserQueryHandler extends UserAbstractPersistenceHandler{
 		}
 		return false;
 	}
+	public boolean isMember(String id){
+			
+			ResultSet resultSet = null;
+			
+			try {
+				resultSet=ConnectionToMySQL.requestSelectQuery("select * from Member where id = '"+id+"';");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			try {
+				System.out.println((resultSet.getRow()));
+				resultSet.last();
+				if (resultSet.getRow()== 0){
+					return false;
+				}
+				else{
+					return true;
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return false;
+	}
+	public boolean isSupervisor(String id){
+		
+		ResultSet resultSet = null;
+		
+		try {
+			resultSet=ConnectionToMySQL.requestSelectQuery("select * from Supervisor where id = '"+id+"';");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			System.out.println((resultSet.getRow()));
+			resultSet.last();
+			if (resultSet.getRow()== 0){
+				return false;
+			}
+			else{
+				return true;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	public boolean isContributor(String id){
+		
+		ResultSet resultSet = null;
+		
+		try {
+			resultSet=ConnectionToMySQL.requestSelectQuery("select * from Contributor where id = '"+id+"';");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			System.out.println((resultSet.getRow()));
+			resultSet.last();
+			if (resultSet.getRow()== 0){
+				return false;
+			}
+			else{
+				return true;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+}
+	public boolean isAdministrator(String id){
+		
+		ResultSet resultSet = null;
+		
+		try {
+			resultSet=ConnectionToMySQL.requestSelectQuery("select * from Administrator where id = '"+id+"';");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			System.out.println((resultSet.getRow()));
+			resultSet.last();
+			if (resultSet.getRow()== 0){
+				return false;
+			}
+			else{
+				return true;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+}
 	
 	public boolean insertUser(String firstname, String lastname, String street, String PC, String city, String phone, String email, String id, String pwd){
 		
@@ -123,8 +227,6 @@ public class UserQueryHandler extends UserAbstractPersistenceHandler{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 		return null;
 	}
 }

@@ -59,5 +59,10 @@ public abstract class UserAbstractPersistenceHandler {
  * @param boolean 
  */
     public abstract boolean insertUser(String firstname, String lastname, String street, String PC, String city, String phone, String email, String id, String pwd);
+
+	public abstract boolean isMember(String id);
+	public abstract boolean isContributor(String id);
+	public abstract boolean isSupervisor(String id);
+	public abstract boolean isAdministrator(String id);
  
 }

@@ -98,22 +98,6 @@ public class User {
     public void deleteAccount(){
     	//TODO
     }
-	public boolean isMember() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	public boolean isContributor() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	public boolean isAdmin() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	public boolean isSupervisor() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 	public String getId() {
 		return id;
 	}

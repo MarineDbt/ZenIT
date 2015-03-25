@@ -90,6 +90,8 @@ public class BaseUI extends JFrame implements ActionListener {
 		JButton btnHome = new JButton("Home");
 		btnHome.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		ribbon.add(btnHome);
+		btnHome.addActionListener(this);
+		btnHome.setActionCommand("home");
 		
 		JLabel lblUser = new JLabel("Hi " + userFacade.userManager.currentUser.getId());
 		lblUser.setFont(new Font("Verdana", Font.PLAIN, 9));
@@ -134,6 +136,8 @@ public class BaseUI extends JFrame implements ActionListener {
 		JButton btnLogOut = new JButton("Log out");
 		btnLogOut.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		ribbon.add(btnLogOut);
+		btnLogOut.addActionListener(this);
+		btnLogOut.setActionCommand("logout");
 
 		content = new JPanel();
 		contentPane.add(content, "2, 4, fill, fill");
@@ -151,16 +155,16 @@ public class BaseUI extends JFrame implements ActionListener {
 	 * @param currentUser
 	 */
 	private void hideUselessButtons(User currentUser) {
-		if (!currentUser.isMember()){
+		if (!userFacade.userManager.isMember(currentUser)){
 			btnMyActivities.setVisible(false);
 		}
-		if (!currentUser.isContributor()){
+		if (!userFacade.userManager.isContributor(currentUser)){
 			btnContributor.setVisible(false);
 		}
-		if (!currentUser.isSupervisor()){
+		if (!userFacade.userManager.isSupervisor(currentUser)){
 			btnSupervisor.setVisible(false);
 		}
-		if (!currentUser.isAdmin()){
+		if (!userFacade.userManager.isAdministrator(currentUser)){
 			btnAdmin.setVisible(false);
 		}
 	}
@@ -176,8 +180,12 @@ public class BaseUI extends JFrame implements ActionListener {
 			 notificationCenterUI.setVisible(true);
 			 this.dispose();
 		}
-		
 		if (arg0.getActionCommand().equals("profile")){
+			 ProfileUI profileUI = new ProfileUI(userFacade);
+			 profileUI.setVisible(true);
+			 this.dispose();
+		}
+		if (arg0.getActionCommand().equals("logout")){
 			 ProfileUI profileUI = new ProfileUI(userFacade);
 			 profileUI.setVisible(true);
 			 this.dispose();

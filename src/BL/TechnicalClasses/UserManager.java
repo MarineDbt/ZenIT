@@ -103,15 +103,20 @@ public class UserManager {
 	 		return result;
 	     } 
 
-	 /**
-	  * <p>Does ...</p>
-	  * 
-	  * @poseidon-object-id [I395d852m14bf5118266mm6aaf]
-	  * @param User 
-	  * @return 
-	  */
 	     public boolean deleteProfile(User currentUser) {        
 	         // your code here
 	         return false;
-	     } 	
+	     } 
+	     public boolean isMember(User user) {
+	 		return this.userPersistenceHandler.isMember(user.getId());
+	 	}
+	 	public boolean isContributor(User user) {
+	 		return this.userPersistenceHandler.isContributor(user.getId());
+	 	}
+	 	public boolean isAdministrator(User user) {
+	 		return this.userPersistenceHandler.isAdministrator(user.getId());
+	 	}
+	 	public boolean isSupervisor(User user) {
+	 		return this.userPersistenceHandler.isSupervisor(user.getId());
+	 	}
 }
