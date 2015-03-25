@@ -70,8 +70,8 @@ public class Launcher {
 					//AdminUI UI = new AdminUI(factory);
 					//UI.setVisible(true);
 					User user = new User();
-					//AdminServiceUI UI2 = new AdminServiceUI(user,factory);
-					//UI2.setVisible(true);
+					AdminServiceUI UI2 = new AdminServiceUI(user,factory);
+					UI2.setVisible(true);
 					
 					//AdminGestionSalle UI3 = new AdminGestionSalle(user,factory);
 					//UI3.setVisible(true);
@@ -79,8 +79,8 @@ public class Launcher {
 					//AjouterSalleUI UI4 = new AjouterSalleUI(factory);
 					//UI4.setVisible(true);
 					
-					AffichageCatUI UI5 = new AffichageCatUI(factory);
-					UI5.setVisible(true);
+					//DisplayCatUI UI5 = new DisplayCatUI(factory,user);
+					//UI5.setVisible(true);
 					
 				} catch (Exception e) {
 					e.printStackTrace();

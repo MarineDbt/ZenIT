@@ -16,18 +16,20 @@ public class EchecUI extends JFrame implements ActionListener {
 		setBounds(100,100,450, 300);
 		
 		Container contentPane = getContentPane();
-		JPanel panel1 = new JPanel();
+		SpringLayout springLayout = new SpringLayout();
+		getContentPane().setLayout(springLayout);
 		
-		JLabel label = new JLabel("Une erreur est survenue ! Vérifiez les informations saisies");
-		panel1.add(label);
-		contentPane.add(panel1,BorderLayout.CENTER);
+		JLabel lblUneErreurEst = new JLabel("Une erreur est survenue ! Vérifiez les informations saisies");
+		springLayout.putConstraint(SpringLayout.NORTH, lblUneErreurEst, 55, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, lblUneErreurEst, -10, SpringLayout.EAST, getContentPane());
+		getContentPane().add(lblUneErreurEst);
 		
-		JPanel panel2 = new JPanel();
-		JButton boutonOK = new JButton("OK");
-		boutonOK.addActionListener(this);
-		boutonOK.setActionCommand("Fermer");
-		panel2.add(boutonOK);
-		contentPane.add(panel2,BorderLayout.SOUTH);
+		JButton btnOk = new JButton("Ok");
+		btnOk.addActionListener(this);
+		btnOk.setActionCommand("Fermer");
+		springLayout.putConstraint(SpringLayout.SOUTH, btnOk, -29, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, btnOk, -186, SpringLayout.EAST, getContentPane());
+		getContentPane().add(btnOk);
 		
 	}
 
@@ -38,5 +40,4 @@ public class EchecUI extends JFrame implements ActionListener {
 		}
 		
 	}
-
 }
