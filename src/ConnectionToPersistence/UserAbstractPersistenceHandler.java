@@ -29,7 +29,7 @@ public abstract class UserAbstractPersistenceHandler {
  * @param User 
  * @return 
  */
-    public abstract boolean deleteUser(User currentUser);
+    public abstract boolean deleteUser(String id);
 
 /**
  * <p>Does ...</p>

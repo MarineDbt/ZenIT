@@ -163,10 +163,6 @@ public class UserQueryHandler extends UserAbstractPersistenceHandler{
 		
 		return (result==1);
 	}
-	public void deleteUser (String id){
-		// TODO
-	}
-
 
     public boolean updateUser(String firstname, String lastname, String street, String PC, String city, String phone, String email, String id, String pwd) {        
     	UserPasswordEncryptionHandler encryptionHandler = new UserPasswordEncryptionHandler();
@@ -180,9 +176,10 @@ public class UserQueryHandler extends UserAbstractPersistenceHandler{
     }
 
 	@Override
-	public boolean deleteUser(User currentUser) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean deleteUser(String id) {
+		int result = 0;
+		result = ConnectionToMySQL.requestDeleteQuery("Delete From User where id = '"+id+"';");
+		return (result==1);
 	}
 
 	public User selectUser(String id) {

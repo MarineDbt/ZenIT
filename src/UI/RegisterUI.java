@@ -179,7 +179,7 @@ public class RegisterUI extends JFrame implements ActionListener{
 		btnRegister.setActionCommand("register");
 		
 		btnBack = new JButton("back");
-		getContentPane().add(btnRegister, "6, 20");
+		getContentPane().add(btnBack, "6, 20");
 		btnBack.addActionListener(this);
 		btnBack.setActionCommand("back");
 		
@@ -198,6 +198,7 @@ public class RegisterUI extends JFrame implements ActionListener{
 					userFacade.register(txtLastName.getText(),txtFirstName.getText(),txtStreet.getText(),txtPostalCode.getText(),txtCity.getText(),txtPhone.getText(),txtEmail.getText(),txtUsername.getText(),pwdPassword.getText());
 					LoginUI loginUI=new LoginUI();
 					loginUI.setVisible(true);
+					loginUI.userFacade = new UserFacade();
 					this.dispose();
 				}
 			}
@@ -205,6 +206,7 @@ public class RegisterUI extends JFrame implements ActionListener{
 		if (e.getActionCommand().equals("back")){
 			LoginUI loginUI=new LoginUI();
 			loginUI.setVisible(true);
+			loginUI.userFacade = new UserFacade();
 			this.dispose();
 		}
 		
