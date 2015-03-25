@@ -37,6 +37,9 @@ public class ProfileUI extends BaseUI{
 	private JButton btnModify;
 	private JButton btnDiscard;
 	private JButton btnCancel;
+	private JLabel lblPassword;
+	private JLabel lblNewPassword;
+	private JLabel lblCheckPassword;
 		
 	public ProfileUI(UserFacade userFacade) {
 		super(userFacade);
@@ -44,11 +47,11 @@ public class ProfileUI extends BaseUI{
 				ColumnSpec.decode("20dlu:grow"),
 				ColumnSpec.decode("default"),
 				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("default"),
-				ColumnSpec.decode("50dlu"),
+				ColumnSpec.decode("70dlu"),
+				ColumnSpec.decode("20dlu"),
 				ColumnSpec.decode("default"),
 				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("default"),
+				ColumnSpec.decode("70dlu"),
 				ColumnSpec.decode("20dlu:grow"),},
 			new RowSpec[] {
 				RowSpec.decode("20dlu:grow"),
@@ -81,7 +84,7 @@ public class ProfileUI extends BaseUI{
 		
 		JLabel lblFirstName = new JLabel();
 		lblFirstName.setText("First Name :");
-		content.add(lblFirstName, "2, 2, fill, default");
+		content.add(lblFirstName, "2, 2, right, default");
 		
 		txtLastName = new JTextField();
 		txtLastName.setText("Last Name");
@@ -90,7 +93,7 @@ public class ProfileUI extends BaseUI{
 		
 		JLabel lblLastName = new JLabel();
 		lblLastName.setText("Last Name :");
-		content.add(lblLastName, "2, 4, fill, default");
+		content.add(lblLastName, "2, 4, right, default");
 		
 		txtStreet = new JTextField();
 		txtStreet.setText("Street");
@@ -99,7 +102,7 @@ public class ProfileUI extends BaseUI{
 		
 		JLabel lblStreet = new JLabel();
 		lblStreet.setText("Street :");
-		content.add(lblStreet, "2, 6, fill, default");
+		content.add(lblStreet, "2, 6, right, default");
 
 		txtPostalCode = new JTextField();
 		txtPostalCode.setText("Postal Code");
@@ -108,22 +111,34 @@ public class ProfileUI extends BaseUI{
 		
 		JLabel lblPostalCode = new JLabel();
 		lblPostalCode.setText("Postal Code :");
-		content.add(lblPostalCode, "2, 8, fill, default");
+		content.add(lblPostalCode, "2, 8, right, default");
 		
 		txtCity = new JTextField();
 		txtCity.setText("City");
 		content.add(txtCity, "4, 10, fill, default");
 		txtCity.setColumns(20);
 		
+		JLabel lblCity = new JLabel();
+		lblCity.setText("City :");
+		content.add(lblCity, "2, 10, right, default");
+		
 		txtPhone = new JTextField();
 		txtPhone.setText("Phone");
 		content.add(txtPhone, "4, 12, fill, default");
 		txtPhone.setColumns(20);
 		
+		JLabel lblPhone = new JLabel();
+		lblPhone.setText("Phone :");
+		content.add(lblPhone, "2, 12, right, default");
+		
 		txtEmail = new JTextField();
 		txtEmail.setText("E-mail");
 		content.add(txtEmail, "4, 14, fill, default");
 		txtEmail.setColumns(20);
+		
+		JLabel lblEmail = new JLabel();
+		lblEmail.setText("E-mail :");
+		content.add(lblEmail, "2, 14, right, default");
 		
 		btnModify = new JButton("Modify");
 		content.add(btnModify, "4, 18");
@@ -140,19 +155,33 @@ public class ProfileUI extends BaseUI{
 		content.add(txtUsername, "8, 2, fill, default");
 		txtUsername.setColumns(20);
 		
+		JLabel lblUsername = new JLabel();
+		lblUsername.setText("Username :");
+		content.add(lblUsername, "6, 2, right, default");
+		
 		pwdPassword = new JPasswordField();
 		pwdPassword.setText("");
 		content.add(pwdPassword, "8, 4, fill, default");
 		
+		lblPassword = new JLabel();
+		lblPassword.setText("Current Password :");
+		content.add(lblPassword, "6, 4, right, default");
 		
 		pwdNewPassword = new JPasswordField();
 		pwdNewPassword.setText("");
 		content.add(pwdNewPassword, "8, 6, fill, default");
 		
+		lblNewPassword = new JLabel();
+		lblNewPassword.setText("New Password :");
+		content.add(lblNewPassword, "6, 6, right, default");
+		
 		pwdCheckPassword = new JPasswordField();
 		pwdCheckPassword.setText("");
 		content.add(pwdCheckPassword, "8, 8, fill, default");
 		
+		lblCheckPassword = new JLabel();
+		lblCheckPassword.setText("Check New Password :");
+		content.add(lblCheckPassword, "6, 8, right, default");
 		
 		btnChangePassword = new JButton("Change Password");
 		content.add(btnChangePassword, "8, 10");
@@ -194,6 +223,9 @@ public class ProfileUI extends BaseUI{
 		txtPhone.setEditable(false);
 		txtEmail.setEditable(false);
 		txtUsername.setEditable(false);
+		lblPassword.setVisible(false);
+		lblNewPassword.setVisible(false);
+		lblCheckPassword.setVisible(false);
 		pwdPassword.setVisible(false);
 		pwdPassword.setText("");
 		pwdNewPassword.setVisible(false);
@@ -217,6 +249,7 @@ public class ProfileUI extends BaseUI{
 		txtPhone.setEditable(true);
 		txtEmail.setEditable(true);
 		pwdPassword.setVisible(true);
+		lblPassword.setVisible(true);
 		btnValidate.setVisible(false);
 		btnChangePassword.setVisible(false);
 		btnModify.setText("Save modifications");
@@ -227,8 +260,11 @@ public class ProfileUI extends BaseUI{
 		
 		btnModify.setVisible(false);
 		pwdPassword.setVisible(true);
+		lblPassword.setVisible(true);
 		pwdNewPassword.setVisible(true);
+		lblNewPassword.setVisible(true);
 		pwdCheckPassword.setVisible(true);
+		lblCheckPassword.setVisible(true);
 		btnChangePassword.setVisible(false);
 		btnValidate.setVisible(true);
 		btnCancel.setVisible(true);
