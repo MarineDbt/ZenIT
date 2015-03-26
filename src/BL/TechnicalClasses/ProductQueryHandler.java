@@ -36,14 +36,14 @@ public class ProductQueryHandler extends ProductPersistenceHandler {
  * @param String description
  * @return 
  */
-    public boolean addProduct(String name, float price,float discount,Member currentMember,int quantity, String subcategory, String description) {        
+    public boolean addProduct(String name, double price, double discount,int quantity, Member currentMember, String subcategory, String description) {        
 		
     	/* Declarations and initializations */
 		int result = 0;
 		
 		/* Query execution delegated to ConnectionToMySQL */
-		result = ConnectionToMySQL.requestInsertQuery("insert into Product (nameProduct, price, discount, quantity, id_member, subcategory_name, product_description) values ('"+name+"',"+price+","+discount+","+currentMember.getID()+","+quantity+",'"+subcategory+"','"+description+"');");
-		
+		result = ConnectionToMySQL.requestInsertQuery("insert into Product (nameProduct, price, discount, quantity, id_member, subcategory_name, description) values ('"+name+"',"+price+","+discount+",'"+quantity+"',"+currentMember.getID()+",'"+subcategory+"','"+description+"');");
+
 		/* Return value */
 		return (result == 1);
     } 
@@ -55,14 +55,14 @@ public class ProductQueryHandler extends ProductPersistenceHandler {
  * @param Product 
  * @return 
  */
-    public boolean modifyProduct(Product product, String name, float price, float discount, int quantity, String description) {        
+    public boolean modifyProduct(Product product, String name, double price, double discount, int quantity, String description) {        
     	
     	/* Declarations and initializations */
     	int result = 0;
     	
     	/* Query execution delegated to ConnectionToMySQL */
-    	result = ConnectionToMySQL.requestInsertQuery( "update product set nameProduct = '" + name + "', price = " + price + ", discount = " + discount + ", quantity = " + quantity + ", description = '"+ description + " where id_product = '"+ product.getID() +"';");
-    	
+    	result = ConnectionToMySQL.requestInsertQuery( "update Product set nameProduct = '" + name + "', price = " + price + ", discount = " + discount + ", quantity = " + quantity + ", description = '"+ description + "' where id_product = "+ product.getID() +";");
+    	System.out.println(result);
     	/* Return value */
     	return (result == 1);
     } 
@@ -80,8 +80,8 @@ public class ProductQueryHandler extends ProductPersistenceHandler {
     	int result = 0;
     	
     	/* Query execution delegated to ConnectionToMySQL */
-    	result = ConnectionToMySQL.requestInsertQuery( "delete from Product where id_product = '"+Integer.toString(product.getID())+"';");
-    	
+    	result = ConnectionToMySQL.requestInsertQuery( "delete from Product where id_product = "+product.getID()+";");
+
     	/* Return value */
     	return (result == 1);
     } 
@@ -97,25 +97,26 @@ public class ProductQueryHandler extends ProductPersistenceHandler {
     	
     	/* Declarations and initializations */
     	ResultSet result;
-    	ArrayList<Product> myProducts = new ArrayList<>();
+    	ArrayList<Product> myProducts = new ArrayList<Product>();
     	
     	/* Query execution delegated to ConnectionToMySQL */
-    	result = ConnectionToMySQL.requestSelectQuery("Select * from Product where id_member = '" + Integer.toString(currentMember.getID()) + "';");
+    	result = ConnectionToMySQL.requestSelectQuery("Select * from Product where id_member = '" + 1 + "';");
+    	
     	try {
     		while (result.next()) {
     			int id_product = result.getInt(1);
     			String nameProduct = result.getString(2);
-    			float price = result.getFloat(3);
-    			float discount = result.getFloat(4);
+    			double price = result.getDouble(3);
+    			double discount = result.getDouble(4);
     			int quantity = result.getInt(5);
     			String subcategory_name = result.getString(7);
-    			String product_description = result.getString(8);
-    			Product myProduct = new Product(id_product, nameProduct, price, discount, quantity, subcategory_name, product_description);
-    			myProducts.add(myProduct);
-    	}
+    			String description = result.getString(8);
+    			Product product = new Product(id_product, nameProduct, price, discount, quantity, subcategory_name, description);
+    			myProducts.add(product);
+    		}
     	} catch (SQLException e) {
-    	// TODO Auto-generated catch block
-    	e.printStackTrace();
+    		// TODO Auto-generated catch block
+    		e.printStackTrace();
     	}
     	return myProducts;
     }

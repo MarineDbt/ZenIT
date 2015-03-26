@@ -31,6 +31,8 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.SwingConstants;
 import javax.swing.JTextArea;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  * @author Jules Cordonnier
@@ -65,15 +67,47 @@ public class UIProduct extends BaseUI implements ActionListener {
 	private JTextArea descriptionTextArea;
 	
 	public AbstractPersistenceHandlerFactory factory;
-	//private ProductFacade productFacade;
-	private ArrayList<Product> myProducts;
+	private ProductFacade productFacade;
+	private ArrayList<Product> myProducts;;
 	
 	public UIProduct(AbstractPersistenceHandlerFactory factory) {
 			
 			// Variables
 			this.factory = factory;
-			//this.productFacade = new ProductFacade(factory);
+			this.productFacade = new ProductFacade(factory);
 		
+			// Display Member's Products
+			Member currentMember = new Member("1");
+			myProducts = productFacade.getProducts(currentMember);
+
+			if (myProducts.size()!=0) {
+				String[] products = new String[myProducts.size()];
+				for(int i = 0; i < products.length; i++) {
+					products[i] = myProducts.get(i).getName();
+				}	
+				productList = new JList(products);
+			}
+			else {
+				productList = new JList();
+			}
+			
+			// Display Informations
+			productList.addListSelectionListener(new ListSelectionListener() {
+
+	            @Override
+	            public void valueChanged(ListSelectionEvent arg0) {
+	                if (!arg0.getValueIsAdjusting()) {
+	                	int index = productList.getSelectedIndex();
+	                	nameProductText.setText(myProducts.get(index).getName());
+	                	priceProductText.setText(String.valueOf(myProducts.get(index).getPrice()));
+	                	discountProductText.setText(String.valueOf(myProducts.get(index).getDiscount()));
+	                	subcategoryProductText.setText(myProducts.get(index).getSubcategory());
+	                	quantityText.setText(String.valueOf(myProducts.get(index).getQuantity()));
+	                	descriptionTextArea.setText(myProducts.get(index).getDescription());
+	                }
+	            }
+	        });
+			
 			// Frame Characteristics
 			setTitle("Mes Produits");
 			setBackground(Color.gray);
@@ -86,8 +120,6 @@ public class UIProduct extends BaseUI implements ActionListener {
 			productPanel.setBounds(10, 25, 549, 100);
 			content.add(productPanel);
 			
-			Object myProducts[] = {"Product 1","Product 2","Product 3","Product 4","Product 5","Product 6", "Product 7"};
-			productList = new JList(myProducts);
 			productList.setBackground(new Color(240, 248, 255));
 			productPanel.setViewportView(productList);
 			
@@ -142,54 +174,53 @@ public class UIProduct extends BaseUI implements ActionListener {
 			discountProductLabel = new JLabel("Remise (%)");
 			discountProductLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 			discountProductLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
-			discountProductLabel.setBounds(95, 45, 56, 16);
+			discountProductLabel.setBounds(104, 45, 56, 16);
 			infoPanel.add(discountProductLabel);
 			
 			descriptionProductLabel = new JLabel("Description");
-			descriptionProductLabel.setBounds(270, 0, 183, 16);
+			descriptionProductLabel.setBounds(291, 0, 183, 16);
 			infoPanel.add(descriptionProductLabel);
 			
 			nameProductText = new JTextField();
 			nameProductText.setFont(new Font("Tahoma", Font.PLAIN, 11));
-			nameProductText.setBounds(56, 25, 197, 16);
+			nameProductText.setBounds(56, 25, 223, 16);
 			infoPanel.add(nameProductText);
 			nameProductText.setColumns(10);
 			
 			priceProductText = new JTextField();
 			priceProductText.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			priceProductText.setColumns(10);
-			priceProductText.setBounds(56, 45, 34, 16);
+			priceProductText.setBounds(56, 45, 45, 16);
 			infoPanel.add(priceProductText);
 			
 			subcategoryProductText = new JTextField();
 			subcategoryProductText.setEditable(false);
 			subcategoryProductText.setColumns(10);
-			subcategoryProductText.setBounds(94, 65, 159, 16);
+			subcategoryProductText.setBounds(96, 65, 183, 16);
 			infoPanel.add(subcategoryProductText);
 			
 			discountProductText = new JTextField();
 			discountProductText.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			discountProductText.setColumns(10);
-			discountProductText.setBounds(155, 45, 22, 16);
+			discountProductText.setBounds(161, 45, 34, 16);
 			infoPanel.add(discountProductText);
 			
 			descriptionTextArea = new JTextArea();
-			descriptionTextArea.setEditable(false);
 			descriptionTextArea.setRows(3);
 			descriptionTextArea.setFont(new Font("Tahoma", Font.PLAIN, 11));
-			descriptionTextArea.setBounds(270, 25, 289, 56);
+			descriptionTextArea.setBounds(291, 25, 268, 56);
 			infoPanel.add(descriptionTextArea);
 			
 			quantityLabel = new JLabel("Quantit\u00E9");
 			quantityLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 			quantityLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
-			quantityLabel.setBounds(176, 45, 49, 16);
+			quantityLabel.setBounds(194, 45, 49, 16);
 			infoPanel.add(quantityLabel);
 			
 			quantityText = new JTextField();
 			quantityText.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			quantityText.setColumns(10);
-			quantityText.setBounds(231, 45, 22, 16);
+			quantityText.setBounds(245, 45, 34, 16);
 			infoPanel.add(quantityText);
 			
 			myProductsLabel = new JLabel("Mes Produits");
@@ -205,14 +236,31 @@ public class UIProduct extends BaseUI implements ActionListener {
 			deleteProduct.setActionCommand("delete");
 			
 			modifyProduct.addActionListener(this);
-			modifyProduct.setActionCommand("delete");
+			modifyProduct.setActionCommand("modify");
 			
 		}
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("add")) {
-			UIAddProduct frameAdd = new UIAddProduct(factory);
-			frameAdd.setVisible(true);
+			UIAddProduct frame = new UIAddProduct(factory);
+			frame.setVisible(true);
+			this.dispose();
+		}
+		if (e.getActionCommand().equals("delete")) {
+			productFacade.deleteProduct(myProducts.get(productList.getSelectedIndex()));
+			UIProduct frame = new UIProduct(factory);
+			frame.setVisible(true);
+			this.dispose();
+		}
+		if (e.getActionCommand().equals("modify")) {
+			productFacade.modifyProduct(myProducts.get(productList.getSelectedIndex()),
+														nameProductText.getText(),
+														Double.parseDouble(priceProductText.getText()),
+														Double.parseDouble(discountProductText.getText()),
+														Integer.parseInt(quantityText.getText()),
+														descriptionTextArea.getText());
+			UIProduct frame = new UIProduct(factory);
+			frame.setVisible(true);
 			this.dispose();
 		}
 	}

@@ -39,11 +39,11 @@ public abstract class  AbstractPersistenceHandlerFactory{
 	
 	public abstract EventPersistenceHandler createEventPersistenceHandler();
 	
-	public abstract ActivityPersistenceHandler createActivityPersistenceHandler();*/
+	public abstract ActivityPersistenceHandler createActivityPersistenceHandler();
 	
-	public abstract OrderPersistenceHandler createOrderPersistenceHandler();
+	public abstract OrderPersistenceHandler createOrderPersistenceHandler();*/
 	
 	public abstract ProductPersistenceHandler createProductPersistenceHandler();
 	
-	public abstract AdhesionPersistenceHandler createAdhesionPersistenceHandler();
+	//public abstract AdhesionPersistenceHandler createAdhesionPersistenceHandler();
 }

@@ -204,7 +204,7 @@ public class UIAddProduct extends BaseUI implements ActionListener {
 			addButton.addActionListener(this);
 			addButton.setActionCommand("add");
 			
-			addButton.addActionListener(this);
+			returnButton.addActionListener(this);
 			returnButton.setActionCommand("return");
 			
 			categoryComboBox.addActionListener(this);
@@ -216,10 +216,10 @@ public class UIAddProduct extends BaseUI implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("add")) {
-			Member currentMember = new Member(1,"1");
-			productFacade.addProduct(nameProductText.getText(), Float.parseFloat(priceProductText.getText()), Float.parseFloat(discountProductText.getText()), currentMember, Integer.parseInt(quantityText.getText()), subcategoryComboBox.getSelectedItem().toString(), descriptionText.getText());
-			UIProduct frameProduct = new UIProduct(factory);
-			frameProduct.setVisible(true);
+			Member currentMember = new Member("1");
+			productFacade.addProduct(nameProductText.getText(), Double.parseDouble(priceProductText.getText()), Double.parseDouble(discountProductText.getText()), Integer.parseInt(quantityText.getText()), currentMember,  subcategoryComboBox.getSelectedItem().toString(), descriptionText.getText());
+			UIProduct frameAdd = new UIProduct(factory);
+			frameAdd.setVisible(true);
 			this.dispose();
 		}
 		else if (e.getActionCommand().equals("return")) {

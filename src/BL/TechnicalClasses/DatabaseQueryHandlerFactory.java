@@ -86,20 +86,20 @@ public class DatabaseQueryHandlerFactory extends AbstractPersistenceHandlerFacto
 	public ActivityPersistenceHandler createActivityPersistenceHandler()
 	{
 		return new ActivityQueryHandler();
-	}*/
+	}
 	
 	public OrderPersistenceHandler createOrderPersistenceHandler()
 	{
 		return new OrderQueryHandler();
-	}
+	}*/
 	
 	public ProductPersistenceHandler createProductPersistenceHandler()
 	{
 		return new ProductQueryHandler();
 	}
 	
-	public AdhesionPersistenceHandler createAdhesionPersistenceHandler()
+	/*public AdhesionPersistenceHandler createAdhesionPersistenceHandler()
 	{
 		return new AdhesionQueryHandler();
-	}
+	}*/
 }

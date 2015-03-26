@@ -31,9 +31,8 @@ public class ProductFacade {
  * @return 
  */
 	
-    public boolean addProduct(String name, float price, float discount, Member currentMember, int quantity, String subcategory, String description) {        
-        this.productManager.addProduct(name, price, discount, currentMember, quantity, subcategory, description);
-        return false;
+    public boolean addProduct(String name, double price, double discount, int quantity, Member currentMember, String subcategory, String description) {        
+        return this.productManager.addProduct(name, price, discount, quantity, currentMember, subcategory, description);
     } 
 
 /**
@@ -43,9 +42,8 @@ public class ProductFacade {
  * @param Product 
  * @return 
  */
-    public boolean modifyProduct(Product product, String name, float price, float discount, int quantity, String description) {        
-        this.productManager.modifyProduct(product, name, price, discount, quantity, description);
-        return false;
+    public boolean modifyProduct(Product product, String name, double price, double discount, int quantity, String description) {        
+        return this.productManager.modifyProduct(product, name, price, discount, quantity, description);
     } 
 
 /**
@@ -56,8 +54,7 @@ public class ProductFacade {
  * @return 
  */
     public boolean deleteProduct(Product product) {        
-        this.productManager.deleteProduct(product);
-        return false;
+        return this.productManager.deleteProduct(product);
     } 
 
 /**
@@ -68,7 +65,6 @@ public class ProductFacade {
  * @return 
  */
     public ArrayList<Product> getProducts(Member currentmember) {        
-        this.productManager.getProducts(currentmember);
-        return null;
+        return this.productManager.getProducts(currentmember);
     } 
  }

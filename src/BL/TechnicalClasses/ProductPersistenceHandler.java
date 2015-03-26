@@ -27,7 +27,7 @@ public abstract class ProductPersistenceHandler {
  * @param description
  * @return 
  */
-    public abstract boolean addProduct(String name, float price,float discount,Member currentMember,int quantity, String subcategory, String description);
+    public abstract boolean addProduct(String name, double price, double discount, int quantity, Member currentMember, String subcategory, String description);
 
 /**
  * <p>Does ...</p>
@@ -36,7 +36,7 @@ public abstract class ProductPersistenceHandler {
  * @param Product 
  * @return 
  */
-    public abstract boolean modifyProduct(Product product, String name, float price, float discount, int quantity, String description);
+    public abstract boolean modifyProduct(Product product, String name, double price, double discount, int quantity, String description);
 
 /**
  * <p>Does ...</p>

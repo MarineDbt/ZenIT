@@ -31,8 +31,8 @@ public class ProductManager {
  * @param String 
  * @return 
  */
-    public boolean addProduct(String name, float price,float discount,Member currentMember,int quantity, String subcategory, String description) {        
-        boolean result = myProductPersistenceHandler.addProduct(name, price, discount, currentMember, quantity, subcategory, description);
+    public boolean addProduct(String name, double price, double discount,int quantity, Member currentMember, String subcategory, String description) {        
+        boolean result = myProductPersistenceHandler.addProduct(name, price, discount, quantity, currentMember, subcategory, description);
         return result;
     } 
 
@@ -43,7 +43,7 @@ public class ProductManager {
  * @param Product 
  * @return 
  */
-    public boolean modifyProduct(Product product, String name, float price, float discount, int quantity, String description) {        
+    public boolean modifyProduct(Product product, String name, double price, double discount, int quantity, String description) {        
         boolean result = myProductPersistenceHandler.modifyProduct(product, name, price, discount, quantity, description);
         return result;
     } 

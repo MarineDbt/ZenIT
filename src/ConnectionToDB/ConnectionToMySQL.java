@@ -85,7 +85,7 @@ public class ConnectionToMySQL
 		} catch (SQLException e1) {
 			// TODO : error handling
 		}
-    	
+    	System.out.println("");
     /* Return Value */
     	return resultat;
     }
