@@ -40,6 +40,7 @@ public class RegisterUI extends JFrame implements ActionListener{
 	private JPasswordField pwdPassword;
 	private JPasswordField pwdCheckpassword;
 	private JButton btnRegister;
+	private JButton btnBack;
 	private JLabel lblZenLounge;
 	private JLabel lblFirstName;
 	private JLabel lblLastName;
@@ -50,20 +51,6 @@ public class RegisterUI extends JFrame implements ActionListener{
 	private JLabel lblUsername;
 	private JLabel lblPassword;
 	private JLabel lblPassword_1;
-	//TO TEST ONLY
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					RegisterUI frame = new RegisterUI();
-					frame.setVisible(true);
-					frame.userFacade=new UserFacade();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	public RegisterUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -86,6 +73,8 @@ public class RegisterUI extends JFrame implements ActionListener{
 				ColumnSpec.decode("20dlu:grow"),},
 				new RowSpec[] {
 				RowSpec.decode("20dlu:grow"),
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
@@ -188,6 +177,12 @@ public class RegisterUI extends JFrame implements ActionListener{
 		getContentPane().add(btnRegister, "6, 18");
 		btnRegister.addActionListener(this);
 		btnRegister.setActionCommand("register");
+		
+		btnBack = new JButton("back");
+		getContentPane().add(btnBack, "6, 20");
+		btnBack.addActionListener(this);
+		btnBack.setActionCommand("back");
+		
 		this.pack();
 	}
 
@@ -198,9 +193,23 @@ public class RegisterUI extends JFrame implements ActionListener{
 			System.out.println(pwdCheckpassword.getText());
 			if (pwdPassword.getText().equals(pwdCheckpassword.getText())){
 				System.out.println("ok");
-				userFacade.register(txtLastName.getText(),txtFirstName.getText(),txtStreet.getText(),txtPostalCode.getText(),txtCity.getText(),txtPhone.getText(),txtEmail.getText(),txtUsername.getText(),pwdPassword.getText());
+				userFacade=new UserFacade();
+				if (userFacade.userManager.isUser(txtUsername.getText())){
+					userFacade.register(txtLastName.getText(),txtFirstName.getText(),txtStreet.getText(),txtPostalCode.getText(),txtCity.getText(),txtPhone.getText(),txtEmail.getText(),txtUsername.getText(),pwdPassword.getText());
+					LoginUI loginUI=new LoginUI();
+					loginUI.setVisible(true);
+					loginUI.userFacade = new UserFacade();
+					this.dispose();
+				}
 			}
 		}
+		if (e.getActionCommand().equals("back")){
+			LoginUI loginUI=new LoginUI();
+			loginUI.setVisible(true);
+			loginUI.userFacade = new UserFacade();
+			this.dispose();
+		}
+		
 	}
 
 }

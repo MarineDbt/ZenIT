@@ -104,8 +104,15 @@ public class UserManager {
 	     } 
 
 	     public boolean deleteProfile(User currentUser) {        
-	         // your code here
-	         return false;
+	    	 boolean result = false;
+		 		
+		 		try {
+		 			result = this.userPersistenceHandler.deleteUser(currentUser.getId());
+		 		} catch (Exception e) {
+		 			// TODO : Error Handling
+		 		}
+		 		
+		 		return result;
 	     } 
 	     public boolean isMember(User user) {
 	 		return this.userPersistenceHandler.isMember(user.getId());
@@ -119,4 +126,7 @@ public class UserManager {
 	 	public boolean isSupervisor(User user) {
 	 		return this.userPersistenceHandler.isSupervisor(user.getId());
 	 	}
+		public boolean isUser(String id) {
+			return this.userPersistenceHandler.isUser(id);
+		}
 }

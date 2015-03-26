@@ -37,6 +37,7 @@ public class ProfileUI extends BaseUI{
 	private JButton btnModify;
 	private JButton btnDiscard;
 	private JButton btnCancel;
+	private JButton btnDelete;
 	private JLabel lblPassword;
 	private JLabel lblNewPassword;
 	private JLabel lblCheckPassword;
@@ -198,6 +199,11 @@ public class ProfileUI extends BaseUI{
 		btnCancel.addActionListener(this);
 		btnCancel.setActionCommand("cancel");
 		
+		btnDelete = new JButton("Delete Account");
+		content.add(btnDelete, "8, 18");
+		btnDelete.addActionListener(this);
+		btnDelete.setActionCommand("delete");
+		
 		initializeProfile();
 		unableModif();
 	}
@@ -269,6 +275,16 @@ public class ProfileUI extends BaseUI{
 		btnValidate.setVisible(true);
 		btnCancel.setVisible(true);
 	}
+private void confirmDeletion() {
+		
+		btnModify.setVisible(false);
+		pwdPassword.setVisible(true);
+		lblPassword.setVisible(true);
+		btnChangePassword.setVisible(false);
+		btnDelete.setText("Confirm Deletion");
+		btnDelete.setActionCommand("confirmDeletion");
+
+	}
 	
 	public void actionPerformed(ActionEvent arg0) {
 		super.actionPerformed(arg0);
@@ -291,11 +307,22 @@ public class ProfileUI extends BaseUI{
 			
 		}
 		if (arg0.getActionCommand()=="save"){
-			System.out.println("ALLO " + userFacade.userManager.currentUser.getId());
-			System.out.println("ALLO2 " + pwdPassword.getText());
 			if (userFacade.userManager.checkPassword(userFacade.userManager.currentUser.getId(),pwdPassword.getText())){
 				userFacade.userManager.modifyProfile(txtFirstName.getText(),txtLastName.getText(), txtStreet.getText(),txtPostalCode.getText(),txtCity.getText(),txtPhone.getText(),txtEmail.getText(),txtUsername.getText(),pwdPassword.getText());
 				unableModif();
+			}
+		}
+		if (arg0.getActionCommand()=="delete"){
+			confirmDeletion();
+		}
+		if (arg0.getActionCommand()=="confirmDeletion"){
+			System.out.println("hello");
+			if (userFacade.userManager.checkPassword(userFacade.userManager.currentUser.getId(),pwdPassword.getText())){
+				userFacade.userManager.deleteProfile(userFacade.userManager.currentUser);
+				 LoginUI loginUI = new LoginUI();
+				 loginUI.setVisible(true);
+				 loginUI.userFacade= new UserFacade();
+				 this.dispose();
 			}
 		}
 	}
