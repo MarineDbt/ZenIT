@@ -319,6 +319,10 @@ private void confirmDeletion() {
 			System.out.println("hello");
 			if (userFacade.userManager.checkPassword(userFacade.userManager.currentUser.getId(),pwdPassword.getText())){
 				userFacade.userManager.deleteProfile(userFacade.userManager.currentUser);
+				 LoginUI loginUI = new LoginUI();
+				 loginUI.setVisible(true);
+				 loginUI.userFacade= new UserFacade();
+				 this.dispose();
 			}
 		}
 	}
