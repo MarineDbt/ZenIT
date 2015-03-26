@@ -27,6 +27,8 @@ import java.awt.Font;
 
 public class RegisterUI extends JFrame implements ActionListener{
 
+	UserFacade userFacade;
+	
 	private JTextField txtFirstName;
 	private JTextField txtLastName;
 	private JTextField txtStreet;
@@ -52,6 +54,9 @@ public class RegisterUI extends JFrame implements ActionListener{
 	private JLabel lblPassword_1;
 
 	public RegisterUI() {
+		
+		userFacade=new UserFacade();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1055, 432);
 		this.setMinimumSize(new Dimension(600,450));
@@ -195,7 +200,6 @@ public class RegisterUI extends JFrame implements ActionListener{
 			System.out.println(pwdCheckpassword.getText());
 			if (pwdPassword.getText().equals(pwdCheckpassword.getText())){
 				System.out.println("ok");
-				UserFacade userFacade=new UserFacade();
 				if (!userFacade.isUser(txtUsername.getText())){
 					userFacade.register(txtLastName.getText(),txtFirstName.getText(),txtStreet.getText(),txtPostalCode.getText(),txtCity.getText(),txtPhone.getText(),txtEmail.getText(),txtUsername.getText(),pwdPassword.getText());
 					LoginUI loginUI=new LoginUI();

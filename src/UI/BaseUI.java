@@ -10,6 +10,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 
 import BL.DataClasses.User;
+import BL.Front.NotificationFacade;
+import BL.Front.ShoppingFacade;
 import BL.Front.UserFacade;
 
 import com.jgoodies.forms.layout.FormLayout;
@@ -38,7 +40,7 @@ public class BaseUI extends JFrame implements ActionListener {
 	JButton btnContributor;
 	JButton btnMyActivities;
 	
-	protected UserFacade userFacade;
+	protected User currentUser;
 
 	public BaseUI() {
 		
@@ -53,8 +55,8 @@ public class BaseUI extends JFrame implements ActionListener {
 	 * You actually need to refer a User, because the display of the ribbon differs from users
 	 * 
 	 */
-	public BaseUI(UserFacade userFacade) {
-		this.userFacade=userFacade;
+	public BaseUI(User user) {
+		currentUser=user;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1055, 432);
 		this.setMinimumSize(new Dimension(600,450));
@@ -95,7 +97,7 @@ public class BaseUI extends JFrame implements ActionListener {
 		btnHome.addActionListener(this);
 		btnHome.setActionCommand("home");
 		
-		JLabel lblUser = new JLabel("Hi " + userFacade.getCurrentUser().getId());
+		JLabel lblUser = new JLabel("Hi " + this.currentUser.getId());
 		lblUser.setFont(new Font("Verdana", Font.PLAIN, 9));
 		ribbon.add(lblUser);
 
@@ -147,7 +149,7 @@ public class BaseUI extends JFrame implements ActionListener {
 		contentPane.add(content, "2, 4, fill, fill");
 		content.setLayout(null);
 
-		hideUselessButtons(userFacade.getCurrentUser());
+		hideUselessButtons(this.currentUser);
 		
 		this.pack();
 
@@ -159,33 +161,33 @@ public class BaseUI extends JFrame implements ActionListener {
 	 * @param currentUser
 	 */
 	private void hideUselessButtons(User currentUser) {
-		if (!userFacade.isMember(currentUser)){
+		if (!this.currentUser.isMember){
 			btnMyActivities.setVisible(false);
 		}
-		if (!userFacade.isContributor(currentUser)){
+		if (!this.currentUser.isContributor){
 			btnContributor.setVisible(false);
 		}
-		if (!userFacade.isSupervisor(currentUser)){
+		if (!this.currentUser.isSupervisor){
 			btnSupervisor.setVisible(false);
 		}
-		if (!userFacade.isAdministrator(currentUser)){
+		if (!this.currentUser.isAdministrator){
 			btnAdmin.setVisible(false);
 		}
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getActionCommand().equals("home")){
-			HomeUI homeUI = new HomeUI(userFacade);
+			HomeUI homeUI = new HomeUI(this.currentUser);
     		homeUI.setVisible(true);
 	    	this.dispose();
 		}
 		if (arg0.getActionCommand().equals("notifications")){
-			 NotificationCenterUI notificationCenterUI = new NotificationCenterUI(userFacade);
+			 NotificationCenterUI notificationCenterUI = new NotificationCenterUI(this.currentUser);
 			 notificationCenterUI.setVisible(true);
 			 this.dispose();
 		}
 		if (arg0.getActionCommand().equals("profile")){
-			 ProfileUI profileUI = new ProfileUI(userFacade);
+			 ProfileUI profileUI = new ProfileUI(this.currentUser);
 			 profileUI.setVisible(true);
 			 this.dispose();
 		}
@@ -195,7 +197,7 @@ public class BaseUI extends JFrame implements ActionListener {
 			 this.dispose();
 		}
 		if (arg0.getActionCommand().equals("cart")){
-			 CartUI cartUI = new CartUI(userFacade);
+			 CartUI cartUI = new CartUI(this.currentUser);
 			 cartUI.setVisible(true);
 			 this.dispose();
 		}

@@ -23,6 +23,7 @@ import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.DefaultComboBoxModel;
 
+import BL.Front.ShoppingFacade;
 import BL.DataClasses.Cart;
 import BL.DataClasses.Category;
 import BL.DataClasses.Contains;
@@ -44,13 +45,15 @@ import javax.swing.ScrollPaneConstants;
 public class CartUI extends BaseUI {
 
 	private JPanel productList;
-
+	private ShoppingFacade shoppingFacade;
+	
 	/**
 	 * Launch the application.
 	 */
 
-	public CartUI(UserFacade userFacade) {
-		super(userFacade);
+	public CartUI(User user) {
+		super(user);
+		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
@@ -88,7 +91,7 @@ public class CartUI extends BaseUI {
 		JLabel lblTotalPrice = new JLabel("Total Price");
 		productList.add(lblTotalPrice, "cell 3 0");
 
-		this.addProducts(userFacade.getCurrentUser());
+		this.addProducts(this.currentUser);
 
 		JPanel validate = new JPanel();
 		GridBagConstraints gbc_validate = new GridBagConstraints();
@@ -118,6 +121,8 @@ public class CartUI extends BaseUI {
 		String quantity;
 		String total;
 
+		getData();
+		
 		while(it.hasNext()){
 
 			currentContains=it.next();
@@ -139,6 +144,11 @@ public class CartUI extends BaseUI {
 			i++;
 		}
 
+	}
+
+	private void getData() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

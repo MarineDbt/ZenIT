@@ -12,7 +12,7 @@ import BL.TechnicalClasses.NotificationManager;
 public class NotificationFacade {
 
 
-	public NotificationManager notificationManager;
+	private NotificationManager notificationManager;
 	
 	
 	public NotificationFacade(){

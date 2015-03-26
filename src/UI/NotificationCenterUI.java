@@ -38,12 +38,11 @@ public class NotificationCenterUI extends BaseUI implements ActionListener {
 	/**
 	 * Create the frame.
 	 */
-	public NotificationCenterUI(UserFacade userFacade) {
-			super(userFacade);
-		//super(currentUser);
+	public NotificationCenterUI(User currentUser) {
+		super(currentUser);
 		
 		this.notificationFacade=new NotificationFacade();
-		String[][] data = getdata();
+		String[][] data = getData();
 		System.out.print(" TEEEEEEEEEEEEEEST ");
 		System.out.println(data==null);
 		String[] colnames = new String[] {"Source", "Message"};
@@ -79,8 +78,8 @@ public class NotificationCenterUI extends BaseUI implements ActionListener {
 		
 	}
 
-	private	String[][] getdata() {
-		ArrayList<Notification> notifications = notificationFacade.notificationManager.readNotifications(userFacade.getCurrentUser());
+	private	String[][] getData() {
+		ArrayList<Notification> notifications = notificationFacade.readNotifications(this.currentUser);
 		Iterator<Notification> it = notifications.iterator();
 		System.out.println(notifications.size());
 		String[][] data = new String[notifications.size()][2];
@@ -103,9 +102,8 @@ public class NotificationCenterUI extends BaseUI implements ActionListener {
 		super.actionPerformed(arg0);
 		
 		if (arg0.getActionCommand().equals("clear")){
-			notificationFacade.deleteNotifications(userFacade.getCurrentUser());
-			HomeUI homeUI = new HomeUI(userFacade);
-    		homeUI.userFacade=this.userFacade;
+			notificationFacade.deleteNotifications(this.currentUser);
+			HomeUI homeUI = new HomeUI(this.currentUser);
     		homeUI.setVisible(true);
 	    	this.dispose();
 		}

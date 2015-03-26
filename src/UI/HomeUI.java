@@ -29,8 +29,8 @@ public class HomeUI extends BaseUI {
 	/**
 	 * Create the frame.
 	 */
-	public HomeUI(UserFacade userFacade) {
-		super(userFacade);
+	public HomeUI(User user) {
+		super(user);
 		content.setLayout(new FlowLayout());
 		content.add(new JLabel("Home sweet home"));
 	}

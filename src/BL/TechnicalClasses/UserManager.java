@@ -19,7 +19,7 @@ public class UserManager {
 	/* Attributs */
 	private UserFactory userFactory;
 	private UserAbstractPersistenceHandler userPersistenceHandler;
-	private UserExceptionHandler userExceptionHandler;
+	private UserExceptionHandler userExceptionHandler; // TODO : error handling
 	protected HashMap<String,User> users;
 	public User currentUser;
 	
@@ -35,10 +35,9 @@ public class UserManager {
 		boolean result = false;
 		result = checkPassword(id, pwd);
 		if (result){
-			 System.out.println("c");
 			 loadUser(id);
 			 currentUser=users.get(id);
-			 System.out.println("T " + currentUser.getId());
+			 
 		 }
 		 
 		 return result;
@@ -114,7 +113,7 @@ public class UserManager {
 		 		
 		 		return result;
 	     } 
-	     public boolean isMember(User user) {
+	    public boolean isMember(User user) {
 	 		return this.userPersistenceHandler.isMember(user.getId());
 	 	}
 	 	public boolean isContributor(User user) {

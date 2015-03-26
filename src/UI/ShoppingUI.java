@@ -18,14 +18,17 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.DefaultComboBoxModel;
 
 import BL.DataClasses.User;
+import BL.Front.ShoppingFacade;
 import BL.Front.UserFacade;
 
 public class ShoppingUI extends BaseUI {
 	
 	private JTable table;
+	private ShoppingFacade shoppingFacade;
 	
-	public ShoppingUI(UserFacade userFacade) {
-		super(userFacade);
+	
+	public ShoppingUI(User user) {
+		super(user);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
