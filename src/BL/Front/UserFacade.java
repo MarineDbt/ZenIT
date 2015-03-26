@@ -15,62 +15,61 @@ public class UserFacade {
 	 * To be able to login and register
 	 */
 	
-	public UserManager userManager;
+	private UserManager userManager;
 	
 	
 	public UserFacade(){
 		this.userManager = new UserManager();
+	}
+	
+	public User getCurrentUser(){
+		return this.userManager.getCurrentUser();
 	}
 
 	public void register(String firstname, String lastname, String street, String PC, String city, String phone, String email, String id, String pwd){
 		userManager.register(firstname, lastname, street, PC, city, phone, email, id, pwd);
 	}
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I395d852m14bf5118266mm7055]
- * @param String 
- * @param String 
- * @return 
- */
     public boolean login(String id, String pwd) {        
         return userManager.login(id, pwd);
     } 
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I395d852m14bf5118266mm700b]
- * @param User 
- */
     public  void consultProfile(User currentUser) {        
         // your code here
     } 
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I395d852m14bf5118266mm6b2b]
- * @param User 
- * @param String 
- * @param .. 
- * @return 
- */
     public boolean modifyProfile(String firstname, String lastname, String street, String PC, String city, String phone, String email, String id, String pwd) {        
         // your code here
         return false;
     } 
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I395d852m14bf5118266mm6b06]
- * @param User 
- * @return 
- */
     public boolean deleteProfile( User currentUser) {        
         // your code here
         return false;
-    } 
+    }
+
+	
+    public boolean isMember(User user) {
+		return userManager.isMember(user);
+	}
+	public boolean isUser(String id) {
+		return userManager.isUser(id);
+	}
+
+	public boolean checkPassword(String id, String pwd) {
+		return userManager.checkPassword(id, pwd);
+	}
+
+	public boolean isContributor(User user) {
+		return userManager.isContributor(user);
+	}
+	
+	public boolean isAdministrator(User user) {
+		return userManager.isAdministrator(user);
+	}
+
+	public boolean isSupervisor(User user) {
+		return userManager.isSupervisor(user);
+	}
+	
  }

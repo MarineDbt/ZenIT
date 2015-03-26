@@ -209,7 +209,7 @@ public class ProfileUI extends BaseUI{
 	}
 	private void initializeProfile(){
 		
-		User u=userFacade.userManager.currentUser;
+		User u=userFacade.getCurrentUser();
 		txtFirstName.setText(u.getFirstname());
 		txtLastName.setText(u.getLastname());
 		txtStreet.setText(u.getStreet());
@@ -299,16 +299,16 @@ private void confirmDeletion() {
 		}
 		if (arg0.getActionCommand()=="validate"){
 			if (pwdPassword.getText()!= "" && pwdNewPassword.getText().equals(pwdCheckPassword.getText())){
-				if (userFacade.userManager.checkPassword(userFacade.userManager.currentUser.getId(),pwdPassword.getText())){
-					userFacade.userManager.modifyProfile(txtFirstName.getText(),txtLastName.getText(), txtStreet.getText(),txtPostalCode.getText(),txtCity.getText(),txtPhone.getText(),txtEmail.getText(),txtUsername.getText(),pwdNewPassword.getText());
+				if (userFacade.checkPassword(userFacade.getCurrentUser().getId(),pwdPassword.getText())){
+					userFacade.modifyProfile(txtFirstName.getText(),txtLastName.getText(), txtStreet.getText(),txtPostalCode.getText(),txtCity.getText(),txtPhone.getText(),txtEmail.getText(),txtUsername.getText(),pwdNewPassword.getText());
 					unableModif();
 				}
 			}
 			
 		}
 		if (arg0.getActionCommand()=="save"){
-			if (userFacade.userManager.checkPassword(userFacade.userManager.currentUser.getId(),pwdPassword.getText())){
-				userFacade.userManager.modifyProfile(txtFirstName.getText(),txtLastName.getText(), txtStreet.getText(),txtPostalCode.getText(),txtCity.getText(),txtPhone.getText(),txtEmail.getText(),txtUsername.getText(),pwdPassword.getText());
+			if (userFacade.checkPassword(userFacade.getCurrentUser().getId(),pwdPassword.getText())){
+				userFacade.modifyProfile(txtFirstName.getText(),txtLastName.getText(), txtStreet.getText(),txtPostalCode.getText(),txtCity.getText(),txtPhone.getText(),txtEmail.getText(),txtUsername.getText(),pwdPassword.getText());
 				unableModif();
 			}
 		}
@@ -317,11 +317,10 @@ private void confirmDeletion() {
 		}
 		if (arg0.getActionCommand()=="confirmDeletion"){
 			System.out.println("hello");
-			if (userFacade.userManager.checkPassword(userFacade.userManager.currentUser.getId(),pwdPassword.getText())){
-				userFacade.userManager.deleteProfile(userFacade.userManager.currentUser);
+			if (userFacade.checkPassword(userFacade.getCurrentUser().getId(),pwdPassword.getText())){
+				userFacade.deleteProfile(userFacade.getCurrentUser());
 				 LoginUI loginUI = new LoginUI();
 				 loginUI.setVisible(true);
-				 loginUI.userFacade= new UserFacade();
 				 this.dispose();
 			}
 		}

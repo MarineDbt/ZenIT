@@ -86,7 +86,7 @@ public class LoginUI extends JFrame implements ActionListener{
 			 UserFacade userFacade = new UserFacade();
 			 boolean isLogged = userFacade.login(txtUsername.getText(),pwdPassword.getText());
 	    	 if(isLogged){
-	    		System.out.println("H " + userFacade.userManager.currentUser.getId());
+	    		System.out.println("H " + userFacade.getCurrentUser().getId());
 	    		HomeUI homeUI = new HomeUI(userFacade);
 	    		homeUI.userFacade=userFacade;
 	    		homeUI.setVisible(true);

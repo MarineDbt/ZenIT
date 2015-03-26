@@ -47,6 +47,7 @@ public class RegisterUI extends JFrame implements ActionListener{
 	private JLabel lblCity;
 	private JLabel lblPhone;
 	private JLabel lblUsername;
+	private JLabel lblEmail;
 	private JLabel lblPassword;
 	private JLabel lblPassword_1;
 
@@ -100,7 +101,7 @@ public class RegisterUI extends JFrame implements ActionListener{
 		getContentPane().add(lblFirstName, "2, 2");
 
 		txtFirstName = new JTextField();
-		txtFirstName.setText("First Name");
+		txtFirstName.setText("");
 		content.add(txtFirstName, "4, 2, fill, default");
 		txtFirstName.setColumns(10);
 
@@ -108,7 +109,7 @@ public class RegisterUI extends JFrame implements ActionListener{
 		getContentPane().add(lblUsername, "8, 2, default, center");
 
 		txtUsername = new JTextField();
-		txtUsername.setText("Username");
+		txtUsername.setText("");
 		content.add(txtUsername, "10, 2, fill, default");
 		txtUsername.setColumns(10);
 
@@ -116,7 +117,7 @@ public class RegisterUI extends JFrame implements ActionListener{
 		getContentPane().add(lblLastName, "2, 4");
 
 		txtLastName = new JTextField();
-		txtLastName.setText("Last Name");
+		txtLastName.setText("");
 		content.add(txtLastName, "4, 4, fill, default");
 		txtLastName.setColumns(10);
 
@@ -124,14 +125,14 @@ public class RegisterUI extends JFrame implements ActionListener{
 		getContentPane().add(lblPassword, "8, 4");
 
 		pwdPassword = new JPasswordField();
-		pwdPassword.setText("Password");
+		pwdPassword.setText("");
 		content.add(pwdPassword, "10, 4, fill, default");
 
 		lblStreet = new JLabel("Street :");
 		getContentPane().add(lblStreet, "2, 6");
 
 		txtStreet = new JTextField();
-		txtStreet.setText("Street");
+		txtStreet.setText("");
 		content.add(txtStreet, "4, 6, fill, default");
 		txtStreet.setColumns(10);
 
@@ -139,14 +140,14 @@ public class RegisterUI extends JFrame implements ActionListener{
 		getContentPane().add(lblPassword_1, "8, 6");
 
 		pwdCheckpassword = new JPasswordField();
-		pwdCheckpassword.setText("checkPassword");
+		pwdCheckpassword.setText("");
 		content.add(pwdCheckpassword, "10, 6, fill, default");
 
 		lblPostalCode = new JLabel("Postal Code :");
 		getContentPane().add(lblPostalCode, "2, 8");
 
 		txtPostalCode = new JTextField();
-		txtPostalCode.setText("Postal Code");
+		txtPostalCode.setText("");
 		content.add(txtPostalCode, "4, 8, fill, default");
 		txtPostalCode.setColumns(10);
 
@@ -154,7 +155,7 @@ public class RegisterUI extends JFrame implements ActionListener{
 		getContentPane().add(lblCity, "2, 10");
 
 		txtCity = new JTextField();
-		txtCity.setText("City");
+		txtCity.setText("");
 		content.add(txtCity, "4, 10, fill, default");
 		txtCity.setColumns(10);
 
@@ -162,12 +163,15 @@ public class RegisterUI extends JFrame implements ActionListener{
 		getContentPane().add(lblPhone, "2, 12");
 
 		txtPhone = new JTextField();
-		txtPhone.setText("Phone");
+		txtPhone.setText("");
 		content.add(txtPhone, "4, 12, fill, default");
 		txtPhone.setColumns(10);
 
+		lblEmail = new JLabel("E-mail :");
+		getContentPane().add(lblEmail, "2, 14");
+		
 		txtEmail = new JTextField();
-		txtEmail.setText("E-mail");
+		txtEmail.setText("");
 		content.add(txtEmail, "4, 14, fill, default");
 		txtEmail.setColumns(10);
 
@@ -191,12 +195,11 @@ public class RegisterUI extends JFrame implements ActionListener{
 			System.out.println(pwdCheckpassword.getText());
 			if (pwdPassword.getText().equals(pwdCheckpassword.getText())){
 				System.out.println("ok");
-				userFacade=new UserFacade();
-				if (userFacade.userManager.isUser(txtUsername.getText())){
+				UserFacade userFacade=new UserFacade();
+				if (!userFacade.isUser(txtUsername.getText())){
 					userFacade.register(txtLastName.getText(),txtFirstName.getText(),txtStreet.getText(),txtPostalCode.getText(),txtCity.getText(),txtPhone.getText(),txtEmail.getText(),txtUsername.getText(),pwdPassword.getText());
 					LoginUI loginUI=new LoginUI();
 					loginUI.setVisible(true);
-					loginUI.userFacade = new UserFacade();
 					this.dispose();
 				}
 			}
@@ -204,7 +207,6 @@ public class RegisterUI extends JFrame implements ActionListener{
 		if (e.getActionCommand().equals("back")){
 			LoginUI loginUI=new LoginUI();
 			loginUI.setVisible(true);
-			loginUI.userFacade = new UserFacade();
 			this.dispose();
 		}
 		

@@ -129,4 +129,8 @@ public class UserManager {
 		public boolean isUser(String id) {
 			return this.userPersistenceHandler.isUser(id);
 		}
+		public User getCurrentUser() {
+			return currentUser;
+			
+		}
 }

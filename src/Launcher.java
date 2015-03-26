@@ -18,7 +18,6 @@ public class Launcher {
 				try {
 					DatabaseQueryHandlerFactory.createFactory();
 					LoginUI frame = new LoginUI();
-					frame.userFacade = new UserFacade();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

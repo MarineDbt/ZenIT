@@ -95,7 +95,7 @@ public class BaseUI extends JFrame implements ActionListener {
 		btnHome.addActionListener(this);
 		btnHome.setActionCommand("home");
 		
-		JLabel lblUser = new JLabel("Hi " + userFacade.userManager.currentUser.getId());
+		JLabel lblUser = new JLabel("Hi " + userFacade.getCurrentUser().getId());
 		lblUser.setFont(new Font("Verdana", Font.PLAIN, 9));
 		ribbon.add(lblUser);
 
@@ -147,7 +147,7 @@ public class BaseUI extends JFrame implements ActionListener {
 		contentPane.add(content, "2, 4, fill, fill");
 		content.setLayout(null);
 
-		hideUselessButtons(userFacade.userManager.currentUser);
+		hideUselessButtons(userFacade.getCurrentUser());
 		
 		this.pack();
 
@@ -159,16 +159,16 @@ public class BaseUI extends JFrame implements ActionListener {
 	 * @param currentUser
 	 */
 	private void hideUselessButtons(User currentUser) {
-		if (!userFacade.userManager.isMember(currentUser)){
+		if (!userFacade.isMember(currentUser)){
 			btnMyActivities.setVisible(false);
 		}
-		if (!userFacade.userManager.isContributor(currentUser)){
+		if (!userFacade.isContributor(currentUser)){
 			btnContributor.setVisible(false);
 		}
-		if (!userFacade.userManager.isSupervisor(currentUser)){
+		if (!userFacade.isSupervisor(currentUser)){
 			btnSupervisor.setVisible(false);
 		}
-		if (!userFacade.userManager.isAdministrator(currentUser)){
+		if (!userFacade.isAdministrator(currentUser)){
 			btnAdmin.setVisible(false);
 		}
 	}
@@ -192,7 +192,6 @@ public class BaseUI extends JFrame implements ActionListener {
 		if (arg0.getActionCommand().equals("logout")){
 			 LoginUI loginUI = new LoginUI();
 			 loginUI.setVisible(true);
-			 loginUI.userFacade= new UserFacade();
 			 this.dispose();
 		}
 		if (arg0.getActionCommand().equals("cart")){

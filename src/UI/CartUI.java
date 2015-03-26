@@ -88,7 +88,7 @@ public class CartUI extends BaseUI {
 		JLabel lblTotalPrice = new JLabel("Total Price");
 		productList.add(lblTotalPrice, "cell 3 0");
 
-		this.addProducts(userFacade.userManager.currentUser);
+		this.addProducts(userFacade.getCurrentUser());
 
 		JPanel validate = new JPanel();
 		GridBagConstraints gbc_validate = new GridBagConstraints();
@@ -105,9 +105,8 @@ public class CartUI extends BaseUI {
 
 		JButton btnBuy = new JButton("Buy");
 		validate.add(btnBuy);
-
-
 	}
+	
 	private void addProducts(User currentUser) {
 
 		Collection<Contains> products=currentUser.cart.contains;
