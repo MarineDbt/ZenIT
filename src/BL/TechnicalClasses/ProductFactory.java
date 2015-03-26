@@ -5,7 +5,7 @@ import BL.DataClasses.SubCategory;
 
 public class ProductFactory {
 
-	public Product createProduct(String nom, double price,double discount, String subCategory_name){
-		return new Product(nom, price,discount, subCategory_name);
+	public Product createProduct(int id_product, String nom, double price,double discount, String subCategory_name){
+		return new Product(id_product, nom, price,discount, subCategory_name);
 	}
 }

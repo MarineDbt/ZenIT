@@ -8,26 +8,14 @@ import java.util.ArrayList;
  * 
  */
 public class Cart {
-	/**
-	 * 
-	 * 
-	 */
-	//public BL.DataClasses.User user;
-	/**
-	 * 
-	 * 
-	 */
-	//public BL.DataClasses.Order order;
-	/**
-	 * 
-	 * 
-	 * 
-	 * @poseidon-type BL.DataModel.Contains
-	 */
+
+	private int id_order;
+	
 	public ArrayList<Contains> contains;
 
-	public Cart(ArrayList<Contains> contains2) {
+	public Cart(ArrayList<Contains> contains2, int id_order) {
 		this.contains=contains2;
+		this.id_order=id_order;
 	}
 
 	/**
@@ -61,9 +49,7 @@ public class Cart {
 	public void validateCart() {        
 		// your code here
 	} 
-	/**
-	 * 
-	 * 
-	 */
-	public BL.DataClasses.Member member;
+	public int getId_order() {
+		return id_order;
+	}
 }

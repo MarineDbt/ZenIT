@@ -9,6 +9,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -43,19 +45,22 @@ import com.jgoodies.forms.layout.RowSpec;
 
 import javax.swing.ScrollPaneConstants;
 
-public class CartUI extends BaseUI {
+public class CartUI extends BaseUI implements ActionListener{
 
 	private JPanel productList;
 	private ShoppingFacade shoppingFacade;
 	private Cart cart;
-	
+	private ArrayList<JLabel> quantities = new ArrayList<JLabel>();
+	private ArrayList<JLabel> totals = new ArrayList<JLabel>();
+
 	/**
 	 * Launch the application.
 	 */
 
 	public CartUI(User user) {
 		super(user);
-		Cart cart = shoppingFacade.showCart(currentUser);
+		shoppingFacade=new ShoppingFacade();
+		cart = shoppingFacade.showCart(currentUser);
 		shoppingFacade = new ShoppingFacade();
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
@@ -110,19 +115,19 @@ public class CartUI extends BaseUI {
 		JButton btnBuy = new JButton("Buy");
 		validate.add(btnBuy);
 	}
-	
+
 	private void addProducts(User currentUser) {
 		//System.out.println(currentUser.getId());
 		ArrayList<Contains> products= cart.contains;
 		Iterator<Contains> it = products.iterator();
 		int i = 2;
 		Contains currentContains;
-		
+
 		String name;
 		String price;
 		String quantity;
 		String total;
-	
+
 		while(it.hasNext()){
 
 			currentContains=it.next();
@@ -133,21 +138,77 @@ public class CartUI extends BaseUI {
 
 			JButton moins = new JButton("-");
 			moins.addActionListener(this);
-			moins.setActionCommand("-");
-			
+			moins.setActionCommand("-" + i);
+
 			JButton plus = new JButton("+");
 			plus.addActionListener(this);
 			plus.setActionCommand("+" + i);
 			
+			JButton delete = new JButton("delete");
+			delete.addActionListener(this);
+			delete.setActionCommand("x" + i);
 			
+			JLabel lblQuantityi;
+			JLabel lblTotali;
+
+
 			productList.add(new JLabel(name), "cell 0 " + i);
 			productList.add(new JLabel(price), "cell 1 " + i);
-			productList.add(new JLabel(quantity), "cell 2 " + i);
-			productList.add(new JLabel(total), "cell 3 " + i);
+			
+			lblQuantityi = new JLabel(quantity);
+			quantities.add(lblQuantityi);
+			productList.add(lblQuantityi, "cell 2 " + i);
+			
+			lblTotali = new JLabel(total);
+			totals.add(lblTotali);
+			productList.add(lblTotali, "cell 3 " + i);
+			
 			productList.add(moins, "cell 4 " + i);
 			productList.add(plus, "cell 5 " + i);
+			productList.add(delete, "cell 6 " + i);
 			i++;
 		}
-
+	}
+	public void actionPerformed(ActionEvent arg0) {
+		super.actionPerformed(arg0);
+		System.out.println("COUCOU " + arg0.getActionCommand().substring(0, 1));
+		
+		if (arg0.getActionCommand().substring(0, 1).equals("-")){
+			int j = Integer.parseInt(arg0.getActionCommand().substring(1, 2)) - 2; //-2 car le 1er produit (j=0) est affiché à la troisème ligne ligne (i=2)
+			int quantity=cart.contains.get(j).getQuantity();
+			
+			
+			
+			if (quantity==1){
+				//TODO
+			}
+			else{
+				int newQuantity = quantity - 1;
+				double newTotal = newQuantity*cart.contains.get(j).product.getPrice();
+				shoppingFacade.modifyQuantityProduct(cart.contains.get(j).product, cart, newQuantity);
+				cart.contains.get(j).setQuantity(newQuantity);
+				quantities.get(j).setText(Integer.toString(newQuantity));
+				totals.get(j).setText(Double.toString(newTotal));
+			}
+		}
+		if (arg0.getActionCommand().substring(0, 1).equals("+")){
+			int j = Integer.parseInt(arg0.getActionCommand().substring(1, 2)) - 2; //-2 car le 1er produit (j=0) est affiché à la troisème ligne ligne (i=2)
+			int quantity=cart.contains.get(j).getQuantity();
+			int newQuantity =quantity + 1;
+			double newTotal = newQuantity*cart.contains.get(j).product.getPrice();
+			shoppingFacade.modifyQuantityProduct(cart.contains.get(j).product, cart, newQuantity);
+			cart.contains.get(j).setQuantity(newQuantity);
+			quantities.get(j).setText(Integer.toString(newQuantity));
+			totals.get(j).setText(Double.toString(newTotal));
+			
+		}
+		if (arg0.getActionCommand().substring(0, 1).equals("x")){
+			int j = Integer.parseInt(arg0.getActionCommand().substring(1, 2)) - 2; //-2 car le 1er produit (j=0) est affiché à la troisème ligne ligne (i=2)
+			shoppingFacade.deleteProductFromCart(cart.contains.get(j).product, cart);
+			cart.contains.remove(j);
+			CartUI cartUI = new CartUI(this.currentUser);
+			cartUI.setVisible(true);
+			this.dispose();
+		}
 	}
 }

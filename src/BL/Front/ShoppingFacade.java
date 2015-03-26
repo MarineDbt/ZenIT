@@ -16,29 +16,22 @@ public class ShoppingFacade {
 		shoppingManager=new ShoppingManager();
 	}
     public ArrayList<Product> searchProduct(SubCategory subCaterory) {        
-        // your code here
-        return null;
+        return shoppingManager.searchProduct(subCaterory);
     }
     public ArrayList<Product> searchProduct(Category caterory) {        
-        // your code here
-        return null;
+    	return shoppingManager.searchProduct(caterory);
     } 
 
     public void addProduct(Product selectedProduct , User currentUser) {        
-        // your code here
+    	shoppingManager.addProduct(selectedProduct, currentUser);
     } 
 
-    public void modifyQuantityProduct(Product selectedProduct , User currentUser, int newQuantity) {        
-        // your code here
-    } 
-
-    public void deleteProduct(Product selectedProduct , User currentUser) {        
-        // your code here
-    } 
+    public void modifyQuantityProduct(Product selectedProduct , Cart cart, int newQuantity) {        
+    	shoppingManager.modifyQuantityProduct(selectedProduct, cart, newQuantity);
+    }
 
     public boolean orderValidation(User currentUser) {        
-        // your code here
-        return false;
+        return shoppingManager.orderValidation(currentUser);
     } 
 
     public Cart showCart(User currentUser) {        
@@ -47,12 +40,15 @@ public class ShoppingFacade {
 
 
     public boolean cancelOrder(User currentUser, Order selectedOrder) {        
-        // your code here
-        return false;
+
+        return shoppingManager.cancelOrder(currentUser, selectedOrder);
     } 
 
 
     public ArrayList<Order> consultOrder(User currentUser) {        
-        // your code here
-        return null;    } 
+        return shoppingManager.consultOrder(currentUser);    
+    }
+	public void deleteProductFromCart(Product product, Cart cart) {
+		shoppingManager.deleteProductFromCart(product, cart);	
+	} 
  }

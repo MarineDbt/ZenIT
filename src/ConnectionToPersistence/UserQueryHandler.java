@@ -175,7 +175,6 @@ public class UserQueryHandler extends UserAbstractPersistenceHandler{
 		return (result==1);
     }
 
-	@Override
 	public boolean deleteUser(String id) {
 		int result = 0;
 		result = ConnectionToMySQL.requestDeleteQuery("Delete From User where id = '"+id+"';");

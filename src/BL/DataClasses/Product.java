@@ -7,11 +7,10 @@ package BL.DataClasses;
  */
 public class Product {
 
-/**
- * <p>Represents ...</p>
- * 
- */
-    private String nameProduct;
+
+	private int id_product;
+	
+	private String nameProduct;
 
 /**
  * <p>Represents ...</p>
@@ -41,7 +40,8 @@ public class Product {
  * 
  */
 public BL.DataClasses.Sells sells;
-public Product(String string, double d, double d2, String sub) {
+public Product(int id, String string, double d, double d2, String sub) {
+	this.id_product=id;
 	this.nameProduct=string;
 	this.price = d;
 	this.discount = d2;
@@ -56,7 +56,7 @@ public void setNameProduct(String nameProduct) {
 public double getPrice() {
 	return price;
 }
-public void setPrice(double price) {
-	this.price = price;
+public int getId_product() {
+	return id_product;
 }
  }

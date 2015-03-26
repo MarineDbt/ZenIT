@@ -29,11 +29,11 @@ public class ShoppingManager {
         // your code here
     } 
     
-    public void modifyQuantityProduct(Product selectedProduct, User currentUser, int newQuantity) {        
-        // your code here
+    public void modifyQuantityProduct(Product product, Cart cart, int quantity) {        
+        shoppingPersistenceHandler.updateOrdersProduct(product, cart, quantity);
     } 
-    public void deleteProduct(Product selectedProduct , User currentUser) {        
-        // your code here
+    public void deleteProductFromCart(Product product , Cart cart) {        
+    	shoppingPersistenceHandler.deleteOrdersProduct(product, cart);
     } 
     
     public boolean orderValidation(User currentUser) {        

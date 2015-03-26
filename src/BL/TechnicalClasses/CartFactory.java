@@ -7,8 +7,8 @@ import BL.DataClasses.Contains;
 
 public class CartFactory {
 
-	public Cart createCart(ArrayList<Contains> contains) {
-		return new Cart(contains);
+	public Cart createCart(ArrayList<Contains> contains, int id_order) {
+		return new Cart(contains, id_order);
 	}
 
 }

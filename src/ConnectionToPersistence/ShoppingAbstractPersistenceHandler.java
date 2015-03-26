@@ -58,4 +58,9 @@ public abstract class ShoppingAbstractPersistenceHandler {
     public abstract ArrayList<Product> lookForProduct(String categoryName, String subcategoryName);
 
     public abstract Cart lookForCart(User currentUser);
+    
+    public abstract boolean updateOrdersProduct(Product product, Cart cart, int quantity);
+    
+    public abstract boolean deleteOrdersProduct(Product product, Cart cart);
+    
  }

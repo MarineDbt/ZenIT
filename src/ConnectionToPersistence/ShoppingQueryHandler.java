@@ -11,6 +11,7 @@ import BL.TechnicalClasses.ContainsFactory;
 import BL.TechnicalClasses.NotificationFactory;
 import BL.TechnicalClasses.ProductFactory;
 import BL.TechnicalClasses.UserFactory;
+import BL.TechnicalClasses.UserPasswordEncryptionHandler;
 /**
  * 
  * 
@@ -83,8 +84,12 @@ public class ShoppingQueryHandler extends ShoppingAbstractPersistenceHandler {
 			double discount;
 			String subCategory_name;
 			String category_name;
+			int id_order= -1;
+			int id_product; 
+			
 			if (resultSet.isBeforeFirst()){
 				resultSet.next();
+				id_order = resultSet.getInt(resultSet.findColumn("id_order"));
 				while (!resultSet.isAfterLast()){
 					name = resultSet.getString(resultSet.findColumn("nameProduct"));
 					price = resultSet.getDouble(resultSet.findColumn("price"));
@@ -92,11 +97,12 @@ public class ShoppingQueryHandler extends ShoppingAbstractPersistenceHandler {
 					subCategory_name = resultSet.getString(resultSet.findColumn("subcategory_name"));
 					category_name = resultSet.getString(resultSet.findColumn("nameProduct"));
 					quantity = resultSet.getInt(resultSet.findColumn("quantity"));
-					contains.add(containsFactory.createContains(quantity,productFactory.createProduct(name,price,discount,subCategory_name)));
+					id_product = resultSet.getInt(resultSet.findColumn("id_product"));
+					contains.add(containsFactory.createContains(quantity,productFactory.createProduct(id_product,name,price,discount,subCategory_name)));
 					resultSet.next();
 				}
 			}
-			cart=cartFactory.createCart(contains);
+			cart=cartFactory.createCart(contains, id_order);
 			return cart;
 			
 		} catch (SQLException e) {
@@ -104,5 +110,20 @@ public class ShoppingQueryHandler extends ShoppingAbstractPersistenceHandler {
 			e.printStackTrace();
 		}
 		return null;
-	} 
+	}
+	
+	public boolean updateOrdersProduct(Product product ,Cart cart, int quantity) {
+		
+		int result = 0;
+		
+		result = ConnectionToMySQL.requestUpdateQuery("Update OrdersProduct SET quantity = '"+quantity+"' WHERE id_product = '"+product.getId_product()+"' AND id_order = '"+cart.getId_order()+"';");
+		
+		return (result==1);
+	}
+	
+	public boolean deleteOrdersProduct(Product product, Cart cart) {
+		int result = 0;
+		result = ConnectionToMySQL.requestDeleteQuery("Delete From OrdersProduct WHERE id_product = '"+product.getId_product()+"' AND id_order = '"+cart.getId_order()+"';");
+		return (result==1);
+	}
 }
