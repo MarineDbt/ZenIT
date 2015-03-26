@@ -12,6 +12,7 @@ import java.util.Locale;
 
 import BL.DataClasses.Activity;
 import BL.DataClasses.Room;
+import BL.DataClasses.TimeSlot;
 import BL.DataClasses.User;
 import BL.Front.EventFacade;
 import BL.TechnicalClasses.AbstractPersistenceHandlerFactory;
@@ -90,7 +91,7 @@ public class AddOccasionalEventUI extends BaseUI implements ActionListener {
 		tfDate.setBounds(239, 91, 152, 20);
 		content.add(this.tfDate);
 		
-		String[] eventTypeslist = { "Conference", "Private Sales","Master Class" };
+		String[] eventTypeslist = { "Conference", "Private Sales","Master Class","Other" };
 		this.eventType = new JComboBox(eventTypeslist);
 		eventType.setBounds(264, 196, 152, 20);
 		eventType.setSelectedIndex(1);
@@ -110,6 +111,7 @@ public class AddOccasionalEventUI extends BaseUI implements ActionListener {
 		de = new JLabel("De");
 		de.setBounds(190, 128, 29, 14);
 		content.add(de);
+		
 		
 		heuredeb = new JTextField();
 		heuredeb.setBounds(217, 122, 29, 20);
@@ -178,6 +180,12 @@ public class AddOccasionalEventUI extends BaseUI implements ActionListener {
 		roombox.addActionListener(this);
 		content.add(roombox);
 		
+		JButton btnReturn = new JButton("Return");
+		btnReturn.setActionCommand("next");
+		btnReturn.setBounds(262, 303, 89, 23);
+		content.add(btnReturn);
+		btnReturn.addActionListener(this);
+		btnReturn.setActionCommand("return");
 		
 		
 	}
@@ -185,19 +193,47 @@ public class AddOccasionalEventUI extends BaseUI implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		
-		String Type = (String)this.eventType.getSelectedItem();
-	     this.chosenType = Type;
-	     
-	    String contributor = (String)this.contrib.getSelectedItem();
-	    this.chosenContrib = contributor;
+		
 	    
-	    String room = (String)this.roombox.getSelectedItem();
-	    this.chosenRoom = room;
 	     
 	    if (e.getActionCommand().equals("next")) {
-		    		
+	    	
+	    	EventFacade facade = new EventFacade(factory);
+			String Type = (String)this.eventType.getSelectedItem();
+		     this.chosenType = Type;
+		    
+		     
+		    String contributor = (String)this.contrib.getSelectedItem();
+		    this.chosenContrib = contributor;
+		 
+		    String room = (String)this.roombox.getSelectedItem();
+		    this.chosenRoom = room;
+		    
+		    TimeSlot timeSlot = new TimeSlot(Integer.parseInt(heuredeb.getText()),Integer.parseInt(this.mindeb.getText()),Integer.parseInt(this.heurefin.getText()),Integer.parseInt(this.minfin.getText()));
+		    
+		    if (facade.addOccasional(currentActivity, this.chosenContrib, this.namefield.getText(), this.descfield.getText(), this.chosenRoom, timeSlot, this.tfDate.getText(), this.chosenType)) {
+		    	ActivityListEventUI frame = new ActivityListEventUI(this.factory,this.user,this.currentActivity);
+				frame.setVisible(true);
+				this.dispose();
+				ActSupprime frame2 = new ActSupprime("L'évènement a bien été ajouté");
+				frame2.setVisible(true);
+		    }
+		    
+		    else {
+		    	AddOccasionalEventUI frame = new AddOccasionalEventUI(this.factory, this.user,this.currentActivity);
+				frame.setVisible(true);
+				this.dispose();
+				ActSupprime frame2 = new ActSupprime("Il y a eu une erreur, vérifiez vos informations");
+				frame2.setVisible(true);
+		    }
 					
 					
 		}
+	    
+	    if (e.getActionCommand().equals("return")) {
+	    	ActivityListEventUI frame = new ActivityListEventUI(this.factory,this.user,this.currentActivity);
+			frame.setVisible(true);
+			this.dispose();
+	    }
 	}
 }

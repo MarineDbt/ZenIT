@@ -48,4 +48,24 @@ public TimeSlot(int hdeb, int mindeb, int hfin, int minfin) {
  * @poseidon-type BL.DataModel.Lesson
  */
     public java.util.Collection lesson = new java.util.TreeSet();
+    
+public int getHDeb() {
+	// TODO Auto-generated method stub
+	return this.startHour;
+}
+
+public int getMDeb() {
+	// TODO Auto-generated method stub
+	return this.startMinutes;
+}
+
+public int getHFin() {
+	// TODO Auto-generated method stub
+	return this.endingHour;
+}
+
+public int getMFin() {
+	// TODO Auto-generated method stub
+	return this.enfingMinutes;
+}
  }

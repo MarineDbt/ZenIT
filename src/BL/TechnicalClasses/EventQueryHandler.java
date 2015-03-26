@@ -49,6 +49,8 @@ public class EventQueryHandler extends EventPersistenceHandler {
         // your code here
         return null;
     } 
+    
+    
 
 /**
  * <p>Does ...</p>
@@ -62,9 +64,20 @@ public class EventQueryHandler extends EventPersistenceHandler {
  * @param selectedDay 
  * @return 
  */
-    public boolean insertLesson(Activity currentActivity, String name, String description, Room selectedRoom, TimeSlot selectedTimeSlot, Day selectedDay) {        
-        // your code here
-        return false;
+    public boolean insertLesson(Activity currentActivity, String contributor, String name, String description, String selectedRoom, TimeSlot selectedTimeSlot, String selectedDay) {        
+     
+    	System.out.println("je suis dans insert occasional");
+    	int result=0;
+  
+    	int idTimeSlot = this.searchTimeSlot(selectedTimeSlot);
+    	int idEvent = this.insertEvent(currentActivity, contributor, name, description, selectedRoom, idTimeSlot);
+    	
+    			
+    	result= ConnectionToMySQL.requestInsertQuery("insert into Lesson (id_event,day) values('"+idEvent+"','"+selectedDay+"');");
+       
+    	
+    	return (result==1);
+    	
     } 
 
 /**
@@ -76,7 +89,8 @@ public class EventQueryHandler extends EventPersistenceHandler {
  * @return 
  */
     public boolean insertContributor(Contributor selectedContributor, Event currentEvent) {        
-        // your code here
+    
+    	
         return false;
     } 
 
@@ -93,11 +107,79 @@ public class EventQueryHandler extends EventPersistenceHandler {
  * @param selectedEventType 
  * @return 
  */
-    public boolean insertOccasional(Activity currentActivity, String name, String description, Room selectedRoom, TimeSlot selectedTimeSlot, java.util.Date selectedDate, EventType selectedEventType) {        
-        
-    	String datesql = "to_date('"+selectedDate+"' 'dd/MM/yyyy')";
+    private int searchTimeSlot(TimeSlot selectedTimeSlot) {
+    	System.out.println("je suis dans insert timeslot");
+    	int idTimeSlot = 0;
+    	ResultSet result;
+    	int result2 =0;
+    	ResultSet result3;
     	
-        return false;
+    	result = ConnectionToMySQL.requestSelectQuery("Select * from TimeSlot where startHour='"+selectedTimeSlot.getHDeb()+"' and startMinutes='"+selectedTimeSlot.getMDeb()+"' and endHour ='"+selectedTimeSlot.getHFin()+"' and endMinutes='"+selectedTimeSlot.getMFin()+"' ;");
+    	try {
+			
+    	if (result.next()) {
+    		
+    		idTimeSlot = result.getInt(1);
+    	}
+    	
+    	else {
+    		result2 = ConnectionToMySQL.requestInsertQuery("insert into TimeSlot (startHour,startMinutes,endHour, endMinutes) values ('"+selectedTimeSlot.getHDeb()+"', '"+selectedTimeSlot.getMDeb()+"','"+selectedTimeSlot.getHFin()+"','"+selectedTimeSlot.getMFin()+"');");
+    		System.out.println("le résultat de la requelle timslot est "+result2);
+    		if (result2==1) {
+    		
+    			result3 = ConnectionToMySQL.requestSelectQuery("Select * from TimeSlot where startHour='"+selectedTimeSlot.getHDeb()+"' and startMinutes='"+selectedTimeSlot.getMDeb()+"' and endHour ='"+selectedTimeSlot.getHFin()+"' and endMinutes='"+selectedTimeSlot.getMFin()+"' ;");
+    			if (result3.next()) {
+    			idTimeSlot = result3.getInt(1);
+    			}
+    	}
+    	}
+    	
+    	} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	System.out.println(idTimeSlot);
+    	return idTimeSlot;
+    }
+    
+    
+    
+    public int insertEvent(Activity currentActivity, String contributor, String name, String description, String selectedRoom, int idTimeSlot) {
+    	System.out.println("je suis dans insert event");
+    int idEvent=0;
+    int result=0;
+    ResultSet result2;
+    
+    result = ConnectionToMySQL.requestInsertQuery("insert into Event (event_name,id_contributor,event_description,id_room,id_timeslot,activity_name) values('"+name+"','"+contributor+"','"+description+"','"+selectedRoom+"','"+idTimeSlot+"','"+currentActivity.getName()+"');");
+    if (result==1) {
+    	result2 = ConnectionToMySQL.requestSelectQuery("Select * from Event Where event_name='"+name+"' and id_contributor='"+contributor+"' and event_description='"+description+"' and id_room='"+selectedRoom+"' and id_timeslot='"+idTimeSlot+"' and activity_name='"+currentActivity.getName()+"';");
+    	try {
+			if (result2.next()) {
+			idEvent = result2.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	System.out.println("l'idevent est "+idEvent);
+    	return idEvent;
+    }
+    
+    return idEvent;
+}
+    public boolean insertOccasional(Activity currentActivity, String contributor, String name, String description, String selectedRoom, TimeSlot selectedTimeSlot, String selectedDate, String selectedEventType) {        
+    	System.out.println("je suis dans insert occasional");
+    	int result=0;
+    	String dateSql = "STR_TO_DATE('"+selectedDate+"', '%d/%m/%Y')";
+    	int idTimeSlot = this.searchTimeSlot(selectedTimeSlot);
+    	int idEvent = this.insertEvent(currentActivity, contributor, name, description, selectedRoom, idTimeSlot);
+    	
+    			
+    	result= ConnectionToMySQL.requestInsertQuery("insert into Occasional (id_event,eventType_name,dateEvent) values('"+idEvent+"','"+selectedEventType+"',"+dateSql+");");
+       
+    	
+    	return (result==1);
     } 
 
 /**

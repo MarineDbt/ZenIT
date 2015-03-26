@@ -60,9 +60,9 @@ public class ActivityFollowersUI extends BaseUI implements ActionListener {
 		numberfollow.setBounds(349, 44, 46, 14);
 		content.add(numberfollow);
 		
-		/* ActivityFacade facade = new ActivityFacade(factory);
-		ArrayList<User> followers = facade.getMembers(currentActivity); */
-		User follow1 = new User("MarineDbt", "Marine", "Dbt");
+		ActivityFacade facade = new ActivityFacade(factory);
+		ArrayList<User> followers = facade.getMembers(currentActivity); 
+		/* User follow1 = new User("MarineDbt", "Marine", "Dbt");
 		User follow2 = new User("Marine", "Marine", "Dbt");
 		User follow3 = new User("Mégane", "Mégane", "Dbt");
 		User follow4 = new User("JulesCrd", "Jules", "Dbt");
@@ -76,7 +76,7 @@ public class ActivityFollowersUI extends BaseUI implements ActionListener {
 		followers.add(follow4);
 		followers.add(follow5);
 		followers.add(follow6);
-		followers.add(follow7);
+		followers.add(follow7); */
 		
 		numberfollow.setText(String.valueOf(followers.size()));
 		

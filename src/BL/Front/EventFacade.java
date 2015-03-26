@@ -65,8 +65,8 @@ public class EventFacade {
  * @param selectedDay 
  * @return 
  */
-    public boolean addLesson(Activity currentActivity, String name, String description, Room selectedRoom, TimeSlot selectedTimeSlot, Day selectedDay) {        
-        return eventmanager.addLesson(currentActivity, name, description, selectedRoom, selectedTimeSlot, selectedDay);
+    public boolean addLesson(Activity currentActivity, String contributor, String name, String description, String selectedRoom, TimeSlot selectedTimeSlot, String selectedDay) {        
+        return eventmanager.addLesson(currentActivity, contributor, name, description, selectedRoom, selectedTimeSlot, selectedDay);
     } 
 
 /**
@@ -89,15 +89,15 @@ public class EventFacade {
  * @param currentActivity 
  * @param name 
  * @param description 
- * @param selectedRoom 
+ * @param chosenRoom 
  * @param selectedTimeSlot 
- * @param selectedDate 
- * @param selectedEventType 
+ * @param date 
+ * @param chosenType 
  * @return 
  */
-    public boolean addOccasional(Activity currentActivity, String name, String description, Room selectedRoom, TimeSlot selectedTimeSlot, Date selectedDate, EventType selectedEventType) {        
+    public boolean addOccasional(Activity currentActivity, String chosenContrib, String name, String description, String chosenRoom, TimeSlot selectedTimeSlot, String date, String chosenType) {        
      
-        return eventmanager.addOccasional(currentActivity, name, description, selectedRoom, selectedTimeSlot, selectedDate, selectedEventType);
+        return eventmanager.addOccasional(currentActivity, chosenContrib, name, description, chosenRoom, selectedTimeSlot, date, chosenType);
     } 
 
 /**

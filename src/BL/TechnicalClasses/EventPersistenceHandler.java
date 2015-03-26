@@ -59,7 +59,7 @@ public abstract class EventPersistenceHandler {
  * @param selectedDay 
  * @return 
  */
-    public boolean insertLesson(Activity currentActivity, String name, String description, Room selectedRoom, TimeSlot selectedTimeSlot, Day selectedDay) {        
+    public boolean insertLesson(Activity currentActivity, String contributor, String name, String description, String selectedRoom, TimeSlot selectedTimeSlot, String selectedDay) {        
         // your code here
         return false;
     } 
@@ -84,13 +84,13 @@ public abstract class EventPersistenceHandler {
  * @param currentActivity 
  * @param name 
  * @param description 
- * @param selectedRoom 
+ * @param chosenRoom 
  * @param selectedTimeSlot 
  * @param selectedDate 
  * @param selectedEventType 
  * @return 
  */
-    public boolean insertOccasional(Activity currentActivity, String name, String description, Room selectedRoom, TimeSlot selectedTimeSlot, java.util.Date selectedDate, EventType selectedEventType) {        
+    public boolean insertOccasional(Activity currentActivity, String chosenContrib, String name, String description, String chosenRoom, TimeSlot selectedTimeSlot, String selectedDate, String selectedEventType) {        
         // your code here
         return false;
     } 

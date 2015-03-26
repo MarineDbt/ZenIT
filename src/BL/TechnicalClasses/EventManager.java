@@ -68,9 +68,9 @@ public EventPersistenceHandler eventPH;
  * @param selectedDay 
  * @return 
  */
-    public boolean addLesson(Activity currentActivity, String name, String description, Room selectedRoom, TimeSlot selectedTimeSlot, Day selectedDay) {        
+    public boolean addLesson(Activity currentActivity, String contributor, String name, String description, String selectedRoom, TimeSlot selectedTimeSlot, String selectedDay) {        
         
-        return eventPH.insertLesson(currentActivity, name, description, selectedRoom, selectedTimeSlot, selectedDay);
+        return eventPH.insertLesson(currentActivity, contributor, name, description, selectedRoom, selectedTimeSlot, selectedDay);
     } 
 
 /**
@@ -93,15 +93,15 @@ public EventPersistenceHandler eventPH;
  * @param currentActivity 
  * @param name 
  * @param description 
- * @param selectedRoom 
+ * @param chosenRoom 
  * @param selectedTimeSlot 
  * @param selectedDate 
  * @param selectedEventType 
  * @return 
  */
-    public boolean addOccasional(Activity currentActivity, String name, String description, Room selectedRoom, TimeSlot selectedTimeSlot, java.util.Date selectedDate, EventType selectedEventType) {        
+    public boolean addOccasional(Activity currentActivity, String chosenContrib, String name, String description, String chosenRoom, TimeSlot selectedTimeSlot, String selectedDate, String selectedEventType) {        
        
-        return eventPH.insertOccasional(currentActivity, name, description, selectedRoom, selectedTimeSlot, selectedDate, selectedEventType);
+        return eventPH.insertOccasional(currentActivity, chosenContrib, name, description, chosenRoom, selectedTimeSlot, selectedDate, selectedEventType);
     } 
 
 /**

@@ -102,19 +102,19 @@ public class ActivityQueryHandler extends ActivityPersistenceHandler {
     	ArrayList<User> userlist = new ArrayList<User>();
     	
     	/* Query execution delegated to ConnectionToMySQL */
-    	result = ConnectionToMySQL.requestSelectQuery("Select * from ActivityMember where `activity_name`= '"+currentActivity.getName()+"';");
+    	result = ConnectionToMySQL.requestSelectQuery("Select * from MemberActivity where `activity_name`= '"+currentActivity.getName()+"';");
     	
     	try {
 			while (result.next()) {
 			     String id_user = result.getString(1);
 			     result2 = ConnectionToMySQL.requestSelectQuery("Select * from User where `id`= '"+id_user+"';");
 			     while (result2.next()) {
-			    	 String firstname = result.getString(2);
-			    	 String lastname = result.getString(3);
-			    	 String street = result.getString(4);
-			    	 String pc = result.getString(5);
-			    	 String city = result.getString(6);
-			    	 String phone  = result.getString(7);
+			    	 String firstname = result2.getString(2);
+			    	 String lastname = result2.getString(3);
+			    	 String street = result2.getString(4);
+			    	 String pc = result2.getString(5);
+			    	 String city = result2.getString(6);
+			    	 String phone  = result2.getString(7);
 			    	 User user = new User(id_user, firstname, lastname, street, pc, city, phone);
 			    	 userlist.add(user);
 			     }
@@ -144,7 +144,7 @@ public class ActivityQueryHandler extends ActivityPersistenceHandler {
     	ArrayList<Event> myEvents = new ArrayList<Event>();
     	
     	/* Query execution delegated to ConnectionToMySQL */
-    	System.out.println(currentActivity.getName());
+  
     	result = ConnectionToMySQL.requestSelectQuery("Select * from Event where activity_name='"+currentActivity.getName()+"';");
     	try {
 			while (result.next()) {
