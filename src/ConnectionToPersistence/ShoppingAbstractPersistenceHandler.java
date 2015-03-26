@@ -2,7 +2,9 @@
 package ConnectionToPersistence;
 
 import java.util.ArrayList;
+
 import BL.DataClasses.*;
+import BL.TechnicalClasses.ProductFactory;
 
 /**
  * 
@@ -11,6 +13,9 @@ import BL.DataClasses.*;
  */
 public abstract class ShoppingAbstractPersistenceHandler {
 
+	
+	private CartFactory cartFactory;
+	private ProductFactory productFactory;
 /**
  * <p>Does ...</p>
  * 
@@ -48,4 +53,6 @@ public abstract class ShoppingAbstractPersistenceHandler {
  * @return 
  */
     public abstract ArrayList<Product> lookForProduct(String categoryName, String subcategoryName);
+
+    public abstract Cart lookForCart(User currentUser);
  }

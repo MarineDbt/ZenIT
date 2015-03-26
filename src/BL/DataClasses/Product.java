@@ -40,7 +40,7 @@ public class Product {
  * 
  * 
  */
-    public BL.DataClasses.Sells sells;
+public BL.DataClasses.Sells sells;
 public Product(String string, double d, SubCategory sub) {
 	this.nameProduct=string;
 	this.price = d;

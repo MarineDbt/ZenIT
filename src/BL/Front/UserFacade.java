@@ -34,25 +34,24 @@ public class UserFacade {
         return userManager.login(id, pwd);
     } 
 
-    public  void consultProfile(User currentUser) {        
-        // your code here
+    public User consultProfile(User currentUser) {        
+    	return userManager.consultProfile(currentUser);
     } 
 
     public boolean modifyProfile(String firstname, String lastname, String street, String PC, String city, String phone, String email, String id, String pwd) {        
-        // your code here
-        return false;
+        return userManager.modifyProfile(firstname, lastname, street, PC, city, phone, email, id, pwd);
     } 
 
     public boolean deleteProfile( User currentUser) {        
-        // your code here
-        return false;
+        return userManager.deleteProfile(currentUser);
     }
 
 	
     public boolean isMember(User user) {
 		return userManager.isMember(user);
 	}
-	public boolean isUser(String id) {
+	
+    public boolean isUser(String id) {
 		return userManager.isUser(id);
 	}
 

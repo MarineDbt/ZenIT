@@ -38,9 +38,8 @@ public class ShoppingFacade {
         return false;
     } 
 
-    public ArrayList<Product> showCart(User currentUser ) {        
-        // your code here
-        return null;
+    public ArrayList<Contains> showCart(User currentUser) {        
+    	return shoppingManager.showCart(currentUser);
     } 
 
 

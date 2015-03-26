@@ -11,8 +11,5 @@ public class UserFactory {
 		
 		User newUser = new User(firstname,lastname, street, PC, city, phone, email, id, pwd);
 		return newUser;
-		
-		
 	}
-
 }

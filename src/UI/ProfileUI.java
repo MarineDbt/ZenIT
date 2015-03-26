@@ -320,8 +320,8 @@ private void confirmDeletion() {
 		}
 		if (arg0.getActionCommand()=="confirmDeletion"){
 			System.out.println("hello");
-			if (userFacade.checkPassword(userFacade.getCurrentUser().getId(),pwdPassword.getText())){
-				userFacade.deleteProfile(userFacade.getCurrentUser());
+			if (userFacade.checkPassword(this.currentUser.getId(),pwdPassword.getText())){
+				userFacade.deleteProfile(this.currentUser);
 				 LoginUI loginUI = new LoginUI();
 				 loginUI.setVisible(true);
 				 this.dispose();

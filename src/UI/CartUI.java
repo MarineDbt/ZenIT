@@ -31,6 +31,7 @@ import BL.DataClasses.Product;
 import BL.DataClasses.SubCategory;
 import BL.DataClasses.User;
 import BL.Front.UserFacade;
+import BL.TechnicalClasses.ShoppingManager;
 
 import javax.swing.JList;
 
@@ -112,7 +113,7 @@ public class CartUI extends BaseUI {
 	
 	private void addProducts(User currentUser) {
 
-		Collection<Contains> products=currentUser.cart.contains;
+		Collection<Contains> products=shoppingFacade.showCart(currentUser);;
 		Iterator<Contains> it = products.iterator();
 		int i = 2;
 		Contains currentContains;	
@@ -120,8 +121,6 @@ public class CartUI extends BaseUI {
 		String price;
 		String quantity;
 		String total;
-
-		getData();
 		
 		while(it.hasNext()){
 
@@ -130,10 +129,6 @@ public class CartUI extends BaseUI {
 			price = Double.toString(currentContains.product.getPrice());
 			quantity = Integer.toString(currentContains.getQuantity());
 			total = Double.toString((double)currentContains.product.getPrice()*(double)currentContains.getQuantity());
-			//System.out.println((double)currentContains.product.getPrice());
-			//System.out.println((double)currentContains.getQuantity());
-			//System.out.println(total);
-			//System.out.println();
 
 			productList.add(new JLabel(name), "cell 0 " + i);
 			productList.add(new JLabel(price), "cell 1 " + i);
@@ -145,10 +140,4 @@ public class CartUI extends BaseUI {
 		}
 
 	}
-
-	private void getData() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
