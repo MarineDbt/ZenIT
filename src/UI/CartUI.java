@@ -47,6 +47,7 @@ public class CartUI extends BaseUI {
 
 	private JPanel productList;
 	private ShoppingFacade shoppingFacade;
+	private Cart cart;
 	
 	/**
 	 * Launch the application.
@@ -54,7 +55,8 @@ public class CartUI extends BaseUI {
 
 	public CartUI(User user) {
 		super(user);
-		
+		Cart cart = shoppingFacade.showCart(currentUser);
+		shoppingFacade = new ShoppingFacade();
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
@@ -72,13 +74,11 @@ public class CartUI extends BaseUI {
 		products.setLayout(new GridLayout(0, 1, 0, 0));
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		products.add(scrollPane);
 
 		productList = new JPanel();
 		scrollPane.setViewportView(productList);
-		productList.setLayout(new MigLayout("", "[45px][][][][]", "[14px][14px]"));
+		productList.setLayout(new MigLayout("", "[45px,grow][grow][grow][grow][]", "[14px][14px]"));
 
 		JLabel lblProductName = new JLabel("Product Name");
 		productList.add(lblProductName, "cell 0 0");
@@ -112,16 +112,17 @@ public class CartUI extends BaseUI {
 	}
 	
 	private void addProducts(User currentUser) {
-
-		Collection<Contains> products=shoppingFacade.showCart(currentUser);;
+		//System.out.println(currentUser.getId());
+		ArrayList<Contains> products= cart.contains;
 		Iterator<Contains> it = products.iterator();
 		int i = 2;
-		Contains currentContains;	
+		Contains currentContains;
+		
 		String name;
 		String price;
 		String quantity;
 		String total;
-		
+	
 		while(it.hasNext()){
 
 			currentContains=it.next();
@@ -130,12 +131,21 @@ public class CartUI extends BaseUI {
 			quantity = Integer.toString(currentContains.getQuantity());
 			total = Double.toString((double)currentContains.product.getPrice()*(double)currentContains.getQuantity());
 
+			JButton moins = new JButton("-");
+			moins.addActionListener(this);
+			moins.setActionCommand("-");
+			
+			JButton plus = new JButton("+");
+			plus.addActionListener(this);
+			plus.setActionCommand("+" + i);
+			
+			
 			productList.add(new JLabel(name), "cell 0 " + i);
 			productList.add(new JLabel(price), "cell 1 " + i);
 			productList.add(new JLabel(quantity), "cell 2 " + i);
 			productList.add(new JLabel(total), "cell 3 " + i);
-			productList.add(new JButton("-"), "cell 4 " + i);
-			productList.add(new JButton("+"), "cell 5 " + i);
+			productList.add(moins, "cell 4 " + i);
+			productList.add(plus, "cell 5 " + i);
 			i++;
 		}
 

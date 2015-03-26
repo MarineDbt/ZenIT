@@ -41,11 +41,8 @@ public class ShoppingManager {
         return false;
     } 
     
-    public ArrayList<Contains> showCart(User currentUser) {        
-    	ArrayList<Contains> products = new ArrayList<Contains>();
-    	shoppingPersistenceHandler.lookForCart(currentUser);
-    	
-    	return products;
+    public Cart showCart(User currentUser) {        
+    	return shoppingPersistenceHandler.lookForCart(currentUser);
     } 
 
     public boolean cancelOrder(User currentUser, Order selectedOrder) {        

@@ -17,15 +17,11 @@ import BL.TechnicalClasses.UserFactory;
  * @poseidon-object-id [I395d852m14bf5118266mm66ad]
  */
 public class ShoppingQueryHandler extends ShoppingAbstractPersistenceHandler {
-
-	private ContainsFactory containsFactory;
-	private ProductFactory productFactory;
-	private CartFactory cartFactory;
 	
 	public ShoppingQueryHandler(){
-		containsFactory = new ContainsFactory();
-		productFactory = new ProductFactory();
-		cartFactory = new CartFactory();
+		this.containsFactory = new ContainsFactory();
+		this.productFactory = new ProductFactory();
+		this.cartFactory = new CartFactory();
 	}
 	/**
 	 * <p>Does ...</p>
@@ -65,12 +61,12 @@ public class ShoppingQueryHandler extends ShoppingAbstractPersistenceHandler {
 
 		try {
 			String query = ""
-					+ "select * from Orders, OrdersProduct, Product, SubCategory"
-					+ "where Orders.id_order = OrdersProduct.id_order"
-					+ "and OrdersProduct.id_product = Product.id_product "
-					+ "and Orders.id_user = '"+user.getId()+"' "
-					+ "and state = 'cart'"
-					+ "and Product.subCategory_name = SubCategory.subCategory_name;";
+					+ "select * from Orders, OrdersProduct, Product, Subcategory"
+					+ " where Orders.id_order = OrdersProduct.id_order"
+					+ " and OrdersProduct.id_product = Product.id_product"
+					+ " and Orders.id_user = '"+user.getId()+"'"
+					+ " and state = 'cart'"
+					+ " and Product.subcategory_name = Subcategory.subcategory_name;";
 			resultSet=ConnectionToMySQL.requestSelectQuery(query);
 			
 		} catch (Exception e) {
@@ -79,7 +75,8 @@ public class ShoppingQueryHandler extends ShoppingAbstractPersistenceHandler {
 		}
 		try {
 			resultSet.beforeFirst();
-			ArrayList<Contains> cart = new ArrayList<Contains>();
+			ArrayList<Contains> contains = new ArrayList<Contains>();
+			Cart cart;
 			String name;
 			int quantity;
 			double price;
@@ -92,13 +89,14 @@ public class ShoppingQueryHandler extends ShoppingAbstractPersistenceHandler {
 					name = resultSet.getString(resultSet.findColumn("nameProduct"));
 					price = resultSet.getDouble(resultSet.findColumn("price"));
 					discount = resultSet.getDouble(resultSet.findColumn("discount"));
-					subCategory_name = resultSet.getString(resultSet.findColumn("subCategory_name"));
+					subCategory_name = resultSet.getString(resultSet.findColumn("subcategory_name"));
 					category_name = resultSet.getString(resultSet.findColumn("nameProduct"));
-					quantity = resultSet.getInt(resultSet.findColumn("id_user_send"));
-					notifications.add(notificationFactory.createNotification(sender_id,currentUser.getId(),label));
+					quantity = resultSet.getInt(resultSet.findColumn("quantity"));
+					contains.add(containsFactory.createContains(quantity,productFactory.createProduct(name,price,discount,subCategory_name)));
 					resultSet.next();
 				}
 			}
+			cart=cartFactory.createCart(contains);
 			return cart;
 			
 		} catch (SQLException e) {

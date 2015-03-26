@@ -4,6 +4,8 @@ package ConnectionToPersistence;
 import java.util.ArrayList;
 
 import BL.DataClasses.*;
+import BL.TechnicalClasses.CartFactory;
+import BL.TechnicalClasses.ContainsFactory;
 import BL.TechnicalClasses.ProductFactory;
 
 /**
@@ -14,8 +16,9 @@ import BL.TechnicalClasses.ProductFactory;
 public abstract class ShoppingAbstractPersistenceHandler {
 
 	
-	private CartFactory cartFactory;
-	private ProductFactory productFactory;
+	protected CartFactory cartFactory;
+	protected ContainsFactory containsFactory;
+	protected ProductFactory productFactory;
 /**
  * <p>Does ...</p>
  * 

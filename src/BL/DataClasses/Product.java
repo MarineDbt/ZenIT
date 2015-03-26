@@ -28,7 +28,7 @@ public class Product {
  * 
  * 
  */
-    private BL.DataClasses.SubCategory subCategory;
+    private String subCategory_name;
 /**
  * 
  * 
@@ -41,10 +41,11 @@ public class Product {
  * 
  */
 public BL.DataClasses.Sells sells;
-public Product(String string, double d, SubCategory sub) {
+public Product(String string, double d, double d2, String sub) {
 	this.nameProduct=string;
 	this.price = d;
-	this.subCategory=sub;
+	this.discount = d2;
+	this.subCategory_name=sub;
 }
 public String getNameProduct() {
 	return nameProduct;
@@ -57,11 +58,5 @@ public double getPrice() {
 }
 public void setPrice(double price) {
 	this.price = price;
-}
-public BL.DataClasses.SubCategory getSubCategory() {
-	return subCategory;
-}
-public void setSubCategory(BL.DataClasses.SubCategory subCategory) {
-	this.subCategory = subCategory;
 }
  }

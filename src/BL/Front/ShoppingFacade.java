@@ -12,6 +12,9 @@ public class ShoppingFacade {
 	
 	private ShoppingManager shoppingManager;
 
+	public ShoppingFacade(){
+		shoppingManager=new ShoppingManager();
+	}
     public ArrayList<Product> searchProduct(SubCategory subCaterory) {        
         // your code here
         return null;
@@ -38,7 +41,7 @@ public class ShoppingFacade {
         return false;
     } 
 
-    public ArrayList<Contains> showCart(User currentUser) {        
+    public Cart showCart(User currentUser) {        
     	return shoppingManager.showCart(currentUser);
     } 
 
