@@ -65,21 +65,12 @@ public class CartUI extends BaseUI {
 		gbc_products.gridx = 0;
 		gbc_products.gridy = 1;
 		content.add(products, gbc_products);
-		GridBagLayout gbl_products = new GridBagLayout();
-		gbl_products.columnWidths = new int[]{159, 0};
-		gbl_products.rowHeights = new int[]{50, 0, 0};
-		gbl_products.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_products.rowWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
-		products.setLayout(gbl_products);
+		products.setLayout(new GridLayout(0, 1, 0, 0));
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
-		gbc_scrollPane.gridx = 0;
-		gbc_scrollPane.gridy = 0;
-		products.add(scrollPane, gbc_scrollPane);
+		products.add(scrollPane);
 
 		productList = new JPanel();
 		scrollPane.setViewportView(productList);

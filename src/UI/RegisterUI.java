@@ -27,8 +27,6 @@ import java.awt.Font;
 
 public class RegisterUI extends JFrame implements ActionListener{
 
-
-	public UserFacade userFacade;
 	private JTextField txtFirstName;
 	private JTextField txtLastName;
 	private JTextField txtStreet;

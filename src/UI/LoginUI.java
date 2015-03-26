@@ -28,8 +28,6 @@ public class LoginUI extends JFrame implements ActionListener{
 	
 	private JTextField txtUsername;
 	private JPasswordField pwdPassword;
-	public UserFacade userFacade;
-
 
 	/**
 	 * Create the frame.
@@ -85,18 +83,18 @@ public class LoginUI extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		 if (e.getActionCommand().equals("login")){
+			 UserFacade userFacade = new UserFacade();
 			 boolean isLogged = userFacade.login(txtUsername.getText(),pwdPassword.getText());
 	    	 if(isLogged){
 	    		System.out.println("H " + userFacade.userManager.currentUser.getId());
 	    		HomeUI homeUI = new HomeUI(userFacade);
-	    		homeUI.userFacade=this.userFacade;
+	    		homeUI.userFacade=userFacade;
 	    		homeUI.setVisible(true);
 		    	this.dispose();
 	    	 };
 	     }
 		 if (e.getActionCommand().equals("register")){
 			 RegisterUI registerUI = new RegisterUI();
-			 registerUI.userFacade=this.userFacade;
 			 registerUI.setVisible(true);
 	    	 this.dispose();
 	     }

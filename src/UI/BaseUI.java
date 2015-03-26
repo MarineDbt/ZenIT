@@ -40,7 +40,9 @@ public class BaseUI extends JFrame implements ActionListener {
 	
 	protected UserFacade userFacade;
 
-
+	public BaseUI() {
+		
+	}
 	/**
 	 * Create the frame.
 	 * 
@@ -132,6 +134,8 @@ public class BaseUI extends JFrame implements ActionListener {
 		JButton btnCart = new JButton("Cart");
 		btnCart.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		ribbon.add(btnCart);
+		btnCart.addActionListener(this);
+		btnCart.setActionCommand("cart");
 
 		JButton btnLogOut = new JButton("Log out");
 		btnLogOut.setFont(new Font("Tahoma", Font.PLAIN, 9));
@@ -189,6 +193,11 @@ public class BaseUI extends JFrame implements ActionListener {
 			 LoginUI loginUI = new LoginUI();
 			 loginUI.setVisible(true);
 			 loginUI.userFacade= new UserFacade();
+			 this.dispose();
+		}
+		if (arg0.getActionCommand().equals("cart")){
+			 CartUI cartUI = new CartUI(userFacade);
+			 cartUI.setVisible(true);
 			 this.dispose();
 		}
 	}
