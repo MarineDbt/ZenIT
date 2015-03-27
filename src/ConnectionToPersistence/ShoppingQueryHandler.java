@@ -235,4 +235,98 @@ public class ShoppingQueryHandler extends ShoppingAbstractPersistenceHandler {
 		}
 		return null;
 	}
+	@Override
+	public ArrayList<Product> selectProductOfCategory(String category) {
+		ResultSet resultSet = null;
+
+		try {
+			String query = ""
+					+ "select * from Product,Subcategory where Product.subcategory_name=Subcategory.subcategory_name and Subcategory.category_name = '"+category+"';";
+			resultSet=ConnectionToMySQL.requestSelectQuery(query);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			resultSet.beforeFirst();
+			ArrayList<Product> products = new ArrayList<Product>();
+			String name;
+			double price;
+			double discount;
+			String subCategory_name;
+			int id_product;
+
+			if (resultSet.isBeforeFirst()){
+				resultSet.next();
+				while (!resultSet.isAfterLast()){
+					name = resultSet.getString(resultSet.findColumn("nameProduct"));
+					price = resultSet.getDouble(resultSet.findColumn("price"));
+					discount = resultSet.getDouble(resultSet.findColumn("discount"));
+					subCategory_name = resultSet.getString(resultSet.findColumn("subcategory_name"));
+					id_product = resultSet.getInt(resultSet.findColumn("id_product"));
+					products.add(productFactory.createProduct(id_product,name,price,discount,subCategory_name));
+					resultSet.next();
+				}
+			}
+			return products;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	@Override
+	public ArrayList<Product> selectProductOfSubcategory(String subcategory) {
+		ResultSet resultSet = null;
+
+		try {
+			String query = ""
+					+ "select * from Product where subcategory_name = +'"+subcategory+"';";
+			resultSet=ConnectionToMySQL.requestSelectQuery(query);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			resultSet.beforeFirst();
+			ArrayList<Product> products = new ArrayList<Product>();
+			String name;
+			double price;
+			double discount;
+			String subCategory_name;
+			int id_product;
+
+			if (resultSet.isBeforeFirst()){
+				resultSet.next();
+				while (!resultSet.isAfterLast()){
+					name = resultSet.getString(resultSet.findColumn("nameProduct"));
+					price = resultSet.getDouble(resultSet.findColumn("price"));
+					discount = resultSet.getDouble(resultSet.findColumn("discount"));
+					subCategory_name = resultSet.getString(resultSet.findColumn("subcategory_name"));
+					id_product = resultSet.getInt(resultSet.findColumn("id_product"));
+					products.add(productFactory.createProduct(id_product,name,price,discount,subCategory_name));
+					resultSet.next();
+				}
+			}
+			return products;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	@Override
+	public boolean insertProduct(Product product, Cart cart) {
+
+		int result = 0;
+		
+		result = ConnectionToMySQL.requestInsertQuery("insert into OrdersProduct (id_product,id_order,quantity) values('"+product.getId_product()+"','"+cart.getId_order()+"',1);");
+		
+		return (result==1);
+		
+	}
 }

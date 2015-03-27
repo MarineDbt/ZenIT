@@ -15,18 +15,17 @@ public class ShoppingManager {
 	public ShoppingManager(){
 		shoppingPersistenceHandler = AbstractPersistenceHandlerFactory.getFactory().createShoppingPersistenceHandler();
 	}
-    public ArrayList<Product> searchProduct(SubCategory subCaterory) {        
-        // your code here
-        return null;
+    public ArrayList<Product> searchProductsOfCategory(String category) {        
+    	 return shoppingPersistenceHandler.selectProductOfCategory(category);
+       
     }
     
-    public ArrayList<Product> searchProduct(Category caterory) {        
-        // your code here
-        return null;
-    } 
+    public ArrayList<Product> searchProductsOfSubcategory(String subcategory) {        
+    	 return shoppingPersistenceHandler.selectProductOfSubcategory(subcategory);
+    }
     
-    public void addProduct(Product selectedProduct, User currentUser) {        
-        // your code here
+    public void addProduct(Product product, Cart cart) {        
+    	shoppingPersistenceHandler.insertProduct(product,cart);
     } 
     
     public void modifyQuantityProduct(Product product, Cart cart, int quantity) {        

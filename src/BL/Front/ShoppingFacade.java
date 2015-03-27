@@ -3,6 +3,8 @@ package BL.Front;
 
 import java.util.ArrayList;
 
+import javax.swing.JLabel;
+
 import BL.DataClasses.*;
 import BL.TechnicalClasses.ShoppingManager;
 
@@ -15,15 +17,15 @@ public class ShoppingFacade {
 	public ShoppingFacade(){
 		shoppingManager=new ShoppingManager();
 	}
-    public ArrayList<Product> searchProduct(SubCategory subCaterory) {        
-        return shoppingManager.searchProduct(subCaterory);
+    public ArrayList<Product> searchProductsOfCategory(String category) {        
+        return shoppingManager.searchProductsOfCategory(category);
     }
-    public ArrayList<Product> searchProduct(Category caterory) {        
-    	return shoppingManager.searchProduct(caterory);
-    } 
+    public ArrayList<Product> searchProductsOfSubcategory(String subcategory) {        
+        return shoppingManager.searchProductsOfSubcategory(subcategory);
+    }
 
-    public void addProduct(Product selectedProduct , User currentUser) {        
-    	shoppingManager.addProduct(selectedProduct, currentUser);
+    public void addProduct(Product product , Cart cart) {        
+    	shoppingManager.addProduct(product, cart);
     } 
 
     public void modifyQuantityProduct(Product selectedProduct , Cart cart, int newQuantity) {        

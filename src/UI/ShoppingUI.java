@@ -24,6 +24,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.DefaultComboBoxModel;
 
 import net.miginfocom.swing.MigLayout;
+import BL.DataClasses.Cart;
 import BL.DataClasses.Contains;
 import BL.DataClasses.Product;
 import BL.DataClasses.User;
@@ -32,22 +33,30 @@ import BL.Front.UserFacade;
 
 public class ShoppingUI extends BaseUI implements ItemListener{
 
-	private JTable table;
 	private ShoppingFacade shoppingFacade;
 	private JComboBox cbbCategories;
 	private JComboBox cbbSubcategories;
 	private JPanel productsPanel;
+	private ArrayList<Product> products;
+	private Cart cart;
 
 	public ShoppingUI(User user) {
 		super(user);
 		shoppingFacade=new ShoppingFacade();
+		cart=shoppingFacade.showCart(currentUser);
+		
 		Object[] categories = shoppingFacade.readCategories();
-
+		Object[] blank = new Object[1];
+		blank[0]="";
+		Object[] tab = new Object[categories.length+1];
+		System.arraycopy(blank, 0, tab,0, blank.length);
+		System.arraycopy(categories, 0, tab,blank.length, categories.length);
+		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
 		content.setLayout(gridBagLayout);
 
 		JPanel search = new JPanel();
@@ -62,7 +71,7 @@ public class ShoppingUI extends BaseUI implements ItemListener{
 		search.add(lblCategory);
 
 		cbbCategories = new JComboBox();
-		cbbCategories.setModel(new DefaultComboBoxModel(categories));
+		cbbCategories.setModel(new DefaultComboBoxModel(tab));
 		cbbCategories.setSelectedItem(null);
 		cbbCategories.addItemListener(this);
 		search.add(cbbCategories);
@@ -102,6 +111,7 @@ public class ShoppingUI extends BaseUI implements ItemListener{
 		return null;
 	}
 	private void addProducts(ArrayList<Product> products){
+		this.products=products;
 		Iterator<Product> it = products.iterator();
 		int i = 2;
 		Product currentProduct;
@@ -160,8 +170,7 @@ public class ShoppingUI extends BaseUI implements ItemListener{
 			JLabel lblSubcategory_name = new JLabel("Subcategory");
 			productsPanel.add(lblSubcategory_name, "cell 3 0,grow");
 
-			if (cbbCategories.getSelectedItem()==null){
-				System.out.println("HEEELo");
+			if (cbbCategories.getSelectedItem()==null || cbbCategories.getSelectedItem().equals("")){
 				addProducts(shoppingFacade.readAllProducts());
 				this.setVisible(false);
 				this.revalidate();
@@ -171,12 +180,24 @@ public class ShoppingUI extends BaseUI implements ItemListener{
 			}
 			else{
 				if (cbbSubcategories.getSelectedItem()==null || cbbSubcategories.getSelectedItem().equals("")){
-
+					addProducts(shoppingFacade.searchProductsOfCategory((String)cbbCategories.getSelectedItem()));
+					this.setVisible(false);
+					this.revalidate();
+					this.repaint();
+					this.setVisible(true);
 				}
 				else{
-
+					addProducts(shoppingFacade.searchProductsOfSubcategory((String)cbbSubcategories.getSelectedItem()));
+					this.setVisible(false);
+					this.revalidate();
+					this.repaint();
+					this.setVisible(true);
 				}
 			}
+		}
+		if (arg0.getActionCommand().substring(0, 1).equals("a")){
+			int j = Integer.parseInt(arg0.getActionCommand().substring(1, arg0.getActionCommand().length())) - 2; //-2 car le 1er produit (j=0) est affiché à la troisème ligne ligne (i=2)
+			shoppingFacade.addProduct(products.get(j),cart);
 		}
 	}
 }

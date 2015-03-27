@@ -12,6 +12,11 @@ import BL.TechnicalClasses.UserFactory;
 public class NotificationQueryHandler extends NotificationAbstractPersistenceHandler {
 
 
+	public NotificationQueryHandler(){
+		this.notificationFactory = new NotificationFactory() ;
+	}
+	
+	
     public ArrayList<Notification> selectNotificationsFromUser(User currentUser) {        
     	ResultSet resultSet = null;
 
@@ -29,7 +34,7 @@ public class NotificationQueryHandler extends NotificationAbstractPersistenceHan
 			ArrayList<Notification> notifications = new ArrayList<Notification>();
 			String label;
 			String sender_id;
-			NotificationFactory notificationFactory = new NotificationFactory();
+			notificationFactory = new NotificationFactory();
 			if (resultSet.isBeforeFirst()){
 				resultSet.next();
 				while (!resultSet.isAfterLast()){

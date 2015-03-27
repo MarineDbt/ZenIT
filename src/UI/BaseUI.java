@@ -59,7 +59,7 @@ public class BaseUI extends JFrame implements ActionListener {
 		currentUser=user;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1055, 432);
-		this.setMinimumSize(new Dimension(600,450));
+		this.setMinimumSize(new Dimension(800,600));
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -70,7 +70,8 @@ public class BaseUI extends JFrame implements ActionListener {
 				RowSpec.decode("1dlu"),
 				RowSpec.decode("max(33dlu;pref)"),
 				RowSpec.decode("1dlu"),
-				RowSpec.decode("max(139dlu;default):grow"),}));
+				RowSpec.decode("max(139dlu;default):grow"),
+				RowSpec.decode("1dlu"),}));
 
 		JPanel header = new JPanel();
 		contentPane.add(header, "2, 2, fill, top");
