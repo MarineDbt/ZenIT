@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 
 import java.awt.FlowLayout;
 
-import BL.DataClasses.User;
+import BL.DataClasses.*;
 import BL.Front.RoomFacade;
 import BL.TechnicalClasses.AbstractPersistenceHandlerFactory;
 
@@ -24,27 +24,29 @@ import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
 
 
-public class AddRoomUI extends JFrame implements ActionListener {
+public class AddAccRoomUI extends JFrame implements ActionListener {
 	private AbstractPersistenceHandlerFactory factory;
 	private JTextField textField;
 	private User currentUser;
+	private Room room;
+	
 	private JTextField textField_1;
 
 	
 	/**
 	 * Create the frame.
 	 */
-	public AddRoomUI(AbstractPersistenceHandlerFactory maFactory, User user) {
+	public AddAccRoomUI(AbstractPersistenceHandlerFactory maFactory,Room myRoom) {
 		super("Ajout Salle");
 		factory = maFactory;
-		currentUser = user;
+		room = myRoom;
 		
 		setBounds(100, 100, 450, 300);
 		
 		SpringLayout springLayout = new SpringLayout();
 		getContentPane().setLayout(springLayout);
 		
-		JLabel lblRoomName = new JLabel("Room name :");
+		JLabel lblRoomName = new JLabel("Accessory name :");
 		springLayout.putConstraint(SpringLayout.NORTH, lblRoomName, 74, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, lblRoomName, 87, SpringLayout.WEST, getContentPane());
 		getContentPane().add(lblRoomName);
@@ -69,7 +71,7 @@ public class AddRoomUI extends JFrame implements ActionListener {
 		springLayout.putConstraint(SpringLayout.WEST, btnCancel, 23, SpringLayout.EAST, btnValidate);
 		getContentPane().add(btnCancel);
 		
-		JLabel lblSuperficy = new JLabel("Surface :");
+		JLabel lblSuperficy = new JLabel("Quantity :");
 		springLayout.putConstraint(SpringLayout.NORTH, lblSuperficy, 23, SpringLayout.SOUTH, lblRoomName);
 		springLayout.putConstraint(SpringLayout.WEST, lblSuperficy, 101, SpringLayout.WEST, getContentPane());
 		getContentPane().add(lblSuperficy);
@@ -89,14 +91,15 @@ public class AddRoomUI extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("Validate")){
 			RoomFacade facade = new RoomFacade(factory);
-	    	 boolean result = facade.createRoom(textField.getText(), textField_1.getText());
+			Accessory acc = new Accessory(textField.getText());
+	    	boolean result = facade.addAccessory(room, acc, textField_1.getText());
 	    	
 	    	 
 	    	 if(result)
 	    	 {
-	    		 DisplayRoomUI frame = new DisplayRoomUI(factory,currentUser);
+	    		 DisplayAccRoomUI frame = new DisplayAccRoomUI(factory,room);
 	    		 frame.setVisible(true);
-	    		 OkUI ajoutSalleOK = new OkUI("The room has been added !");
+	    		 OkUI ajoutSalleOK = new OkUI("The accessory has been added !");
 	    		 ajoutSalleOK.setVisible(true);
 	    		 dispose();
 	    	 }
@@ -108,7 +111,7 @@ public class AddRoomUI extends JFrame implements ActionListener {
 		}
 	    if (e.getActionCommand().equals("Cancel"))
 	    {
-	    	 DisplayRoomUI frame = new DisplayRoomUI(factory,currentUser);
+	    	 DisplayAccRoomUI frame = new DisplayAccRoomUI(factory,room);
     		 frame.setVisible(true);
 	    	dispose();
 	    }

@@ -127,7 +127,8 @@ public class DisplayRoomUI extends BaseUI implements ActionListener {
 		}
 		if (e.getActionCommand().equals("allAccessories")) {
 			
-		//Todo
+			DisplayAccUI frame = new DisplayAccUI(factory);
+			frame.setVisible(true);
 		}
 		
 		if (e.getActionCommand().equals("return")) 

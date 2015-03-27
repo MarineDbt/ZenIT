@@ -38,17 +38,16 @@ import java.util.ArrayList;
 import javax.swing.SpringLayout;
 
 
-public class DisplayAccRoomUI extends JFrame implements ActionListener {
+public class DisplayAccUI extends JFrame implements ActionListener {
 
 	public AbstractPersistenceHandlerFactory factory;
 	public User user;
-	private Room room;
-	private ArrayList<ContainsAcc> accessories;
+	private ArrayList<Accessory> accessories;
 	
-	public DisplayAccRoomUI(AbstractPersistenceHandlerFactory factory, Room myRoom) {
+	public DisplayAccUI(AbstractPersistenceHandlerFactory factory) {
 
 		this.factory = factory;
-		this.room = myRoom;
+		
 		
 		setBounds(100, 100, 600, 450);
 		getContentPane().setLayout(null);
@@ -64,24 +63,18 @@ public class DisplayAccRoomUI extends JFrame implements ActionListener {
 		
 		JPanel panel = new JPanel();
 		RoomFacade facade = new RoomFacade(factory);
-		this.accessories = facade.getAllContainsAcc(room);
+		this.accessories = facade.getAllAccessories();
 
 		for (int i=0; i<accessories.size(); i++){
 			JPanel panel_1 = new JPanel();
 			panel.add(panel_1);
 			panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 			
-			JLabel lblNom = new JLabel(accessories.get(i).getAcc().getName());
+			JLabel lblNom = new JLabel(accessories.get(i).getName());
 			lblNom.setMinimumSize(new Dimension(114,28));
 			lblNom.setMaximumSize(new Dimension(114,28));
 			lblNom.setPreferredSize(new Dimension(114,28));
 			panel_1.add(lblNom);
-			
-			JLabel lblQty = new JLabel(Integer.toString(accessories.get(i).getQty()));
-			lblQty.setMinimumSize(new Dimension(114,28));
-			lblQty.setMaximumSize(new Dimension(114,28));
-			lblQty.setPreferredSize(new Dimension(114,28));
-			panel_1.add(lblQty);
 
 			JButton btnUpdate = new JButton("Update");
 			btnUpdate.addActionListener(this);
@@ -104,7 +97,7 @@ public class DisplayAccRoomUI extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("addAcc")) {
 			
-			AddAccRoomUI frame = new AddAccRoomUI(factory,room);
+			AddAccUI frame = new AddAccUI(factory);
 			frame.setVisible(true);
 			this.dispose();
 		}
@@ -114,11 +107,11 @@ public class DisplayAccRoomUI extends JFrame implements ActionListener {
 			if (e.getActionCommand().equals("delete"+i)) {
 				
 				RoomFacade facade = new RoomFacade(factory);
-				boolean result = facade.removeAccessoryRoom(room,accessories.get(i).getAcc());
+				boolean result = facade.removeAccessory(accessories.get(i));
 				if (result) 
 				{
 					OkUI frame = new OkUI("The accessory has been removed !");
-					DisplayAccRoomUI accFrame = new DisplayAccRoomUI(factory,room);
+					DisplayAccUI accFrame = new DisplayAccUI(factory);
 					accFrame.setVisible(true);
 					this.dispose();
 					frame.setVisible(true);
@@ -132,7 +125,7 @@ public class DisplayAccRoomUI extends JFrame implements ActionListener {
 			}
 			if (e.getActionCommand().equals("update"+i)) 
 			{
-				UpdateAccRoomUI frame = new UpdateAccRoomUI(factory,room,accessories.get(i));
+				UpdateAccUI frame = new UpdateAccUI(factory,accessories.get(i));
 				frame.setVisible(true);
 				this.dispose();
 			}
