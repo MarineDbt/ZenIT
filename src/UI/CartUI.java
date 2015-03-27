@@ -174,7 +174,7 @@ public class CartUI extends BaseUI implements ActionListener{
 		System.out.println("COUCOU " + arg0.getActionCommand().substring(0, 1));
 		
 		if (arg0.getActionCommand().substring(0, 1).equals("-")){
-			int j = Integer.parseInt(arg0.getActionCommand().substring(1, 2)) - 2; //-2 car le 1er produit (j=0) est affiché à la troisème ligne ligne (i=2)
+			int j = Integer.parseInt(arg0.getActionCommand().substring(1, arg0.getActionCommand().length())) - 2; //-2 car le 1er produit (j=0) est affiché à la troisème ligne ligne (i=2)
 			int quantity=cart.contains.get(j).getQuantity();
 			
 			
@@ -192,7 +192,7 @@ public class CartUI extends BaseUI implements ActionListener{
 			}
 		}
 		if (arg0.getActionCommand().substring(0, 1).equals("+")){
-			int j = Integer.parseInt(arg0.getActionCommand().substring(1, 2)) - 2; //-2 car le 1er produit (j=0) est affiché à la troisème ligne ligne (i=2)
+			int j = Integer.parseInt(arg0.getActionCommand().substring(1, arg0.getActionCommand().length())) - 2; //-2 car le 1er produit (j=0) est affiché à la troisème ligne ligne (i=2)
 			int quantity=cart.contains.get(j).getQuantity();
 			int newQuantity =quantity + 1;
 			double newTotal = newQuantity*cart.contains.get(j).product.getPrice();
@@ -203,7 +203,7 @@ public class CartUI extends BaseUI implements ActionListener{
 			
 		}
 		if (arg0.getActionCommand().substring(0, 1).equals("x")){
-			int j = Integer.parseInt(arg0.getActionCommand().substring(1, 2)) - 2; //-2 car le 1er produit (j=0) est affiché à la troisème ligne ligne (i=2)
+			int j = Integer.parseInt(arg0.getActionCommand().substring(1, arg0.getActionCommand().length())) - 2; //-2 car le 1er produit (j=0) est affiché à la troisème ligne ligne (i=2)
 			shoppingFacade.deleteProductFromCart(cart.contains.get(j).product, cart);
 			cart.contains.remove(j);
 			CartUI cartUI = new CartUI(this.currentUser);

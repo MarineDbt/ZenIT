@@ -44,11 +44,24 @@ public class ShoppingFacade {
         return shoppingManager.cancelOrder(currentUser, selectedOrder);
     } 
 
-
     public ArrayList<Order> consultOrder(User currentUser) {        
         return shoppingManager.consultOrder(currentUser);    
     }
+    
 	public void deleteProductFromCart(Product product, Cart cart) {
 		shoppingManager.deleteProductFromCart(product, cart);	
+	}
+	public Object[] readCategories() {
+		return shoppingManager.readCategories();
+		
+	}
+	
+	public Object[] readSubcategories(String category) {
+		return shoppingManager.readSubcategories(category);
+		
+	}
+	public ArrayList<Product> readAllProducts() {
+		return shoppingManager.readAllProducts();
+		
 	} 
  }

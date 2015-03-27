@@ -18,7 +18,7 @@ import BL.TechnicalClasses.UserPasswordEncryptionHandler;
  * @poseidon-object-id [I395d852m14bf5118266mm66ad]
  */
 public class ShoppingQueryHandler extends ShoppingAbstractPersistenceHandler {
-	
+
 	public ShoppingQueryHandler(){
 		this.containsFactory = new ContainsFactory();
 		this.productFactory = new ProductFactory();
@@ -69,7 +69,7 @@ public class ShoppingQueryHandler extends ShoppingAbstractPersistenceHandler {
 					+ " and state = 'cart'"
 					+ " and Product.subcategory_name = Subcategory.subcategory_name;";
 			resultSet=ConnectionToMySQL.requestSelectQuery(query);
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -86,7 +86,7 @@ public class ShoppingQueryHandler extends ShoppingAbstractPersistenceHandler {
 			String category_name;
 			int id_order= -1;
 			int id_product; 
-			
+
 			if (resultSet.isBeforeFirst()){
 				resultSet.next();
 				id_order = resultSet.getInt(resultSet.findColumn("id_order"));
@@ -95,7 +95,7 @@ public class ShoppingQueryHandler extends ShoppingAbstractPersistenceHandler {
 					price = resultSet.getDouble(resultSet.findColumn("price"));
 					discount = resultSet.getDouble(resultSet.findColumn("discount"));
 					subCategory_name = resultSet.getString(resultSet.findColumn("subcategory_name"));
-					category_name = resultSet.getString(resultSet.findColumn("nameProduct"));
+					category_name = resultSet.getString(resultSet.findColumn("category_name"));
 					quantity = resultSet.getInt(resultSet.findColumn("quantity"));
 					id_product = resultSet.getInt(resultSet.findColumn("id_product"));
 					contains.add(containsFactory.createContains(quantity,productFactory.createProduct(id_product,name,price,discount,subCategory_name)));
@@ -104,26 +104,135 @@ public class ShoppingQueryHandler extends ShoppingAbstractPersistenceHandler {
 			}
 			cart=cartFactory.createCart(contains, id_order);
 			return cart;
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
 	}
-	
+
 	public boolean updateOrdersProduct(Product product ,Cart cart, int quantity) {
-		
+
 		int result = 0;
-		
+
 		result = ConnectionToMySQL.requestUpdateQuery("Update OrdersProduct SET quantity = '"+quantity+"' WHERE id_product = '"+product.getId_product()+"' AND id_order = '"+cart.getId_order()+"';");
-		
+
 		return (result==1);
 	}
-	
+
 	public boolean deleteOrdersProduct(Product product, Cart cart) {
 		int result = 0;
 		result = ConnectionToMySQL.requestDeleteQuery("Delete From OrdersProduct WHERE id_product = '"+product.getId_product()+"' AND id_order = '"+cart.getId_order()+"';");
 		return (result==1);
+	}
+
+	public Object[] selectCategories() {
+
+		ResultSet resultSet = null;
+
+		try {
+			String query ="select * from Category;";
+			System.out.println(query);
+			resultSet=ConnectionToMySQL.requestSelectQuery(query);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			resultSet.beforeFirst();
+			ArrayList<String> categories = new ArrayList<String>();
+			String category_name;
+			if (resultSet.isBeforeFirst()){
+				resultSet.next();
+				while (!resultSet.isAfterLast()){
+					category_name = resultSet.getString(resultSet.findColumn("category_name"));
+					categories.add(category_name);
+					resultSet.next();
+				}
+			}
+			return categories.toArray();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public Object[] selectSubcategories(String category) {
+
+		ResultSet resultSet = null;
+
+		try {
+			String query ="select * from Subcategory where category_name = '"+category+"';";
+			System.out.println(query);
+			resultSet=ConnectionToMySQL.requestSelectQuery(query);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			resultSet.beforeFirst();
+			ArrayList<String> subcategories = new ArrayList<String>();
+			String subcategory_name;
+			if (resultSet.isBeforeFirst()){
+				resultSet.next();
+				while (!resultSet.isAfterLast()){
+					subcategory_name = resultSet.getString(resultSet.findColumn("subcategory_name"));
+					subcategories.add(subcategory_name);
+					resultSet.next();
+				}
+			}
+			return subcategories.toArray();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	@Override
+	public ArrayList<Product> selectAllProducts() {
+		ResultSet resultSet = null;
+
+		try {
+			String query = ""
+					+ "select * from Product";
+			resultSet=ConnectionToMySQL.requestSelectQuery(query);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			resultSet.beforeFirst();
+			ArrayList<Product> products = new ArrayList<Product>();
+			String name;
+			double price;
+			double discount;
+			String subCategory_name;
+			int id_product;
+
+			if (resultSet.isBeforeFirst()){
+				resultSet.next();
+				while (!resultSet.isAfterLast()){
+					name = resultSet.getString(resultSet.findColumn("nameProduct"));
+					price = resultSet.getDouble(resultSet.findColumn("price"));
+					discount = resultSet.getDouble(resultSet.findColumn("discount"));
+					subCategory_name = resultSet.getString(resultSet.findColumn("subcategory_name"));
+					id_product = resultSet.getInt(resultSet.findColumn("id_product"));
+					products.add(productFactory.createProduct(id_product,name,price,discount,subCategory_name));
+					resultSet.next();
+				}
+			}
+			return products;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

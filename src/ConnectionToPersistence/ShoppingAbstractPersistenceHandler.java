@@ -63,4 +63,9 @@ public abstract class ShoppingAbstractPersistenceHandler {
     
     public abstract boolean deleteOrdersProduct(Product product, Cart cart);
     
+    public abstract Object[] selectCategories();
+    
+    public abstract Object[] selectSubcategories(String category);
+
+	public abstract ArrayList<Product> selectAllProducts();
  }

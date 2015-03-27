@@ -132,6 +132,8 @@ public class BaseUI extends JFrame implements ActionListener {
 		JButton btnShop = new JButton("Shop");
 		btnShop.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		ribbon.add(btnShop);
+		btnShop.addActionListener(this);
+		btnShop.setActionCommand("shop");
 
 		JButton btnCart = new JButton("Cart");
 		btnCart.setFont(new Font("Tahoma", Font.PLAIN, 9));
@@ -156,7 +158,7 @@ public class BaseUI extends JFrame implements ActionListener {
 	}
 
 	/**
-	 * Method which set invisible the useless buttons, according to the type of the current user
+	 * Set invisible the useless buttons, according to the type of the current user
 	 * 
 	 * @param currentUser
 	 */
@@ -200,6 +202,11 @@ public class BaseUI extends JFrame implements ActionListener {
 			 CartUI cartUI = new CartUI(this.currentUser);
 			 cartUI.setVisible(true);
 			 this.dispose();
+		}
+		if (arg0.getActionCommand().equals("shop")){
+			ShoppingUI ShoppingUI = new ShoppingUI(this.currentUser);
+			ShoppingUI.setVisible(true);
+			this.dispose();
 		}
 	}
 }

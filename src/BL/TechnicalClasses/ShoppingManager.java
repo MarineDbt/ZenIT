@@ -50,8 +50,18 @@ public class ShoppingManager {
         return false;
     } 
 
-    public ArrayList<Order> consultOrder(User currentUser) {        
-        // your code here
-        return null;
+    public Object[] readCategories() {        
+    	return shoppingPersistenceHandler.selectCategories();
     } 
+    
+    public Object[] readSubcategories(String category) {        
+    	return shoppingPersistenceHandler.selectSubcategories(category);
+    }
+	public ArrayList<Order> consultOrder(User currentUser) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public ArrayList<Product> readAllProducts() {
+		return shoppingPersistenceHandler.selectAllProducts();
+	} 
  }

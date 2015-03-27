@@ -33,12 +33,8 @@ public class NotificationQueryHandler extends NotificationAbstractPersistenceHan
 			if (resultSet.isBeforeFirst()){
 				resultSet.next();
 				while (!resultSet.isAfterLast()){
-					System.out.println(resultSet.isAfterLast());
-					System.out.println(resultSet.isBeforeFirst());
 					label = resultSet.getString(resultSet.findColumn("message"));
 					sender_id = resultSet.getString(resultSet.findColumn("id_user_send"));
-					System.out.println(label);
-					System.out.println(sender_id);
 					notifications.add(notificationFactory.createNotification(sender_id,currentUser.getId(),label));
 					resultSet.next();
 				}
