@@ -2,7 +2,11 @@ import java.awt.EventQueue;
 import java.sql.ResultSet;
 
 import UI.UIAdhesion;
+import UI.UIPayment;
+import BL.DataClasses.User;
 import BL.Front.UserFacade;
+import BL.TechnicalClasses.AbstractPersistenceHandlerFactory;
+import BL.TechnicalClasses.DatabaseQueryHandlerFactory;
 import ConnectionToDB.ConnectionToMySQL;
 
 /**
@@ -24,8 +28,9 @@ public class Launcher {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UIAdhesion frame = new UIAdhesion();
-					//frame.userFacade = new UserFacade();
+					AbstractPersistenceHandlerFactory factory = DatabaseQueryHandlerFactory.createFactory();
+					User currentUser = new User("1");
+					UIPayment frame = new UIPayment(factory, currentUser);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

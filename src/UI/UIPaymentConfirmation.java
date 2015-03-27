@@ -1,18 +1,26 @@
 package UI;
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+
 import javax.swing.UIManager;
+
 import java.awt.SystemColor;
+
 import javax.swing.ScrollPaneConstants;
+
+import BL.DataClasses.User;
 
 public class UIPaymentConfirmation extends BaseUI{
 	private JTextField paymentMeanText;
@@ -24,7 +32,12 @@ public class UIPaymentConfirmation extends BaseUI{
 	private JTable table;
 	private final JScrollPane scrollPane = new JScrollPane();
 	private JTextField textField;
-	public UIPaymentConfirmation() {
+	
+	private User currentUser;
+	
+	public UIPaymentConfirmation(User currentUser) {
+		
+		this.currentUser = currentUser;
 		
 		JLabel paymentTitleLabel = new JLabel("Confirmation Paiement");
 		paymentTitleLabel.setBounds(12, 13, 154, 16);

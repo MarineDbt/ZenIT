@@ -73,9 +73,13 @@ public class User {
 	 * @poseidon-type BL.DataModel.UserRole
 	 */
     public java.util.Collection userRole = new java.util.TreeSet();
-    public User(String firstname2, String lastname, String street2, String pC2,
-		String city2, String phone2, String email, String id2, String pwd2) {
-	// TODO Auto-generated constructor stub
+    
+    public User (String id) {
+    	this.id = id;
+    }
+    
+    public User(String firstname, String lastname, String street, String PC, String city, String phone, String email, String id, String pwd) {
+
     }
 	/**
      * Delete the user account
