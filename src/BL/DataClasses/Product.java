@@ -14,19 +14,22 @@ public class Product {
     private double price;
 
     private double discount;
+    
+    private int quantity;
+    
+    private Member member;
 
     public String subcategory_name;
-
-    public int quantity;
     
     public String description;
 	
-    public Product(int id_product, String nameProduct, double price, double discount, int quantity, String subcategory_name, String description) {
+    public Product(int id_product, String nameProduct, double price, double discount, int quantity, Member member, String subcategory_name, String description) {
     	this.id_product = id_product;
     	this.nameProduct = nameProduct;
 		this.price = price;
 		this.discount = discount;
 		this.quantity = quantity;
+		this.member = member;
 		this.subcategory_name = subcategory_name;
 		this.description = description;
 	}
@@ -49,6 +52,10 @@ public class Product {
 	
 	public int getQuantity() {
 		return this.quantity;
+	}
+
+	public Member getMember() {
+		return this.member;
 	}
 	
 	public String getSubcategory() {

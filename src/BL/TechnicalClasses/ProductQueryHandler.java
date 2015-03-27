@@ -42,7 +42,7 @@ public class ProductQueryHandler extends ProductPersistenceHandler {
 		int result = 0;
 		
 		/* Query execution delegated to ConnectionToMySQL */
-		result = ConnectionToMySQL.requestInsertQuery("insert into Product (nameProduct, price, discount, quantity, id_member, subcategory_name, description) values ('"+name+"',"+price+","+discount+",'"+quantity+"',"+currentMember.getID()+",'"+subcategory+"','"+description+"');");
+		result = ConnectionToMySQL.requestInsertQuery("insert into Product (nameProduct, price, discount, quantity, id_member, subcategory_name, description) values ('"+name+"',"+price+","+discount+","+quantity+","+currentMember.getID()+",'"+subcategory+"','"+description+"');");
 
 		/* Return value */
 		return (result == 1);
@@ -62,7 +62,7 @@ public class ProductQueryHandler extends ProductPersistenceHandler {
     	
     	/* Query execution delegated to ConnectionToMySQL */
     	result = ConnectionToMySQL.requestInsertQuery( "update Product set nameProduct = '" + name + "', price = " + price + ", discount = " + discount + ", quantity = " + quantity + ", description = '"+ description + "' where id_product = "+ product.getID() +";");
-    	System.out.println(result);
+
     	/* Return value */
     	return (result == 1);
     } 
@@ -104,14 +104,14 @@ public class ProductQueryHandler extends ProductPersistenceHandler {
     	
     	try {
     		while (result.next()) {
-    			int id_product = result.getInt(1);
-    			String nameProduct = result.getString(2);
-    			double price = result.getDouble(3);
-    			double discount = result.getDouble(4);
-    			int quantity = result.getInt(5);
-    			String subcategory_name = result.getString(7);
-    			String description = result.getString(8);
-    			Product product = new Product(id_product, nameProduct, price, discount, quantity, subcategory_name, description);
+    			int id_product = result.getInt(result.findColumn("id_product"));
+    			String nameProduct = result.getString(result.findColumn("nameProduct"));
+    			double price = result.getDouble(result.findColumn("price"));
+    			double discount = result.getDouble(result.findColumn("discount"));
+    			int quantity = result.getInt(result.findColumn("quantity"));
+    			String subcategory_name = result.getString(result.findColumn("subcategory_name"));
+    			String description = result.getString(result.findColumn("description"));
+    			Product product = new Product(id_product, nameProduct, price, discount, quantity, currentMember, subcategory_name, description);
     			myProducts.add(product);
     		}
     	} catch (SQLException e) {

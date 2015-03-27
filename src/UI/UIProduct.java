@@ -68,16 +68,17 @@ public class UIProduct extends BaseUI implements ActionListener {
 	
 	public AbstractPersistenceHandlerFactory factory;
 	private ProductFacade productFacade;
+	private Member currentMember;
 	private ArrayList<Product> myProducts;;
 	
-	public UIProduct(AbstractPersistenceHandlerFactory factory) {
+	public UIProduct(AbstractPersistenceHandlerFactory factory, Member currentMember) {
 			
 			// Variables
 			this.factory = factory;
 			this.productFacade = new ProductFacade(factory);
+			this.currentMember = currentMember;
 		
 			// Display Member's Products
-			Member currentMember = new Member("1");
 			myProducts = productFacade.getProducts(currentMember);
 
 			if (myProducts.size()!=0) {
@@ -242,13 +243,13 @@ public class UIProduct extends BaseUI implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("add")) {
-			UIAddProduct frame = new UIAddProduct(factory);
+			UIAddProduct frame = new UIAddProduct(factory, currentMember);
 			frame.setVisible(true);
 			this.dispose();
 		}
 		if (e.getActionCommand().equals("delete")) {
 			productFacade.deleteProduct(myProducts.get(productList.getSelectedIndex()));
-			UIProduct frame = new UIProduct(factory);
+			UIProduct frame = new UIProduct(factory, currentMember);
 			frame.setVisible(true);
 			this.dispose();
 		}
@@ -259,7 +260,7 @@ public class UIProduct extends BaseUI implements ActionListener {
 														Double.parseDouble(discountProductText.getText()),
 														Integer.parseInt(quantityText.getText()),
 														descriptionTextArea.getText());
-			UIProduct frame = new UIProduct(factory);
+			UIProduct frame = new UIProduct(factory, currentMember);
 			frame.setVisible(true);
 			this.dispose();
 		}

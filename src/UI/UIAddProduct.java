@@ -66,15 +66,17 @@ public class UIAddProduct extends BaseUI implements ActionListener {
 	
 	public AbstractPersistenceHandlerFactory factory;
 	public ProductFacade productFacade;
+	private Member currentMember;
 	
 	private CategoryFacade categoryFacade;
 	private ArrayList<Category> categories;
 	private ArrayList<SubCategory> subcategories;
 	
-	public UIAddProduct(AbstractPersistenceHandlerFactory factory) {
+	public UIAddProduct(AbstractPersistenceHandlerFactory factory, Member currentMember) {
 			
 			this.factory = factory;
 			this.productFacade = new ProductFacade(factory);
+			this.currentMember = currentMember;
 			
 			// Get Categories
 			
@@ -216,14 +218,13 @@ public class UIAddProduct extends BaseUI implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("add")) {
-			Member currentMember = new Member("1");
 			productFacade.addProduct(nameProductText.getText(), Double.parseDouble(priceProductText.getText()), Double.parseDouble(discountProductText.getText()), Integer.parseInt(quantityText.getText()), currentMember,  subcategoryComboBox.getSelectedItem().toString(), descriptionText.getText());
-			UIProduct frameAdd = new UIProduct(factory);
+			UIProduct frameAdd = new UIProduct(factory, currentMember);
 			frameAdd.setVisible(true);
 			this.dispose();
 		}
 		else if (e.getActionCommand().equals("return")) {
-			UIProduct frame = new UIProduct(factory);
+			UIProduct frame = new UIProduct(factory, currentMember);
 			frame.setVisible(true);
 			this.dispose();
 		}
