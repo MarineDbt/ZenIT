@@ -1,5 +1,10 @@
 package BL.Front;
 
+import java.util.ArrayList;
+
+import BL.DataClasses.*;
+import BL.TechnicalClasses.*;
+
 /**
  * 
  * 
@@ -12,20 +17,38 @@ public class CategoryFacade {
  * 
  * @poseidon-object-id [I29f51818m14c28f165ddmm55ab]
  */
-    private BL.TechnicalClasses.CategoryManager categoryManager;
+    private CategoryManager categoryManager;
+
+    /* Constructors */
+    
+    public CategoryFacade(AbstractPersistenceHandlerFactory factory)
+    {
+    	categoryManager = new CategoryManager(factory);
+    }
+    
+
 
 /**
  * <p>Does ...</p>
  * 
  * @poseidon-object-id [I29f51818m14c28f165ddmm55ac]
- * @param superCategory 
  * @param label 
  * @return 
  */
-    public BL.ModelClasses.Category createCategory(BL.ModelClasses.Category superCategory, String label) {        
-        // your code here
-        return null;
+    public boolean createCategory(String label) {        
+    	
+    	/* Delegate method call to CategoryManager */
+    	
+    	return categoryManager.createCategory(label);
     } 
+    
+    public boolean createSubCategory(Category superCategory, String label) {        
+    	
+    	/* Delegate method call to CategoryManager */
+    	
+    	return categoryManager.createSubCategory(superCategory,label);
+    } 
+    
 
 /**
  * <p>Does ...</p>
@@ -34,8 +57,67 @@ public class CategoryFacade {
  * @param category 
  * @return 
  */
-    public boolean deleteCategory(BL.ModelClasses.Category category) {        
-        // your code here
-        return false;
+    public boolean removeCategory(Category category) {        
+        
+    	/* Delegate method call to CategoryManager */
+    	
+    	return categoryManager.removeCategory(category);
+        
     } 
+    
+/**
+* <p>Does ...</p>
+* 
+* * @poseidon-object-id [I29f51818m14c28f165ddmm55b2]
+* @param category 
+* @return 
+*/
+    public boolean removeSubCategory(SubCategory subCategory) {        
+    	
+    	/* Delegate method call to CategoryManager */
+    	
+    	return categoryManager.removeSubCategory(subCategory);
+    } 
+    
+    /**
+     * <p>Does ...</p>
+     * 
+     * @poseidon-object-id [I29f51818m14c28f165ddmm55b2]
+     * @param category 
+     * @return 
+     */
+        public boolean modifyCategory(Category category, String newName) {        
+        	
+        	/* Delegate method call to CategoryManager */
+        	
+        	return categoryManager.modifyCategory(category, newName);
+        } 
+        
+    /**
+    * <p>Does ...</p>
+    * 
+    * * @poseidon-object-id [I29f51818m14c28f165ddmm55b2]
+    * @param category 
+    * @return 
+    */
+        public boolean modifySubCategory(SubCategory subCategory, String newName) {        
+        	
+        	/* Delegate method call to CategoryManager */
+        	
+        	return categoryManager.modifySubCategory(subCategory, newName);
+        } 
+        
+        public ArrayList <Category> selectAllCategories()
+        {
+        	/* Delegate method call to CategoryManager */
+        	
+        	return categoryManager.selectAllCategories();
+        }
+        
+        public ArrayList <SubCategory> selectSubCategories(Category category)
+        {
+        	/* Delegate method call to CategoryManager */
+        	
+        	return categoryManager.selectSubCategories(category);
+        }
  }

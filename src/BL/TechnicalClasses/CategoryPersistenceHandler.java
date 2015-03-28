@@ -1,5 +1,10 @@
 
 package BL.TechnicalClasses;
+
+import java.util.ArrayList;
+
+import BL.DataClasses.*;
+
 /**
  * 
  * 
@@ -14,7 +19,17 @@ public abstract class CategoryPersistenceHandler {
  * @param label 
  * @return 
  */
-    public abstract BL.ModelClasses.Category insertCategory(BL.ModelClasses.Category superCategory, String label);
+    public abstract boolean insertCategory(String label);
+    
+    /**
+     * <p>Does ...</p>
+     * 
+     * @poseidon-object-id [I29f51818m14c28f165ddmm46ba]
+     * @param superCategory 
+     * @param label 
+     * @return 
+     */
+     public abstract boolean insertSubCategory(Category superCategory, String label);
 /**
  * <p>Does ...</p>
  * 
@@ -22,7 +37,19 @@ public abstract class CategoryPersistenceHandler {
  * @param category 
  * @return 
  */
-    public abstract boolean deleteCategory(BL.ModelClasses.Category category);
+    public abstract boolean deleteCategory(Category category);
+    
+    public abstract boolean deleteSubCategory(SubCategory subCategory);
+    
+    public abstract boolean updateCategory(Category category, String newName);
+    
+    public abstract boolean updateSubCategory(SubCategory subCategory, String newName);
+
+	public abstract ArrayList<Category> selectAllCategories();
+
+	public abstract ArrayList<SubCategory> selectSubCategories(Category category);
+
 }
+
 
 

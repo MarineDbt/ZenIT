@@ -3,7 +3,7 @@ package BL.TechnicalClasses;
 import java.util.ArrayList;
 
 import BL.TechnicalClasses.*;
-import BL.ModelClasses.*;
+import BL.DataClasses.*;
 
 public class RoomManager {
 	
@@ -24,9 +24,9 @@ public class RoomManager {
 		return result;
 	}
 
-	public boolean addAccessory(String idRoom, String libelle, String quantite){
+	public boolean addAccessory(Room room, Accessory accessory, String quantite){
 		
-		boolean result = myRoomPersistenceHandler.insertAccessoryRoom(idRoom, libelle, quantite);
+		boolean result = myRoomPersistenceHandler.insertAccessoryRoom(room, accessory, quantite);
 		
 		return result;
 	}
@@ -91,6 +91,11 @@ public class RoomManager {
 		/* Passing method call to myRoomPersistenceHandler */
     	
         return myRoomPersistenceHandler.selectAllRooms();
+	}
+
+	public ArrayList<ContainsAcc> getAllContainsAcc(Room myRoom) {
+
+		return myRoomPersistenceHandler.selectAllContainsAcc(myRoom);
 	}
 
 }

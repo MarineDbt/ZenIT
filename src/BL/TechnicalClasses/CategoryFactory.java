@@ -16,7 +16,7 @@ public class CategoryFactory {
  * @param label 
  * @return 
  */
-    public BL.ModelClasses.Category createCategory(BL.ModelClasses.Category superCategory, String label) {        
+    public BL.DataClasses.Category createCategory(BL.DataClasses.Category superCategory, String label) {        
         // your code here
         return null;
     } 

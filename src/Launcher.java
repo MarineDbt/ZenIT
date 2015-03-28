@@ -2,11 +2,14 @@ import java.awt.EventQueue;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import UI.*;
+import UI.AdminServiceUI;
 import UI.AdminUI;
+import UI.BaseUI;
 import UI.PanelRoom;
 import UI.UISubscription;
+import BL.DataClasses.*;
 import BL.Front.*;
-import BL.ModelClasses.*;
 import BL.TechnicalClasses.*;
 import ConnectionToDB.ConnectionToMySQL;
 
@@ -21,18 +24,23 @@ public class Launcher {
 	/*test DB ok*/
 	/*public static void main(String[] args) {
 		AbstractPersistenceHandlerFactory factory = DatabaseQueryHandlerFactory.createFactory();
-		RoomFacade facade = new RoomFacade(factory);
+		Category category = new Category("Zumba");
+		CategoryFacade facade = new CategoryFacade(factory);
+		SubCategory subCategory = new SubCategory("Tapis de Zumba");
+	
+		//RoomFacade facade = new RoomFacade(factory);
 		//Room myRoom = new Room("7",50);
 		//Accessory myAccessory = new Accessory("Tapis");
 		boolean requete;
-		ArrayList<Room> myRooms = facade.getAllRooms();
-		ArrayList<Accessory> myAccessories = facade.getAllAccessories();
+		requete = facade.modifySubCategory(subCategory,"Vetement de Zumba");
+		//ArrayList<Room> myRooms = facade.getAllRooms();
+		//ArrayList<Accessory> myAccessories = facade.getAllAccessories();
 		
-		if(myAccessories != null) {
+		//if(myAccessories != null) {
 			
-		System.out.println("tableau non null");
+		//System.out.println("tableau non null");
 		
-		for(Accessory myAccessory: myAccessories)
+		/*for(Accessory myAccessory: myAccessories)
 		{
 			System.out.println("Nom de l'accessoire : "+myAccessory.getName());
 		}
@@ -43,7 +51,7 @@ public class Launcher {
 		{
 			System.out.println("tableau null");
 		}
-		/*if (requete) 
+		if (requete) 
 		{
 			System.out.println("insert ok");
 		}
@@ -59,9 +67,21 @@ public class Launcher {
 			public void run() {
 				try {
 					AbstractPersistenceHandlerFactory factory = DatabaseQueryHandlerFactory.createFactory();
-					AdminUI UI = new AdminUI(factory);
+					//AdminUI UI = new AdminUI(factory);
+					//UI.setVisible(true);
+					User user = new User();
+					AdminServiceUI UI2 = new AdminServiceUI(user,factory);
+					UI2.setVisible(true);
 					
-					UI.setVisible(true);
+					//AdminGestionSalle UI3 = new AdminGestionSalle(user,factory);
+					//UI3.setVisible(true);
+					
+					//AjouterSalleUI UI4 = new AjouterSalleUI(factory);
+					//UI4.setVisible(true);
+					
+					//DisplayCatUI UI5 = new DisplayCatUI(factory,user);
+					//UI5.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

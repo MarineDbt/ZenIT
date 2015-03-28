@@ -18,7 +18,7 @@ public class SupervisorQueryHandler implements BL.TechnicalClasses.SupervisorPer
  * @param user 
  * @return 
  */
-    public BL.ModelClasses.Supervisor insertSupervisor(BL.ModelClasses.User user) {        
+    public BL.DataClasses.Supervisor insertSupervisor(BL.DataClasses.User user) {        
         // your code here
         return null;
     } 
@@ -30,7 +30,7 @@ public class SupervisorQueryHandler implements BL.TechnicalClasses.SupervisorPer
  * @param supervisor 
  * @return 
  */
-    public boolean updateSupervisor(BL.ModelClasses.Supervisor supervisor) {        
+    public boolean updateSupervisor(BL.DataClasses.Supervisor supervisor) {        
         // your code here
         return false;
     } 
@@ -41,7 +41,7 @@ public class SupervisorQueryHandler implements BL.TechnicalClasses.SupervisorPer
  * @poseidon-object-id [I29f51818m14c28f165ddmm461e]
  * @return 
  */
-    public Collection<BL.ModelClasses.Supervisor> selectAllSupervisors() {        
+    public Collection<BL.DataClasses.Supervisor> selectAllSupervisors() {        
         // your code here
         return null;
     } 

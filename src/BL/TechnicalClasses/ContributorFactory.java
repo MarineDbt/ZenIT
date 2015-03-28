@@ -15,7 +15,7 @@ public class ContributorFactory {
  * @param user 
  * @return 
  */
-    public BL.ModelClasses.Contributor createContributor(BL.ModelClasses.User user) {        
+    public BL.DataClasses.Contributor createContributor(BL.DataClasses.User user) {        
         // your code here
         return null;
     } 

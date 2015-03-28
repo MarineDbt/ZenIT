@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import BL.TechnicalClasses.*;
-import BL.ModelClasses.*;
+import BL.DataClasses.*;
 
 /**
  * 
@@ -29,7 +29,8 @@ public class RoomFacade {
  * @return 
  */
    
-    //Constructor
+    /* Constructor */
+    
     public RoomFacade (AbstractPersistenceHandlerFactory factory)
     {
     	RoomManager = new RoomManager(factory);
@@ -52,11 +53,11 @@ public class RoomFacade {
  * @param quantite 
  * @return 
  */
-    public boolean addAccessory(String idRoom, String libelle, String quantite) {        
+    public boolean addAccessory(Room room, Accessory accessory, String quantite) {        
         
     	/* Passing method call to RoomManager */
     	
-        return RoomManager.addAccessory(idRoom, libelle, quantite);
+        return RoomManager.addAccessory(room, accessory, quantite);
     } 
 
     
@@ -158,6 +159,7 @@ public class RoomFacade {
      * @return 
      */
         public ArrayList<Accessory> getAllAccessories() {        
+        	
         	/* Passing method call to RoomManager */
         	
             return RoomManager.getAllAccessories();       
@@ -170,8 +172,17 @@ public class RoomFacade {
          * @return 
          */
             public ArrayList<Room> getAllRooms() {        
+            	
             	/* Passing method call to RoomManager */
             	
                 return RoomManager.getAllRooms();  
             }
+            
+   public ArrayList<ContainsAcc> getAllContainsAcc(Room myRoom) {        
+   
+	   /* Passing method call to RoomManager */
+            	
+       return RoomManager.getAllContainsAcc(myRoom);  
+   }          
+            
  }

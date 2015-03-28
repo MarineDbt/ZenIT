@@ -16,7 +16,7 @@ public class SupervisorManager {
  * 
  * @poseidon-object-id [I29f51818m14c28f165ddmm45c9]
  */
-    private Collection<BL.ModelClasses.Supervisor> supervisors;
+    private Collection<BL.DataClasses.Supervisor> supervisors;
 
 /**
  * <p>Does ...</p>
@@ -25,7 +25,7 @@ public class SupervisorManager {
  * @param user 
  * @return 
  */
-    public BL.ModelClasses.Supervisor createSupervisor(BL.ModelClasses.User user) {        
+    public BL.DataClasses.Supervisor createSupervisor(BL.DataClasses.User user) {        
         // your code here
         return null;
     } 
@@ -37,7 +37,7 @@ public class SupervisorManager {
  * @param supervisor 
  * @return 
  */
-    public boolean removeSupervisor(BL.ModelClasses.Supervisor supervisor) {        
+    public boolean removeSupervisor(BL.DataClasses.Supervisor supervisor) {        
         // your code here
         return false;
     } 
@@ -48,7 +48,7 @@ public class SupervisorManager {
  * @poseidon-object-id [I29f51818m14c28f165ddmm45d4]
  * @return 
  */
-    public Collection<BL.ModelClasses.Supervisor> readAllSupervisors() {        
+    public Collection<BL.DataClasses.Supervisor> readAllSupervisors() {        
         // your code here
         return null;
     } 

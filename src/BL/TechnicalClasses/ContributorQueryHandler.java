@@ -18,7 +18,7 @@ public class ContributorQueryHandler implements BL.TechnicalClasses.ContributorP
  * @param user 
  * @return 
  */
-    public BL.ModelClasses.Contributor insertContributor(BL.ModelClasses.User user) {        
+    public BL.DataClasses.Contributor insertContributor(BL.DataClasses.User user) {        
         // your code here
         return null;
     } 
@@ -30,7 +30,7 @@ public class ContributorQueryHandler implements BL.TechnicalClasses.ContributorP
  * @param contributor 
  * @return 
  */
-    public boolean updateContributor(BL.ModelClasses.Contributor contributor) {        
+    public boolean updateContributor(BL.DataClasses.Contributor contributor) {        
         // your code here
         return false;
     } 
@@ -41,7 +41,7 @@ public class ContributorQueryHandler implements BL.TechnicalClasses.ContributorP
  * @poseidon-object-id [I29f51818m14c28f165ddmm460f]
  * @return 
  */
-    public Collection<BL.ModelClasses.Contributor> selectAllContributors() {        
+    public Collection<BL.DataClasses.Contributor> selectAllContributors() {        
         // your code here
         return null;
     } 

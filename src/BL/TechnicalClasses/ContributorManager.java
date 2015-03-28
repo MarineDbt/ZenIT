@@ -16,7 +16,7 @@ public class ContributorManager {
  * 
  * @poseidon-object-id [I29f51818m14c28f165ddmm45b9]
  */
-    private Collection<BL.ModelClasses.Contributor> contributors;
+    private Collection<BL.DataClasses.Contributor> contributors;
 
 /**
  * <p>Does ...</p>
@@ -25,7 +25,7 @@ public class ContributorManager {
  * @param user 
  * @return 
  */
-    public BL.ModelClasses.Contributor createContributor(BL.ModelClasses.User user) {        
+    public BL.DataClasses.Contributor createContributor(BL.DataClasses.User user) {        
         // your code here
         return null;
     } 
@@ -37,7 +37,7 @@ public class ContributorManager {
  * @param contributor 
  * @return 
  */
-    public boolean removeContributor(BL.ModelClasses.Contributor contributor) {        
+    public boolean removeContributor(BL.DataClasses.Contributor contributor) {        
         // your code here
         return false;
     } 
@@ -48,7 +48,7 @@ public class ContributorManager {
  * @poseidon-object-id [I29f51818m14c28f165ddmm45c4]
  * @return 
  */
-    public Collection<BL.ModelClasses.Contributor> readAllContributors() {        
+    public Collection<BL.DataClasses.Contributor> readAllContributors() {        
         // your code here
         return null;
     } 

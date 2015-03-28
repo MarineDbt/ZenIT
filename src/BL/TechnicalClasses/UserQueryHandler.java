@@ -47,7 +47,7 @@ public class UserQueryHandler extends UserPersistenceHandler {
 		// TODO
 	}
 	
-	public Collection<BL.ModelClasses.User> selectAllUsers() 
+	public Collection<BL.DataClasses.User> selectAllUsers() 
 	{
 		return null;
 	}
