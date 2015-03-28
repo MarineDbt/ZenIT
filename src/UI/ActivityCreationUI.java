@@ -102,12 +102,16 @@ public class ActivityCreationUI extends BaseUI implements ActionListener{
 			UIActivity frame = new UIActivity(factory, user);
 			frame.setVisible(true); 
 			this.dispose();
+			ActSupprime frame2 = new ActSupprime("L'activité a bien été crée");
+			frame2.setVisible(true);
 			}
 			
 			if (result ==false) {
-				ErrorAddActivityUI frame = new ErrorAddActivityUI(factory, user);
-				frame.setVisible(true); 
+				ActivityCreationUI frame = new ActivityCreationUI(this.factory,this.user);
+				frame.setVisible(true);
 				this.dispose();
+				ActSupprime frame2 = new ActSupprime("Il y a eu une erreur, vérifiez vos informations");
+				frame2.setVisible(true);
 			}
 		}
 		

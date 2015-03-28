@@ -25,7 +25,7 @@ import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.UIManager;
 
-public class OccasionalDetailsUI extends BaseUI implements ActionListener {
+public class LessonDetailsUI extends BaseUI implements ActionListener {
 
 	public AbstractPersistenceHandlerFactory factory;
 	public User user;
@@ -33,7 +33,7 @@ public class OccasionalDetailsUI extends BaseUI implements ActionListener {
 	public Activity currentActivity;
 
 	
-	public OccasionalDetailsUI(AbstractPersistenceHandlerFactory factory, User currentUser, Event currentEvent, Activity currentActivity) {
+	public LessonDetailsUI(AbstractPersistenceHandlerFactory factory, User currentUser, Event currentEvent, Activity currentActivity) {
 	
 		//super(factory, currentUser);
 				super(new DatabaseQueryHandlerFactory(), new User()); //a enlever
@@ -66,14 +66,6 @@ public class OccasionalDetailsUI extends BaseUI implements ActionListener {
 				JLabel labelheure = new JLabel(fromto);
 				labelheure.setBounds(183, 146, 201, 14);
 				content.add(labelheure);
-				
-				JLabel lblEventType = new JLabel("Event Type : "+facade.getEventType(this.currentEvent));
-				lblEventType.setBounds(183, 196, 201, 14);
-				content.add(lblEventType);
-				
-				JLabel lblDate = new JLabel("Date : "+facade.getEventDate(this.currentEvent));
-				lblDate.setBounds(183, 171, 201, 14);
-				content.add(lblDate);
 				
 				JButton btnUpdate = new JButton("Update");
 				btnUpdate.setBounds(254, 236, 89, 23);
@@ -118,6 +110,10 @@ public class OccasionalDetailsUI extends BaseUI implements ActionListener {
 			
 				content.add(lbldate);
 				
+				JLabel lblDay = new JLabel("Day : "+facade.getEventDay(this.currentEvent));
+				lblDay.setBounds(183, 171, 201, 14);
+				content.add(lblDay);
+				
 		
 	}
 	
@@ -133,7 +129,7 @@ public class OccasionalDetailsUI extends BaseUI implements ActionListener {
 	    }
 	    
 	    if (e.getActionCommand().equals("update")) {
-	    	OccasionalUpdateUI frame = new OccasionalUpdateUI(this.factory,this.currentUser,this.currentActivity,this.currentEvent);
+	    	LessonUpdateUI frame = new LessonUpdateUI(this.factory,this.currentUser,this.currentActivity,this.currentEvent);
 	    	frame.setVisible(true);
 	    	this.dispose();
 	    }
@@ -141,7 +137,7 @@ public class OccasionalDetailsUI extends BaseUI implements ActionListener {
 	    if (e.getActionCommand().equals("delete")) {
 	    	UIActivity frame = new UIActivity(factory, this.user);
 	
-			if (facade.deleteOccasional(this.currentEvent)) {
+			if (facade.deleteLesson(this.currentEvent)) {
 			frame.setVisible(true);
 			this.dispose();
 			ActSupprime frameMessage = new ActSupprime("L'évènement a bien été supprimée");

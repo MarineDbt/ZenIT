@@ -118,10 +118,9 @@ public abstract class EventPersistenceHandler {
  * @param newDay 
  * @return 
  */
-    public boolean updateLesson(Lesson oldLesson, String newName, Room newRoom, TimeSlot newTimeSlot, Day newDay) {        
-        // your code here
-        return false;
-    } 
+    public boolean updateLesson(Event currentEvent, String contributor, String name, String description, String selectedRoom, TimeSlot selectedTimeSlot, String selectedDay) {
+    	return false;
+    }
 
 /**
  * <p>Does ...</p>
@@ -134,7 +133,7 @@ public abstract class EventPersistenceHandler {
  * @param newDate 
  * @return 
  */
-    public boolean updateOccasional(Occasional oldOccasional, String newName, Room newRoom, TimeSlot newTimeSlot, java.util.Date newDate) {        
+    public boolean updateOccasional(Event currentEvent, String contributor, String name, String description, String selectedRoom, TimeSlot selectedTimeSlot, String selectedDate, String selectedEventType) {        
         // your code here
         return false;
     } 
@@ -152,6 +151,10 @@ public abstract class EventPersistenceHandler {
         return false;
     } 
 
+    public String getEventDay(Event selectedEvent) {
+    	return null;
+    }
+    
 /**
  * <p>Does ...</p>
  * 

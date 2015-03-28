@@ -117,9 +117,8 @@ public EventPersistenceHandler eventPH;
  * @param newDay 
  * @return 
  */
-    public boolean modifyLesson(Lesson oldLesson, String newName, String description, Room newRoom, TimeSlot newTimeSlot, Day newDay) {        
-       
-        return eventPH.updateLesson(oldLesson, newName, newRoom, newTimeSlot, newDay);
+    public boolean updateLesson(Event currentEvent, String contributor, String name, String description, String selectedRoom, TimeSlot selectedTimeSlot, String selectedDay) {
+    	return this.eventPH.updateLesson(currentEvent, contributor, name, description, selectedRoom, selectedTimeSlot, selectedDay);
     } 
 
 /**
@@ -134,9 +133,9 @@ public EventPersistenceHandler eventPH;
  * @param newDate 
  * @return 
  */
-    public boolean modifyOccasional(Occasional oldOccasional, String newName, String description, Room newRoom, TimeSlot newTimeSlot, java.util.Date newDate) {        
+    public boolean modifyOccasional(Event currentEvent, String contributor, String name, String description, String selectedRoom, TimeSlot selectedTimeSlot, String selectedDate, String selectedEventType) {        
         
-        return eventPH.updateOccasional(oldOccasional, newName, newRoom, newTimeSlot, newDate);
+        return eventPH.updateOccasional(currentEvent, contributor, name, description, selectedRoom, selectedTimeSlot, selectedDate,selectedEventType);
     } 
 
 /**
@@ -199,7 +198,11 @@ public EventPersistenceHandler eventPH;
 	}
 
 	public Date getEventDate(Event selectedEvent) {
-	   	return this.eventPH.getEventDate(selectedEvent);
+		return this.eventPH.getEventDate(selectedEvent);
+	}
+	
+	public String getEventDay(Event selectedEvent) {
+		return this.eventPH.getEventDay(selectedEvent);
 	}
 
 	public boolean isOccasional(Event selectedEvent) {

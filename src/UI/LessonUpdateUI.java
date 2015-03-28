@@ -25,9 +25,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-import UI.BaseUI;
-
-public class OccasionalUpdateUI extends BaseUI implements ActionListener {
+public class LessonUpdateUI extends BaseUI implements ActionListener {
 
 	public AbstractPersistenceHandlerFactory factory;
 	public User user;
@@ -35,11 +33,7 @@ public class OccasionalUpdateUI extends BaseUI implements ActionListener {
 	private JTextField namefield;
 
 	private JButton btnSend;
-	private JFormattedTextField tfDate;
 	private JTextField descfield;
-	private JComboBox eventType;
-	private JLabel lblType;
-	private String chosenType;
 	private String chosenContrib;
 	private JLabel de;
 	private JTextField heuredeb;
@@ -52,10 +46,12 @@ public class OccasionalUpdateUI extends BaseUI implements ActionListener {
 	private JComboBox contrib;
 	private JComboBox roombox;
 	private String chosenRoom;
-	
+	private String choseDay;
+
+	private JComboBox day;
 	Event currentEvent;
 	
-	public OccasionalUpdateUI(AbstractPersistenceHandlerFactory factory, User currentUser, Activity currentAct, Event currentEvent) {
+	public LessonUpdateUI(AbstractPersistenceHandlerFactory factory, User currentUser, Activity currentAct, Event currentEvent) {
 
 		//super(factory, currentUser);
 		super(new DatabaseQueryHandlerFactory(), new User()); //a enlever
@@ -65,56 +61,34 @@ public class OccasionalUpdateUI extends BaseUI implements ActionListener {
 		content.setLayout(null);
 		this.currentEvent = currentEvent;
 		
-		
 			
 		JLabel lblName = new JLabel("Name : ");
-		lblName.setBounds(190, 11, 46, 14);
+		lblName.setBounds(190, 21, 46, 14);
 		content.add(lblName);
 		
 		namefield = new JTextField();
-		namefield.setBounds(264, 8, 152, 20);
+		namefield.setBounds(264, 18, 152, 20);
 		content.add(namefield);
-		namefield.setColumns(10);
 		namefield.setText(this.currentEvent.getName());
+		namefield.setColumns(10);
 		
 		JLabel lblDescription = new JLabel("Description :");
-		lblDescription.setBounds(190, 36, 73, 14);
+		lblDescription.setBounds(190, 49, 73, 14);
 		content.add(lblDescription);
 		
 		descfield = new JTextField();
-		descfield.setBounds(264, 36, 152, 20);
+		descfield.setBounds(264, 49, 152, 20);
 		content.add(descfield);
-		descfield.setColumns(10);
 		descfield.setText(this.currentEvent.getEventDescription());
-		
-		Locale locale = Locale.getDefault();
-		JLabel lblDate = new JLabel("Date (DD/MM/YYYY) :");
-		lblDate.setBounds(239, 67, 179, 14);
-		content.add(lblDate);
-		
-		DateFormat dform = new SimpleDateFormat("dd/MM/yyyy");
-		
-		tfDate = new JFormattedTextField(dform);
-		tfDate.setColumns(10);
-		tfDate.setBounds(239, 91, 152, 20);
-		content.add(this.tfDate);
-		
-		String[] eventTypeslist = { "Conference", "Private Sales","Master Class","Other" };
-		this.eventType = new JComboBox(eventTypeslist);
-		eventType.setBounds(264, 196, 152, 20);
-		eventType.setSelectedIndex(1);
-		eventType.addActionListener(this);
-		content.add(eventType);
+		descfield.setColumns(10);
+	
+
 		
 		btnSend = new JButton("Next");
-		btnSend.setBounds(262, 269, 89, 23);
+		btnSend.setBounds(264, 246, 89, 23);
 		content.add(btnSend);
 		btnSend.addActionListener(this);
 		btnSend.setActionCommand("next");
-		
-		lblType = new JLabel("Type : ");
-		lblType.setBounds(190, 199, 46, 14);
-		content.add(lblType);
 		
 		de = new JLabel("De");
 		de.setBounds(190, 128, 29, 14);
@@ -162,13 +136,13 @@ public class OccasionalUpdateUI extends BaseUI implements ActionListener {
 		}
 		
 		this.contrib = new JComboBox(contributorstab);
-		contrib.setBounds(264, 227, 152, 20);
+		contrib.setBounds(264, 190, 152, 20);
 		contrib.setSelectedIndex(contributorstab.length-1);
 		contrib.addActionListener(this);
 		content.add(contrib);
 		
 		JLabel lblContributor = new JLabel("Contributor :");
-		lblContributor.setBounds(190, 230, 73, 14);
+		lblContributor.setBounds(190, 193, 73, 14);
 		content.add(lblContributor);
 		
 		JLabel lblRoom = new JLabel("Room : ");
@@ -190,10 +164,21 @@ public class OccasionalUpdateUI extends BaseUI implements ActionListener {
 		
 		JButton btnReturn = new JButton("Return");
 		btnReturn.setActionCommand("next");
-		btnReturn.setBounds(262, 303, 89, 23);
+		btnReturn.setBounds(264, 280, 89, 23);
 		content.add(btnReturn);
 		btnReturn.addActionListener(this);
 		btnReturn.setActionCommand("return");
+		
+		JLabel lblDay = new JLabel("Day :");
+		lblDay.setBounds(190, 80, 46, 14);
+		content.add(lblDay);
+		
+		String[] daylist = { "Lundi", "Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche" };
+		this.day = new JComboBox(daylist);
+		day.setBounds(264, 80, 152, 20);
+		day.setSelectedIndex(0);
+		day.addActionListener(this);
+		content.add(day);
 		
 		
 	}
@@ -207,10 +192,10 @@ public class OccasionalUpdateUI extends BaseUI implements ActionListener {
 	    if (e.getActionCommand().equals("next")) {
 	    	
 	    	EventFacade facade = new EventFacade(factory);
-			String Type = (String)this.eventType.getSelectedItem();
-		    this.chosenType = Type;
-		    
 		     
+	    	String days = (String)this.day.getSelectedItem();
+		    this.choseDay = days;
+	    	
 		    String contributor = (String)this.contrib.getSelectedItem();
 		    this.chosenContrib = contributor;
 		 
@@ -219,21 +204,20 @@ public class OccasionalUpdateUI extends BaseUI implements ActionListener {
 		    
 		    TimeSlot timeSlot = new TimeSlot(Integer.parseInt(heuredeb.getText()),Integer.parseInt(this.mindeb.getText()),Integer.parseInt(this.heurefin.getText()),Integer.parseInt(this.minfin.getText()));
 		    
-		    if (facade.modifyOccasional(this.currentEvent, this.chosenContrib, this.namefield.getText(), this.descfield.getText(), this.chosenRoom, timeSlot, this.tfDate.getText(), this.chosenType)) {
-		    	UIActivity frame = new UIActivity(this.factory,this.user);
+		    if (facade.updateLesson(this.currentEvent, this.chosenContrib, this.namefield.getText(), this.descfield.getText(), this.chosenRoom, timeSlot, this.choseDay)) {
+		    	ActivityListEventUI frame = new ActivityListEventUI(this.factory,this.user,this.currentActivity);
 				frame.setVisible(true);
 				this.dispose();
-				ActSupprime frame2 = new ActSupprime("L'évènement a bien été modifié");
+				ActSupprime frame2 = new ActSupprime("L'évènement a bien été mis à jour");
 				frame2.setVisible(true);
 		    }
 		    
 		    else {
-		    	OccasionalDetailsUI frame = new OccasionalDetailsUI(this.factory, this.user,this.currentEvent,this.currentActivity);
+		    	LessonDetailsUI frame = new LessonDetailsUI(this.factory, this.user,this.currentEvent,this.currentActivity);
 				frame.setVisible(true);
 				this.dispose();
 				ActSupprime frame2 = new ActSupprime("Il y a eu une erreur, vérifiez vos informations");
 				frame2.setVisible(true);
-		    
 		    }
 					
 					

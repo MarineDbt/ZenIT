@@ -111,8 +111,8 @@ public class EventFacade {
  * @param newDay 
  * @return 
  */
-    public boolean modifyLesson(Lesson oldLesson, String newName, String newDescription,Room newRoom, TimeSlot newTimeSlot, Day newDay) {        
-        return eventmanager.modifyLesson(oldLesson, newName, newDescription, newRoom, newTimeSlot, newDay);
+    public boolean updateLesson(Event currentEvent, String contributor, String name, String description, String selectedRoom, TimeSlot selectedTimeSlot, String selectedDay) {
+    	return this.eventmanager.updateLesson(currentEvent, contributor, name, description, selectedRoom, selectedTimeSlot, selectedDay);
     } 
 
 /**
@@ -126,8 +126,9 @@ public class EventFacade {
  * @param newDate 
  * @return 
  */
-    public boolean modifyOccasional(Occasional oldOccasional, String newName, String newDescription, Room newRoom, TimeSlot newTimeSlot, Date newDate) {        
-        return eventmanager.modifyOccasional(oldOccasional, newName, newDescription, newRoom, newTimeSlot, newDate) ;
+public boolean modifyOccasional(Event currentEvent, String contributor, String name, String description, String selectedRoom, TimeSlot selectedTimeSlot, String selectedDate, String selectedEventType) {        
+        
+        return eventmanager.modifyOccasional(currentEvent, contributor, name, description, selectedRoom, selectedTimeSlot, selectedDate,selectedEventType);
     } 
 
 /**
@@ -174,6 +175,9 @@ public class EventFacade {
     	return this.eventmanager.getEventDate(selectedEvent);
     }
     
+    public String getEventDay(Event selectedEvent) {
+    	return this.eventmanager.getEventDay(selectedEvent);
+    }
 /**
  * <p>Does ...</p>
  * 
@@ -201,4 +205,6 @@ public class EventFacade {
     public boolean isLesson(Event selectedEvent){
     	return this.eventmanager.isLesson(selectedEvent);
     }
+
+    
  }

@@ -138,7 +138,9 @@ public class ActivityListEventUI extends BaseUI implements ActionListener {
 			}
 			
 			if (facade.isLesson(this.events.get(i))) {
-				System.out.println("coucou");
+				LessonDetailsUI frame = new LessonDetailsUI(this.factory,this.user,this.events.get(i),this.currentActivity);
+				frame.setVisible(true);
+				this.dispose();
 			}
 			
 			

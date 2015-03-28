@@ -170,7 +170,7 @@ public class EventQueryHandler extends EventPersistenceHandler {
     return idEvent;
 }
     public boolean insertOccasional(Activity currentActivity, String contributor, String name, String description, String selectedRoom, TimeSlot selectedTimeSlot, String selectedDate, String selectedEventType) {        
-    	System.out.println("je suis dans insert occasional");
+    	
     	int result=0;
     	String dateSql = "STR_TO_DATE('"+selectedDate+"', '%d/%m/%Y')";
     	int idTimeSlot = this.searchTimeSlot(selectedTimeSlot);
@@ -183,21 +183,6 @@ public class EventQueryHandler extends EventPersistenceHandler {
     	return (result==1);
     } 
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I97bf540m14c21da4a12m3212]
- * @param oldLesson 
- * @param newName 
- * @param newRoom 
- * @param newTimeSlot 
- * @param newDay 
- * @return 
- */
-    public boolean updateLesson(Lesson oldLesson, String newName, Room newRoom, TimeSlot newTimeSlot, Day newDay) {        
-        // your code here
-        return false;
-    } 
 
 /**
  * <p>Does ...</p>
@@ -210,10 +195,47 @@ public class EventQueryHandler extends EventPersistenceHandler {
  * @param newDate 
  * @return 
  */
-    public boolean updateOccasional(Occasional oldOccasional, String newName, Room newRoom, TimeSlot newTimeSlot, java.util.Date newDate) {        
-        // your code here
-        return false;
+    public boolean updateOccasional(Event currentEvent, String contributor, String name, String description, String selectedRoom, TimeSlot selectedTimeSlot, String selectedDate, String selectedEventType) {        
+    	int result = 0;
+    	int result2=0;
+    	String dateSql = "STR_TO_DATE('"+selectedDate+"', '%d/%m/%Y')";
+    	int idTimeSlot = this.searchTimeSlot(selectedTimeSlot);
+    	
+    	
+    	result = ConnectionToMySQL.requestInsertQuery("update Event set event_name= '"+name+"', event_description = '"+description+"', id_contributor='"+contributor+"', id_room='"+selectedRoom+"', id_timeslot='"+idTimeSlot+"' where id_event='"+currentEvent.getID()+"';");
+    	result2 = ConnectionToMySQL.requestInsertQuery("update Occasional set eventType_name='"+selectedEventType+"', dateEvent="+dateSql+" where id_event='"+currentEvent.getID()+"' ;");
+    	
+    	return ((result == 1) && (result2 == 1));
+      
     } 
+    
+/**
+ * <p>Does ...</p>
+ * 
+ * @poseidon-object-id [I97bf540m14c21da4a12m3212]
+ * @param oldLesson 
+ * @param newName 
+ * @param newRoom 
+ * @param newTimeSlot 
+ * @param newDay 
+ * @return 
+ */
+    public boolean updateLesson(Event currentEvent, String contributor, String name, String description, String selectedRoom, TimeSlot selectedTimeSlot, String selectedDay) {
+    	int result = 0;
+    	int result2=0;
+    	int idTimeSlot = this.searchTimeSlot(selectedTimeSlot);
+    	
+    	
+    	result = ConnectionToMySQL.requestInsertQuery("update Event set event_name= '"+name+"', event_description = '"+description+"', id_contributor='"+contributor+"', id_room='"+selectedRoom+"', id_timeslot='"+idTimeSlot+"' where id_event='"+currentEvent.getID()+"';");
+    	result2 = ConnectionToMySQL.requestInsertQuery("update Lesson set day='"+selectedDay+"' where id_event='"+currentEvent.getID()+"' ;");
+    	
+    	return ((result == 1) && (result2 == 1));       
+    	
+    	
+
+    
+    } 
+
 
 /**
  * <p>Does ...</p>
@@ -413,6 +435,24 @@ public Date getEventDate(Event selectedEvent) {
 	}
 	
 	return eventDate;
+} 
+
+public String getEventDay(Event selectedEvent) {
+	String eventDay = null;
+	ResultSet result;
+	result = ConnectionToMySQL.requestSelectQuery("Select * from Lesson where `id_event`='"+selectedEvent.getID()+"';");
+	
+	try {
+		while (result.next()) {
+			eventDay= result.getString(2);
+			
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	return eventDay;
 } 
 
 public boolean isOccasional(Event selectedEvent) {

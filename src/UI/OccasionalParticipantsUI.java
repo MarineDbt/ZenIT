@@ -46,6 +46,7 @@ public class OccasionalParticipantsUI extends BaseUI implements ActionListener {
 		this.factory = factory;
 		this.user = currentUser;
 		this.currentEvent = currentEvent;
+		this.currentActivity = currentActivity;
 		content.setLayout(null);
 		
 		JLabel activityName = new JLabel("");
@@ -55,7 +56,7 @@ public class OccasionalParticipantsUI extends BaseUI implements ActionListener {
 		activityName.setText(this.currentEvent.getName());
 		content.add(activityName);
 		
-		JLabel lblNumberOfFollowers = new JLabel("Number of followers : ");
+		JLabel lblNumberOfFollowers = new JLabel("Number of participants : ");
 		lblNumberOfFollowers.setBounds(211, 44, 127, 14);
 		content.add(lblNumberOfFollowers);
 		

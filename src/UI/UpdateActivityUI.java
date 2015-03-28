@@ -103,12 +103,16 @@ public class UpdateActivityUI extends BaseUI implements ActionListener {
 			UIActivity frame = new UIActivity(factory, user);
 			frame.setVisible(true); 
 			this.dispose();
+			ActSupprime frame2 = new ActSupprime("L'activité a bien été mise à jour");
+			frame2.setVisible(true);
 			}
 			
 			if (result ==false) {
 				UIActivity frame = new UIActivity(factory, user);
 				frame.setVisible(true); 
 				this.dispose();
+				ActSupprime frame2 = new ActSupprime("Il y a eu une erreur, vérifiez vos informations");
+				frame2.setVisible(true);
 			}
 		}
 		
