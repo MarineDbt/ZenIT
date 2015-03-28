@@ -1,14 +1,17 @@
 
 package BL.TechnicalClasses;
 
+import java.util.ArrayList;
 import java.util.Collection;
+
+import BL.ModelClasses.*;
 
 /**
  * 
  * 
  * @poseidon-object-id [I29f51818m14c28f165ddmm469a]
  */
-public interface SupervisorPersistenceHandler {
+public abstract class SupervisorPersistenceHandler {
 /**
  * <p>Does ...</p>
  * 
@@ -16,7 +19,7 @@ public interface SupervisorPersistenceHandler {
  * @param user 
  * @return 
  */
-    public BL.ModelClasses.Supervisor insertSupervisor(BL.ModelClasses.User user);
+    public abstract User insertSupervisor(User user);
 /**
  * <p>Does ...</p>
  * 
@@ -24,14 +27,14 @@ public interface SupervisorPersistenceHandler {
  * @param supervisor 
  * @return 
  */
-    public boolean updateSupervisor(BL.ModelClasses.Supervisor supervisor);
+    public abstract boolean deleteSupervisor(User supervisor);
 /**
  * <p>Does ...</p>
  * 
  * @poseidon-object-id [I29f51818m14c28f165ddmm46a5]
  * @return 
  */
-    public Collection<BL.ModelClasses.Supervisor> selectAllSupervisors();
+    public abstract ArrayList<User> selectAllSupervisors();
 }
 
 

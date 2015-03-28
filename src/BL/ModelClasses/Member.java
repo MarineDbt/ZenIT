@@ -5,7 +5,7 @@ package BL.ModelClasses;
  * 
  * 
  */
-public class Member extends BL.ModelClasses.UserRole {
+public class Member {
 /**
  * 
  * 
@@ -33,5 +33,12 @@ public class Member extends BL.ModelClasses.UserRole {
  * 
  * @poseidon-type BL.DataModel.MemberRole
  */
-    public java.util.Collection memberRole = new java.util.TreeSet();
+   private Supervisor supervisor;
+   
+   /* Constructors */
+   
+   public Member(Supervisor mySupervisor)
+   {
+	   supervisor = mySupervisor;
+   }
  }

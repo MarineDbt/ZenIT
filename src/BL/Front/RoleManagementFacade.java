@@ -1,114 +1,130 @@
 
 package BL.Front;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
+import BL.ModelClasses.*;
+import BL.TechnicalClasses.*;
+
 /**
+ * Facade used for all methods concerning rights management 
+ * @author Mégane Martinez
  * 
  * 
- * @poseidon-object-id [I29f51818m14c28f165ddmm5585]
+ *
  */
 public class RoleManagementFacade {
+	
+/**
+ * <p>Represents the manager called to do the business logic for contributors rights</p>
+ * 
+ * 
+ */
+    private ContributorManager contributorManager;
 
 /**
- * <p>Represents ...</p>
+ * <p>Represents the manager called to do the business logic for supervisors rights</p>
  * 
- * @poseidon-object-id [I29f51818m14c28f165ddmm5586]
+ * 
  */
-    private BL.TechnicalClasses.ContributorManager contributorManager;
+    private SupervisorManager supervisorManager;
+
 
 /**
- * <p>Represents ...</p>
+ * <p>Constructor of the class need an AbstractPersistenceHandlerFactory to give to the manager</p>
  * 
- * @poseidon-object-id [I29f51818m14c28f165ddmm5587]
+ * @param factory need by the ContributorManager 
+ *
  */
-    private BL.TechnicalClasses.SupervisorManager supervisorManager;
-
+    /* Constructors */
+    
+    public RoleManagementFacade(AbstractPersistenceHandlerFactory factory)
+    {
+    	contributorManager = new ContributorManager(factory);
+    	supervisorManager = new SupervisorManager(factory);    	
+    }
+    
 /**
- * <p>Represents ...</p>
- * 
- * @poseidon-object-id [I29f51818m14c28f165ddmm55a4]
- */
-    private BL.TechnicalClasses.UserManager userManager;
+* <p> Gives the role of contributor to a user and added the contributor's description</p>
+* 
+* @param the user that will became contributor
+* @return true if giving the role succeeded, false otherwise
+*/ 
+    
+    
+    public boolean createContributor(User user, String myDescription) {        
+        
+    	/* Delegate method call to contributorManager */
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I29f51818m14c28f165ddmm5588]
- * @param user 
- * @return 
- */
-    public BL.ModelClasses.Contributor createContributor(BL.ModelClasses.User user) {        
-        // your code here
-        return null;
+    	return contributorManager.createContributor(user, myDescription);
     } 
 
 /**
- * <p>Does ...</p>
+ * <p>Gives the role of supervisor to a user that is a member</p>
  * 
- * @poseidon-object-id [I29f51818m14c28f165ddmm558d]
- * @param user 
- * @return 
+ * 
+ * @param user, the user that will became a supervisor 
+ * @return true if giving the role succeeded, false otherwise
  */
-    public BL.ModelClasses.Accessory createSupervisor(BL.ModelClasses.User user) {        
-        // your code here
-        return null;
+    public boolean createSupervisor(User user) {        
+        
+    	/* Delegate method call to contributorManager */
+
+    	return supervisorManager.createSupervisor(user);
     } 
 
 /**
- * <p>Does ...</p>
+ * <p>Remove the right of being a contributor</p>
  * 
- * @poseidon-object-id [I29f51818m14c28f165ddmm5592]
- * @param contributor 
- * @return 
+ *
+ * @param contributor, the user that will no longer be a contributor
+ * @return true if removing the role succeeded, false otherwise
  */
-    public boolean removeContributor(BL.ModelClasses.Contributor contributor) {        
-        // your code here
-        return false;
+    public boolean removeContributor(User contributor) {        
+    	
+    	/* Delegate method call to contributorManager */
+
+    	return contributorManager.removeContributor(contributor);
     } 
 
 /**
- * <p>Does ...</p>
+ * <p>Remove the right of being a supervisor</p>
  * 
- * @poseidon-object-id [I29f51818m14c28f165ddmm5597]
- * @param supervisor 
- * @return 
+ * 
+ * @param supervisor, the user that will no longer be a supervisor
+ * @return true if removing the role succeeded, false otherwise
  */
-    public boolean removeSupervisor(BL.ModelClasses.Supervisor supervisor) {        
-        // your code here
-        return false;
+    public boolean removeSupervisor(User supervisor) {        
+    	
+    	/* Delegate method call to contributorManager */
+
+    	return supervisorManager.removeSupervisor(supervisor);
     } 
 
 /**
- * <p>Does ...</p>
+ * <p>Get all users that have contributors role</p>
  * 
- * @poseidon-object-id [I29f51818m14c28f165ddmm559c]
- * @return 
+ * 
+ * @return An array list of all the users that have the contributor role
  */
-    public Collection<BL.ModelClasses.Contributor> getAllContributors() {        
-        // your code here
-        return null;
+    public ArrayList<User> getAllContributors() {        
+    	
+    	/* Delegate method call to contributorManager */
+
+    	return contributorManager.readAllContributors();
     } 
 
 /**
- * <p>Does ...</p>
+ * <p>Get all the users that have the supervisor role</p>
  * 
- * @poseidon-object-id [I29f51818m14c28f165ddmm55a0]
- * @return 
+ * 
+ * @return an arraylist of all the users that have the supervisor role
  */
-    public Collection<BL.ModelClasses.Supervisor> getAllSupervisors() {        
-        // your code here
-        return null;
-    } 
+    public ArrayList<User> getAllSupervisors() {        
+    	
+    	/* Delegate method call to contributorManager */
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I29f51818m14c28f165ddmm55a5]
- * @return 
- */
-    public Collection<BL.ModelClasses.User> getAllUsers() {        
-        // your code here
-        return null;
+    	return supervisorManager.readAllSupervisors();
     } 
  }
