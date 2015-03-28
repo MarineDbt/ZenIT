@@ -12,8 +12,9 @@ import BL.DataClasses.User;
  * 
  * @poseidon-object-id [Im4bef336fm14c19425b18mm4063]
  */
-public abstract class ContributorPersistanceHandler {
-    public abstract Contributor lookForProfile(User currentContributor);
+public abstract class ContributorPersistenceHandler {
+	
+    public abstract Contributor getProfile(User currentContributor);
 
 /**
  * <p>Does ...</p>
@@ -22,7 +23,7 @@ public abstract class ContributorPersistanceHandler {
  * @param Contributor 
  * @return 
  */
-    public abstract boolean updateDescription(Contributor currentContributor);
+    public abstract boolean modifyDescription(Contributor currentContributor);
 
 /**
  * <p>Does ...</p>
@@ -31,6 +32,6 @@ public abstract class ContributorPersistanceHandler {
  * @param Contributor 
  * @return 
  */
-    public abstract ArrayList<Event> lookForPlanning(Contributor currentContributor );
+    public abstract ArrayList<Event> getPlanning(Contributor currentContributor );
 
  }

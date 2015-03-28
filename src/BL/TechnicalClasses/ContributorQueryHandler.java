@@ -10,7 +10,7 @@ import BL.DataClasses.*;
  * 
  * @poseidon-object-id [Im4bef336fm14c19425b18mm45d0]
  */
-public class ContributorQueryHandler {
+public class ContributorQueryHandler extends ContributorPersistenceHandler {
 
 /**
  * <p>Does ...</p>
@@ -19,7 +19,7 @@ public class ContributorQueryHandler {
  * @param User 
  * @return 
  */
-    public Contributor lookForProfile(User currentContributor) {        
+    public Contributor getProfile(User currentContributor) {        
         // your code here
         return null;
     } 
@@ -31,7 +31,7 @@ public class ContributorQueryHandler {
  * @param Contributor 
  * @return 
  */
-    public boolean updateDescription(Contributor currentContributor) {        
+    public boolean modifyDescription(Contributor currentContributor) {        
         // your code here
         return false;
     } 
@@ -43,8 +43,9 @@ public class ContributorQueryHandler {
  * @param Contributor 
  * @return 
  */
-    public ArrayList<Event> lookForPlanning(Contributor currentContributor ) {        
+    public ArrayList<Event> getPlanning(Contributor currentContributor ) {        
         // your code here
         return null;
-    } 
+    }
+
  }
