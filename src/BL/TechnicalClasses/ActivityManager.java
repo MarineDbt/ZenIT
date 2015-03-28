@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import BL.DataClasses.*;
 
+
 /**
  * 
  * 
@@ -12,6 +13,15 @@ import BL.DataClasses.*;
  */
 public class ActivityManager {
 
+	public ActivityPersistenceHandler activityPH;
+	
+	//Constructeur
+	
+	public ActivityManager(AbstractPersistenceHandlerFactory factory) {
+	
+		activityPH = factory.createActivityPersistenceHandler();
+		
+	}
 /**
  * <p>Does ...</p>
  * 
@@ -20,10 +30,15 @@ public class ActivityManager {
  * @param currentSupervisor 
  * @return 
  */
-    public ArrayList<Activity> getActivities(String nameActivity, Supervisor currentSupervisor) {        
-        // your code here
-        return null;
+    public ArrayList<Activity> getActivities(User currentUser) {        
+ 
+		return activityPH.lookForActivities(currentUser);
+      
     } 
+    
+    public boolean deleteActivity(Activity currentActivity) {
+    	return this.activityPH.deleteActivity(currentActivity);
+    }
 
 /**
  * <p>Does ...</p>
@@ -33,8 +48,8 @@ public class ActivityManager {
  * @return 
  */
     public ArrayList<Contributor> getContributors(Activity currentActivity) {        
-        // your code here
-        return null;
+       
+        return activityPH.lookForContributors(currentActivity);
     } 
 
 /**
@@ -48,8 +63,8 @@ public class ActivityManager {
  * @return 
  */
     public boolean modifyActivity(Activity oldActivity, String newName, String newShortDescription, String newDetailledDescription) {        
-        // your code here
-        return false;
+        
+        return activityPH.updateActivity(oldActivity, newName, newShortDescription, newDetailledDescription);
     } 
 
 /**
@@ -59,10 +74,14 @@ public class ActivityManager {
  * @param currentActivity 
  * @return 
  */
-    public ArrayList<Member> getMembers(Activity currentActivity) {        
-        // your code here
-        return null;
+    public ArrayList<User> getMembers(Activity currentActivity) {        
+        
+        return activityPH.lookForMembers(currentActivity);
     } 
+    
+    public boolean addActivity(String nameActivity, User currentUser, String shortDescription, String detailledDescription) {
+		return this.activityPH.addActivity(nameActivity, currentUser, shortDescription, detailledDescription);
+	}
 
 /**
  * <p>Does ...</p>
@@ -72,7 +91,7 @@ public class ActivityManager {
  * @return 
  */
     public ArrayList<Event> getEvents(Activity currentActivity) {        
-        // your code here
-        return null;
+        
+        return activityPH.lookForEvents(currentActivity);
     } 
  }

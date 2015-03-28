@@ -1,8 +1,28 @@
 import java.awt.EventQueue;
 import java.sql.ResultSet;
 
+
+
+
+
+
+
+
+
+
+
+import UI.AddEventTypeUI;
+import UI.DescActivityUI;
+import UI.ErrorAddActivityUI;
+import UI.SupervisorUI;
+import UI.UIActivity;
 import UI.UISubscription;
+import UI.UpdateActivityUI;
+import BL.DataClasses.Activity;
+import BL.DataClasses.User;
 import BL.Front.UserFacade;
+import BL.TechnicalClasses.AbstractPersistenceHandlerFactory;
+import BL.TechnicalClasses.DatabaseQueryHandlerFactory;
 import ConnectionToDB.ConnectionToMySQL;
 
 /**
@@ -24,8 +44,12 @@ public class Launcher {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UISubscription frame = new UISubscription();
-					frame.userFacade = new UserFacade();
+					
+					AbstractPersistenceHandlerFactory factory = DatabaseQueryHandlerFactory.createFactory();
+					User user = new User("MarineDbt", "Marine", "Dubédat");
+					Activity act = new Activity();
+
+					SupervisorUI frame = new SupervisorUI(factory, user);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

@@ -2,6 +2,7 @@
 package BL.TechnicalClasses;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import BL.DataClasses.*;
 
@@ -10,7 +11,7 @@ import BL.DataClasses.*;
  * 
  * @poseidon-object-id [I97bf540m14c21da4a12m435f]
  */
-public abstract class EventPersistanceHandler {
+public abstract class EventPersistenceHandler {
 
 /**
  * <p>Does ...</p>
@@ -24,6 +25,17 @@ public abstract class EventPersistanceHandler {
         return null;
     } 
 
+	
+	public boolean deleteOccasional(Event selectedEvent) {        
+        // your code here
+        return false;
+    }
+    
+    public boolean deleteLesson(Event selectedEvent) {        
+        // your code here
+        return false;
+    } 
+    
 /**
  * <p>Does ...</p>
  * 
@@ -59,7 +71,7 @@ public abstract class EventPersistanceHandler {
  * @param selectedDay 
  * @return 
  */
-    public boolean insertLesson(Activity currentActivity, String name, String description, Room selectedRoom, TimeSlot selectedTimeSlot, Day selectedDay) {        
+    public boolean insertLesson(Activity currentActivity, String contributor, String name, String description, String selectedRoom, TimeSlot selectedTimeSlot, String selectedDay) {        
         // your code here
         return false;
     } 
@@ -84,13 +96,13 @@ public abstract class EventPersistanceHandler {
  * @param currentActivity 
  * @param name 
  * @param description 
- * @param selectedRoom 
+ * @param chosenRoom 
  * @param selectedTimeSlot 
  * @param selectedDate 
  * @param selectedEventType 
  * @return 
  */
-    public boolean insertOccasional(Activity currentActivity, String name, String description, Room selectedRoom, TimeSlot selectedTimeSlot, java.util.Date selectedDate, EventType selectedEventType) {        
+    public boolean insertOccasional(Activity currentActivity, String chosenContrib, String name, String description, String chosenRoom, TimeSlot selectedTimeSlot, String selectedDate, String selectedEventType) {        
         // your code here
         return false;
     } 
@@ -106,10 +118,9 @@ public abstract class EventPersistanceHandler {
  * @param newDay 
  * @return 
  */
-    public boolean updateLesson(Lesson oldLesson, String newName, Room newRoom, TimeSlot newTimeSlot, Day newDay) {        
-        // your code here
-        return false;
-    } 
+    public boolean updateLesson(Event currentEvent, String contributor, String name, String description, String selectedRoom, TimeSlot selectedTimeSlot, String selectedDay) {
+    	return false;
+    }
 
 /**
  * <p>Does ...</p>
@@ -122,7 +133,7 @@ public abstract class EventPersistanceHandler {
  * @param newDate 
  * @return 
  */
-    public boolean updateOccasional(Occasional oldOccasional, String newName, Room newRoom, TimeSlot newTimeSlot, java.util.Date newDate) {        
+    public boolean updateOccasional(Event currentEvent, String contributor, String name, String description, String selectedRoom, TimeSlot selectedTimeSlot, String selectedDate, String selectedEventType) {        
         // your code here
         return false;
     } 
@@ -140,6 +151,10 @@ public abstract class EventPersistanceHandler {
         return false;
     } 
 
+    public String getEventDay(Event selectedEvent) {
+    	return null;
+    }
+    
 /**
  * <p>Does ...</p>
  * 
@@ -159,8 +174,42 @@ public abstract class EventPersistanceHandler {
  * @param currentEvent 
  * @return 
  */
-    public ArrayList<Member> lookForMembers(Member currentEvent) {        
+    public ArrayList<User> lookForMembers(Event currentEvent) {        
         // your code here
         return null;
     } 
- }
+    
+    public ArrayList<User> allContributors() {
+    	return null;
+    }
+    
+public ArrayList<Room> selectAllRooms() {        
+       	
+return null;
+    }
+
+
+public String getEventType(Event selectedEvent) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+public Date getEventDate(Event selectedEvent) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+public boolean isOccasional(Event selectedEvent) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+
+public boolean isLesson(Event selectedEvent) {
+	// TODO Auto-generated method stub
+	return false;
+} 
+  }
+ 

@@ -2,6 +2,7 @@
 package BL.TechnicalClasses;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import BL.DataClasses.*;
 
@@ -12,6 +13,15 @@ import BL.DataClasses.*;
  */
 public class EventManager {
 
+public EventPersistenceHandler eventPH;
+	
+	//Constructeur
+	
+	public EventManager(AbstractPersistenceHandlerFactory factory) {
+		
+		this.eventPH = factory.createEventPersistenceHandler();
+	}
+	
 /**
  * <p>Does ...</p>
  * 
@@ -20,8 +30,8 @@ public class EventManager {
  * @return 
  */
     public ArrayList<TimeSlot> getAvailableTimeSlots(Room selectedRoom) {        
-        // your code here
-        return null;
+       
+        return eventPH.lookForAvailableTimeSlots(selectedRoom);
     } 
 
 /**
@@ -31,8 +41,8 @@ public class EventManager {
  * @return 
  */
     public ArrayList<Room> getRooms() {        
-        // your code here
-        return null;
+
+        return eventPH.lookForRooms();
     } 
 
 /**
@@ -43,8 +53,8 @@ public class EventManager {
  * @return 
  */
     public ArrayList<Contributor> getContributors(Event currentEvent) {        
-        // your code here
-        return null;
+        
+        return eventPH.lookForContributors(currentEvent);
     } 
 
 /**
@@ -59,9 +69,9 @@ public class EventManager {
  * @param selectedDay 
  * @return 
  */
-    public boolean addLesson(Activity currentActivity, String name, String description, Room selectedRoom, TimeSlot selectedTimeSlot, Day selectedDay) {        
-        // your code here
-        return false;
+    public boolean addLesson(Activity currentActivity, String contributor, String name, String description, String selectedRoom, TimeSlot selectedTimeSlot, String selectedDay) {        
+        
+        return eventPH.insertLesson(currentActivity, contributor, name, description, selectedRoom, selectedTimeSlot, selectedDay);
     } 
 
 /**
@@ -73,8 +83,8 @@ public class EventManager {
  * @return 
  */
     public boolean addContributor(Contributor selectedContributor, Event currentEvent) {        
-        // your code here
-        return false;
+       
+        return eventPH.insertContributor(selectedContributor, currentEvent);
     } 
 
 /**
@@ -84,15 +94,15 @@ public class EventManager {
  * @param currentActivity 
  * @param name 
  * @param description 
- * @param selectedRoom 
+ * @param chosenRoom 
  * @param selectedTimeSlot 
  * @param selectedDate 
  * @param selectedEventType 
  * @return 
  */
-    public boolean addOccasional(Activity currentActivity, String name, String description, Room selectedRoom, TimeSlot selectedTimeSlot, java.util.Date selectedDate, EventType selectedEventType) {        
-        // your code here
-        return false;
+    public boolean addOccasional(Activity currentActivity, String chosenContrib, String name, String description, String chosenRoom, TimeSlot selectedTimeSlot, String selectedDate, String selectedEventType) {        
+       
+        return eventPH.insertOccasional(currentActivity, chosenContrib, name, description, chosenRoom, selectedTimeSlot, selectedDate, selectedEventType);
     } 
 
 /**
@@ -107,9 +117,8 @@ public class EventManager {
  * @param newDay 
  * @return 
  */
-    public boolean modifyLesson(Lesson oldLesson, String newName, String description, Room newRoom, TimeSlot newTimeSlot, Day newDay) {        
-        // your code here
-        return false;
+    public boolean updateLesson(Event currentEvent, String contributor, String name, String description, String selectedRoom, TimeSlot selectedTimeSlot, String selectedDay) {
+    	return this.eventPH.updateLesson(currentEvent, contributor, name, description, selectedRoom, selectedTimeSlot, selectedDay);
     } 
 
 /**
@@ -124,9 +133,9 @@ public class EventManager {
  * @param newDate 
  * @return 
  */
-    public boolean modifyOccasional(Occasional oldOccasional, String newName, String description, Room newRoom, TimeSlot newTimeSlot, java.util.Date newDate) {        
-        // your code here
-        return false;
+    public boolean modifyOccasional(Event currentEvent, String contributor, String name, String description, String selectedRoom, TimeSlot selectedTimeSlot, String selectedDate, String selectedEventType) {        
+        
+        return eventPH.updateOccasional(currentEvent, contributor, name, description, selectedRoom, selectedTimeSlot, selectedDate,selectedEventType);
     } 
 
 /**
@@ -138,8 +147,8 @@ public class EventManager {
  * @return 
  */
     public boolean removeContributor(Contributor selectedContributor, Event currentEvent) {        
-        // your code here
-        return false;
+       
+        return eventPH.deleteContributor(selectedContributor, currentEvent);
     } 
 
 /**
@@ -150,10 +159,19 @@ public class EventManager {
  * @return 
  */
     public boolean removeEvent(Event selectedEvent) {        
-        // your code here
-        return false;
+     
+        return eventPH.deleteEvent(selectedEvent);
     } 
 
+    public boolean deleteOccasional(Event selectedEvent) {        
+        // your code here
+    	return eventPH.deleteOccasional(selectedEvent);
+    }
+    
+    public boolean deleteLesson(Event selectedEvent) {        
+        // your code here
+    	return eventPH.deleteLesson(selectedEvent);
+    } 
 /**
  * <p>Does ...</p>
  * 
@@ -161,8 +179,38 @@ public class EventManager {
  * @param currentEvent 
  * @return 
  */
-    public ArrayList<Member> getMembers(Member currentEvent) {        
-        // your code here
-        return null;
+    public ArrayList<User> getMembers(Event currentEvent) {        
+     
+        return eventPH.lookForMembers(currentEvent);
     } 
- }
+    
+    public ArrayList<User> allContributors() {
+    	return eventPH.allContributors();
+    }
+    
+    public ArrayList<Room> selectAllRooms() {      
+    	return eventPH.selectAllRooms();
+    }
+
+	public String getEventType(Event selectedEvent) {
+		return this.eventPH.getEventType(selectedEvent);
+		
+	}
+
+	public Date getEventDate(Event selectedEvent) {
+		return this.eventPH.getEventDate(selectedEvent);
+	}
+	
+	public String getEventDay(Event selectedEvent) {
+		return this.eventPH.getEventDay(selectedEvent);
+	}
+
+	public boolean isOccasional(Event selectedEvent) {
+    	return this.eventPH.isOccasional(selectedEvent);
+	}
+
+	public boolean isLesson(Event selectedEvent) {
+    	return this.eventPH.isLesson(selectedEvent);
+	}
+  }
+ 

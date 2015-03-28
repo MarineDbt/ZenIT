@@ -10,7 +10,7 @@ import BL.DataClasses.*;
  * 
  * @poseidon-object-id [I97bf540m14c21da4a12m4313]
  */
-public abstract class ActivityPersistanceHandler {
+public abstract class ActivityPersistenceHandler {
 
 /**
  * <p>Does ...</p>
@@ -20,10 +20,18 @@ public abstract class ActivityPersistanceHandler {
  * @param currentSupervisor 
  * @return 
  */
-    public ArrayList<Activity> lookForActivities(String nameActivity, Supervisor currentSupervisor) {        
+    public ArrayList<Activity> lookForActivities(User currentUser) {        
         // your code here
         return null;
     } 
+    
+    public boolean addActivity(String nameActivity, User currentUser, String shortDescription, String detailledDescription) {
+		return false;
+	}
+
+    public boolean deleteActivity(Activity currentActivity) {
+    	return false;
+    }
 
 /**
  * <p>Does ...</p>
@@ -59,7 +67,7 @@ public abstract class ActivityPersistanceHandler {
  * @param currentActivity 
  * @return 
  */
-    public ArrayList<Member> lookForMembers(Activity currentActivity) {        
+    public ArrayList<User> lookForMembers(Activity currentActivity) {        
         // your code here
         return null;
     } 
