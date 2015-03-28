@@ -1,63 +1,54 @@
 
 package BL.DataClasses;
 
+import java.util.ArrayList;
+
 /**
  * 
  * 
  */
 public class Cart {
-/**
- * 
- * 
- */
-    public BL.DataClasses.User user;
-/**
- * 
- * 
- */
-    public BL.DataClasses.Order order;
-/**
- * 
- * 
- * 
- * @poseidon-type BL.DataModel.Contains
- */
-    public java.util.Collection contains = new java.util.TreeSet();
+	
+	public ArrayList<Contains> contains;
 
-/**
- * <p>Does ...</p>
- * 
- */
-    public void deleteProduct() {        
-        // your code here
-    } 
+	public Cart() {
+		this.contains= new ArrayList<Contains>();
+	}
+	
+	public Cart(ArrayList<Contains> contains2) {
+		this.contains=contains2;
+	}
 
-/**
- * <p>Does ...</p>
- * 
- */
-    public void addProduct() {        
-        // your code here
-    } 
+	/**
+	 * <p>Does ...</p>
+	 * 
+	 */
+	public void deleteProduct() {        
+		// your code here
+	} 
 
-/**
- * <p>Does ...</p>
- * 
- */
-    public void modifyQuantity() {        
-        // your code here
-    } 
+	/**
+	 * <p>Does ...</p>
+	 * 
+	 */
+	public void addProduct() {        
+		// your code here
+	} 
 
-/**
- * <p>Does ...</p>
- * 
- */
-    public void validateCart() {        
-        // your code here
-    } 
-/**
- * 
- * 
- */
-    public BL.DataClasses.Member member;
- }
+	/**
+	 * <p>Does ...</p>
+	 * 
+	 */
+	public void modifyQuantity() {        
+		// your code here
+	} 
+
+	/**
+	 * <p>Does ...</p>
+	 * 
+	 */
+	public void validateCart() {        
+		// your code here
+	} 
+
+}

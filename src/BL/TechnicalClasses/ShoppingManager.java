@@ -4,112 +4,86 @@ package BL.TechnicalClasses;
 import java.util.ArrayList;
 
 import BL.DataClasses.*;
+import ConnectionToPersistence.AbstractPersistenceHandlerFactory;
+import ConnectionToPersistence.ShoppingAbstractPersistenceHandler;
 
-/**
- * 
- * 
- * @poseidon-object-id [I395d852m14bf5118266mm69de]
- */
+
 public class ShoppingManager {
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I395d852m14bf5118266mm69c5]
- * @param String 
- * @param String 
- * @param .. 
- * @return 
- */
-    public ArrayList<Product> searchProduct(SubCategory subCaterory) {        
-        // your code here
-        return null;
+	ShoppingAbstractPersistenceHandler shoppingPersistenceHandler;
+	ContainsFactory containsFactory;
+	
+	public ShoppingManager(){
+		containsFactory = new ContainsFactory();
+		shoppingPersistenceHandler = AbstractPersistenceHandlerFactory.getFactory().createShoppingPersistenceHandler();
+	}
+    public ArrayList<Product> searchProductsOfCategory(String category) {        
+    	 return shoppingPersistenceHandler.selectProductOfCategory(category);
+       
     }
-    public ArrayList<Product> searchProduct(Category caterory) {        
-        // your code here
-        return null;
+    
+    public ArrayList<Product> searchProductsOfSubcategory(String subcategory) {        
+    	 return shoppingPersistenceHandler.selectProductOfSubcategory(subcategory);
+    }
+    
+    public void addProduct(Product product, Cart cart) {
+    	int index = -1;
+    	for (int i = 0; i<cart.contains.size(); i++){
+    		if (cart.contains.get(i).product.getId_product()==product.getId_product()){
+    			index =i;
+    			break;
+    		}
+    				
+    	}
+    	if (index == -1){
+    		cart.contains.add(containsFactory.createContains(1, product));
+    	}
+    	else{
+    		modifyQuantityProduct(cart.contains.get(index), cart.contains.get(index).getQuantity()+1);
+    	}
     } 
-
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I395d852m14bf5118266mm69a0]
- * @param Product 
- * @param User 
- */
-    public void addProduct(Product selectedProduct, User currentUser) {        
-        // your code here
+    
+    public void modifyQuantityProduct(Contains contains, int quantity) {        
+    	contains.setQuantity(quantity);
     } 
-
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I395d852m14bf5118266mm696e]
- * @param Product 
- * @param User 
- * @param int 
- */
-    public void modifyQuantityProduct(Product selectedProduct, User currentUser, int newQuantity) {        
-        // your code here
+    public void deleteProductFromCart(Product product , Cart cart) {        
+    	int index = -1;
+    	for (int i = 0; i<cart.contains.size(); i++){
+    		if (cart.contains.get(i).product.getId_product()==product.getId_product()){
+    			index =i;
+    			break;
+    		}
+    				
+    	}
+    	if (index == -1){
+    	}
+    	else{
+    		cart.contains.remove(index);
+    	}
     } 
-
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I395d852m14bf5118266mm6949]
- * @param Product 
- * @param User 
- */
-    public void deleteProduct(Product selectedProduct , User currentUser) {        
-        // your code here
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I395d852m14bf5118266mm6924]
- * @param User 
- * @return 
- */
+    
     public boolean orderValidation(User currentUser) {        
         // your code here
         return false;
     } 
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I395d852m14bf5118266mm68ff]
- * @param User 
- * @return 
- */
-    public ArrayList<Product> showCart(User currentUser) {        
-        // your code here
-        return null;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I395d852m14bf5118266mm68da]
- * @param User 
- * @param Order 
- * @return 
- */
     public boolean cancelOrder(User currentUser, Order selectedOrder) {        
         // your code here
         return false;
     } 
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I395d852m14bf5118266mm68b5]
- * @param User 
- * @return 
- */
-    public ArrayList<Order> consultOrder(User currentUser) {        
-        // your code here
-        return null;
+    public Object[] readCategories() {        
+    	return shoppingPersistenceHandler.selectCategories();
     } 
+    
+    public Object[] readSubcategories(String category) {        
+    	return shoppingPersistenceHandler.selectSubcategories(category);
+    }
+	public ArrayList<Order> consultOrder(User currentUser) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public ArrayList<Product> readAllProducts() {
+		return shoppingPersistenceHandler.selectAllProducts();
+	} 
  }

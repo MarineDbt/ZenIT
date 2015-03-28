@@ -11,6 +11,7 @@ public Contains(int i, Product product2) {
 		this.setQuantity(i);
 		this.product=product2;
 	}
+
 public int getQuantity() {
 	return quantity;
 }

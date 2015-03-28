@@ -17,6 +17,10 @@ import BL.TechnicalClasses.UserPasswordEncryptionHandler;
 public class UserQueryHandler extends UserAbstractPersistenceHandler{
 	
 
+	
+	public UserQueryHandler(){
+		this.userFactory = new UserFactory();
+	}
 	public boolean checkPassword(String id, String pwd) throws SQLException{
 		
 		ResultSet resultSet = null;
@@ -175,7 +179,6 @@ public class UserQueryHandler extends UserAbstractPersistenceHandler{
 		return (result==1);
     }
 
-	@Override
 	public boolean deleteUser(String id) {
 		int result = 0;
 		result = ConnectionToMySQL.requestDeleteQuery("Delete From User where id = '"+id+"';");
@@ -213,7 +216,7 @@ public class UserQueryHandler extends UserAbstractPersistenceHandler{
 			System.out.println(email);
 			String pwd = resultSet.getString(resultSet.findColumn("pwd"));
 			System.out.println(pwd);
-			UserFactory userFactory=new UserFactory();
+			userFactory=new UserFactory();
 			System.out.println("lol");
 			User user = userFactory.createUser(firstname, lastname, street, pc, city, phone, email, id, pwd);
 			System.out.println("lol2");

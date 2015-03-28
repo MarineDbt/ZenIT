@@ -7,61 +7,66 @@ package BL.DataClasses;
  */
 public class Product {
 
-/**
- * <p>Represents ...</p>
- * 
- */
-    private String nameProduct;
 
-/**
- * <p>Represents ...</p>
- * 
- */
-    private double price;
+	private int id_product;
 
-/**
- * <p>Represents ...</p>
- * 
- */
-    private double discount;
-/**
- * 
- * 
- */
-    private BL.DataClasses.SubCategory subCategory;
-/**
- * 
- * 
- * 
- * @poseidon-type BL.DataModel.Contains
- */
-    public java.util.Collection contains = new java.util.TreeSet();
-/**
- * 
- * 
- */
-    public BL.DataClasses.Sells sells;
-public Product(String string, double d, SubCategory sub) {
-	this.nameProduct=string;
-	this.price = d;
-	this.subCategory=sub;
+	private String nameProduct;
+
+	/**
+	 * <p>Represents ...</p>
+	 * 
+	 */
+	private double price;
+
+	/**
+	 * <p>Represents ...</p>
+	 * 
+	 */
+	private double discount;
+	/**
+	 * 
+	 * 
+	 */
+	private int id_member;
+	private String subcategory_name;
+	/**
+	 * 
+	 * 
+	 * 
+	 * @poseidon-type BL.DataModel.Contains
+	 */
+	public java.util.Collection contains = new java.util.TreeSet();
+	/**
+	 * 
+	 * 
+	 */
+	public BL.DataClasses.Sells sells;
+	
+	public Product(int id, String string, double d, double d2, String sub) {
+		this.id_product=id;
+		this.nameProduct=string;
+		this.price = d;
+		this.discount = d2;
+		this.subcategory_name=sub;
+	}
+	public String getNameProduct() {
+		return nameProduct;
+	}
+	public void setNameProduct(String nameProduct) {
+		this.nameProduct = nameProduct;
+	}
+	public double getPrice() {
+		return price;
+	}
+	public int getId_product() {
+		return id_product;
+	}
+	public double getDiscount() {
+		return discount;
+	}
+	public String getSubcategory_name() {
+		return subcategory_name;
+	}
+
+
 }
-public String getNameProduct() {
-	return nameProduct;
-}
-public void setNameProduct(String nameProduct) {
-	this.nameProduct = nameProduct;
-}
-public double getPrice() {
-	return price;
-}
-public void setPrice(double price) {
-	this.price = price;
-}
-public BL.DataClasses.SubCategory getSubCategory() {
-	return subCategory;
-}
-public void setSubCategory(BL.DataClasses.SubCategory subCategory) {
-	this.subCategory = subCategory;
-}
- }

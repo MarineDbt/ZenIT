@@ -17,9 +17,8 @@ import ConnectionToPersistence.UserQueryHandler;
 public class UserManager {
 	
 	/* Attributs */
-	private UserFactory userFactory;
 	private UserAbstractPersistenceHandler userPersistenceHandler;
-	private UserExceptionHandler userExceptionHandler;
+	private UserExceptionHandler userExceptionHandler; // TODO : error handling
 	protected HashMap<String,User> users;
 	public User currentUser;
 	
@@ -27,7 +26,6 @@ public class UserManager {
 	public UserManager() {
 		this.userPersistenceHandler = AbstractPersistenceHandlerFactory.getFactory().createUserPersistenceHandler();
 		this.users= new HashMap();
-		this.userFactory = new UserFactory();
 		this.currentUser = null;
 	}
 	public boolean login(String id, String pwd){
@@ -35,10 +33,8 @@ public class UserManager {
 		boolean result = false;
 		result = checkPassword(id, pwd);
 		if (result){
-			 System.out.println("c");
 			 loadUser(id);
-			 currentUser=users.get(id);
-			 System.out.println("T " + currentUser.getId());
+			 currentUser=users.get(id);			 
 		 }
 		 
 		 return result;
@@ -114,7 +110,7 @@ public class UserManager {
 		 		
 		 		return result;
 	     } 
-	     public boolean isMember(User user) {
+	    public boolean isMember(User user) {
 	 		return this.userPersistenceHandler.isMember(user.getId());
 	 	}
 	 	public boolean isContributor(User user) {
@@ -128,5 +124,9 @@ public class UserManager {
 	 	}
 		public boolean isUser(String id) {
 			return this.userPersistenceHandler.isUser(id);
+		}
+		public User getCurrentUser() {
+			return currentUser;
+			
 		}
 }

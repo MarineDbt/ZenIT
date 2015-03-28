@@ -41,9 +41,11 @@ public class ProfileUI extends BaseUI{
 	private JLabel lblPassword;
 	private JLabel lblNewPassword;
 	private JLabel lblCheckPassword;
+	
+	private UserFacade userFacade;
 		
-	public ProfileUI(UserFacade userFacade) {
-		super(userFacade);
+	public ProfileUI(User user) {
+		super(user);
 		content.setLayout(new FormLayout(new ColumnSpec[] {
 				ColumnSpec.decode("20dlu:grow"),
 				ColumnSpec.decode("default"),
@@ -209,7 +211,8 @@ public class ProfileUI extends BaseUI{
 	}
 	private void initializeProfile(){
 		
-		User u=userFacade.userManager.currentUser;
+		userFacade = new UserFacade();
+		User u=this.currentUser;
 		txtFirstName.setText(u.getFirstname());
 		txtLastName.setText(u.getLastname());
 		txtStreet.setText(u.getStreet());
@@ -299,16 +302,16 @@ private void confirmDeletion() {
 		}
 		if (arg0.getActionCommand()=="validate"){
 			if (pwdPassword.getText()!= "" && pwdNewPassword.getText().equals(pwdCheckPassword.getText())){
-				if (userFacade.userManager.checkPassword(userFacade.userManager.currentUser.getId(),pwdPassword.getText())){
-					userFacade.userManager.modifyProfile(txtFirstName.getText(),txtLastName.getText(), txtStreet.getText(),txtPostalCode.getText(),txtCity.getText(),txtPhone.getText(),txtEmail.getText(),txtUsername.getText(),pwdNewPassword.getText());
+				if (this.userFacade.checkPassword(txtUsername.getText(),pwdPassword.getText())){
+					this.userFacade.modifyProfile(txtFirstName.getText(),txtLastName.getText(), txtStreet.getText(),txtPostalCode.getText(),txtCity.getText(),txtPhone.getText(),txtEmail.getText(),txtUsername.getText(),pwdNewPassword.getText());
 					unableModif();
 				}
 			}
 			
 		}
 		if (arg0.getActionCommand()=="save"){
-			if (userFacade.userManager.checkPassword(userFacade.userManager.currentUser.getId(),pwdPassword.getText())){
-				userFacade.userManager.modifyProfile(txtFirstName.getText(),txtLastName.getText(), txtStreet.getText(),txtPostalCode.getText(),txtCity.getText(),txtPhone.getText(),txtEmail.getText(),txtUsername.getText(),pwdPassword.getText());
+			if (this.userFacade.checkPassword(this.currentUser.getId(),pwdPassword.getText())){
+				this.userFacade.modifyProfile(txtFirstName.getText(),txtLastName.getText(), txtStreet.getText(),txtPostalCode.getText(),txtCity.getText(),txtPhone.getText(),txtEmail.getText(),txtUsername.getText(),pwdPassword.getText());
 				unableModif();
 			}
 		}
@@ -317,11 +320,10 @@ private void confirmDeletion() {
 		}
 		if (arg0.getActionCommand()=="confirmDeletion"){
 			System.out.println("hello");
-			if (userFacade.userManager.checkPassword(userFacade.userManager.currentUser.getId(),pwdPassword.getText())){
-				userFacade.userManager.deleteProfile(userFacade.userManager.currentUser);
+			if (userFacade.checkPassword(this.currentUser.getId(),pwdPassword.getText())){
+				userFacade.deleteProfile(this.currentUser);
 				 LoginUI loginUI = new LoginUI();
 				 loginUI.setVisible(true);
-				 loginUI.userFacade= new UserFacade();
 				 this.dispose();
 			}
 		}

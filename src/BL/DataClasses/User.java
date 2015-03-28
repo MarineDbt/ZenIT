@@ -1,6 +1,9 @@
 
 package BL.DataClasses;
 
+import BL.TechnicalClasses.CartFactory;
+
+
 /**
  * 
  * @author Elie Gallet
@@ -8,68 +11,21 @@ package BL.DataClasses;
  */
 public class User {
 
-	/**
-	 * <p>Represents ...</p>
-	 * 
-	 */
     private String firstname;
-
-	/**
-	 * <p>Represents ...</p>
-	 * 
-	 */
     private String lastname;
-
-	/**
-	 * <p>Represents ...</p>
-	 * 
-	 */
     private String street;
-
-	/**
-	 * <p>Represents ...</p>
-	 * 
-	 */
     private String pc;
-
-	/**
-	 * <p>Represents ...</p>
-	 * 
-	 */
     private String city;
-
-	/**
-	 * <p>Represents ...</p>
-	 * 
-	 */
     private String phone;
-    
-    /**
-	 * <p>Represents ...</p>
-	 * 
-	 */
-    
     private String email;
-	/**
-	 * <p>Represents ...</p>
-	 * 
-	 */
     private String id;
-
-	/**
-	 * <p>Represents ...</p>
-	 * 
-	 */
     private String pwd;
-	/**
-	 * 
-	 * 
-	 */
-    public BL.DataClasses.NotificationCenter notificationCenter;
-	/**
-	 * 
-	 * 
-	 */
+
+    public boolean isMember;
+    public boolean isContributor;
+    public boolean isSupervisor;
+    public boolean isAdministrator;
+    
     public BL.DataClasses.Cart cart;
     
     public User(String firstname, String lastname, String street, String pc,
@@ -83,6 +39,8 @@ public class User {
     	this.email=email;
     	this.id=id;
     	this.pwd=pwd;
+    	CartFactory cartFactory = new CartFactory();
+		this.cart=cartFactory.createCart();
 
     }
 	public User() {
@@ -91,6 +49,8 @@ public class User {
 	public User(String string, String string2) {
 		this.id=string;
 		this.pwd=string2;
+		CartFactory cartFactory = new CartFactory();
+		this.cart=cartFactory.createCart();
 	}
 	/**
      * Delete the user account

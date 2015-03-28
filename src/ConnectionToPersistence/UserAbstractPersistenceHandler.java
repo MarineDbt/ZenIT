@@ -4,6 +4,7 @@ package ConnectionToPersistence;
 import java.sql.SQLException;
 
 import BL.DataClasses.*;
+import BL.TechnicalClasses.UserFactory;
 /**
  * 
  * 
@@ -11,15 +12,9 @@ import BL.DataClasses.*;
  */
 public abstract class UserAbstractPersistenceHandler {
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [Im4bef336fm14c19425b18mm69a1]
- * @param String 
- * @param String 
- * @return 
- * @throws SQLException 
- */
+	protected UserFactory userFactory;
+	
+	
     public abstract boolean checkPassword(String id,  String pwd) throws SQLException;
 
 /**
@@ -59,7 +54,6 @@ public abstract class UserAbstractPersistenceHandler {
  * @param boolean 
  */
     public abstract boolean insertUser(String firstname, String lastname, String street, String PC, String city, String phone, String email, String id, String pwd);
-
 	public abstract boolean isMember(String id);
 	public abstract boolean isContributor(String id);
 	public abstract boolean isSupervisor(String id);

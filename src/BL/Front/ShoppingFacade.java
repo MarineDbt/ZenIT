@@ -3,112 +3,62 @@ package BL.Front;
 
 import java.util.ArrayList;
 
-import BL.DataClasses.*;
+import javax.swing.JLabel;
 
-/**
- * 
- * 
- * @poseidon-object-id [I395d852m14bf5118266mm6e8d]
- */
+import BL.DataClasses.*;
+import BL.TechnicalClasses.ShoppingManager;
+
+
 public class ShoppingFacade {
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I395d852m14bf5118266mm6e74]
- * @param String 
- * @param String 
- * @param .. 
- * @return 
- */
-    public ArrayList<Product> searchProduct(SubCategory subCaterory) {        
-        // your code here
-        return null;
+	
+	private ShoppingManager shoppingManager;
+
+	public ShoppingFacade(){
+		shoppingManager=new ShoppingManager();
+	}
+    public ArrayList<Product> searchProductsOfCategory(String category) {        
+        return shoppingManager.searchProductsOfCategory(category);
     }
-    public ArrayList<Product> searchProduct(Category caterory) {        
-        // your code here
-        return null;
+    public ArrayList<Product> searchProductsOfSubcategory(String subcategory) {        
+        return shoppingManager.searchProductsOfSubcategory(subcategory);
+    }
+
+    public void addProduct(Product product , Cart cart) {        
+    	shoppingManager.addProduct(product, cart);
     } 
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I395d852m14bf5118266mm6e4f]
- * @param Product 
- * @param User 
- */
-    public void addProduct(Product selectedProduct , User currentUser) {        
-        // your code here
-    } 
+    public void modifyQuantityProduct(Contains contains, int newQuantity) {        
+    	shoppingManager.modifyQuantityProduct(contains, newQuantity);
+    }
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I395d852m14bf5118266mm6d4c]
- * @param Product 
- * @param User 
- * @param int 
- */
-    public void modifyQuantityProduct(Product selectedProduct , User currentUser, int newQuantity) {        
-        // your code here
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I395d852m14bf5118266mm6d27]
- * @param Product 
- * @param User 
- */
-    public void deleteProduct(Product selectedProduct , User currentUser) {        
-        // your code here
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I395d852m14bf5118266mm6d02]
- * @param User 
- * @return 
- */
     public boolean orderValidation(User currentUser) {        
-        // your code here
-        return false;
+        return shoppingManager.orderValidation(currentUser);
     } 
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I395d852m14bf5118266mm6a72]
- * @param User 
- * @return 
- */
-    public ArrayList<Product> showCart(User currentUser ) {        
-        // your code here
-        return null;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I395d852m14bf5118266mm6a4d]
- * @param User 
- * @param Order 
- * @return 
- */
     public boolean cancelOrder(User currentUser, Order selectedOrder) {        
-        // your code here
-        return false;
+
+        return shoppingManager.cancelOrder(currentUser, selectedOrder);
     } 
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I395d852m14bf5118266mm6a28]
- * @param User 
- * @return 
- */
     public ArrayList<Order> consultOrder(User currentUser) {        
-        // your code here
-        return null;    } 
+        return shoppingManager.consultOrder(currentUser);    
+    }
+    
+	public void deleteProductFromCart(Product product, Cart cart) {
+		shoppingManager.deleteProductFromCart(product, cart);	
+	}
+	public Object[] readCategories() {
+		return shoppingManager.readCategories();
+		
+	}
+	
+	public Object[] readSubcategories(String category) {
+		return shoppingManager.readSubcategories(category);
+		
+	}
+	public ArrayList<Product> readAllProducts() {
+		return shoppingManager.readAllProducts();
+		
+	} 
  }

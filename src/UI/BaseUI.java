@@ -10,6 +10,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 
 import BL.DataClasses.User;
+import BL.Front.NotificationFacade;
+import BL.Front.ShoppingFacade;
 import BL.Front.UserFacade;
 
 import com.jgoodies.forms.layout.FormLayout;
@@ -38,9 +40,11 @@ public class BaseUI extends JFrame implements ActionListener {
 	JButton btnContributor;
 	JButton btnMyActivities;
 	
-	protected UserFacade userFacade;
+	protected User currentUser;
 
-
+	public BaseUI() {
+		
+	}
 	/**
 	 * Create the frame.
 	 * 
@@ -51,11 +55,11 @@ public class BaseUI extends JFrame implements ActionListener {
 	 * You actually need to refer a User, because the display of the ribbon differs from users
 	 * 
 	 */
-	public BaseUI(UserFacade userFacade) {
-		this.userFacade=userFacade;
+	public BaseUI(User user) {
+		currentUser=user;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1055, 432);
-		this.setMinimumSize(new Dimension(600,450));
+		this.setMinimumSize(new Dimension(800,600));
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -66,7 +70,8 @@ public class BaseUI extends JFrame implements ActionListener {
 				RowSpec.decode("1dlu"),
 				RowSpec.decode("max(33dlu;pref)"),
 				RowSpec.decode("1dlu"),
-				RowSpec.decode("max(139dlu;default):grow"),}));
+				RowSpec.decode("max(139dlu;default):grow"),
+				RowSpec.decode("1dlu"),}));
 
 		JPanel header = new JPanel();
 		contentPane.add(header, "2, 2, fill, top");
@@ -93,7 +98,7 @@ public class BaseUI extends JFrame implements ActionListener {
 		btnHome.addActionListener(this);
 		btnHome.setActionCommand("home");
 		
-		JLabel lblUser = new JLabel("Hi " + userFacade.userManager.currentUser.getId());
+		JLabel lblUser = new JLabel("Hi " + this.currentUser.getId());
 		lblUser.setFont(new Font("Verdana", Font.PLAIN, 9));
 		ribbon.add(lblUser);
 
@@ -128,10 +133,14 @@ public class BaseUI extends JFrame implements ActionListener {
 		JButton btnShop = new JButton("Shop");
 		btnShop.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		ribbon.add(btnShop);
+		btnShop.addActionListener(this);
+		btnShop.setActionCommand("shop");
 
 		JButton btnCart = new JButton("Cart");
 		btnCart.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		ribbon.add(btnCart);
+		btnCart.addActionListener(this);
+		btnCart.setActionCommand("cart");
 
 		JButton btnLogOut = new JButton("Log out");
 		btnLogOut.setFont(new Font("Tahoma", Font.PLAIN, 9));
@@ -143,53 +152,62 @@ public class BaseUI extends JFrame implements ActionListener {
 		contentPane.add(content, "2, 4, fill, fill");
 		content.setLayout(null);
 
-		hideUselessButtons(userFacade.userManager.currentUser);
+		hideUselessButtons(this.currentUser);
 		
 		this.pack();
 
 	}
 
 	/**
-	 * Method which set invisible the useless buttons, according to the type of the current user
+	 * Set invisible the useless buttons, according to the type of the current user
 	 * 
 	 * @param currentUser
 	 */
 	private void hideUselessButtons(User currentUser) {
-		if (!userFacade.userManager.isMember(currentUser)){
+		if (!this.currentUser.isMember){
 			btnMyActivities.setVisible(false);
 		}
-		if (!userFacade.userManager.isContributor(currentUser)){
+		if (!this.currentUser.isContributor){
 			btnContributor.setVisible(false);
 		}
-		if (!userFacade.userManager.isSupervisor(currentUser)){
+		if (!this.currentUser.isSupervisor){
 			btnSupervisor.setVisible(false);
 		}
-		if (!userFacade.userManager.isAdministrator(currentUser)){
+		if (!this.currentUser.isAdministrator){
 			btnAdmin.setVisible(false);
 		}
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getActionCommand().equals("home")){
-			HomeUI homeUI = new HomeUI(userFacade);
+			HomeUI homeUI = new HomeUI(this.currentUser);
     		homeUI.setVisible(true);
 	    	this.dispose();
 		}
 		if (arg0.getActionCommand().equals("notifications")){
-			 NotificationCenterUI notificationCenterUI = new NotificationCenterUI(userFacade);
+			 NotificationCenterUI notificationCenterUI = new NotificationCenterUI(this.currentUser);
 			 notificationCenterUI.setVisible(true);
 			 this.dispose();
 		}
 		if (arg0.getActionCommand().equals("profile")){
-			 ProfileUI profileUI = new ProfileUI(userFacade);
+			 ProfileUI profileUI = new ProfileUI(this.currentUser);
 			 profileUI.setVisible(true);
 			 this.dispose();
 		}
 		if (arg0.getActionCommand().equals("logout")){
 			 LoginUI loginUI = new LoginUI();
 			 loginUI.setVisible(true);
-			 loginUI.userFacade= new UserFacade();
 			 this.dispose();
+		}
+		if (arg0.getActionCommand().equals("cart")){
+			 CartUI cartUI = new CartUI(this.currentUser);
+			 cartUI.setVisible(true);
+			 this.dispose();
+		}
+		if (arg0.getActionCommand().equals("shop")){
+			ShoppingUI ShoppingUI = new ShoppingUI(this.currentUser);
+			ShoppingUI.setVisible(true);
+			this.dispose();
 		}
 	}
 }
