@@ -1,7 +1,9 @@
 
 package BL.TechnicalClasses;
+import java.util.ArrayList;
 import java.util.Collection;
 
+import BL.ModelClasses.User;
 import BL.TechnicalClasses.SupervisorPersistenceHandler;
 
 /**
@@ -16,8 +18,9 @@ public class SupervisorManager {
  * 
  * @poseidon-object-id [I29f51818m14c28f165ddmm45c9]
  */
-    private Collection<BL.ModelClasses.Supervisor> supervisors;
+    private ArrayList<User> supervisors;
 
+    private SupervisorPersistenceHandler mySupervisorPersistenceHandler;
 /**
  * <p>Does ...</p>
  * 
@@ -25,9 +28,28 @@ public class SupervisorManager {
  * @param user 
  * @return 
  */
-    public BL.ModelClasses.Supervisor createSupervisor(BL.ModelClasses.User user) {        
-        // your code here
-        return null;
+    
+    /* Constructors */
+    public SupervisorManager(AbstractPersistenceHandlerFactory factory)
+    {
+    	mySupervisorPersistenceHandler = factory.createSupervisorPersistenceHandler();
+    	supervisors = new ArrayList <User>();
+    }
+    
+    public boolean createSupervisor(User user) {        
+
+    	/* Declarations and initializations */
+    	
+    	User mySupervisor = mySupervisorPersistenceHandler.insertSupervisor(user);
+    	    	
+    	/* Adding to contributors */
+    	if (mySupervisor !=null)
+    	{
+    		supervisors.add(mySupervisor);
+    	}
+    	
+    	/* Return value */
+    	return (mySupervisor != null);
     } 
 
 /**
@@ -37,9 +59,11 @@ public class SupervisorManager {
  * @param supervisor 
  * @return 
  */
-    public boolean removeSupervisor(BL.ModelClasses.Supervisor supervisor) {        
-        // your code here
-        return false;
+    public boolean removeSupervisor(User supervisor) {        
+    	
+    	/* Declarations and initializations */
+    	
+    	return mySupervisorPersistenceHandler.deleteSupervisor(supervisor);
     } 
 
 /**
@@ -48,8 +72,11 @@ public class SupervisorManager {
  * @poseidon-object-id [I29f51818m14c28f165ddmm45d4]
  * @return 
  */
-    public Collection<BL.ModelClasses.Supervisor> readAllSupervisors() {        
-        // your code here
-        return null;
+    public ArrayList<User> readAllSupervisors() {        
+    	
+    	/* Declarations and initializations */
+    	
+    	return mySupervisorPersistenceHandler.selectAllSupervisors();
+    	
     } 
  }
