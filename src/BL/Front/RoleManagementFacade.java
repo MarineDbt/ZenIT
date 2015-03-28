@@ -8,39 +8,34 @@ import BL.ModelClasses.*;
 import BL.TechnicalClasses.*;
 
 /**
+ * Facade used for all methods concerning rights management 
+ * @author Mégane Martinez
  * 
  * 
- * @poseidon-object-id [I29f51818m14c28f165ddmm5585]
+ *
  */
 public class RoleManagementFacade {
 	
 /**
- * <p>Represents ...</p>
+ * <p>Represents the manager called to do the business logic for contributors rights</p>
  * 
- * @poseidon-object-id [I29f51818m14c28f165ddmm5586]
+ * 
  */
     private ContributorManager contributorManager;
 
 /**
- * <p>Represents ...</p>
+ * <p>Represents the manager called to do the business logic for supervisors rights</p>
  * 
- * @poseidon-object-id [I29f51818m14c28f165ddmm5587]
+ * 
  */
     private SupervisorManager supervisorManager;
 
-/**
- * <p>Represents ...</p>
- * 
- * @poseidon-object-id [I29f51818m14c28f165ddmm55a4]
- */
-    private UserManager userManager;
 
 /**
- * <p>Does ...</p>
+ * <p>Constructor of the class need an AbstractPersistenceHandlerFactory to give to the manager</p>
  * 
- * @poseidon-object-id [I29f51818m14c28f165ddmm5588]
- * @param user 
- * @return 
+ * @param factory need by the ContributorManager 
+ *
  */
     /* Constructors */
     
@@ -50,6 +45,14 @@ public class RoleManagementFacade {
     	supervisorManager = new SupervisorManager(factory);    	
     }
     
+/**
+* <p> Gives the role of contributor to a user and added the contributor's description</p>
+* 
+* @param the user that will became contributor
+* @return true if giving the role succeeded, false otherwise
+*/ 
+    
+    
     public boolean createContributor(User user, String myDescription) {        
         
     	/* Delegate method call to contributorManager */
@@ -58,11 +61,11 @@ public class RoleManagementFacade {
     } 
 
 /**
- * <p>Does ...</p>
+ * <p>Gives the role of supervisor to a user that is a member</p>
  * 
- * @poseidon-object-id [I29f51818m14c28f165ddmm558d]
- * @param user 
- * @return 
+ * 
+ * @param user, the user that will became a supervisor 
+ * @return true if giving the role succeeded, false otherwise
  */
     public boolean createSupervisor(User user) {        
         
@@ -72,11 +75,11 @@ public class RoleManagementFacade {
     } 
 
 /**
- * <p>Does ...</p>
+ * <p>Remove the right of being a contributor</p>
  * 
- * @poseidon-object-id [I29f51818m14c28f165ddmm5592]
- * @param contributor 
- * @return 
+ *
+ * @param contributor, the user that will no longer be a contributor
+ * @return true if removing the role succeeded, false otherwise
  */
     public boolean removeContributor(User contributor) {        
     	
@@ -86,11 +89,11 @@ public class RoleManagementFacade {
     } 
 
 /**
- * <p>Does ...</p>
+ * <p>Remove the right of being a supervisor</p>
  * 
- * @poseidon-object-id [I29f51818m14c28f165ddmm5597]
- * @param supervisor 
- * @return 
+ * 
+ * @param supervisor, the user that will no longer be a supervisor
+ * @return true if removing the role succeeded, false otherwise
  */
     public boolean removeSupervisor(User supervisor) {        
     	
@@ -100,10 +103,10 @@ public class RoleManagementFacade {
     } 
 
 /**
- * <p>Does ...</p>
+ * <p>Get all users that have contributors role</p>
  * 
- * @poseidon-object-id [I29f51818m14c28f165ddmm559c]
- * @return 
+ * 
+ * @return An array list of all the users that have the contributor role
  */
     public ArrayList<User> getAllContributors() {        
     	
@@ -113,26 +116,15 @@ public class RoleManagementFacade {
     } 
 
 /**
- * <p>Does ...</p>
+ * <p>Get all the users that have the supervisor role</p>
  * 
- * @poseidon-object-id [I29f51818m14c28f165ddmm55a0]
- * @return 
+ * 
+ * @return an arraylist of all the users that have the supervisor role
  */
     public ArrayList<User> getAllSupervisors() {        
     	
     	/* Delegate method call to contributorManager */
 
     	return supervisorManager.readAllSupervisors();
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I29f51818m14c28f165ddmm55a5]
- * @return 
- */
-    public Collection<BL.ModelClasses.User> getAllUsers() {        
-        // your code here
-        return null;
     } 
  }
