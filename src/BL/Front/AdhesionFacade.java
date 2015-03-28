@@ -1,6 +1,7 @@
 
 package BL.Front;
 import BL.DataClasses.User;
+import BL.TechnicalClasses.AbstractPersistenceHandlerFactory;
 import BL.TechnicalClasses.AdhesionManager;
 
 /**
@@ -9,6 +10,12 @@ import BL.TechnicalClasses.AdhesionManager;
  * @poseidon-object-id [Im619706dm14c21d41ce6mm763c]
  */
 public class AdhesionFacade {
+
+	protected AdhesionManager adhesionManager;
+	
+	public AdhesionFacade(AbstractPersistenceHandlerFactory factory, User currentUser) {
+		this.adhesionManager = new AdhesionManager(factory, currentUser);
+	}
 
 /**
  * <p>Does ...</p>
@@ -19,6 +26,6 @@ public class AdhesionFacade {
  */
     public boolean adhesionValidation(User currentUser) {        
         // your code here
-        return false;
+        return this.adhesionManager.adhesionValidation(currentUser);
     } 
  }

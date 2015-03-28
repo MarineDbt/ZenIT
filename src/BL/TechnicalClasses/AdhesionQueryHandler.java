@@ -2,6 +2,7 @@
 package BL.TechnicalClasses;
 
 import BL.DataClasses.User;
+import ConnectionToDB.ConnectionToMySQL;
 
 /**
  * 
@@ -18,7 +19,9 @@ public class AdhesionQueryHandler extends AdhesionPersistenceHandler {
  * @return 
  */
     public boolean adhesionValidation(User currentUser) {        
-        // your code here
-        return false;
+        
+    	int result = 0;
+    	result = ConnectionToMySQL.requestInsertQuery("insert into Member values ('" + currentUser.getID() + "');");
+    	return (result==1);
     } 
  }

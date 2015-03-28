@@ -10,6 +10,12 @@ import BL.DataClasses.User;
  */
 public class AdhesionManager {
 
+	private AdhesionPersistenceHandler myAdhesionPersistenceHandler;
+	
+	public AdhesionManager(AbstractPersistenceHandlerFactory factory, User currentUser) {
+		myAdhesionPersistenceHandler = factory.createAdhesionPersistenceHandler();
+	}
+
 /**
  * <p>Does ...</p>
  * 
@@ -17,8 +23,8 @@ public class AdhesionManager {
  * @param User 
  * @return 
  */
-    public boolean adhesionValidation(User currentUser) {        
+    public boolean adhesionValidation(User currentUser) {       
         // your code here
-        return false;
+        return this.myAdhesionPersistenceHandler.adhesionValidation(currentUser);
     } 
  }
