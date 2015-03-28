@@ -1,6 +1,7 @@
 import java.awt.EventQueue;
 import java.sql.ResultSet;
 
+import UI.AdminServiceUI;
 import UI.UISubscription;
 import BL.Front.*;
 import BL.ModelClasses.*;
@@ -16,7 +17,7 @@ import ConnectionToDB.ConnectionToMySQL;
 public class Launcher {
 
 	/*test DB ok*/
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		//ResultSet r= ConnectionToMySQL.requestSelectQuery("select * from User");
 		//System.out.println(r);
 		AbstractPersistenceHandlerFactory factory = DatabaseQueryHandlerFactory.createFactory();
@@ -33,20 +34,20 @@ public class Launcher {
 		}
 		
 		
-	}
+	}*/
 
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UISubscription frame = new UISubscription();
-					frame.userFacade = new UserFacade();
+					AbstractPersistenceHandlerFactory factory = DatabaseQueryHandlerFactory.createFactory();
+					AdminServiceUI frame = new AdminServiceUI(new User(),factory);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-	}*/
+	}
 
 }

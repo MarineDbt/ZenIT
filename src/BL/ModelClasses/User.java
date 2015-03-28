@@ -110,10 +110,24 @@ public class User {
 		id = string;
 	}
 
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
+
 	/* Getters */
     public String getId()
     {
     	return id;
+    }
+    
+    public String getFirstname()
+    {
+    	return firstname;
+    }
+    
+    public String getSurname()
+    {
+    	return surname;
     }
     
     /* Setters */
@@ -132,4 +146,24 @@ public class User {
     public void deleteAccount(){
     	//TODO
     }
+
+	public boolean isMember() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean isContributor() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean isSupervisor() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean isAdmin() {
+		// TODO Auto-generated method stub
+		return true;
+	}
  }

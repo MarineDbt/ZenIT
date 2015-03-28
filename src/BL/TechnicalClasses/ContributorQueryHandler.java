@@ -30,7 +30,7 @@ public class ContributorQueryHandler extends ContributorPersistenceHandler {
 		
     	/* Delegate query execution to ConnectionToMySQL */
     	
-		result = ConnectionToMySQL.requestInsertQuery("insert into Contributor (description,id_user) values('"+myDescription+"','"+user.getId()+"');");
+		result = ConnectionToMySQL.requestInsertQuery("insert into Contributor (description,id) values('"+myDescription+"','"+user.getId()+"');");
 		
 		/* Testing if query succeeded */
 		
@@ -60,7 +60,7 @@ public class ContributorQueryHandler extends ContributorPersistenceHandler {
 		
     	/* Delegate query execution to ConnectionToMySQL */
     	
-		result = ConnectionToMySQL.requestInsertQuery("delete from Contributor where id_user = '"+contributor.getId()+"';");
+		result = ConnectionToMySQL.requestInsertQuery("delete from Contributor where id = '"+contributor.getId()+"';");
 		
 		/* Return value */
 		
@@ -81,7 +81,7 @@ public class ContributorQueryHandler extends ContributorPersistenceHandler {
 		
     	/* Delegate query execution to ConnectionToMySQL */
     	
-		result = ConnectionToMySQL.requestSelectQuery("select id, firstname, lastname, description from Contributor, User where id = id_user;");
+		result = ConnectionToMySQL.requestSelectQuery("select c.id, firstname, lastname, description from Contributor c, User u where c.id = u.id;");
 		
 		/* Creation of User list */
 		

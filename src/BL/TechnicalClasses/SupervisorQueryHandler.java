@@ -30,7 +30,7 @@ public class SupervisorQueryHandler extends SupervisorPersistenceHandler {
 		
     	/* Delegate query execution to ConnectionToMySQL */
     	
-		result = ConnectionToMySQL.requestInsertQuery("insert into Supervisor (id_user) values('"+user.getId()+"');");
+		result = ConnectionToMySQL.requestInsertQuery("insert into Supervisor (id) values('"+user.getId()+"');");
 		
 		/* Testing if query succeeded */
 		
@@ -61,7 +61,7 @@ public class SupervisorQueryHandler extends SupervisorPersistenceHandler {
 		
     	/* Delegate query execution to ConnectionToMySQL */
     	
-		result = ConnectionToMySQL.requestInsertQuery("delete from Supervisor where id_user = '"+supervisor.getId()+"';");
+		result = ConnectionToMySQL.requestInsertQuery("delete from Supervisor where id = '"+supervisor.getId()+"';");
 		
 		/* Return value */
 		
@@ -82,7 +82,7 @@ public class SupervisorQueryHandler extends SupervisorPersistenceHandler {
 		
     	/* Delegate query execution to ConnectionToMySQL */
     	
-		result = ConnectionToMySQL.requestSelectQuery("select id, firstname, lastname, from Supervisor, User where id = id_user;");
+		result = ConnectionToMySQL.requestSelectQuery("select s.id, firstname, lastname from Supervisor s, User u where s.id = u.id;");
 		
 		/* Creation of User list */
 		
