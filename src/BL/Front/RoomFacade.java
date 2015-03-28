@@ -29,7 +29,7 @@ public class RoomFacade {
  */
    
     //Constructor
-    public RoomFacade ()
+    public RoomFacade (AbstractPersistenceHandlerFactory factory)
     {
     	RoomManager = new RoomManager();
     	

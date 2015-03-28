@@ -5,7 +5,7 @@ package BL.ModelClasses;
  * 
  * 
  */
-public class Contributor extends BL.ModelClasses.UserRole {
+public class Contributor {
 
 /**
  * <p>Represents ...</p>
@@ -19,4 +19,20 @@ public class Contributor extends BL.ModelClasses.UserRole {
  * @poseidon-type BL.DataModel.Event
  */
     public java.util.Collection event = new java.util.TreeSet();
- }
+    
+    /* Constructors */
+    
+    public Contributor(String maDescription)
+    {
+    	descriptionContributor = maDescription;   	
+    }
+
+    /* Getters */
+    
+    public String getDescriptionContributor()
+    {
+    	return descriptionContributor;
+    }
+
+}
+
