@@ -109,6 +109,7 @@ public class ActivityQueryHandler extends ActivityPersistenceHandler {
 			     String id_user = result.getString(1);
 			     result2 = ConnectionToMySQL.requestSelectQuery("Select * from User where `id`= '"+id_user+"';");
 			     while (result2.next()) {
+			    	 
 			    	 String firstname = result2.getString(2);
 			    	 String lastname = result2.getString(3);
 			    	 String street = result2.getString(4);
@@ -148,6 +149,7 @@ public class ActivityQueryHandler extends ActivityPersistenceHandler {
     	result = ConnectionToMySQL.requestSelectQuery("Select * from Event where activity_name='"+currentActivity.getName()+"';");
     	try {
 			while (result.next()) {
+				int id = result.getInt(1);
 			     String name = result.getString(2);
 			     String id_contributor = result.getString(3);
 			     String description = result.getString(4);
@@ -165,6 +167,7 @@ public class ActivityQueryHandler extends ActivityPersistenceHandler {
 			     
 			     result3 = ConnectionToMySQL.requestSelectQuery("Select * from User where `id`='"+id_contributor+"';");
 			     result3.next();
+			     
 			     String firstname = result3.getString(2);
 		    	 String lastname = result3.getString(3);
 		    	 String street = result3.getString(4);
@@ -173,7 +176,7 @@ public class ActivityQueryHandler extends ActivityPersistenceHandler {
 		    	 String phone  = result3.getString(7);
 	
 		    	 User user = new User(id_contributor, firstname, lastname, street, pc, city, phone);
-			     Event event = new Event(name, user, description,room,timeSlot);
+			     Event event = new Event(id, name, user, description,room,timeSlot);
 			     myEvents.add(event);
 			 }
 			

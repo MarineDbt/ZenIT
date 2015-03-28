@@ -4,6 +4,7 @@ package BL.TechnicalClasses;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import BL.DataClasses.*;
 import ConnectionToDB.ConnectionToMySQL;
@@ -146,7 +147,7 @@ public class EventQueryHandler extends EventPersistenceHandler {
     
     
     public int insertEvent(Activity currentActivity, String contributor, String name, String description, String selectedRoom, int idTimeSlot) {
-    	System.out.println("je suis dans insert event");
+    	
     int idEvent=0;
     int result=0;
     ResultSet result2;
@@ -234,10 +235,43 @@ public class EventQueryHandler extends EventPersistenceHandler {
  * @param selectedEvent 
  * @return 
  */
-    public boolean deleteEvent(Event selectedEvent) {        
-        // your code here
-        return false;
+    public boolean deleteOccasional(Event selectedEvent) {        
+       
+    	/* Declarations and initializations */
+    	int result = 0;
+
+    	/* Query execution delegated to ConnectionToMySQL */
+    	result = ConnectionToMySQL.requestInsertQuery( "delete from Event where id_event = '"+selectedEvent.getID()+"';");
+    	
+    	/* Return value */
+    	return (result == 1);
+   
+    }
+    
+    public boolean deleteLesson(Event selectedEvent) {        
+
+    	/* Declarations and initializations */
+    	int result = 0;
+
+    	/* Query execution delegated to ConnectionToMySQL */
+    	result = ConnectionToMySQL.requestInsertQuery( "delete from Event where id_event = '"+selectedEvent.getID()+"';");
+    	
+    	/* Return value */
+    	return (result == 1);
     } 
+
+    public boolean deleteEvent(Event selectedEvent) {        
+
+    	/* Declarations and initializations */
+    	int result = 0;
+
+    	/* Query execution delegated to ConnectionToMySQL */
+    	result = ConnectionToMySQL.requestInsertQuery( "delete from Event where id_event = '"+selectedEvent.getID()+"';");
+    	
+    	/* Return value */
+    	return (result == 1);
+    } 
+
 
 /**
  * <p>Does ...</p>
@@ -250,16 +284,12 @@ public class EventQueryHandler extends EventPersistenceHandler {
     	/* Declarations and initializations */
     	ResultSet result;
     	ResultSet result2;
-    	ResultSet result3;
+   
+    	int id_event=currentEvent.getID();
     	ArrayList<User> users = new ArrayList<User>();
     	
-    	result3 = ConnectionToMySQL.requestSelectQuery("Select * from Event where `event_name`='"+currentEvent.getName()+"';");
-    	try {
-			result3.next();
-			int id_event = result3.getInt(1);
-			
-		
     	
+    
     	/* Query execution delegated to ConnectionToMySQL */
     	result2 = ConnectionToMySQL.requestSelectQuery("Select * from MemberEvent where `id_event`='"+id_event+"';");
 
@@ -277,18 +307,14 @@ public class EventQueryHandler extends EventPersistenceHandler {
 		    	 String city = result.getString(6);
 		    	 String phone  = result.getString(7);
 		    	 User user = new User(id, firstname, lastname, street, pc, city, phone);
+		    	 System.out.println("coucou le participant s'appelle"+user.getFirstname());
 			     users.add(user);
 			 }
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	
-    }catch (SQLException e1) {
- 			// TODO Auto-generated catch block
- 			e1.printStackTrace();
- 		}
-    	
+
         return users;
     } 
     
@@ -352,5 +378,75 @@ public ArrayList<Room> selectAllRooms() {
         return myRooms;
     } 
     
+public String getEventType(Event selectedEvent) {
+	String eventType = null;
+	ResultSet result;
+	
+	System.out.println(selectedEvent.getID());
+	result = ConnectionToMySQL.requestSelectQuery("Select * from Occasional where `id_event`='"+selectedEvent.getID()+"';");
+	
+	try {
+		while (result.next()) {
+		eventType= result.getString(2);	
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	return eventType;
+}
+
+public Date getEventDate(Event selectedEvent) {
+	Date eventDate = null;
+	ResultSet result;
+	result = ConnectionToMySQL.requestSelectQuery("Select * from Occasional where `id_event`='"+selectedEvent.getID()+"';");
+	
+	try {
+		while (result.next()) {
+			eventDate= result.getDate(3);
+			
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	return eventDate;
+} 
+
+public boolean isOccasional(Event selectedEvent) {
+	boolean bool = false;
+	ResultSet result;
+	result = ConnectionToMySQL.requestSelectQuery("Select * from Occasional where `id_event`='"+selectedEvent.getID()+"';");
+	try {
+		if (result.next()) {
+			bool = true;
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	return bool;
+} 
+
+public boolean isLesson(Event selectedEvent) {
+	boolean bool = false;
+	ResultSet result;
+	result = ConnectionToMySQL.requestSelectQuery("Select * from Lesson where `id_event`='"+selectedEvent.getID()+"';");
+	try {
+		if (result.next()) {
+			bool = true;
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	return bool;
+	
+}
+
    }
  

@@ -45,18 +45,22 @@ public class UpdateActivityUI extends BaseUI implements ActionListener {
 				
 				JLabel lblName = new JLabel("Name :");
 				lblName.setBounds(134, 73, 46, 14);
+				
 				content.add(lblName);
 				
 				JLabel lblShortDescription = new JLabel("Short description :");
 				lblShortDescription.setBounds(134, 118, 95, 14);
+				
 				content.add(lblShortDescription);
 				
 				JLabel lblDetailledDescription = new JLabel("Detailled description :");
 				lblDetailledDescription.setBounds(135, 177, 120, 14);
+				
 				content.add(lblDetailledDescription);
 				
 				textField = new JTextField();
 				textField.setBounds(253, 73, 200, 20);
+				textField.setText(this.currentActivity.getName());
 				content.add(textField);
 				textField.setColumns(10);
 				
@@ -74,11 +78,13 @@ public class UpdateActivityUI extends BaseUI implements ActionListener {
 				
 				shortArea = new JTextField();
 				shortArea.setBounds(253, 118, 200, 20);
+				shortArea.setText(this.currentActivity.getShortDescription());
 				content.add(shortArea);
 				shortArea.setColumns(10);
 				
 				detailledArea = new JTextField();
 				detailledArea.setBounds(253, 174, 200, 20);
+				detailledArea.setText(this.currentActivity.getDetailledDescription());
 				content.add(detailledArea);
 				detailledArea.setColumns(10);
 	}

@@ -2,6 +2,7 @@
 package BL.TechnicalClasses;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import BL.DataClasses.*;
 
@@ -163,6 +164,15 @@ public EventPersistenceHandler eventPH;
         return eventPH.deleteEvent(selectedEvent);
     } 
 
+    public boolean deleteOccasional(Event selectedEvent) {        
+        // your code here
+    	return eventPH.deleteOccasional(selectedEvent);
+    }
+    
+    public boolean deleteLesson(Event selectedEvent) {        
+        // your code here
+    	return eventPH.deleteLesson(selectedEvent);
+    } 
 /**
  * <p>Does ...</p>
  * 
@@ -182,5 +192,22 @@ public EventPersistenceHandler eventPH;
     public ArrayList<Room> selectAllRooms() {      
     	return eventPH.selectAllRooms();
     }
+
+	public String getEventType(Event selectedEvent) {
+		return this.eventPH.getEventType(selectedEvent);
+		
+	}
+
+	public Date getEventDate(Event selectedEvent) {
+	   	return this.eventPH.getEventDate(selectedEvent);
+	}
+
+	public boolean isOccasional(Event selectedEvent) {
+    	return this.eventPH.isOccasional(selectedEvent);
+	}
+
+	public boolean isLesson(Event selectedEvent) {
+    	return this.eventPH.isLesson(selectedEvent);
+	}
   }
  

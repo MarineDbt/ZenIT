@@ -62,7 +62,6 @@ public class ActivityListEventUI extends BaseUI implements ActionListener {
 		btnAddEvent.setActionCommand("addEvent");
 		
 		ActivityFacade facade = new ActivityFacade(factory);
-		
 		this.events = facade.getEvents(this.currentActivity);
 		//this.events = new ArrayList<Event>();
 		//Event ev = new Event("Conférence de folie"); //a enlever
@@ -83,6 +82,8 @@ public class ActivityListEventUI extends BaseUI implements ActionListener {
 			
 			EventFacade facadeEvent = new EventFacade(factory);
 		    ArrayList<User> participants = new ArrayList<User>();
+		   
+		    
 		    participants = facadeEvent.getMembers(this.events.get(i));
 			
 			JLabel lblparticipants = new JLabel("Il y a "+participants.size()+" participants");
@@ -100,7 +101,7 @@ public class ActivityListEventUI extends BaseUI implements ActionListener {
 			JButton btnParticipants = new JButton("Participants");
 			//btnDetails.setBounds(66, 26+39*i, 90, 28);
 			btnParticipants.addActionListener(this);
-			btnParticipants.setActionCommand("details"+i);
+			btnParticipants.setActionCommand("participants"+i);
 			panel_1.add(btnParticipants);
 			}
 		}
@@ -116,10 +117,40 @@ public class ActivityListEventUI extends BaseUI implements ActionListener {
 
 	
 	public void actionPerformed(ActionEvent e) {
+	
+		EventFacade facade = new EventFacade(factory);
+		
 		if (e.getActionCommand().equals("addEvent")) {
 			AddEventTypeUI frame = new AddEventTypeUI(this.factory, this.user,this.currentActivity);
 			frame.setVisible(true);
 			this.dispose();
-	}
+		}
+			
+		for (int i=0;i<this.events.size();i++) {
+
+		if (e.getActionCommand().equals("details"+i)) {
+			if (facade.isOccasional(this.events.get(i))) {
+			
+			OccasionalDetailsUI frame = new OccasionalDetailsUI(this.factory,this.user,this.events.get(i),this.currentActivity);
+			frame.setVisible(true);
+			this.dispose();
+			
+			}
+			
+			if (facade.isLesson(this.events.get(i))) {
+				System.out.println("coucou");
+			}
+			
+			
+		}
+		
+		if (e.getActionCommand().equals("participants"+i)) {
+			OccasionalParticipantsUI frame = new OccasionalParticipantsUI(this.factory,this.user,this.events.get(i),this.currentActivity);
+			frame.setVisible(true);
+			this.dispose();
+			
+		}
+		
+		}
 }
 }

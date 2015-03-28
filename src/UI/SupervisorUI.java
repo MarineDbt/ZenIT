@@ -50,13 +50,7 @@ public class SupervisorUI extends BaseUI implements ActionListener {
 				btnact.addActionListener(this);
 				btnact.setActionCommand("act");
 				content.add(btnact);
-				
-				
-				JButton buttonevent = new JButton("Gérer mes évènements");
-				buttonevent.setBounds(210, 105, 175, 23);
-				buttonevent.addActionListener(this);
-				buttonevent.setActionCommand("event");
-				content.add(buttonevent);
+
 		
 	}
 

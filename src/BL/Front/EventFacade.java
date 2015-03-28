@@ -155,6 +155,25 @@ public class EventFacade {
         return eventmanager.removeEvent(selectedEvent);
     } 
 
+
+    public boolean deleteOccasional(Event selectedEvent) {        
+        // your code here
+    	return eventmanager.deleteOccasional(selectedEvent);
+    }
+    
+    public boolean deleteLesson(Event selectedEvent) {        
+        // your code here
+    	return eventmanager.deleteLesson(selectedEvent);
+    } 
+    
+    public String getEventType(Event selectedEvent) {
+    	return this.eventmanager.getEventType(selectedEvent);
+    }
+    
+    public Date getEventDate(Event selectedEvent) {
+    	return this.eventmanager.getEventDate(selectedEvent);
+    }
+    
 /**
  * <p>Does ...</p>
  * 
@@ -173,5 +192,13 @@ public class EventFacade {
     
     public ArrayList<Room> selectAllRooms() {      
     	return eventmanager.selectAllRooms();
+    }
+    
+    public boolean isOccasional(Event selectedEvent){
+    	return this.eventmanager.isOccasional(selectedEvent);
+    }
+    
+    public boolean isLesson(Event selectedEvent){
+    	return this.eventmanager.isLesson(selectedEvent);
     }
  }
