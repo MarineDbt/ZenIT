@@ -77,6 +77,15 @@ public class User {
 		String city2, String phone2, String email, String id2, String pwd2) {
 	// TODO Auto-generated constructor stub
     }
+    
+    public User(String id) {
+    	this.id = id;
+    }
+    
+    public String getID() {
+    	return this.id;
+    }
+    
 	/**
      * Delete the user account
      */

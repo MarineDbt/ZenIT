@@ -2,8 +2,10 @@ import java.awt.EventQueue;
 import java.sql.ResultSet;
 
 import UI.ContributorUI;
-import UI.UISubscription;
+import BL.DataClasses.User;
 import BL.Front.UserFacade;
+import BL.TechnicalClasses.AbstractPersistenceHandlerFactory;
+import BL.TechnicalClasses.DatabaseQueryHandlerFactory;
 import ConnectionToDB.ConnectionToMySQL;
 
 /**
@@ -25,7 +27,9 @@ public class Launcher {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ContributorUI frame = new ContributorUI();
+					AbstractPersistenceHandlerFactory factory = DatabaseQueryHandlerFactory.createFactory();
+					User currentUser = new User("2");
+					ContributorUI frame = new ContributorUI(factory, currentUser, "1");
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
