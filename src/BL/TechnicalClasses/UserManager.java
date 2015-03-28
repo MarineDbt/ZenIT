@@ -34,8 +34,7 @@ public class UserManager {
 		result = checkPassword(id, pwd);
 		if (result){
 			 loadUser(id);
-			 currentUser=users.get(id);
-			 
+			 currentUser=users.get(id);			 
 		 }
 		 
 		 return result;

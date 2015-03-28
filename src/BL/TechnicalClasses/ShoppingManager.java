@@ -11,8 +11,10 @@ import ConnectionToPersistence.ShoppingAbstractPersistenceHandler;
 public class ShoppingManager {
 
 	ShoppingAbstractPersistenceHandler shoppingPersistenceHandler;
+	ContainsFactory containsFactory;
 	
 	public ShoppingManager(){
+		containsFactory = new ContainsFactory();
 		shoppingPersistenceHandler = AbstractPersistenceHandlerFactory.getFactory().createShoppingPersistenceHandler();
 	}
     public ArrayList<Product> searchProductsOfCategory(String category) {        
@@ -24,24 +26,45 @@ public class ShoppingManager {
     	 return shoppingPersistenceHandler.selectProductOfSubcategory(subcategory);
     }
     
-    public void addProduct(Product product, Cart cart) {        
-    	shoppingPersistenceHandler.insertProduct(product,cart);
+    public void addProduct(Product product, Cart cart) {
+    	int index = -1;
+    	for (int i = 0; i<cart.contains.size(); i++){
+    		if (cart.contains.get(i).product.getId_product()==product.getId_product()){
+    			index =i;
+    			break;
+    		}
+    				
+    	}
+    	if (index == -1){
+    		cart.contains.add(containsFactory.createContains(1, product));
+    	}
+    	else{
+    		modifyQuantityProduct(cart.contains.get(index), cart.contains.get(index).getQuantity()+1);
+    	}
     } 
     
-    public void modifyQuantityProduct(Product product, Cart cart, int quantity) {        
-        shoppingPersistenceHandler.updateOrdersProduct(product, cart, quantity);
+    public void modifyQuantityProduct(Contains contains, int quantity) {        
+    	contains.setQuantity(quantity);
     } 
     public void deleteProductFromCart(Product product , Cart cart) {        
-    	shoppingPersistenceHandler.deleteOrdersProduct(product, cart);
+    	int index = -1;
+    	for (int i = 0; i<cart.contains.size(); i++){
+    		if (cart.contains.get(i).product.getId_product()==product.getId_product()){
+    			index =i;
+    			break;
+    		}
+    				
+    	}
+    	if (index == -1){
+    	}
+    	else{
+    		cart.contains.remove(index);
+    	}
     } 
     
     public boolean orderValidation(User currentUser) {        
         // your code here
         return false;
-    } 
-    
-    public Cart showCart(User currentUser) {        
-    	return shoppingPersistenceHandler.lookForCart(currentUser);
     } 
 
     public boolean cancelOrder(User currentUser, Order selectedOrder) {        

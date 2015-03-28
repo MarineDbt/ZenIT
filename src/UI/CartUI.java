@@ -60,8 +60,10 @@ public class CartUI extends BaseUI implements ActionListener{
 	public CartUI(User user) {
 		super(user);
 		shoppingFacade=new ShoppingFacade();
-		cart = shoppingFacade.showCart(currentUser);
-		shoppingFacade = new ShoppingFacade();
+		System.out.print("ok.... ");
+		System.out.println(user.cart==null);
+		cart = user.cart;
+		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
@@ -97,7 +99,9 @@ public class CartUI extends BaseUI implements ActionListener{
 		JLabel lblTotalPrice = new JLabel("Total Price");
 		productList.add(lblTotalPrice, "cell 3 0");
 
-		this.addProducts(this.currentUser);
+		if (cart != null){
+			this.addProducts(this.currentUser);
+		}
 
 		JPanel validate = new JPanel();
 		GridBagConstraints gbc_validate = new GridBagConstraints();
@@ -185,8 +189,7 @@ public class CartUI extends BaseUI implements ActionListener{
 			else{
 				int newQuantity = quantity - 1;
 				double newTotal = newQuantity*cart.contains.get(j).product.getPrice();
-				shoppingFacade.modifyQuantityProduct(cart.contains.get(j).product, cart, newQuantity);
-				cart.contains.get(j).setQuantity(newQuantity);
+				shoppingFacade.modifyQuantityProduct(cart.contains.get(j), newQuantity);
 				quantities.get(j).setText(Integer.toString(newQuantity));
 				totals.get(j).setText(Double.toString(newTotal));
 			}
@@ -196,8 +199,7 @@ public class CartUI extends BaseUI implements ActionListener{
 			int quantity=cart.contains.get(j).getQuantity();
 			int newQuantity =quantity + 1;
 			double newTotal = newQuantity*cart.contains.get(j).product.getPrice();
-			shoppingFacade.modifyQuantityProduct(cart.contains.get(j).product, cart, newQuantity);
-			cart.contains.get(j).setQuantity(newQuantity);
+			shoppingFacade.modifyQuantityProduct(cart.contains.get(j), newQuantity);
 			quantities.get(j).setText(Integer.toString(newQuantity));
 			totals.get(j).setText(Double.toString(newTotal));
 			
@@ -205,7 +207,6 @@ public class CartUI extends BaseUI implements ActionListener{
 		if (arg0.getActionCommand().substring(0, 1).equals("x")){
 			int j = Integer.parseInt(arg0.getActionCommand().substring(1, arg0.getActionCommand().length())) - 2; //-2 car le 1er produit (j=0) est affiché à la troisème ligne ligne (i=2)
 			shoppingFacade.deleteProductFromCart(cart.contains.get(j).product, cart);
-			cart.contains.remove(j);
 			CartUI cartUI = new CartUI(this.currentUser);
 			cartUI.setVisible(true);
 			this.dispose();

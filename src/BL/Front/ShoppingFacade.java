@@ -28,18 +28,13 @@ public class ShoppingFacade {
     	shoppingManager.addProduct(product, cart);
     } 
 
-    public void modifyQuantityProduct(Product selectedProduct , Cart cart, int newQuantity) {        
-    	shoppingManager.modifyQuantityProduct(selectedProduct, cart, newQuantity);
+    public void modifyQuantityProduct(Contains contains, int newQuantity) {        
+    	shoppingManager.modifyQuantityProduct(contains, newQuantity);
     }
 
     public boolean orderValidation(User currentUser) {        
         return shoppingManager.orderValidation(currentUser);
     } 
-
-    public Cart showCart(User currentUser) {        
-    	return shoppingManager.showCart(currentUser);
-    } 
-
 
     public boolean cancelOrder(User currentUser, Order selectedOrder) {        
 

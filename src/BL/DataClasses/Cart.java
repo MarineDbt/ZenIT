@@ -8,14 +8,15 @@ import java.util.ArrayList;
  * 
  */
 public class Cart {
-
-	private int id_order;
 	
 	public ArrayList<Contains> contains;
 
-	public Cart(ArrayList<Contains> contains2, int id_order) {
+	public Cart() {
+		this.contains= new ArrayList<Contains>();
+	}
+	
+	public Cart(ArrayList<Contains> contains2) {
 		this.contains=contains2;
-		this.id_order=id_order;
 	}
 
 	/**
@@ -49,7 +50,5 @@ public class Cart {
 	public void validateCart() {        
 		// your code here
 	} 
-	public int getId_order() {
-		return id_order;
-	}
+
 }

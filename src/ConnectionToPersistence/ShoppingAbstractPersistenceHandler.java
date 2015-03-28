@@ -26,12 +26,6 @@ public abstract class ShoppingAbstractPersistenceHandler {
     public abstract boolean validateOrder(User currentUser);
 
     public abstract ArrayList<Product> lookForProduct(String categoryName, String subcategoryName);
-
-    public abstract Cart lookForCart(User currentUser);
-    
-    public abstract boolean updateOrdersProduct(Product product, Cart cart, int quantity);
-    
-    public abstract boolean deleteOrdersProduct(Product product, Cart cart);
     
     public abstract Object[] selectCategories();
     
@@ -43,6 +37,5 @@ public abstract class ShoppingAbstractPersistenceHandler {
 	
 	public abstract ArrayList<Product> selectProductOfSubcategory(String subcategory);
 
-	public abstract boolean insertProduct(Product product, Cart cart);
 	
  }

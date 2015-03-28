@@ -27,6 +27,7 @@ public class Product {
 	 * 
 	 * 
 	 */
+	private int id_member;
 	private String subcategory_name;
 	/**
 	 * 
@@ -40,6 +41,7 @@ public class Product {
 	 * 
 	 */
 	public BL.DataClasses.Sells sells;
+	
 	public Product(int id, String string, double d, double d2, String sub) {
 		this.id_product=id;
 		this.nameProduct=string;

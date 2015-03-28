@@ -43,7 +43,7 @@ public class ShoppingUI extends BaseUI implements ItemListener{
 	public ShoppingUI(User user) {
 		super(user);
 		shoppingFacade=new ShoppingFacade();
-		cart=shoppingFacade.showCart(currentUser);
+		cart=user.cart;
 		
 		Object[] categories = shoppingFacade.readCategories();
 		Object[] blank = new Object[1];

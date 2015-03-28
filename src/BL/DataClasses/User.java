@@ -1,6 +1,9 @@
 
 package BL.DataClasses;
 
+import BL.TechnicalClasses.CartFactory;
+
+
 /**
  * 
  * @author Elie Gallet
@@ -36,6 +39,8 @@ public class User {
     	this.email=email;
     	this.id=id;
     	this.pwd=pwd;
+    	CartFactory cartFactory = new CartFactory();
+		this.cart=cartFactory.createCart();
 
     }
 	public User() {
@@ -44,6 +49,8 @@ public class User {
 	public User(String string, String string2) {
 		this.id=string;
 		this.pwd=string2;
+		CartFactory cartFactory = new CartFactory();
+		this.cart=cartFactory.createCart();
 	}
 	/**
      * Delete the user account
