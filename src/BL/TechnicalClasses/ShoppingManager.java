@@ -26,6 +26,12 @@ public class ShoppingManager {
     	 return shoppingPersistenceHandler.selectProductOfSubcategory(subcategory);
     }
     
+    /**
+     * Add a product to a cart
+     * 
+	 * @param a product you want to add
+	 * @param the cart where you want to add the product
+	 */
     public void addProduct(Product product, Cart cart) {
     	int index = -1;
     	for (int i = 0; i<cart.contains.size(); i++){

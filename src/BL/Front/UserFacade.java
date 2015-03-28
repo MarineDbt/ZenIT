@@ -5,9 +5,12 @@ import BL.DataClasses.*;
 import BL.TechnicalClasses.UserManager;
 
 /**
+ * Used to access the functionalities about users in a more abstract way, hiding the data
  * 
- * @author Elie Gallet
- *
+ * @author Elie GALLET
+ * @version 1.0
+ * @date march 2015
+ * 
  */
 public class UserFacade {
 	
@@ -46,29 +49,12 @@ public class UserFacade {
         return userManager.deleteProfile(currentUser);
     }
 
-	
-    public boolean isMember(User user) {
-		return userManager.isMember(user);
-	}
-	
     public boolean isUser(String id) {
 		return userManager.isUser(id);
 	}
 
 	public boolean checkPassword(String id, String pwd) {
 		return userManager.checkPassword(id, pwd);
-	}
-
-	public boolean isContributor(User user) {
-		return userManager.isContributor(user);
-	}
-	
-	public boolean isAdministrator(User user) {
-		return userManager.isAdministrator(user);
-	}
-
-	public boolean isSupervisor(User user) {
-		return userManager.isSupervisor(user);
 	}
 	
  }

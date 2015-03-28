@@ -110,18 +110,6 @@ public class UserManager {
 		 		
 		 		return result;
 	     } 
-	    public boolean isMember(User user) {
-	 		return this.userPersistenceHandler.isMember(user.getId());
-	 	}
-	 	public boolean isContributor(User user) {
-	 		return this.userPersistenceHandler.isContributor(user.getId());
-	 	}
-	 	public boolean isAdministrator(User user) {
-	 		return this.userPersistenceHandler.isAdministrator(user.getId());
-	 	}
-	 	public boolean isSupervisor(User user) {
-	 		return this.userPersistenceHandler.isSupervisor(user.getId());
-	 	}
 		public boolean isUser(String id) {
 			return this.userPersistenceHandler.isUser(id);
 		}
