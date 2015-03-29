@@ -26,32 +26,7 @@ public class OrderManager {
  * @return 
  */
     public boolean cancelOrder(Order order) {        
-        // your code here
-        return false;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [Im619706dm14c21d41ce6mm7cc4]
- * @param Order 
- * @return 
- */
-    public boolean refuseOrder(Order order) {        
-        // your code here
-        return false;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [Im619706dm14c21d41ce6mm7c9f]
- * @param Order 
- * @return 
- */
-    public boolean sendOrder(Order order) {        
-        // your code here
-        return false;
+        return this.MyOrderPersistenceHandler.cancelOrder(order);
     } 
 
 /**
@@ -62,8 +37,7 @@ public class OrderManager {
  * @return 
  */
     public boolean acceptOrder(Order order) {        
-        // your code here
-        return false;
+        return this.MyOrderPersistenceHandler.acceptOrder(order);
     } 
 
 /**
@@ -73,8 +47,6 @@ public class OrderManager {
  * @return 
  */
     public ArrayList<Order> getOrders() {        
-        
-    	
-        return null;
+        return this.MyOrderPersistenceHandler.getOrders();
     } 
  }

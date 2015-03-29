@@ -28,31 +28,7 @@ public class OrderFacade {
  */
     public boolean cancelOrder(Order order) {        
         // your code here
-        return false;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I7e6badf8m14c21c9ffdfmm7d18]
- * @param Order 
- * @return 
- */
-    public boolean refuseOrder(Order order) {        
-        // your code here
-        return false;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I7e6badf8m14c21c9ffdfmm7cf3]
- * @param Order 
- * @return 
- */
-    public boolean sendOrder(Order order) {        
-        // your code here
-        return false;
+        return this.orderManager.cancelOrder(order);
     } 
 
 /**
@@ -64,7 +40,7 @@ public class OrderFacade {
  */
     public boolean acceptOrder(Order order) {        
         // your code here
-        return false;
+        return this.orderManager.acceptOrder(order);
     } 
 
 /**
@@ -75,9 +51,6 @@ public class OrderFacade {
  */
     public ArrayList<Order> getOrders() {      
     	
-		ArrayList<Order> orderslist = new ArrayList<Order>();
-		orderslist = orderManager.getOrders();
-		
-        return null;
+		return this.orderManager.getOrders();
     } 
  }

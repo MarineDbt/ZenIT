@@ -58,9 +58,7 @@ public class ConnectionToMySQL
 		
 		/*Connection Opening*/
     	try {
-    		System.out.println("yo");
 		    connection = DriverManager.getConnection( url, login, pwd );
-		    System.out.println("yo2");
 		} catch ( SQLException e ) {
 			// TODO : error handling
 		}
@@ -111,12 +109,8 @@ public class ConnectionToMySQL
     	
     /* Query Execution */	
     	try {
-    		System.out.println("hi");
 			statement = connection.createStatement();
-			System.out.println("hi2");
-			System.out.println(query);
 			status = statement.executeUpdate(query);
-			System.out.println("hi3");
 		} catch (SQLException e1) {
 			// TODO : error handling
 		}
