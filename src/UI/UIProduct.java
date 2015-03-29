@@ -69,7 +69,7 @@ public class UIProduct extends BaseUI implements ActionListener {
 	public AbstractPersistenceHandlerFactory factory;
 	private ProductFacade productFacade;
 	private Member currentMember;
-	private ArrayList<Product> myProducts;;
+	private ArrayList<Product> myProducts;
 	
 	public UIProduct(AbstractPersistenceHandlerFactory factory, Member currentMember) {
 			
