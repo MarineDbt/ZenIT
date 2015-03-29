@@ -36,8 +36,8 @@ public class UpdateActivityUI extends BaseUI implements ActionListener {
 	 */
 	public UpdateActivityUI(AbstractPersistenceHandlerFactory factory, User currentUser, Activity currentActivity) {
 		
-				//super(factory, currentUser);
-				super(new DatabaseQueryHandlerFactory(), new User()); //a enlever
+				super(factory, currentUser);
+				//super(new DatabaseQueryHandlerFactory(), new User()); //a enlever
 				this.factory = factory;
 				this.user = currentUser;
 				content.setLayout(null);

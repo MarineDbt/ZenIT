@@ -45,8 +45,8 @@ public class ActivityCreationUI extends BaseUI implements ActionListener{
 	
 	public ActivityCreationUI(AbstractPersistenceHandlerFactory factory, User currentUser) {
 		
-		//super(factory, currentUser);
-				super(new DatabaseQueryHandlerFactory(), new User()); //a enlever
+	        	super(factory, currentUser);
+				//super(new DatabaseQueryHandlerFactory(), new User()); //a enlever
 				this.factory = factory;
 				this.user = currentUser;
 				content.setLayout(null);

@@ -34,8 +34,8 @@ public class ActivityListEventUI extends BaseUI implements ActionListener {
 	ArrayList<Event> events = new ArrayList<Event>();
 
 	public ActivityListEventUI(AbstractPersistenceHandlerFactory factory, User currentUser, Activity currentAct) {
-		//super(factory, currentUser);
-		super(new DatabaseQueryHandlerFactory(), new User()); //a enlever
+		super(factory, currentUser);
+		//super(new DatabaseQueryHandlerFactory(), new User()); //a enlever
 		this.factory = factory;
 		this.user = currentUser;
 		content.setLayout(null);

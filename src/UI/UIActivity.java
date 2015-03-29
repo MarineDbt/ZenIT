@@ -47,8 +47,8 @@ public class UIActivity extends BaseUI implements ActionListener {
 		
 	public UIActivity(AbstractPersistenceHandlerFactory factory, User currentUser) {
 		
-		//super(factory, currentUser);
-		super(new DatabaseQueryHandlerFactory(), new User()); //a enlever
+		super(factory, currentUser);
+		//super(new DatabaseQueryHandlerFactory(), new User()); //a enlever
 		this.factory = factory;
 		this.user = currentUser;
 		content.setLayout(null);

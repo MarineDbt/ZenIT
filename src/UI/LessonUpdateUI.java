@@ -53,8 +53,8 @@ public class LessonUpdateUI extends BaseUI implements ActionListener {
 	
 	public LessonUpdateUI(AbstractPersistenceHandlerFactory factory, User currentUser, Activity currentAct, Event currentEvent) {
 
-		//super(factory, currentUser);
-		super(new DatabaseQueryHandlerFactory(), new User()); //a enlever
+		super(factory, currentUser);
+		//super(new DatabaseQueryHandlerFactory(), new User()); //a enlever
 		this.factory = factory;
 		this.user = currentUser;
 		this.currentActivity = currentAct;

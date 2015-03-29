@@ -38,8 +38,8 @@ public class ActivityFollowersUI extends BaseUI implements ActionListener {
 
 
 	public ActivityFollowersUI(AbstractPersistenceHandlerFactory factory, User currentUser, Activity currentActivity) {
-		//super(factory, currentUser);
-		super(new DatabaseQueryHandlerFactory(), new User()); //a enlever
+		super(factory, currentUser);
+		//super(new DatabaseQueryHandlerFactory(), new User()); //a enlever
 		this.factory = factory;
 		this.user = currentUser;
 		this.currentActivity = currentActivity;

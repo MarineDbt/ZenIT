@@ -67,7 +67,7 @@ public class EventQueryHandler extends EventPersistenceHandler {
  */
     public boolean insertLesson(Activity currentActivity, String contributor, String name, String description, String selectedRoom, TimeSlot selectedTimeSlot, String selectedDay) {        
      
-    	System.out.println("je suis dans insert occasional");
+    	
     	int result=0;
   
     	int idTimeSlot = this.searchTimeSlot(selectedTimeSlot);
@@ -109,7 +109,7 @@ public class EventQueryHandler extends EventPersistenceHandler {
  * @return 
  */
     private int searchTimeSlot(TimeSlot selectedTimeSlot) {
-    	System.out.println("je suis dans insert timeslot");
+    	
     	int idTimeSlot = 0;
     	ResultSet result;
     	int result2 =0;
@@ -125,7 +125,7 @@ public class EventQueryHandler extends EventPersistenceHandler {
     	
     	else {
     		result2 = ConnectionToMySQL.requestInsertQuery("insert into TimeSlot (startHour,startMinutes,endHour, endMinutes) values ('"+selectedTimeSlot.getHDeb()+"', '"+selectedTimeSlot.getMDeb()+"','"+selectedTimeSlot.getHFin()+"','"+selectedTimeSlot.getMFin()+"');");
-    		System.out.println("le résultat de la requelle timslot est "+result2);
+    		
     		if (result2==1) {
     		
     			result3 = ConnectionToMySQL.requestSelectQuery("Select * from TimeSlot where startHour='"+selectedTimeSlot.getHDeb()+"' and startMinutes='"+selectedTimeSlot.getMDeb()+"' and endHour ='"+selectedTimeSlot.getHFin()+"' and endMinutes='"+selectedTimeSlot.getMFin()+"' ;");
@@ -163,7 +163,7 @@ public class EventQueryHandler extends EventPersistenceHandler {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	System.out.println("l'idevent est "+idEvent);
+    
     	return idEvent;
     }
     
@@ -329,7 +329,7 @@ public class EventQueryHandler extends EventPersistenceHandler {
 		    	 String city = result.getString(6);
 		    	 String phone  = result.getString(7);
 		    	 User user = new User(id, firstname, lastname, street, pc, city, phone);
-		    	 System.out.println("coucou le participant s'appelle"+user.getFirstname());
+		    	 
 			     users.add(user);
 			 }
 		} catch (SQLException e) {

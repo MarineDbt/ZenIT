@@ -35,8 +35,8 @@ public class OccasionalDetailsUI extends BaseUI implements ActionListener {
 	
 	public OccasionalDetailsUI(AbstractPersistenceHandlerFactory factory, User currentUser, Event currentEvent, Activity currentActivity) {
 	
-		//super(factory, currentUser);
-				super(new DatabaseQueryHandlerFactory(), new User()); //a enlever
+		        super(factory, currentUser);
+				//super(new DatabaseQueryHandlerFactory(), new User()); //a enlever
 				this.factory = factory;
 				this.user = currentUser;
 				this.currentEvent = currentEvent;
