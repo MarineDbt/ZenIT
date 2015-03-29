@@ -14,11 +14,15 @@ import BL.TechnicalClasses.ShoppingManager;
  * 
  * @author Elie GALLET
  * @version 1.0
- * @date march 2015
+ * @date March 2015
  * 
  */
 public class ShoppingFacade {
-
+	
+	/*###########*/
+	/* Attributs */
+	/*###########*/
+	
 	/**
 	 * Unique delegate used by every methods of the facade
 	 * 

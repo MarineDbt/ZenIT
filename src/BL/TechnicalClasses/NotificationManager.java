@@ -1,23 +1,27 @@
 
 package BL.TechnicalClasses;
 import java.util.ArrayList;
-
 import BL.DataClasses.*;
 import ConnectionToPersistence.AbstractPersistenceHandlerFactory;
 import ConnectionToPersistence.NotificationAbstractPersistenceHandler;
+
 /**
+ * Manages Notification objects
  * 
+ * @author Elie GALLET
+ * @version 1.0
+ * @date March 2015
+ * @see Notification
  * 
- * @poseidon-object-id [I395d852m14bf5118266mm6878]
  */
 public class NotificationManager {
 
 /**
- * <p>Does ...</p>
+ * Looks in persistence for the notifications of the current user
  * 
- * @poseidon-object-id [I395d852m14bf5118266mm685f]
- * @param User 
- * @return 
+ * @param currentUser : current user
+ * @return list of notification received by the current user
+ * @see NotificationAbstractPersistenceHandler
  */
     public ArrayList<Notification> readNotifications(User currentUser) {        
     	NotificationAbstractPersistenceHandler notificationPersistenceHandler = AbstractPersistenceHandlerFactory.getFactory().createNotificationPersistenceHandler();
@@ -25,14 +29,13 @@ public class NotificationManager {
     } 
 
 /**
- * <p>Does ...</p>
+ * Deletes in persistence notifications of the current user
  * 
- * @poseidon-object-id [I395d852m14bf5118266mm683a]
- * @param User 
- * @return 
+ * @param  currentUser : current user logged
+ * @return boolean, whether the deletion worked or not
+ * @see NotificationAbstractPersistenceHandler
  */
     public boolean deleteNotifications(User currentUser) {
-    	
     	NotificationAbstractPersistenceHandler notificationPersistenceHandler = AbstractPersistenceHandlerFactory.getFactory().createNotificationPersistenceHandler();
     	return notificationPersistenceHandler.deleteNotifications(currentUser);       
     } 

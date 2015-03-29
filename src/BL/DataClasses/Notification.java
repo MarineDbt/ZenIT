@@ -8,12 +8,12 @@ package BL.DataClasses;
 public class Notification {
 	
 	private String id_user_send;
-	String id_user_receive;
+	private String id_user_receive;
 	private String label;
 	
-	public Notification(String sender_id,String string, String label) {
+	public Notification(String sender_id,String receiver_id, String label) {
 		this.setId_user_send(sender_id);
-		this.id_user_receive=string;
+		this.id_user_receive=receiver_id;
 		this.setLabel(label);
 		
 	}

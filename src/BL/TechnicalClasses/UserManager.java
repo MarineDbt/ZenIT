@@ -2,6 +2,7 @@ package BL.TechnicalClasses;
 import java.sql.SQLException;
 import java.util.HashMap;
 
+import BL.DataClasses.Notification;
 import BL.DataClasses.Product;
 import BL.DataClasses.User;
 import ConnectionToPersistence.AbstractPersistenceHandlerFactory;
@@ -10,19 +11,31 @@ import ConnectionToPersistence.UserQueryHandler;
 
 
 /**
+ * Used to create instances of User
  * 
- * @author Elie
- *
+ * @author Elie GALLET
+ * @version 1.0
+ * @date March 2015
+ * @see User
+ * 
  */
 public class UserManager {
 	
+	/*###########*/
 	/* Attributs */
+	/*###########*/
+	
 	private UserAbstractPersistenceHandler userPersistenceHandler;
 	private UserExceptionHandler userExceptionHandler; // TODO : error handling
+	
 	protected HashMap<String,User> users;
+	
 	public User currentUser;
 	
+	/*#########*/
 	/* Methods */
+	/*#########*/
+	
 	public UserManager() {
 		this.userPersistenceHandler = AbstractPersistenceHandlerFactory.getFactory().createUserPersistenceHandler();
 		this.users= new HashMap();

@@ -4,22 +4,22 @@ import BL.DataClasses.Contains;
 import BL.DataClasses.Product;
 
 /**
- * Used to create instances of Contains
+ * Used to create instances of Contains : a couple made by a product and its quantity
  * 
  * @author Elie GALLET
  * @version 1.0
- * @date march 2015
- * @see Cart
+ * @date March 2015
+ * @see Contains
  * 
  */
 public class ContainsFactory {
-
+	
 	/**
-	 * create Factory
+	 * creates a Contains
 	 * 
-	 * @param quantity
-	 * @param product
-	 * @return
+	 * @param int quantity : the quantity assigned
+	 * @param Product product : a product 
+	 * @return the object containing a product and its quantity
 	 */
 	public Contains createContains(int quantity, Product product) {
 		return new Contains(quantity,product);

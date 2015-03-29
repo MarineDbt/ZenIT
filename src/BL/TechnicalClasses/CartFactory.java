@@ -11,27 +11,28 @@ import BL.DataClasses.Contains;
  * 
  * @author Elie GALLET
  * @version 1.0
- * @date march 2015
+ * @date March 2015
  * @see Cart
  * 
  */
 public class CartFactory {
 	
+	
 	/**
-	 * creates a cart
+	 * creates a Cart
 	 * 
-	 * @return an empty cart
+	 * @return Cart : an empty cart
 	 */
 	public Cart createCart() {
 		return new Cart();
 	}
 	/**
-	 * creates a cart from a list of products and their corresponding quantity
+	 * creates a Cart from a list of products and their corresponding quantity
 	 * 
-	 * @param arraylist of products and their quantity
-	 * @return a cart
+	 * @param contains : list of products and their quantity
+	 * @return the cart the has been created
 	 */
-	public Cart createCart(ArrayList<Contains> contains, int id_order) {
+	public Cart createCart(ArrayList<Contains> contains) {
 		return new Cart(contains);
 	}
 

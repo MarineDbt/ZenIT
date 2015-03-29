@@ -13,12 +13,16 @@ import BL.TechnicalClasses.NotificationManager;
  * 
  * @author Elie GALLET
  * @version 1.0
- * @date march 2015
+ * @date March 2015
  * 
  *
  */
 public class NotificationFacade {
-
+	
+	/*###########*/
+	/* Attributs */
+	/*###########*/
+	
 	/**
 	 * Unique delegate used by every methods of the facade
 	 * @see NotificationManager
