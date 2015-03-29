@@ -19,7 +19,7 @@ public class CartFactory {
 	
 	
 	/**
-	 * creates a Cart
+	 * Creates a Cart
 	 * 
 	 * @return Cart : an empty cart
 	 */
@@ -27,7 +27,7 @@ public class CartFactory {
 		return new Cart();
 	}
 	/**
-	 * creates a Cart from a list of products and their corresponding quantity
+	 * Creates a Cart from a list of products and their corresponding quantity
 	 * 
 	 * @param contains : list of products and their quantity
 	 * @return the cart the has been created

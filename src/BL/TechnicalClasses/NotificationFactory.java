@@ -14,7 +14,7 @@ import BL.DataClasses.Notification;
 public class NotificationFactory {
 	
 	/**
-	 * creates a Notification
+	 * Creates a Notification
 	 * 
 	 * @param sender_id : the identifier of the user who is the source of the notification
 	 * @param receiver_id : the identifier of the use who received the notification

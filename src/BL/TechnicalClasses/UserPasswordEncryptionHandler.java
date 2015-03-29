@@ -2,6 +2,15 @@ package BL.TechnicalClasses;
 import java.security.*;
 import java.util.Formatter;
 
+
+/**
+ * Used to encrypt the passwords
+ * 
+ * @author Elie GALLET
+ * @version 1.0
+ * @date March 2015
+ * 
+ */
 public class UserPasswordEncryptionHandler {
 	
 	public String encryptPassword(String psw){
@@ -20,7 +29,8 @@ public class UserPasswordEncryptionHandler {
 		
 		return byteToHex(encryptedPassword);
 	}
-
+	
+	/* Format Issues*/
 	private String byteToHex(final byte[] hash)
 	{
 	    Formatter formatter = new Formatter();

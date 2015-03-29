@@ -9,13 +9,13 @@ import BL.DataClasses.Product;
  * @author Elie GALLET
  * @version 1.0
  * @date March 2015
- * @see Contains
+ * @see Product
  * 
  */
 public class ProductFactory {
 
 	/**
-	 * creates a Product
+	 * Creates a Product
 	 * 
 	 * @param id_product : the identifier of the product
 	 * @param name : name of the product

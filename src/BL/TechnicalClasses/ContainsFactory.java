@@ -15,7 +15,7 @@ import BL.DataClasses.Product;
 public class ContainsFactory {
 	
 	/**
-	 * creates a Contains
+	 * Creates a Contains
 	 * 
 	 * @param int quantity : the quantity assigned
 	 * @param Product product : a product 
