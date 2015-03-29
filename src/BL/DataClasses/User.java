@@ -1,6 +1,9 @@
 
 package BL.DataClasses;
 
+import BL.TechnicalClasses.CartFactory;
+
+
 /**
  * 
  * @author Elie Gallet
@@ -8,79 +11,75 @@ package BL.DataClasses;
  */
 public class User {
 
-	/**
-	 * <p>Represents ...</p>
-	 * 
-	 */
     private String firstname;
-
-	/**
-	 * <p>Represents ...</p>
-	 * 
-	 */
-    private String surname;
-
-	/**
-	 * <p>Represents ...</p>
-	 * 
-	 */
+    private String lastname;
     private String street;
-
-	/**
-	 * <p>Represents ...</p>
-	 * 
-	 */
-    private String PC;
-
-	/**
-	 * <p>Represents ...</p>
-	 * 
-	 */
+    private String pc;
     private String city;
-
-	/**
-	 * <p>Represents ...</p>
-	 * 
-	 */
     private String phone;
-
-	/**
-	 * <p>Represents ...</p>
-	 * 
-	 */
+    private String email;
     private String id;
-
-	/**
-	 * <p>Represents ...</p>
-	 * 
-	 */
     private String pwd;
-	/**
-	 * 
-	 * 
-	 */
-    public BL.DataClasses.NotificationCenter notificationCenter;
-	/**
-	 * 
-	 * 
-	 */
+
+    public boolean isMember;
+    public boolean isContributor;
+    public boolean isSupervisor;
+    public boolean isAdministrator;
+    
     public BL.DataClasses.Cart cart;
     
-	/**
-	 * 
-	 * 
-	 * 
-	 * @poseidon-type BL.DataModel.UserRole
-	 */
-    public java.util.Collection userRole = new java.util.TreeSet();
-    public User(String firstname2, String lastname, String street2, String pC2,
-		String city2, String phone2, String email, String id2, String pwd2) {
-	// TODO Auto-generated constructor stub
+    public User(String firstname, String lastname, String street, String pc,
+		String city, String phone, String email, String id, String pwd) {
+    	this.firstname=firstname;
+    	this.lastname=lastname;
+    	this.street=street;
+    	this.pc=pc;
+    	this.city=city;
+    	this.phone=phone;
+    	this.email=email;
+    	this.id=id;
+    	this.pwd=pwd;
+    	CartFactory cartFactory = new CartFactory();
+		this.cart=cartFactory.createCart();
+
     }
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
+	public User(String string, String string2) {
+		this.id=string;
+		this.pwd=string2;
+		CartFactory cartFactory = new CartFactory();
+		this.cart=cartFactory.createCart();
+	}
 	/**
      * Delete the user account
      */
     public void deleteAccount(){
     	//TODO
     }
+	public String getId() {
+		return id;
+	}
+	public String getFirstname() {
+		return firstname;
+	}
+	public String getLastname() {
+		return lastname;
+	}
+	public String getStreet() {
+		return street;
+	}
+	public String getPc() {
+		return pc;
+	}
+	public String getCity() {
+		return city;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public String getEmail() {
+		return email;
+	}
  }

@@ -1,9 +1,8 @@
 import java.awt.EventQueue;
-import java.sql.ResultSet;
 
-import UI.UISubscription;
+import UI.LoginUI;
 import BL.Front.UserFacade;
-import ConnectionToDB.ConnectionToMySQL;
+import ConnectionToPersistence.DatabaseQueryHandlerFactory;
 
 /**
  * Launch the application
@@ -13,19 +12,12 @@ import ConnectionToDB.ConnectionToMySQL;
  */
 public class Launcher {
 
-	/*test DB ok*/
-	/*public static void main(String[] args) {
-		ResultSet r= ConnectionToMySQL.requestSelectQuery("select * from User");
-		System.out.println(r);
-
-	}*/
-
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UISubscription frame = new UISubscription();
-					frame.userFacade = new UserFacade();
+					DatabaseQueryHandlerFactory.createFactory();
+					LoginUI frame = new LoginUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

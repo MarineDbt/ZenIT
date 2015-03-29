@@ -1,0 +1,300 @@
+package ConnectionToPersistence;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import BL.DataClasses.User;
+import BL.TechnicalClasses.UserFactory;
+import BL.TechnicalClasses.UserPasswordEncryptionHandler;
+
+
+
+
+/**
+ * 
+ * Makes and executes on the database the queries relative to User
+ * 
+ * @author Elie GALLET
+ * @version 1.0
+ * @date March 2015
+ * @see User
+ * @see UserManager
+ * @see ResultSet
+ * 
+ */
+public class UserQueryHandler extends UserAbstractPersistenceHandler{
+
+
+	/**
+	 * @see UserAbstractPersistenceHandler
+	 */
+	public UserQueryHandler(){
+		this.userFactory = new UserFactory();
+	}
+
+	/**
+	 * @see UserAbstractPersistenceHandler
+	 */
+	public boolean checkPassword(String id, String pwd) throws SQLException{
+
+		ResultSet resultSet = null;
+
+		UserPasswordEncryptionHandler encryptionHandler = new UserPasswordEncryptionHandler();
+		String encryptedPwd;
+		encryptedPwd=encryptionHandler.encryptPassword(pwd);
+
+		try {
+			resultSet=ConnectionToMySQL.requestSelectQuery("select * from User where id = '"+id+"' and pwd = '"+encryptedPwd+"';");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try {
+			System.out.println((resultSet.getRow()));
+			resultSet.last();
+			if (resultSet.getRow()== 0){
+				return false;
+			}
+			else{
+				return true;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	/**
+	 * @see UserAbstractPersistenceHandler
+	 */
+	public boolean isMember(String id){
+
+		ResultSet resultSet = null;
+
+		try {
+			resultSet=ConnectionToMySQL.requestSelectQuery("select * from Member where id = '"+id+"';");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try {
+			System.out.println((resultSet.getRow()));
+			resultSet.last();
+			if (resultSet.getRow()== 0){
+				return false;
+			}
+			else{
+				return true;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	/**
+	 * @see UserAbstractPersistenceHandler
+	 */
+	public boolean isSupervisor(String id){
+
+		ResultSet resultSet = null;
+
+		try {
+			resultSet=ConnectionToMySQL.requestSelectQuery("select * from Supervisor where id = '"+id+"';");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try {
+			System.out.println((resultSet.getRow()));
+			resultSet.last();
+			if (resultSet.getRow()== 0){
+				return false;
+			}
+			else{
+				return true;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	/**
+	 * @see UserAbstractPersistenceHandler
+	 */
+	public boolean isContributor(String id){
+
+		ResultSet resultSet = null;
+
+		try {
+			resultSet=ConnectionToMySQL.requestSelectQuery("select * from Contributor where id = '"+id+"';");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try {
+			System.out.println((resultSet.getRow()));
+			resultSet.last();
+			if (resultSet.getRow()== 0){
+				return false;
+			}
+			else{
+				return true;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	/**
+	 * @see UserAbstractPersistenceHandler
+	 */
+	public boolean isAdministrator(String id){
+
+		ResultSet resultSet = null;
+
+		try {
+			resultSet=ConnectionToMySQL.requestSelectQuery("select * from Administrator where id = '"+id+"';");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try {
+			System.out.println((resultSet.getRow()));
+			resultSet.last();
+			if (resultSet.getRow()== 0){
+				return false;
+			}
+			else{
+				return true;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	/**
+	 * @see UserAbstractPersistenceHandler
+	 */
+	public boolean insertUser(String firstname, String lastname, String street, String PC, String city, String phone, String email, String id, String pwd){
+
+		UserPasswordEncryptionHandler encryptionHandler = new UserPasswordEncryptionHandler();
+		String encryptedPwd;
+		int result = 0;
+		encryptedPwd=encryptionHandler.encryptPassword(pwd);
+
+		result = ConnectionToMySQL.requestInsertQuery("insert into User (firstname,lastname,street,PC,city,phone,email,id,pwd) values('"+firstname+"','"+lastname+"','"+street+"','"+PC+"','"+city+"','"+phone+"','"+email+"','"+id+"','"+encryptedPwd+"');");
+
+		return (result==1);
+	}
+	
+	/**
+	 * @see UserAbstractPersistenceHandler
+	 */
+	public boolean updateUser(String firstname, String lastname, String street, String PC, String city, String phone, String email, String id, String pwd) {        
+		UserPasswordEncryptionHandler encryptionHandler = new UserPasswordEncryptionHandler();
+		String encryptedPwd;
+		int result = 0;
+		encryptedPwd=encryptionHandler.encryptPassword(pwd);
+
+		result = ConnectionToMySQL.requestUpdateQuery("Update User SET firstname = '"+firstname+"', lastname = '"+lastname+"', street = '"+street+"', PC = '"+PC+"', city = '"+city+"', phone = '"+phone+"', email = '"+email+"', pwd = '"+encryptedPwd+"' WHERE id = '"+id+"';");
+
+		return (result==1);
+	}
+	
+	/**
+	 * @see UserAbstractPersistenceHandler
+	 */
+	public boolean deleteUser(String id) {
+		int result = 0;
+		result = ConnectionToMySQL.requestDeleteQuery("Delete From User where id = '"+id+"';");
+		return (result==1);
+	}
+	
+	/**
+	 * @see UserAbstractPersistenceHandler
+	 */
+	public User selectUser(String id) {
+
+		ResultSet resultSet = null;
+
+		try {
+			String query = "select * from User where id = '"+id+"';";
+			resultSet=ConnectionToMySQL.requestSelectQuery(query);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+
+			resultSet.first();
+			String firstname = resultSet.getString(resultSet.findColumn("firstname"));
+			System.out.println(firstname);
+			String lastname = resultSet.getString(resultSet.findColumn("lastname"));
+			System.out.println(lastname);
+			String street = resultSet.getString(resultSet.findColumn("street"));
+			System.out.println(street);
+			String pc = resultSet.getString(resultSet.findColumn("PC"));
+			System.out.println(pc);
+			String city = resultSet.getString(resultSet.findColumn("city"));
+			System.out.println(city);
+			String phone = resultSet.getString(resultSet.findColumn("phone"));
+			System.out.println(phone);
+			String email = resultSet.getString(resultSet.findColumn("email"));
+			System.out.println(email);
+			String pwd = resultSet.getString(resultSet.findColumn("pwd"));
+			System.out.println(pwd);
+			userFactory=new UserFactory();
+			System.out.println("lol");
+			User user = userFactory.createUser(firstname, lastname, street, pc, city, phone, email, id, pwd);
+			System.out.println("lol2");
+			return user;
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	/**
+	 * @see UserAbstractPersistenceHandler
+	 */
+	public boolean isUser(String id) {
+		ResultSet resultSet = null;
+		try {
+			resultSet=ConnectionToMySQL.requestSelectQuery("select * from User where id = '"+id+"';");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try {
+			System.out.println((resultSet.getRow()));
+			resultSet.last();
+			if (resultSet.getRow()== 0){
+				return false;
+			}
+			else{
+				return true;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+}

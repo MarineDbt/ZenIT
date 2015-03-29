@@ -7,6 +7,10 @@ package BL.DataClasses;
  */
 public class SubCategory {
 
+public SubCategory(String string2,Category cat) {
+		this.string=string;
+		this.category=cat;
+	}
 /**
  * <p>Represents ...</p>
  * 
@@ -18,7 +22,7 @@ public class SubCategory {
  * 
  * @poseidon-type BL.DataModel.Product
  */
-    public java.util.Collection product = new java.util.TreeSet();
+    public java.util.Collection products = new java.util.TreeSet();
 /**
  * 
  * 
